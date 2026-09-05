@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.cache
+raw_dataset/
+runs/
+scratch/
+.idea/
+.vscode/
+*.log
+
+
