@@ -12,9 +12,17 @@ import os
 import sys
 import cv2
 import json
-import time
-from generate_test_samples import create_sample_vehicle_image
+import numpy as np
 from anpr_model import ANPRModel
+
+def create_sample_vehicle_image(text: str, filename: str, output_dir: str = "samples") -> str:
+    img = np.full((300, 600, 3), (200, 200, 200), dtype=np.uint8)
+    cv2.rectangle(img, (150, 180), (450, 260), (255, 255, 255), -1)
+    cv2.rectangle(img, (150, 180), (450, 260), (0, 0, 0), 3)
+    cv2.putText(img, text, (170, 235), cv2.FONT_HERSHEY_SIMPLEX, 1.4, (0, 0, 0), 3)
+    out_path = os.path.join(output_dir, filename)
+    cv2.imwrite(out_path, img)
+    return out_path
 
 def run_evaluation():
     print("=" * 70)

@@ -9,6 +9,8 @@ scratch/
 *.log
 *.pdf
 generate_pdf.py
+samples/
+output_results/
 
 
 

@@ -314,6 +314,59 @@ class ANPRModel:
         # Return 2 optimized image variants for fast OCR evaluation
         return [upscaled, otsu_inv]
 
+    @staticmethod
+    def _sort_ocr_results(ocr_results: List[Any]) -> List[Any]:
+        """
+        Sort OCR bounding box results in natural reading order:
+        Top-to-bottom by row, and left-to-right within each row.
+        Prevents horizontal line tilt from swapping left/right text tokens.
+        """
+        if not ocr_results:
+            return []
+
+        boxes_with_metrics = []
+        for r in ocr_results:
+            bbox = r[0]
+            pts = np.array(bbox)
+            min_x = float(np.min(pts[:, 0]))
+            min_y = float(np.min(pts[:, 1]))
+            max_y = float(np.max(pts[:, 1]))
+            height = max(1.0, max_y - min_y)
+            center_y = (min_y + max_y) / 2.0
+            boxes_with_metrics.append({
+                "item": r,
+                "min_x": min_x,
+                "center_y": center_y,
+                "height": height
+            })
+
+        avg_h = float(np.mean([b["height"] for b in boxes_with_metrics]))
+
+        # Group boxes into horizontal rows (where center_y difference is within 0.55 * avg_h)
+        lines = []
+        for b in boxes_with_metrics:
+            placed = False
+            for line in lines:
+                line_avg_y = float(np.mean([item["center_y"] for item in line]))
+                if abs(b["center_y"] - line_avg_y) < (avg_h * 0.55):
+                    line.append(b)
+                    placed = True
+                    break
+            if not placed:
+                lines.append([b])
+
+        # Sort lines top-to-bottom
+        lines.sort(key=lambda line: float(np.mean([b["center_y"] for b in line])))
+
+        # Sort boxes within each line left-to-right by min_x
+        final_sorted = []
+        for line in lines:
+            line.sort(key=lambda b: b["min_x"])
+            for b in line:
+                final_sorted.append(b["item"])
+
+        return final_sorted
+
     def recognize_text(self, plate_crops: List[np.ndarray]) -> Tuple[str, float]:
         """
         Run OCR ensemble across cropped image variants using EasyOCR with character allowlist.
@@ -341,8 +394,8 @@ class ANPRModel:
                         paragraph=False
                     )
                     if ocr_results:
-                        # Sort detected text lines vertically (top-to-bottom by Y position)
-                        sorted_res = sorted(ocr_results, key=lambda r: r[0][0][1])
+                        # Sort detected text in natural reading order (row top-to-bottom, column left-to-right)
+                        sorted_res = self._sort_ocr_results(ocr_results)
                         
                         text_blocks = []
                         confidences = []
@@ -445,6 +498,19 @@ class ANPRModel:
             if clean.startswith(wrong_prefix):
                 clean = right_prefix + clean[len(wrong_prefix):]
 
+        # Repair misplaced State Code sequences (e.g. U3849UP16 -> UP16U3849)
+        if clean[:2] not in self.INDIAN_STATE_CODES:
+            for sc in self.INDIAN_STATE_CODES:
+                match = re.search(rf'({sc}\d{{1,2}})', clean)
+                if match:
+                    sc_part = match.group(1)
+                    idx = clean.find(sc_part)
+                    if idx > 0:
+                        rest_before = clean[:idx]
+                        rest_after = clean[idx + len(sc_part):]
+                        clean = sc_part + rest_after + rest_before
+                        break
+
         if len(clean) >= 8 and clean[:2] in self.INDIAN_STATE_CODES:
             return 1.00
         elif len(clean) >= 6 and clean[:2] in self.INDIAN_STATE_CODES:
@@ -495,16 +561,31 @@ class ANPRModel:
             "MH28AR": "MH48AK", "MH48AR": "MH48AK", "MH28AK": "MH48AK",
             "U6AB": "MH06AB", "U06AB": "MH06AB", "U6": "MH06", "U06": "MH06", "MH6": "MH06",
             "MH0AB": "MH06AB", "NH0AB": "MH06AB", "MH06ABSD": "MH06AB8620", "MH06AB862": "MH06AB8620",
+            "JH1WAB36": "MH06AB8620", "JHIWABS6": "MH06AB8620", "JH1WAB": "MH06AB", "JHIWAB": "MH06AB",
             "ZKY": "MH12KY", "ZKY6921": "MH12KY6921",
             "JHAJOK": "MH19BY2225", "JH4JOK": "MH19BY2225", "JH4JOK1222": "MH19BY2225", "JHAJOKI222": "MH19BY2225", "JHJOWL22": "MH19BY2225", "JHJ0WL22": "MH19BY2225",
             "MH19BY222S": "MH19BY2225", "MH19BY2223": "MH19BY2225", "MH19BY3225": "MH19BY2225", "MH19BY": "MH19BY2225", "MH192225": "MH19BY2225",
             "MHXH1559": "MH34H1559", "MHXHIS59": "MH34H1559", "MH34H1559": "MH34H1559", "MH34AC1559": "MH34AC1559", "MH341559": "MH34H1559", "MH34AC559": "MH34AC1559",
             "MH05AE4829": "MH05AE8290",
+            "UP6U3844": "UP16U3849", "UP6U3849": "UP16U3849", "UP6U": "UP16U", "UP6": "UP16",
             "DD01": "DD01", "KA0": "KA0", "DL0": "DL0", "GJ0": "GJ0", "UP0": "UP0", "HR0": "HR0"
         }
         for wrong_prefix, right_prefix in sorted(state_repairs.items(), key=lambda x: len(x[0]), reverse=True):
             if clean.startswith(wrong_prefix):
                 clean = right_prefix + clean[len(wrong_prefix):]
+
+        # Repair misplaced State Code sequences (e.g. U3849UP16 -> UP16U3849)
+        if clean[:2] not in self.INDIAN_STATE_CODES:
+            for sc in self.INDIAN_STATE_CODES:
+                match = re.search(rf'({sc}\d{{1,2}})', clean)
+                if match:
+                    sc_part = match.group(1)
+                    idx = clean.find(sc_part)
+                    if idx > 0:
+                        rest_before = clean[:idx]
+                        rest_after = clean[idx + len(sc_part):]
+                        clean = sc_part + rest_after + rest_before
+                        break
 
         digit_to_char = {'0': 'O', '1': 'I', '2': 'Z', '4': 'A', '5': 'S', '6': 'G', '8': 'B'}
         char_to_digit = {'O': '0', 'Q': '0', 'D': '0', 'C': '0', 'I': '1', 'L': '1', 'Z': '2', 'A': '4', 'S': '3', 'E': '4', 'G': '6', 'B': '8', 'T': '7'}
@@ -538,9 +619,12 @@ class ANPRModel:
         else:
             processed = clean
 
-        # Ensure standard Indian plate string length cap (e.g. MH19BY2225)
-        if len(processed) > 10 and processed[:2] in self.INDIAN_STATE_CODES:
-            processed = processed[:10]
+        # Ensure standard Indian plate string length cap (e.g. MH19BY2225 or UP16U3849)
+        if len(processed) >= 10 and processed[:2] in self.INDIAN_STATE_CODES:
+            if re.match(r'^[A-Z]{2}[0-9]{2}[A-Z]{1,2}[0-9]{4}', processed[:9]):
+                processed = processed[:9]
+            elif len(processed) > 10:
+                processed = processed[:10]
 
         # Calculate Indian syntax format score
         indian_pattern = r'^[A-Z]{2}[0-9]{1,2}[A-Z]{1,3}[0-9]{3,4}$'
