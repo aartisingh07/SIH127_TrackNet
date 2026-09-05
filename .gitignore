@@ -8,6 +8,8 @@ scratch/
 .vscode/
 *.log
 *.pdf
+generate_pdf.py
+
 
 
 
