@@ -7,5 +7,7 @@ scratch/
 .idea/
 .vscode/
 *.log
+*.pdf
+
 
 
