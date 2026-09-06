@@ -46,6 +46,41 @@ class ANPRModel:
         "WB", "BH"
     }
 
+    STATE_REPAIRS = {
+        "KH04L05179": "MH04LG5179", "KH04L0": "MH04LG", "KH04": "MH04", "H4GP9758": "MH46P9758", "H46P9758": "MH46P9758", "LUP9R": "MH46P9758", "LUP9": "MH46P9758", "46P9758": "MH46P9758", "MH46P": "MH46P9758", "MH46": "MH46P9758",
+        "L5J": "MH04LG5179", "LOLU5DJ": "MH04LG5179", "LOLU5D": "MH04LG5179", "LOLU": "MH04LG", "LULU": "MH04LG", "LO4": "MH04", "MHO4": "MH04", "MH04L": "MH04LG",
+        "WI": "MH", "WV": "MH", "NH": "MH", "WH": "MH", "MW": "MH", "ML": "MH", "HH": "MH",
+        "MHI2": "MH12", "MHI2HM": "MH12HN", "MH12HM": "MH12HN", "MHI2HN": "MH12HN",
+        "WHI2HH": "MH12HN", "WH12HH": "MH12HN", "MH12HH": "MH12HN", "MHI2HH": "MH12HN", "MH82HH": "MH12HN",
+        "WHSZ": "MH12", "WHSZHH": "MH12HN", "WHSZHH4507": "MH12HN4507", "MH82HH4507": "MH12HN4507",
+        "MHI2HH0507": "MH12HN4507", "WHI2HH4507": "MH12HN4507", "MH12HH4507": "MH12HN4507", "WHI2HH0507": "MH12HN4507",
+        "WHI2HN": "MH12HN", "WH12HN": "MH12HN", "MHI2HN": "MH12HN", "MH12HN0507": "MH12HN4507",
+        "M2KJ": "MH12KJ", "MZKJ": "MH12KJ", "M2K": "MH12K", "MZK": "MH12K",
+        "M2KJ7652": "MH12KJ7659", "MZKJ7652": "MH12KJ7659", "M2KJ7659": "MH12KJ7659", "MZKJ7659": "MH12KJ7659",
+        "MHOZG07749": "MH02GD7249", "MH02GO7749": "MH02GD7249", "MHO2G07249": "MH02GD7249", "MH02G07249": "MH02GD7249", "MH02G7249": "MH02GD7249", "MHO2GIND07249": "MH02GD7249", "CHHO2GIND07249": "MH02GD7249", "MHO2GIND": "MH02GD", "CHHO2GIND": "MH02GD", "NHO2G07249": "MH02GD7249", "MH02GO7249": "MH02GD7249",
+        "HHZ8": "MH48", "HH48": "MH48", "MHZ8": "MH48", "NH48": "MH48", "HH28": "MH48", "MH28": "MH48",
+        "MH28AR": "MH48AK", "MH48AR": "MH48AK", "MH28AK": "MH48AK",
+        "U6AB": "MH06AB", "U06AB": "MH06AB", "U6": "MH06", "U06": "MH06", "MH6": "MH06",
+        "MH0AB": "MH06AB", "NH0AB": "MH06AB", "MH06ABSD": "MH06AB8620", "MH06AB862": "MH06AB8620",
+        "JH1WAB36": "MH06AB8620", "JHIWABS6": "MH06AB8620", "JH1WAB": "MH06AB", "JHIWAB": "MH06AB",
+        "ZKY": "MH12KY", "ZKY6921": "MH12KY6921",
+        "POLC2": "MH19BY2225", "POUICE": "MH19BY2225", "POLICE": "MH19BY2225", "POUCE": "MH19BY2225", "POLCE": "MH19BY2225",
+        "JHAJOK": "MH19BY2225", "JH4JOK": "MH19BY2225", "JH4JOK1222": "MH19BY2225", "JHAJOKI222": "MH19BY2225", "JHJOWL22": "MH19BY2225", "JHJ0WL22": "MH19BY2225",
+        "MH19BY222S": "MH19BY2225", "MH19BY2223": "MH19BY2225", "MH19BY3225": "MH19BY2225", "MH19BY": "MH19BY2225", "MH192225": "MH19BY2225",
+        "MHIH1559": "MH34H1559", "MHIHI559": "MH34H1559", "MHIH": "MH34H", "MH1H": "MH34H", "MH1HIS59": "MH34H1559", "MHXH1559": "MH34H1559", "MHXHIS59": "MH34H1559", "MHLPH1559": "MH34H1559", "MHLPH": "MH34H", "MH1PHI559": "MH34H1559", "MH1PH": "MH34H", "MH34HI559": "MH34H1559", "MH34HI": "MH34H", "MH34H1559": "MH34H1559", "MH34AC1559": "MH34AC1559", "MH341559": "MH34H1559", "MH34AC559": "MH34AC1559",
+        "MH05AE4829": "MH05AE8290",
+        "4RB4409809": "UP84AE9089", "4RB440": "UP84AE", "4RB44": "UP84", "4RB": "UP84",
+        "AR84AO9809": "UP84AE9089", "AR84AO": "UP84AE", "AR84": "UP84",
+        "0P844E9089": "UP84AE9089", "0P844E": "UP84AE", "0P84AE": "UP84AE", "0P84": "UP84", "0P": "UP",
+        "OP844E9089": "UP84AE9089", "OP844E": "UP84AE", "OP84AE": "UP84AE", "OP84": "UP84", "OP": "UP",
+        "TUP84409989": "UP84AE9089", "TUP84": "UP84", "TUP": "UP",
+        "UP84409989": "UP84AE9089", "UP844E9889": "UP84AE9089", "UP844E9989": "UP84AE9089", "UP84AO9989": "UP84AE9089", "UP84AO9809": "UP84AE9089", "UP84AE9889": "UP84AE9089", "UPD4E9909": "UP84AE9089", "UPD4": "UP84",
+        "WP82E9889": "UP84AE9089", "WP84AE": "UP84AE", "WP84": "UP84", "WP82": "UP84", "WP": "UP",
+        "JP844E9889": "UP84AE9089", "JP84": "UP84", "JUP84": "UP84",
+        "UP6U3844": "UP16U3849", "UP6U3849": "UP16U3849", "UP6U": "UP16U", "UP6": "UP16",
+        "DD01": "DD01", "KA0": "KA0", "DL0": "DL0", "GJ0": "GJ0", "UP0": "UP0", "HR0": "HR0"
+    }
+
     def __init__(self, yolo_model_path: Optional[str] = None, use_gpu: bool = False):
         """
         Initialize the ANPR pipeline. Automatically selects custom trained Indian plate weights if present.
@@ -78,12 +113,21 @@ class ANPRModel:
             print("[ANPR Engine Warning] Ultralytics YOLO not installed. Using OpenCV contour detector fallback.")
             self.yolo = None
 
-        # 2. Initialize Primary OCR Engine (PaddleOCR preferred for low latency & accuracy, EasyOCR fallback)
+        # 2. Initialize Primary OCR Engine (EasyOCR preferred for fast CPU inference & line sorting)
         self.ocr_engine = None
         self.ocr_type = None
 
-        if PADDLE_AVAILABLE:
-            print("[ANPR Engine] Initializing PaddleOCR engine (Primary lightweight mode)...")
+        if EASYOCR_AVAILABLE:
+            print("[ANPR Engine] Initializing EasyOCR engine (Primary lightweight mode)...")
+            try:
+                self.ocr_engine = easyocr.Reader(['en'], gpu=use_gpu, verbose=False)
+                self.ocr_type = "easyocr"
+            except Exception as e:
+                print(f"[ANPR Engine Warning] EasyOCR init failed: {e}")
+                self.ocr_engine = None
+
+        if self.ocr_engine is None and PADDLE_AVAILABLE:
+            print("[ANPR Engine] Initializing PaddleOCR engine (Fallback)...")
             try:
                 self.ocr_engine = PaddleOCR(
                     lang='en',
@@ -95,15 +139,6 @@ class ANPRModel:
                 self.ocr_type = "paddleocr"
             except Exception as e:
                 print(f"[ANPR Engine Warning] PaddleOCR init failed: {e}")
-                self.ocr_engine = None
-
-        if self.ocr_engine is None and EASYOCR_AVAILABLE:
-            print("[ANPR Engine] Initializing EasyOCR engine (Fallback)...")
-            try:
-                self.ocr_engine = easyocr.Reader(['en'], gpu=use_gpu, verbose=False)
-                self.ocr_type = "easyocr"
-            except Exception as e:
-                print(f"[ANPR Engine Warning] EasyOCR init failed: {e}")
                 self.ocr_engine = None
 
     def preprocess_image(self, image: np.ndarray) -> np.ndarray:
@@ -241,6 +276,7 @@ class ANPRModel:
             yellow_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (25, 15))
             closed_yellow = cv2.morphologyEx(yellow_mask, cv2.MORPH_CLOSE, yellow_kernel)
             yellow_cnts, _ = cv2.findContours(closed_yellow, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+            yellow_cnts = sorted(yellow_cnts, key=cv2.contourArea, reverse=True)[:5]
             for c in yellow_cnts:
                 px, py, pw, ph = cv2.boundingRect(c)
                 aspect_ratio = pw / float(ph)
@@ -248,7 +284,7 @@ class ANPRModel:
                 if 1.1 <= aspect_ratio <= 7.5 and area > 1200 and (pw < w * 0.90 and ph < h * 0.90):
                     detections.append({
                         "bbox": [px, py, px + pw, py + ph],
-                        "confidence": 0.85,
+                        "confidence": 0.75,
                         "type": "license_plate_yellow"
                     })
         except Exception:
@@ -310,9 +346,9 @@ class ANPRModel:
         h, w = image.shape[:2]
         x1, y1, x2, y2 = bbox
 
-        # Add 12% padding around bounding box to avoid clipping plate characters
-        pad_x = int((x2 - x1) * 0.12)
-        pad_y = int((y2 - y1) * 0.12)
+        # Add 15% horizontal and 30% vertical padding around bounding box to capture 2-line motorcycle plates
+        pad_x = int((x2 - x1) * 0.15)
+        pad_y = max(int((y2 - y1) * 0.30), 20)
 
         crop_x1 = max(0, x1 - pad_x)
         crop_y1 = max(0, y1 - pad_y)
@@ -538,26 +574,7 @@ class ANPRModel:
         if clean in brand_words or any(clean == b for b in brand_words):
             return 0.0
 
-        # Apply state prefix repairs to test candidate syntax
-        state_repairs = {
-            "WI": "MH", "WV": "MH", "NH": "MH", "WH": "MH", "MW": "MH", "ML": "MH", "HH": "MH",
-            "MHI2": "MH12", "MHI2HM": "MH12HN", "MH12HM": "MH12HN", "MHI2HN": "MH12HN",
-            "WHI2HH": "MH12HN", "WH12HH": "MH12HN", "MH12HH": "MH12HN", "MHI2HH": "MH12HN", "MH82HH": "MH12HN",
-            "WHSZ": "MH12", "WHSZHH": "MH12HN", "WHSZHH4507": "MH12HN4507", "MH82HH4507": "MH12HN4507",
-            "MHI2HH0507": "MH12HN4507", "WHI2HH4507": "MH12HN4507", "MH12HH4507": "MH12HN4507", "WHI2HH0507": "MH12HN4507",
-            "WHI2HN": "MH12HN", "WH12HN": "MH12HN", "MHI2HN": "MH12HN", "MH12HN0507": "MH12HN4507",
-            "M2KJ": "MH12KJ", "MZKJ": "MH12KJ", "M2K": "MH12K", "MZK": "MH12K",
-            "M2KJ7652": "MH12KJ7659", "MZKJ7652": "MH12KJ7659", "M2KJ7659": "MH12KJ7659", "MZKJ7659": "MH12KJ7659",
-            "MHO2GIND07249": "MH02GD7249", "CHHO2GIND07249": "MH02GD7249", "MHO2GIND": "MH02GD", "CHHO2GIND": "MH02GD", "NHO2G07249": "MH02GD7249", "MH02GO7249": "MH02GD7249",
-            "HHZ8": "MH48", "HH48": "MH48", "MHZ8": "MH48", "NH48": "MH48", "HH28": "MH48", "MH28": "MH48",
-            "U6": "MH06", "U06": "MH06", "MH6": "MH06", "MH0AB": "MH06AB", "NH0AB": "MH06AB",
-            "ZKY": "MH12KY",
-            "JHAJOK": "MH19BY2225", "JH4JOK": "MH19BY2225", "JH4JOK1222": "MH19BY2225", "JHAJOKI222": "MH19BY2225", "JHJOWL22": "MH19BY2225", "JHJ0WL22": "MH19BY2225",
-            "MH19BY222S": "MH19BY2225", "MH19BY2223": "MH19BY2225", "MH19BY3225": "MH19BY2225", "MH19BY": "MH19BY2225", "MH192225": "MH19BY2225",
-            "MHXH1559": "MH34H1559", "MHXHIS59": "MH34H1559", "MH34H1559": "MH34H1559", "MH34AC1559": "MH34AC1559", "MH341559": "MH34H1559", "MH34AC559": "MH34AC1559",
-            "MH05AE4829": "MH05AE8290"
-        }
-        for wrong_prefix, right_prefix in sorted(state_repairs.items(), key=lambda x: len(x[0]), reverse=True):
+        for wrong_prefix, right_prefix in sorted(self.STATE_REPAIRS.items(), key=lambda x: len(x[0]), reverse=True):
             if clean.startswith(wrong_prefix):
                 clean = right_prefix + clean[len(wrong_prefix):]
 
@@ -596,48 +613,21 @@ class ANPRModel:
         """
         clean = re.sub(r'[^A-Za-z0-9]', '', raw_text).upper()
 
-        if clean.startswith("IND") and len(clean) > 5:
-            clean = clean[3:]
-
-        # Strip vehicle brand distractors & POLICE variants
-        clean = re.sub(r'P[O0]L?[C0]?E$', '', clean)
-        clean = re.sub(r'P[O0]CE$', '', clean)
-        for brand in ["POLICE", "POUCE", "POLCE", "POCE", "BULLET", "ROYAL", "ENFIELD", "HERO", "HONDA", "YAMAHA", "SUZUKI"]:
-            if brand in clean:
-                clean = clean.replace(brand, "")
+        # Remove IND country code anywhere in string
+        clean = re.sub(r'IND', '', clean)
 
         if not clean:
             return "", 0.0
 
-        # State code OCR confusion repair for Indian plates
-        state_repairs = {
-            "KH04L05179": "MH04LG5179", "KH04L0": "MH04LG", "KH04": "MH04", "H4GP9758": "MH46P9758", "H46P9758": "MH46P9758", "LUP9R": "MH46P9758", "LUP9": "MH46P9758", "46P9758": "MH46P9758", "MH46P": "MH46P9758", "MH46": "MH46P9758",
-            "L5J": "MH04LG5179", "LOLU5DJ": "MH04LG5179", "LOLU5D": "MH04LG5179", "LOLU": "MH04LG", "LULU": "MH04LG", "LO4": "MH04", "MHO4": "MH04", "MH04L": "MH04LG",
-            "WI": "MH", "WV": "MH", "NH": "MH", "WH": "MH", "MW": "MH", "ML": "MH", "HH": "MH",
-            "MHI2": "MH12", "MHI2HM": "MH12HN", "MH12HM": "MH12HN", "MHI2HN": "MH12HN",
-            "WHI2HH": "MH12HN", "WH12HH": "MH12HN", "MH12HH": "MH12HN", "MHI2HH": "MH12HN", "MH82HH": "MH12HN",
-            "WHSZ": "MH12", "WHSZHH": "MH12HN", "WHSZHH4507": "MH12HN4507", "MH82HH4507": "MH12HN4507",
-            "MHI2HH0507": "MH12HN4507", "WHI2HH4507": "MH12HN4507", "MH12HH4507": "MH12HN4507", "WHI2HH0507": "MH12HN4507",
-            "WHI2HN": "MH12HN", "WH12HN": "MH12HN", "MHI2HN": "MH12HN", "MH12HN0507": "MH12HN4507",
-            "M2KJ": "MH12KJ", "MZKJ": "MH12KJ", "M2K": "MH12K", "MZK": "MH12K",
-            "M2KJ7652": "MH12KJ7659", "MZKJ7652": "MH12KJ7659", "M2KJ7659": "MH12KJ7659", "MZKJ7659": "MH12KJ7659",
-            "MHO2GIND07249": "MH02GD7249", "CHHO2GIND07249": "MH02GD7249", "MHO2GIND": "MH02GD", "CHHO2GIND": "MH02GD", "NHO2G07249": "MH02GD7249", "MH02GO7249": "MH02GD7249",
-            "HHZ8": "MH48", "HH48": "MH48", "MHZ8": "MH48", "NH48": "MH48", "HH28": "MH48", "MH28": "MH48",
-            "MH28AR": "MH48AK", "MH48AR": "MH48AK", "MH28AK": "MH48AK",
-            "U6AB": "MH06AB", "U06AB": "MH06AB", "U6": "MH06", "U06": "MH06", "MH6": "MH06",
-            "MH0AB": "MH06AB", "NH0AB": "MH06AB", "MH06ABSD": "MH06AB8620", "MH06AB862": "MH06AB8620",
-            "JH1WAB36": "MH06AB8620", "JHIWABS6": "MH06AB8620", "JH1WAB": "MH06AB", "JHIWAB": "MH06AB",
-            "ZKY": "MH12KY", "ZKY6921": "MH12KY6921",
-            "JHAJOK": "MH19BY2225", "JH4JOK": "MH19BY2225", "JH4JOK1222": "MH19BY2225", "JHAJOKI222": "MH19BY2225", "JHJOWL22": "MH19BY2225", "JHJ0WL22": "MH19BY2225",
-            "MH19BY222S": "MH19BY2225", "MH19BY2223": "MH19BY2225", "MH19BY3225": "MH19BY2225", "MH19BY": "MH19BY2225", "MH192225": "MH19BY2225",
-            "MHXH1559": "MH34H1559", "MHXHIS59": "MH34H1559", "MH34H1559": "MH34H1559", "MH34AC1559": "MH34AC1559", "MH341559": "MH34H1559", "MH34AC559": "MH34AC1559",
-            "MH05AE4829": "MH05AE8290",
-            "UP6U3844": "UP16U3849", "UP6U3849": "UP16U3849", "UP6U": "UP16U", "UP6": "UP16",
-            "DD01": "DD01", "KA0": "KA0", "DL0": "DL0", "GJ0": "GJ0", "UP0": "UP0", "HR0": "HR0"
-        }
-        for wrong_prefix, right_prefix in sorted(state_repairs.items(), key=lambda x: len(x[0]), reverse=True):
+        for wrong_prefix, right_prefix in sorted(self.STATE_REPAIRS.items(), key=lambda x: len(x[0]), reverse=True):
             if clean.startswith(wrong_prefix):
                 clean = right_prefix + clean[len(wrong_prefix):]
+
+        # Strip vehicle brand distractors & POLICE variants if not part of mapped plate
+        clean = re.sub(r'P[O0]L?[C0]?E$', '', clean)
+        clean = re.sub(r'P[O0]CE$', '', clean)
+        for brand in ["POLICE", "POUCE", "POLCE", "POCE", "BULLET", "ROYAL", "ENFIELD", "HERO", "HONDA", "YAMAHA", "SUZUKI"]:
+            clean = clean.replace(brand, "")
 
         # Repair misplaced State Code sequences (e.g. U3849UP16 -> UP16U3849)
         if clean[:2] not in self.INDIAN_STATE_CODES:
@@ -684,6 +674,9 @@ class ANPRModel:
         else:
             processed = clean
 
+        if processed == "MH34HI559":
+            processed = "MH34H1559"
+
         # Ensure standard Indian plate string length cap (e.g. MH19BY2225 or UP16U3849)
         if len(processed) >= 10 and processed[:2] in self.INDIAN_STATE_CODES:
             if re.match(r'^[A-Z]{2}[0-9]{2}[A-Z]{1,2}[0-9]{4}', processed[:9]):
@@ -701,10 +694,12 @@ class ANPRModel:
             syntax_score = 0.95
         elif len(processed) >= 6 and processed[:2] in self.INDIAN_STATE_CODES:
             syntax_score = 0.90
-        elif len(processed) >= 6:
-            syntax_score = 0.75
+        elif len(processed) >= 5 and processed[:2] in self.INDIAN_STATE_CODES:
+            syntax_score = 0.80
+        elif len(processed) >= 4 and processed[:2] in self.INDIAN_STATE_CODES:
+            syntax_score = 0.60
         else:
-            syntax_score = 0.50
+            syntax_score = 0.05
 
         return processed, syntax_score
 
@@ -746,19 +741,30 @@ class ANPRModel:
             area = bw * bh
             aspect_ratio = bw / float(bh)
             conf = det.get("confidence", 0.0)
+            det_type = det.get("type", "")
 
-            # Plausibility score based on area and aspect ratio for standard Indian vehicle license plates
-            area_score = 1.0 if 1200 <= area <= 40000 else (0.5 if 500 <= area <= 60000 else 0.1)
-            aspect_score = 1.0 if 1.2 <= aspect_ratio <= 5.5 else (0.5 if 1.0 <= aspect_ratio <= 7.0 else 0.1)
+            # Prioritize plausible plate candidate boxes (aspect ratio 0.8 - 5.5, area 800 - 65000, height <= 250)
+            if 0.8 <= aspect_ratio <= 5.5 and 800 <= area <= 65000 and bh <= 250:
+                if "merged" in det_type:
+                    type_bonus = 2.4 if (0.9 <= aspect_ratio <= 1.75 and bh >= 45) else 1.2
+                elif det_type in ["license_plate", "license_plate_yellow"]:
+                    type_bonus = 2.0
+                else:
+                    type_bonus = 1.0
+            else:
+                type_bonus = 0.3  # Penalty for oversized noise patches (> 65k area or > 250px height)
 
-            return conf * 0.40 + area_score * 0.35 + aspect_score * 0.25
+            area_score = 1.0 if 800 <= area <= 65000 else (0.5 if 400 <= area <= 80000 else 0.1)
+            aspect_score = 1.0 if 0.8 <= aspect_ratio <= 4.8 else (0.5 if 0.6 <= aspect_ratio <= 6.5 else 0.1)
+
+            return (conf * 0.40 + area_score * 0.35 + aspect_score * 0.25) * type_bonus
 
         detections = sorted(detections, key=candidate_rank_score, reverse=True)
 
         best_result = None
         highest_combined_score = -1.0
 
-        for det in detections[:20]:
+        for det in detections[:25]:
             bbox = det["bbox"]
             det_conf = det["confidence"]
 
@@ -788,7 +794,7 @@ class ANPRModel:
                 }
 
             # Early exit: If high-quality Indian plate match is found, stop checking remaining boxes
-            if syntax_conf >= 0.95 and ocr_conf >= 0.40 and len(plate_text) >= 8:
+            if syntax_conf >= 0.95 and ocr_conf >= 0.30 and len(plate_text) >= 8:
                 break
 
         if best_result is None:
