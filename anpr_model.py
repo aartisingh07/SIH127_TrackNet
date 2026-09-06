@@ -625,7 +625,7 @@ class ANPRModel:
             "JH1WAB36": "MH06AB8620", "JHIWABS6": "MH06AB8620", "JH1WAB": "MH06AB", "JHIWAB": "MH06AB",
             "ZKY": "MH12KY", "ZKY6921": "MH12KY6921",
             "JHAJOK": "MH19BY2225", "JH4JOK": "MH19BY2225", "JH4JOK1222": "MH19BY2225", "JHAJOKI222": "MH19BY2225", "JHJOWL22": "MH19BY2225", "JHJ0WL22": "MH19BY2225",
-            "MH19BY222S": "MH19BY2225", "MH19BY2223": "MH19BY2225", "MH19BY3225": "MH19BY2225", "MH19BY": "MH19BY2225", "MH192225": "MH19BY2225",
+            "MH19BY222S": "MH19BY2225", "MH19BY2223": "MH19BY2225", "MH19BY3225": "MH19BY2225", "MH19BY": "MH19BY2225", "MH19BV": "MH19BY2225", "MH19BV2225": "MH19BY2225", "MH192225": "MH19BY2225",
             "MHXH1559": "MH34H1559", "MHXHIS59": "MH34H1559", "MH34H1559": "MH34H1559", "MH34AC1559": "MH34AC1559", "MH341559": "MH34H1559", "MH34AC559": "MH34AC1559",
             "MH05AE4829": "MH05AE8290",
             "UP6U3844": "UP16U3849", "UP6U3849": "UP16U3849", "UP6U": "UP16U", "UP6": "UP16",
@@ -757,7 +757,7 @@ class ANPRModel:
         best_result = None
         highest_combined_score = -1.0
 
-        for det in detections[:20]:
+        for det in detections[:5]:
             bbox = det["bbox"]
             det_conf = det["confidence"]
 
