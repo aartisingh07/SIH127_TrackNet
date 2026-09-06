@@ -197,7 +197,7 @@ class ANPRModel:
 
         if self.yolo is not None:
             try:
-                results = self.yolo(image, conf=0.05, verbose=False)
+                results = self.yolo(image, conf=0.15, verbose=False)
                 for res in results:
                     boxes = res.boxes
                     for box in boxes:
@@ -211,7 +211,7 @@ class ANPRModel:
                                 "bbox": [x1, y1, x2, y2],
                                 "confidence": conf * 1.25,
                                 "type": "license_plate_yolo",
-                                "is_yolo": True
+                                "is_yolo": (conf >= 0.20)
                             })
                         elif cls_name in ["car", "motorcycle", "bus", "truck", "vehicle"]:
                             vehicle_crop = image[y1:y2, x1:x2]
@@ -749,7 +749,7 @@ class ANPRModel:
             area_score = 1.0 if 0.003 <= rel_area <= 0.25 else (0.6 if 0.001 <= rel_area <= 0.45 else 0.2)
             aspect_score = 1.0 if 1.2 <= aspect_ratio <= 5.5 else (0.5 if 1.0 <= aspect_ratio <= 7.5 else 0.2)
 
-            yolo_boost = 0.50 if is_yolo else 0.0
+            yolo_boost = 0.50 if (is_yolo and conf >= 0.25) else 0.0
             return conf * 0.40 + area_score * 0.25 + aspect_score * 0.20 + yolo_boost
 
         detections = sorted(detections, key=candidate_rank_score, reverse=True)
