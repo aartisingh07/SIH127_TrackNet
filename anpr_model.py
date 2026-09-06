@@ -775,7 +775,10 @@ class ANPRModel:
             plate_text, syntax_conf = self.postprocess_plate_text(raw_text)
 
             # 5. Combined candidate score (gives highest priority to Indian plate syntax matches)
-            combined_score = 0.15 * det_conf + 0.25 * ocr_conf + 0.60 * syntax_conf
+            if not plate_text or syntax_conf == 0.0:
+                combined_score = 0.05 * det_conf
+            else:
+                combined_score = 0.15 * det_conf + 0.25 * ocr_conf + 0.60 * syntax_conf
 
             if combined_score > highest_combined_score:
                 highest_combined_score = combined_score
