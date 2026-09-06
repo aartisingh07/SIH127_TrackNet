@@ -78,33 +78,32 @@ class ANPRModel:
             print("[ANPR Engine Warning] Ultralytics YOLO not installed. Using OpenCV contour detector fallback.")
             self.yolo = None
 
-        # 2. Initialize Primary OCR Engine (PaddleOCR preferred for low latency & accuracy, EasyOCR fallback)
-        self.ocr_engine = None
-        self.ocr_type = None
+        # 2. Initialize Dual OCR Ensemble (PaddleOCR + EasyOCR fallback)
+        self.paddle_engine = None
+        self.easy_engine = None
 
         if PADDLE_AVAILABLE:
             print("[ANPR Engine] Initializing PaddleOCR engine (Primary lightweight mode)...")
             try:
-                self.ocr_engine = PaddleOCR(
+                self.paddle_engine = PaddleOCR(
                     lang='en',
                     use_doc_orientation_classify=False,
                     use_doc_unwarping=False,
                     use_textline_orientation=False,
                     enable_mkldnn=False
                 )
-                self.ocr_type = "paddleocr"
             except Exception as e:
                 print(f"[ANPR Engine Warning] PaddleOCR init failed: {e}")
-                self.ocr_engine = None
 
-        if self.ocr_engine is None and EASYOCR_AVAILABLE:
-            print("[ANPR Engine] Initializing EasyOCR engine (Fallback)...")
+        if EASYOCR_AVAILABLE:
+            print("[ANPR Engine] Initializing EasyOCR engine (Ensemble / Fallback mode)...")
             try:
-                self.ocr_engine = easyocr.Reader(['en'], gpu=use_gpu, verbose=False)
-                self.ocr_type = "easyocr"
+                self.easy_engine = easyocr.Reader(['en'], gpu=use_gpu, verbose=False)
             except Exception as e:
                 print(f"[ANPR Engine Warning] EasyOCR init failed: {e}")
-                self.ocr_engine = None
+
+        self.ocr_engine = self.paddle_engine or self.easy_engine
+        self.ocr_type = "ensemble"
 
     def preprocess_image(self, image: np.ndarray) -> np.ndarray:
         """
@@ -205,14 +204,14 @@ class ANPRModel:
                         cls_id = int(box.cls[0].item())
                         conf = float(box.conf[0].item())
                         cls_name = res.names[cls_id]
-
                         x1, y1, x2, y2 = map(int, box.xyxy[0].tolist())
 
                         if "plate" in cls_name.lower() or "license" in cls_name.lower() or cls_id == 0:
                             detections.append({
                                 "bbox": [x1, y1, x2, y2],
-                                "confidence": conf,
-                                "type": "license_plate"
+                                "confidence": conf * 1.25,
+                                "type": "license_plate_yolo",
+                                "is_yolo": True
                             })
                         elif cls_name in ["car", "motorcycle", "bus", "truck", "vehicle"]:
                             vehicle_crop = image[y1:y2, x1:x2]
@@ -226,8 +225,9 @@ class ANPRModel:
                                     abs_y2 = abs_y1 + ph
                                     detections.append({
                                         "bbox": [abs_x1, abs_y1, abs_x2, abs_y2],
-                                        "confidence": conf * 0.85,
-                                        "type": "license_plate"
+                                        "confidence": conf * 0.60,
+                                        "type": "license_plate_vehicle_contour",
+                                        "is_yolo": False
                                     })
             except Exception as e:
                 print(f"[ANPR Warning] YOLO detection error: {e}")
@@ -248,21 +248,23 @@ class ANPRModel:
                 if 1.1 <= aspect_ratio <= 7.5 and area > 1500 and (pw < w * 0.90 and ph < h * 0.90):
                     detections.append({
                         "bbox": [px, py, px + pw, py + ph],
-                        "confidence": 0.72,
-                        "type": "license_plate_yellow"
+                        "confidence": 0.50,
+                        "type": "license_plate_yellow",
+                        "is_yolo": False
                     })
         except Exception:
             pass
 
-        # OpenCV Contour Detector Pass (Multi-stage edge/contour extraction for white & light plates)
+        # OpenCV Contour Detector Pass (Fallback for light/white plates)
         try:
             prep = self.preprocess_image(image)
             plate_boxes = self.detect_plate_contours(prep)
             for px, py, pw, ph in plate_boxes:
                 detections.append({
                     "bbox": [px, py, px + pw, py + ph],
-                    "confidence": 0.78,
-                    "type": "license_plate"
+                    "confidence": 0.35,
+                    "type": "license_plate_contour",
+                    "is_yolo": False
                 })
         except Exception:
             pass
@@ -272,12 +274,12 @@ class ANPRModel:
             cx2, cy2 = int(w * 0.65), int(h * 0.88)
             detections.append({
                 "bbox": [cx1, cy1, cx2, cy2],
-                "confidence": 0.50,
-                "type": "license_plate"
+                "confidence": 0.30,
+                "type": "license_plate_fallback",
+                "is_yolo": False
             })
 
-        # Multi-line motorcycle plate candidate box merging:
-        # Merge horizontally overlapping or vertically adjacent bounding boxes
+        # Multi-line motorcycle plate candidate box merging
         merged_candidates = []
         n_det = len(detections)
         for i in range(min(15, n_det)):
@@ -286,7 +288,6 @@ class ANPRModel:
             for j in range(i + 1, min(15, n_det)):
                 b2 = detections[j]["bbox"]
                 c2 = detections[j]["confidence"]
-                # Check horizontal overlap / alignment
                 x_overlap = max(0, min(b1[2], b2[2]) - max(b1[0], b2[0]))
                 w1 = b1[2] - b1[0]
                 w2 = b2[2] - b2[0]
@@ -294,8 +295,9 @@ class ANPRModel:
                     mb = [min(b1[0], b2[0]), min(b1[1], b2[1]), max(b1[2], b2[2]), max(b1[3], b2[3])]
                     merged_candidates.append({
                         "bbox": mb,
-                        "confidence": max(c1, c2) * 0.95,
-                        "type": "license_plate_merged"
+                        "confidence": max(c1, c2) * 0.90,
+                        "type": "license_plate_merged",
+                        "is_yolo": detections[i].get("is_yolo", False) or detections[j].get("is_yolo", False)
                     })
 
         detections.extend(merged_candidates)
@@ -429,23 +431,21 @@ class ANPRModel:
             if crop is None or crop.size == 0:
                 continue
 
-            if self.ocr_type == "easyocr" and self.ocr_engine is not None:
+            # 1. EasyOCR Pass (Primary for sorted multi-line plate reading)
+            if self.easy_engine is not None:
                 try:
-                    ocr_results = self.ocr_engine.readtext(
+                    ocr_results = self.easy_engine.readtext(
                         crop, 
                         allowlist=alphanumeric_allowlist,
                         detail=1,
                         paragraph=False
                     )
                     if ocr_results:
-                        # Sort detected text in natural reading order (row top-to-bottom, column left-to-right)
                         sorted_res = self._sort_ocr_results(ocr_results)
-                        
                         text_blocks = []
                         confidences = []
                         for bbox, text, prob in sorted_res:
                             clean_str = re.sub(r'[^A-Za-z0-9]', '', text).upper()
-                            # Filter brand emblem distractor words & POLICE variants
                             clean_str = re.sub(r'P[O0]L?[C0]?E$', '', clean_str)
                             clean_str = re.sub(r'P[O0]CE$', '', clean_str)
                             if clean_str in ["POLICE", "POUCE", "POLCE", "POCE", "BULLET", "ROYAL", "ENFIELD", "HERO", "HONDA", "YAMAHA", "SUZUKI"]:
@@ -455,32 +455,29 @@ class ANPRModel:
                                 confidences.append(prob)
 
                         detected_text = "".join(text_blocks)
-
                         if detected_text and confidences:
                             avg_conf = float(np.mean(confidences))
                             candidate_syntax = self.evaluate_syntax(detected_text)
-                            # Give higher weight (70%) to Indian plate syntax match over raw OCR probability
                             combined_score = avg_conf * 0.30 + candidate_syntax * 0.70
 
                             if combined_score > best_conf:
                                 best_conf = combined_score
                                 best_text = detected_text
-                                # Early exit if high quality syntax candidate found
                                 if candidate_syntax >= 0.95:
                                     break
                 except Exception:
                     pass
 
-            elif self.ocr_type == "paddleocr" and self.ocr_engine is not None:
+            # 2. PaddleOCR Pass (Fast lightweight pass if EasyOCR missed or score low)
+            if best_conf < 0.90 and self.paddle_engine is not None:
                 try:
                     ocr_input = cv2.cvtColor(crop, cv2.COLOR_GRAY2BGR) if len(crop.shape) == 2 else crop
-                    res = self.ocr_engine.ocr(ocr_input)
+                    res = self.paddle_engine.ocr(ocr_input)
                     detected_text = ""
                     confidences = []
                     
                     if res and len(res) > 0 and res[0]:
                         res_item = res[0]
-                        # Handle PaddleOCR 3.x dictionary format
                         if isinstance(res_item, dict) and "rec_texts" in res_item:
                             rec_texts = res_item.get("rec_texts", [])
                             rec_scores = res_item.get("rec_scores", [])
@@ -493,7 +490,6 @@ class ANPRModel:
                                     text_blocks.append(clean_str)
                                     confidences.append(float(sc))
                             detected_text = "".join(text_blocks)
-                        # Handle PaddleOCR 2.x list format
                         elif isinstance(res_item, list):
                             text_blocks = []
                             for item in res_item:
@@ -517,7 +513,7 @@ class ANPRModel:
                             best_text = detected_text
                             if candidate_syntax >= 0.95:
                                 break
-                except Exception as e:
+                except Exception:
                     pass
 
         if not best_text:
@@ -746,12 +742,15 @@ class ANPRModel:
             area = bw * bh
             aspect_ratio = bw / float(bh)
             conf = det.get("confidence", 0.0)
+            is_yolo = det.get("is_yolo", False)
 
-            # Plausibility score based on area and aspect ratio for standard Indian vehicle license plates
-            area_score = 1.0 if 1200 <= area <= 40000 else (0.5 if 500 <= area <= 60000 else 0.1)
-            aspect_score = 1.0 if 1.2 <= aspect_ratio <= 5.5 else (0.5 if 1.0 <= aspect_ratio <= 7.0 else 0.1)
+            # Scale area score relative to image dimensions
+            rel_area = area / float(max(1, w * h))
+            area_score = 1.0 if 0.003 <= rel_area <= 0.25 else (0.6 if 0.001 <= rel_area <= 0.45 else 0.2)
+            aspect_score = 1.0 if 1.2 <= aspect_ratio <= 5.5 else (0.5 if 1.0 <= aspect_ratio <= 7.5 else 0.2)
 
-            return conf * 0.40 + area_score * 0.35 + aspect_score * 0.25
+            yolo_boost = 0.50 if is_yolo else 0.0
+            return conf * 0.40 + area_score * 0.25 + aspect_score * 0.20 + yolo_boost
 
         detections = sorted(detections, key=candidate_rank_score, reverse=True)
 
