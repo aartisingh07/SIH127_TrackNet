@@ -97,15 +97,15 @@ When a user executes single-image or video inference, code execution follows thi
 ```mermaid
 sequenceDiagram
     autonumber
-    actor User
-    participant Main as run_dataset_anpr.py (main)
-    participant Engine as ANPRModel (__init__)
-    participant Proc as ANPRModel (process)
-    participant Det as ANPRModel (detect_license_plate)
-    participant Prep as ANPRModel (crop_and_enhance_plate)
-    participant OCR as ANPRModel (recognize_text)
-    participant Sort as ANPRModel (_sort_ocr_results)
-    participant Post as ANPRModel (postprocess_plate_text)
+    actor User as User
+    participant Main as run_dataset_anpr.py
+    participant Engine as ANPRModel Engine
+    participant Proc as process()
+    participant Det as detect_license_plate()
+    participant Prep as crop_and_enhance_plate()
+    participant OCR as recognize_text()
+    participant Sort as _sort_ocr_results()
+    participant Post as postprocess_plate_text()
 
     User->>Main: python run_dataset_anpr.py --infer --input sample.jpg
     Main->>Engine: ANPRModel()
@@ -123,7 +123,7 @@ sequenceDiagram
         
         Proc->>OCR: recognize_text(plate_crops)
         OCR->>Sort: _sort_ocr_results(ocr_results)
-        Note over Sort: Groups boxes into horizontal rows; sorts Top-to-Bottom, Left-to-Right
+        Note over Sort: Groups boxes into horizontal rows - sorts Top-to-Bottom and Left-to-Right
         Sort-->>OCR: Sorted text tokens
         OCR-->>Proc: raw_text, ocr_conf
         
@@ -137,7 +137,7 @@ sequenceDiagram
         end
     end
 
-    Proc-->>Main: Result Dictionary (plate_number, accuracy, latency, annotated_image)
+    Proc-->>Main: Result Dictionary (plate_number / accuracy / latency / annotated_image)
     Main->>User: Displays Terminal Report & Results
 ```
 
