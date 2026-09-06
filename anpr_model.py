@@ -751,17 +751,17 @@ class ANPRModel:
             # Scale area score relative to image dimensions
             rel_area = area / float(max(1, w * h))
             area_score = 1.0 if 0.003 <= rel_area <= 0.25 else (0.6 if 0.001 <= rel_area <= 0.45 else 0.2)
-            aspect_score = 1.0 if 1.2 <= aspect_ratio <= 5.5 else (0.5 if 1.0 <= aspect_ratio <= 7.5 else 0.2)
+            aspect_score = 1.2 if 1.8 <= aspect_ratio <= 4.5 else (0.8 if 1.1 <= aspect_ratio <= 6.5 else 0.2)
 
-            yolo_boost = 0.50 if (is_yolo and conf >= 0.25) else 0.0
-            return conf * 0.40 + area_score * 0.25 + aspect_score * 0.20 + yolo_boost
+            yolo_boost = 0.50 if (is_yolo and conf >= 0.20) else 0.0
+            return conf * 0.40 + area_score * 0.25 + aspect_score * 0.25 + yolo_boost
 
         detections = sorted(detections, key=candidate_rank_score, reverse=True)
 
         best_result = None
         highest_combined_score = -1.0
 
-        for det in detections[:5]:
+        for det in detections[:12]:
             bbox = det["bbox"]
             det_conf = det["confidence"]
 
