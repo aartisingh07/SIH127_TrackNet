@@ -145,7 +145,7 @@ class ANPRModel:
                 x, y, w, h = cv2.boundingRect(c)
                 aspect_ratio = w / float(h)
                 area = w * h
-                if 1.1 <= aspect_ratio <= 7.5 and area > 2000 and (w < img_w * 0.90 and h < img_h * 0.90):
+                if 1.1 <= aspect_ratio <= 7.5 and area > 150 and (w < img_w * 0.90 and h < img_h * 0.90):
                     plate_bboxes.append((x, y, w, h))
         except Exception:
             pass
@@ -161,7 +161,7 @@ class ANPRModel:
                 x, y, w, h = cv2.boundingRect(c)
                 aspect_ratio = w / float(h)
                 area = w * h
-                if 1.1 <= aspect_ratio <= 7.5 and area > 2000 and (w < img_w * 0.90 and h < img_h * 0.90):
+                if 1.1 <= aspect_ratio <= 7.5 and area > 120 and (w < img_w * 0.90 and h < img_h * 0.90):
                     plate_bboxes.append((x, y, w, h))
         except Exception:
             pass
@@ -181,7 +181,7 @@ class ANPRModel:
                     aspect_ratio = w / float(h)
                     area = w * h
 
-                    if 1.1 <= aspect_ratio <= 7.0 and area > 2000 and (w < img_w * 0.95 and h < img_h * 0.95):
+                    if 1.1 <= aspect_ratio <= 7.0 and area > 120 and (w < img_w * 0.95 and h < img_h * 0.95):
                         plate_bboxes.append((x, y, w, h))
         except Exception:
             pass
@@ -235,7 +235,7 @@ class ANPRModel:
         # Commercial Yellow License Plate Detector Pass (Indian Taxis, Cabs, Commercial Vehicles)
         try:
             hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-            lower_yellow = np.array([12, 80, 80])
+            lower_yellow = np.array([10, 60, 60])
             upper_yellow = np.array([35, 255, 255])
             yellow_mask = cv2.inRange(hsv, lower_yellow, upper_yellow)
             yellow_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (25, 15))
@@ -245,10 +245,10 @@ class ANPRModel:
                 px, py, pw, ph = cv2.boundingRect(c)
                 aspect_ratio = pw / float(ph)
                 area = pw * ph
-                if 1.1 <= aspect_ratio <= 7.5 and area > 1500 and (pw < w * 0.90 and ph < h * 0.90):
+                if 1.1 <= aspect_ratio <= 7.5 and area > 1200 and (pw < w * 0.90 and ph < h * 0.90):
                     detections.append({
                         "bbox": [px, py, px + pw, py + ph],
-                        "confidence": 0.72,
+                        "confidence": 0.85,
                         "type": "license_plate_yellow"
                     })
         except Exception:
