@@ -530,8 +530,12 @@ class ANPRModel:
             clean = clean[3:]
 
         # Reject common vehicle brand/model logos that are not license plates
-        brand_words = ["BULLET", "ROYAL", "ENFIELD", "HONDA", "HERO", "YAMAHA", "SUZUKI", "CHEVROLET", "TOYOTA", "HYUNDAI", "MARUTI", "POLICE", "POUCE", "POLCE"]
-        if clean in brand_words or any(clean == b for b in brand_words):
+        brand_words = ["BULLET", "BULLEL", "BULLE", "BULLETS", "ROYAL", "ENFIELD", "HONDA", "HERO", "YAMAHA", "SUZUKI", "CHEVROLET", "TOYOTA", "HYUNDAI", "MARUTI", "POLICE", "POUCE", "POLCE", "POLIC"]
+        if clean in brand_words or any(b in clean for b in brand_words):
+            return 0.0
+
+        # An Indian license plate MUST contain digits. Strings with 0 digits are distractor text.
+        if not any(c.isdigit() for c in clean):
             return 0.0
 
         # Apply state prefix repairs to test candidate syntax
@@ -602,7 +606,7 @@ class ANPRModel:
             if brand in clean:
                 clean = clean.replace(brand, "")
 
-        if not clean:
+        if not clean or not any(c.isdigit() for c in clean):
             return "", 0.0
 
         # State code OCR confusion repair for Indian plates
