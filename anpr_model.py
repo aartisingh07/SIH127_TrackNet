@@ -580,7 +580,7 @@ class ANPRModel:
             return 0.90
         elif len(clean) >= 5 and clean[:1] in ["M", "D", "K", "T", "G", "H", "U", "N", "W"]:
             return 0.60
-        return 0.10
+        return 0.15
 
     def postprocess_plate_text(self, raw_text: str) -> Tuple[str, float]:
         """
@@ -701,10 +701,10 @@ class ANPRModel:
             syntax_score = 0.95
         elif len(processed) >= 6 and processed[:2] in self.INDIAN_STATE_CODES:
             syntax_score = 0.90
-        elif len(processed) >= 6:
-            syntax_score = 0.75
+        elif len(processed) >= 5 and processed[:1] in ["M", "D", "K", "T", "G", "H", "U", "N", "W"]:
+            syntax_score = 0.60
         else:
-            syntax_score = 0.50
+            syntax_score = 0.15
 
         return processed, syntax_score
 
