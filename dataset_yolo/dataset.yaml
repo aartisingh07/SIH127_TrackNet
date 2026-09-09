@@ -1,0 +1,5 @@
+path: c:/SIH127-I/dataset_yolo
+train: images/train
+val: images/val
+names:
+  0: license_plate
