@@ -1,6 +1,25 @@
 import os
 import sys
+import shutil
 from ultralytics import YOLO
+
+def prepare_yaml_config(project_root):
+    """Dynamically updates dataset_yolo/data.yaml with absolute path for current machine."""
+    dataset_dir = os.path.join(project_root, "dataset_yolo")
+    yaml_path = os.path.join(dataset_dir, "data.yaml")
+    
+    clean_path = dataset_dir.replace("\\", "/")
+    content = f"""# TrackNet ANPR YOLOv8 License Plate Dataset Configuration
+path: {clean_path}
+train: images/train
+val: images/val
+
+nc: 1
+names: ['License-Plate']
+"""
+    with open(yaml_path, "w") as f:
+        f.write(content)
+    return yaml_path
 
 def train_anpr_yolo(epochs=30, batch_size=16, imgsz=640):
     """
@@ -8,7 +27,7 @@ def train_anpr_yolo(epochs=30, batch_size=16, imgsz=640):
     Saves trained weights to models/anpr_yolo_best.pt.
     """
     project_root = os.path.dirname(os.path.abspath(__file__))
-    yaml_path = os.path.join(project_root, "dataset_yolo", "data.yaml")
+    yaml_path = prepare_yaml_config(project_root)
     models_dir = os.path.join(project_root, "models")
     os.makedirs(models_dir, exist_ok=True)
 
@@ -37,7 +56,6 @@ def train_anpr_yolo(epochs=30, batch_size=16, imgsz=640):
     target_weights = os.path.join(models_dir, "anpr_yolo_best.pt")
 
     if os.path.exists(best_weights):
-        import shutil
         shutil.copy2(best_weights, target_weights)
         print(f"\nTraining Complete! Fine-tuned weights saved to: {target_weights}")
     else:
