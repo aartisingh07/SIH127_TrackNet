@@ -9,13 +9,13 @@ def prepare_yaml_config(project_root):
     yaml_path = os.path.join(dataset_dir, "data.yaml")
     
     clean_path = dataset_dir.replace("\\", "/")
-    content = f"""# TrackNet ANPR YOLOv8 License Plate Dataset Configuration
+    content = f"""# TrackNet ANPR 2-Class YOLOv8 Configuration (Vehicle + License Plate)
 path: {clean_path}
 train: images/train
 val: images/val
 
-nc: 1
-names: ['License-Plate']
+nc: 2
+names: ['vehicle', 'license-plate']
 """
     with open(yaml_path, "w") as f:
         f.write(content)

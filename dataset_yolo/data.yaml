@@ -1,7 +1,7 @@
-# TrackNet ANPR YOLOv8 License Plate Dataset Configuration
+# TrackNet ANPR 2-Class YOLOv8 Configuration (Vehicle + License Plate)
 path: .
 train: images/train
 val: images/val
 
-nc: 1
-names: ['License-Plate']
+nc: 2
+names: ['vehicle', 'license-plate']
