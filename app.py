@@ -16,8 +16,9 @@ anpr_engine = ANPROCREngine()
 trajectory_tracker = TrajectoryTracker()
 macro_analytics = MacroTrafficAnalytics(trajectory_tracker=trajectory_tracker)
 
-TEST_DATASET_DIR = r"c:\SIH127-I\test_dataset"
-REPORTS_DIR = r"c:\SIH127-I\reports"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+TEST_DATASET_DIR = os.path.join(BASE_DIR, "test_dataset")
+REPORTS_DIR = os.path.join(BASE_DIR, "reports")
 os.makedirs(REPORTS_DIR, exist_ok=True)
 
 def image_to_base64(img_np):

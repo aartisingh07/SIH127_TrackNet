@@ -88,9 +88,11 @@ def edit_distance(s1, s2):
         previous_row = current_row
     return previous_row[-1]
 
+DEFAULT_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "models", "anpr_yolo_best.pt")
+
 class ANPROCREngine:
-    def __init__(self, model_path=r"c:\SIH127-I\models\anpr_yolo_best.pt"):
-        self.model_path = model_path
+    def __init__(self, model_path=None):
+        self.model_path = model_path or DEFAULT_MODEL_PATH
         self.plate_detector = None
         self.vehicle_detector = None
         self.easy_ocr_reader = None
@@ -474,7 +476,7 @@ class ANPROCREngine:
 
 if __name__ == "__main__":
     engine = ANPROCREngine()
-    test_img = r"c:\SIH127-I\test_dataset\test1.jpg"
+    test_img = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "test_dataset", "test1.jpg")
     if os.path.exists(test_img):
         res = engine.detect_and_recognize(test_img)
         print("High-Precision ANPR & OCR Result:", res)
