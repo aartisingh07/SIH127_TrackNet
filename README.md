@@ -12,12 +12,13 @@ SIH127-I/
 │   ├── data.yaml                  # Dataset configuration (classes & paths)
 │   ├── images/                    # Image splits (1,441 train, 339 val)
 │   └── labels/                    # Bounding box labels (.txt)
-├── raw_dataset/                   # Unprocessed & Raw Multi-Source Datasets
-│   ├── roboflow_yolov8/           # Roboflow Indian Cars License Plate Dataset (84 samples)
-│   ├── State-wise_OLX/            # 36 Indian States/UTs sample plates
+├── train_dataset/                 # Raw & Multi-Source Training Datasets
 │   ├── google_images/             # Scraped traffic images (883 samples)
-│   ├── train_images_manual/       # Manually annotated datasets 1 & 2
-│   └── video_images/              # CCTV video frame extractions (1,308 samples)
+│   ├── manual_annotations/        # Manually annotated datasets 1 & 2
+│   ├── olx_statewise/             # 36 Indian States/UTs sample plates
+│   ├── roboflow_yolov8/           # Roboflow Indian Cars License Plate Dataset
+│   └── video_frames/              # CCTV video frame extractions (1,308 samples)
+├── test_dataset/                  # Web App Benchmark Test Images (test1.jpg .. test51.jpeg)
 ├── models/                        # Deep Learning Model Weights
 │   └── anpr_yolo_best.pt          # Fine-tuned YOLOv8 License Plate Detector
 ├── analytics_engine/              # Trajectory reconstruction & PDF reports
