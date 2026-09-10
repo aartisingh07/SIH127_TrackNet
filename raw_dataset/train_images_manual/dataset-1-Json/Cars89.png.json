@@ -1,0 +1,58 @@
+{
+    "description": "",
+    "tags": [],
+    "size": {
+        "height": 262,
+        "width": 400
+    },
+    "objects": [
+        {
+            "id": 6325589,
+            "classId": 8709,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "az@datasetninja.com",
+            "createdAt": "2023-06-13T22:40:47.990Z",
+            "updatedAt": "2023-06-13T22:40:47.990Z",
+            "tags": [],
+            "classTitle": "license plate",
+            "points": {
+                "exterior": [
+                    [
+                        307,
+                        206
+                    ],
+                    [
+                        345,
+                        221
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 6325588,
+            "classId": 8709,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "az@datasetninja.com",
+            "createdAt": "2023-06-13T22:40:47.990Z",
+            "updatedAt": "2023-06-13T22:40:47.990Z",
+            "tags": [],
+            "classTitle": "license plate",
+            "points": {
+                "exterior": [
+                    [
+                        227,
+                        222
+                    ],
+                    [
+                        253,
+                        230
+                    ]
+                ],
+                "interior": []
+            }
+        }
+    ]
+}

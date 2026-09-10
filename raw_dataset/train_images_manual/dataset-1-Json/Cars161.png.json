@@ -1,0 +1,34 @@
+{
+    "description": "",
+    "tags": [],
+    "size": {
+        "height": 388,
+        "width": 507
+    },
+    "objects": [
+        {
+            "id": 6325222,
+            "classId": 8709,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "az@datasetninja.com",
+            "createdAt": "2023-06-13T22:38:25.770Z",
+            "updatedAt": "2023-06-13T22:38:25.770Z",
+            "tags": [],
+            "classTitle": "license plate",
+            "points": {
+                "exterior": [
+                    [
+                        312,
+                        283
+                    ],
+                    [
+                        406,
+                        311
+                    ]
+                ],
+                "interior": []
+            }
+        }
+    ]
+}
