@@ -46,8 +46,8 @@ def train_anpr_yolo(epochs=30, batch_size=16, imgsz=640):
         epochs=epochs,
         batch=batch_size,
         imgsz=imgsz,
-        name="anpr_plate_train",
-        project="runs/detect",
+        name="detect/anpr_plate_train",
+        project="runs",
         exist_ok=True
     )
 
