@@ -1,4 +1,4 @@
-"""
+/*
 ================================================================================
 File: static/js/app.js
 Project: TrackNet AI - City-Wide Multi-Camera ANPR & Urban Traffic Analytics Engine
@@ -9,7 +9,7 @@ Why this file was made:
   draws vehicle trajectory polylines from GeoJSON, updates macro analytics, and controls
   the 2-Stage ANPR image zoom inspection viewer.
 ================================================================================
-"""
+*/
 
 // Global GIS Map Instances & State
 let trajectoryMap = null;
