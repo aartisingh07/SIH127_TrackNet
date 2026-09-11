@@ -136,10 +136,10 @@ def sync_cameras():
     synced_count = synchronizer.sync_city_cameras(city_name)
 
     # If OSM returns 0 mapped cameras and DB is empty, seed baseline demo nodes clearly marked as 'Demo Network'
-    total_cameras = session.query(OSMCameraNode).filter_by(city=city_name).count()
+    total_cameras = session.query(Camera).filter_by(city=city_name).count()
     if total_cameras == 0:
         synced_count = synchronizer.seed_demo_cameras(city_name)
-        total_cameras = session.query(OSMCameraNode).filter_by(city=city_name).count()
+        total_cameras = session.query(Camera).filter_by(city=city_name).count()
 
     return jsonify({
         "success": True,
