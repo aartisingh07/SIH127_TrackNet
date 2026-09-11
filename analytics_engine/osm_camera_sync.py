@@ -59,6 +59,72 @@ def classify_osm_camera(tags):
     return "unknown", surv_type or "surveillance"
 
 
+def derive_area_name(lat, lng, city_name, tags):
+    """
+    Derives a precise human-readable area/locality name from OSM tags or spatial grid boundaries.
+    """
+    osm_place = (
+        tags.get("addr:suburb") or
+        tags.get("addr:district") or
+        tags.get("addr:neighbourhood") or
+        tags.get("addr:street") or
+        tags.get("road") or
+        tags.get("highway") or
+        tags.get("name") or
+        tags.get("description")
+    )
+    if osm_place and len(str(osm_place).strip()) > 2 and not str(osm_place).lower().startswith("osm"):
+        return str(osm_place).strip()
+
+    # Spatial coordinate area mapping per city
+    if city_name == "Mumbai":
+        if lng > 73.00:
+            return "Navi Mumbai (Vashi / Belapur / Nerul Sector)"
+        elif lat > 19.20:
+            return "Borivali / Kandivali North Area"
+        elif lat > 19.14 and lng < 72.85:
+            return "Andheri West / Malad Link Road Corridor"
+        elif lat > 19.10 and lng > 72.88:
+            return "Powai / Vikhroli / Kanjurmarg Corridor"
+        elif lat > 19.05 and lng < 72.85:
+            return "Bandra West / Khar / Juhu Seaface Node"
+        elif lat > 19.04 and lng > 72.85:
+            return "Kurla / BKC Business Corridor"
+        elif lat < 19.02:
+            return "South Mumbai (Colaba / Marine Drive / Fort)"
+        else:
+            return "Dadar / Worli Central Corridor"
+
+    elif city_name == "Pune":
+        if lng < 73.78:
+            return "Hinjawadi IT Park Corridor"
+        elif lat > 18.55 and lng > 73.88:
+            return "Viman Nagar / Kalyani Nagar Corridor"
+        elif lat < 18.50:
+            return "Swargate / Katraj South Corridor"
+        else:
+            return "Shivajinagar / FC Road Central Node"
+
+    elif city_name == "Ahmedabad":
+        if lng < 72.53:
+            return "SG Highway / Bodakdev Corridor"
+        elif lat > 23.05:
+            return "Sabarmati / Chandkheda North Corridor"
+        else:
+            return "Navrangpura / Ashram Road Central Node"
+
+    elif city_name == "Gandhinagar":
+        return "Capital Sector / CH Road Intersection"
+    elif city_name == "Surat":
+        return "Ring Road / Athwa Lines Traffic Node"
+    elif city_name == "Vadodara":
+        return "Alkapuri / Sayajigunj City Node"
+    elif city_name == "Rajkot":
+        return "Kalawad Road / Race Course Node"
+
+    return f"{city_name} Central Urban Grid"
+
+
 class OSMCameraSynchronizer:
     def __init__(self, session=None):
         self.session = session or get_db_session()
@@ -124,7 +190,8 @@ class OSMCameraSynchronizer:
         direction = tags.get("camera:direction") or tags.get("direction") or "N/A"
         mount = tags.get("camera:mount") or tags.get("mount") or "N/A"
         
-        loc_desc = tags.get("name") or tags.get("description") or f"OSM {cam_type} camera at {city_name}"
+        area_name = derive_area_name(lat, lng, city_name, tags)
+        loc_desc = area_name
 
         source_url = f"https://www.openstreetmap.org/{osm_type_val}/{osm_id_val}"
 

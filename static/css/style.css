@@ -83,11 +83,13 @@ body.dark-theme {
 .city-selector-bar {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     background: rgba(255, 255, 255, 0.05);
     padding: 6px 14px;
     border-radius: 10px;
     border: 1px solid var(--border-color);
+    flex-wrap: nowrap;
+    white-space: nowrap;
 }
 
 .city-selector-bar label {
@@ -97,23 +99,47 @@ body.dark-theme {
     display: flex;
     align-items: center;
     gap: 6px;
+    white-space: nowrap;
+    margin: 0;
 }
 
 .city-dropdown {
     width: auto;
-    padding: 6px 12px;
+    height: 38px;
+    padding: 6px 14px;
     font-size: 0.85rem;
     font-weight: 600;
     background: var(--bg-card);
-    border-color: var(--border-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-main);
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .sync-btn {
-    padding: 6px 12px;
-    font-size: 0.8rem;
+    height: 38px;
+    padding: 0 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
     background: linear-gradient(135deg, var(--accent-blue), #2563eb);
     color: #fff;
     border: none;
+    border-radius: 8px;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 10px var(--accent-blue-glow);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sync-btn:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
 }
 
 .legend-dot.osm-mapped-dot { background: #0284c7; box-shadow: 0 0 6px #0284c7; }

@@ -190,8 +190,8 @@ function renderCameraMarkersOnMap(cameras) {
                 <div style="margin: 4px 0; font-size: 11px; padding: 2px 6px; border-radius: 4px; background: ${isOsm ? '#e0f2fe' : '#fef3c7'}; color: ${isOsm ? '#0369a1' : '#92400e'}; font-weight: bold; display: inline-block;">
                     ${badgeLabel}
                 </div><br>
+                <b>Area / Location:</b> <b style="color: #0f172a;">${c.location_description}</b><br>
                 <b>Type:</b> ${c.camera_type}<br>
-                <b>Description:</b> ${c.location_description}<br>
                 <b>City:</b> ${c.city} (${c.state})<br>
                 <b>Coords:</b> ${c.lat.toFixed(5)}, ${c.lng.toFixed(5)}<br>
                 <b>Mount:</b> ${c.mount} | <b>Direction:</b> ${c.direction}<br>
@@ -351,9 +351,9 @@ function initTrajectoryMap() {
     const center = CITY_CENTERS['Mumbai'];
     trajectoryMap = L.map('gis-map').setView([center.lat, center.lng], center.zoom);
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; OpenStreetMap &copy; CARTO',
-        maxZoom: 18
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 19
     }).addTo(trajectoryMap);
 }
 
@@ -455,9 +455,9 @@ function initHeatmapMap() {
     const center = CITY_CENTERS['Mumbai'];
     heatmapMap = L.map('heatmap-gis-map').setView([center.lat, center.lng], center.zoom);
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; OpenStreetMap &copy; CARTO',
-        maxZoom: 18
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 19
     }).addTo(heatmapMap);
 }
 
