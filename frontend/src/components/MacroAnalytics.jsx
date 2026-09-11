@@ -86,34 +86,38 @@ export default function MacroAnalytics({ currentCity }) {
       <div className="analytics-grid">
         {/* Metric Cards Row */}
         <div className="metric-card">
-          <div className="metric-icon blue"><i className="fa-solid fa-[#0284c7] fa-video"></i></div>
+          <div className="metric-icon blue"><i className="fa-solid fa-video"></i></div>
           <div className="metric-details">
             <span className="metric-label">Monitored Nodes</span>
-            <span className="metric-value">{summary.monitored_nodes}</span>
+            <span className="metric-sep">-</span>
+            <span className="metric-value blue-text">{summary.monitored_nodes}</span>
           </div>
         </div>
 
         <div className="metric-card">
-          <div className="metric-icon green"><i className="fa-solid fa-[#10b981] fa-car-side"></i></div>
+          <div className="metric-icon green"><i className="fa-solid fa-car-side"></i></div>
           <div className="metric-details">
             <span className="metric-label">Estimated Hourly Traffic</span>
-            <span className="metric-value">{summary.hourly_traffic} vehicles</span>
+            <span className="metric-sep">-</span>
+            <span className="metric-value green-text">{summary.hourly_traffic} vehicles</span>
           </div>
         </div>
 
         <div className="metric-card">
-          <div className="metric-icon red"><i className="fa-solid fa-[#ef4444] fa-gauge"></i></div>
+          <div className="metric-icon red"><i className="fa-solid fa-gauge"></i></div>
           <div className="metric-details">
             <span className="metric-label">Network Peak Speed</span>
-            <span className="metric-value">{summary.peak_speed}</span>
+            <span className="metric-sep">-</span>
+            <span className="metric-value red-text">{summary.peak_speed}</span>
           </div>
         </div>
 
         <div className="metric-card">
-          <div className="metric-icon amber"><i className="fa-solid fa-[#f59e0b] fa-bullseye"></i></div>
+          <div className="metric-icon amber"><i className="fa-solid fa-bullseye"></i></div>
           <div className="metric-details">
             <span className="metric-label">ANPR OCR Precision</span>
-            <span className="metric-value">{summary.ocr_precision}</span>
+            <span className="metric-sep">-</span>
+            <span className="metric-value amber-text">{summary.ocr_precision}</span>
           </div>
         </div>
       </div>
