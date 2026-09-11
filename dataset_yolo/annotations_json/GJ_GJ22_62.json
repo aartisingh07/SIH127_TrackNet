@@ -1,0 +1,16 @@
+{
+  "filename": "GJ_GJ22_62.jpg",
+  "width": 272,
+  "height": 204,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        112,
+        116,
+        176,
+        129
+      ]
+    }
+  ]
+}

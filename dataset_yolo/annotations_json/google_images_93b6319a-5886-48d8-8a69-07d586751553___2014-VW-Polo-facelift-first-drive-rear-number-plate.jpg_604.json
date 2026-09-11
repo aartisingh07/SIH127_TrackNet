@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_93b6319a-5886-48d8-8a69-07d586751553___2014-VW-Polo-facelift-first-drive-rear-number-plate.jpg_604.jpg",
+  "width": 1280,
+  "height": 847,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        362,
+        290,
+        1045,
+        556
+      ]
+    }
+  ]
+}

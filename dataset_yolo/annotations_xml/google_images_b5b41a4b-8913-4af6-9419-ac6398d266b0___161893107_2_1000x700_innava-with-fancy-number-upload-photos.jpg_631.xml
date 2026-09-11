@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_b5b41a4b-8913-4af6-9419-ac6398d266b0___161893107_2_1000x700_innava-with-fancy-number-upload-photos.jpg_631.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_b5b41a4b-8913-4af6-9419-ac6398d266b0___161893107_2_1000x700_innava-with-fancy-number-upload-photos.jpg_631.jpg</path>
+  <size>
+    <width>610</width>
+    <height>485</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>127</xmin>
+      <ymin>247</ymin>
+      <xmax>261</xmax>
+      <ymax>292</ymax>
+    </bndbox>
+  </object>
+</annotation>

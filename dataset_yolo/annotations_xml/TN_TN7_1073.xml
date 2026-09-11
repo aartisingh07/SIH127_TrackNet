@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>TN_TN7_1073.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\TN_TN7_1073.jpg</path>
+  <size>
+    <width>272</width>
+    <height>363</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>97</xmin>
+      <ymin>231</ymin>
+      <xmax>182</xmax>
+      <ymax>248</ymax>
+    </bndbox>
+  </object>
+</annotation>

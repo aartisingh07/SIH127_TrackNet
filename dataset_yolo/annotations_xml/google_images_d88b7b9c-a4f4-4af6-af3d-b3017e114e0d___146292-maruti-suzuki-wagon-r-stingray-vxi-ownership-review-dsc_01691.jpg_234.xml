@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_d88b7b9c-a4f4-4af6-af3d-b3017e114e0d___146292-maruti-suzuki-wagon-r-stingray-vxi-ownership-review-dsc_01691.jpg_234.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_d88b7b9c-a4f4-4af6-af3d-b3017e114e0d___146292-maruti-suzuki-wagon-r-stingray-vxi-ownership-review-dsc_01691.jpg_234.jpg</path>
+  <size>
+    <width>600</width>
+    <height>361</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>168</xmin>
+      <ymin>210</ymin>
+      <xmax>416</xmax>
+      <ymax>267</ymax>
+    </bndbox>
+  </object>
+</annotation>

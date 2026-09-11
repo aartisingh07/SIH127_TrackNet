@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_6767eddd-bf2f-4270-aa1f-6146738895ab___3e7fd381-0ae5-4421-8a70-279ee0ec1c61_Nissan-Terrano-20300_314.jpg",
+  "width": 600,
+  "height": 337,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        353,
+        213,
+        423,
+        246
+      ]
+    }
+  ]
+}

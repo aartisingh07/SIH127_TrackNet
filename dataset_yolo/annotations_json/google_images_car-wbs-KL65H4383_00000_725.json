@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_car-wbs-KL65H4383_00000_725.jpg",
+  "width": 960,
+  "height": 508,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        255,
+        235,
+        695,
+        340
+      ]
+    }
+  ]
+}

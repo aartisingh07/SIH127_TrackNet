@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_347c849b-6cfa-4edb-af1f-b29bdad25c4d___new_New-Volkswagen-Polo.jpg_237.jpg",
+  "width": 249,
+  "height": 239,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        20,
+        127,
+        135,
+        157
+      ]
+    }
+  ]
+}

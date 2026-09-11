@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>TR_TR10_93.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\TR_TR10_93.jpg</path>
+  <size>
+    <width>272</width>
+    <height>604</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>92</xmin>
+      <ymin>328</ymin>
+      <xmax>184</xmax>
+      <ymax>347</ymax>
+    </bndbox>
+  </object>
+</annotation>

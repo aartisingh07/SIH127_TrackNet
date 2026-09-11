@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_5a4780bf-d2af-4f19-a36b-65004cd06b3d___maruti-suzuki-wagon-r-rear-left-rim.jpg_525.jpg",
+  "width": 350,
+  "height": 263,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        101,
+        138,
+        167,
+        159
+      ]
+    }
+  ]
+}

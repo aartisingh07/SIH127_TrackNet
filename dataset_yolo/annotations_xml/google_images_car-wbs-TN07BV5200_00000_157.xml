@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>google_images_car-wbs-TN07BV5200_00000_157.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\google_images_car-wbs-TN07BV5200_00000_157.jpg</path>
+  <size>
+    <width>475</width>
+    <height>465</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>66</xmin>
+      <ymin>359</ymin>
+      <xmax>237</xmax>
+      <ymax>406</ymax>
+    </bndbox>
+  </object>
+</annotation>

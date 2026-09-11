@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_car-wbs-PB08CX2959_00000_539.jpg",
+  "width": 470,
+  "height": 530,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        94,
+        420,
+        310,
+        475
+      ]
+    }
+  ]
+}

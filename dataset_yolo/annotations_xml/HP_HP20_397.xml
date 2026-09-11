@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>HP_HP20_397.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\HP_HP20_397.jpg</path>
+  <size>
+    <width>153</width>
+    <height>272</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>43</xmin>
+      <ymin>157</ymin>
+      <xmax>97</xmax>
+      <ymax>174</ymax>
+    </bndbox>
+  </object>
+</annotation>

@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_5747d3e8-4dd0-435f-942d-34b84f03344c___Maruti-Suzuki-Swift-Number-Plates-Design.jpg_1132.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_5747d3e8-4dd0-435f-942d-34b84f03344c___Maruti-Suzuki-Swift-Number-Plates-Design.jpg_1132.jpg</path>
+  <size>
+    <width>500</width>
+    <height>430</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>142</xmin>
+      <ymin>251</ymin>
+      <xmax>337</xmax>
+      <ymax>302</ymax>
+    </bndbox>
+  </object>
+</annotation>

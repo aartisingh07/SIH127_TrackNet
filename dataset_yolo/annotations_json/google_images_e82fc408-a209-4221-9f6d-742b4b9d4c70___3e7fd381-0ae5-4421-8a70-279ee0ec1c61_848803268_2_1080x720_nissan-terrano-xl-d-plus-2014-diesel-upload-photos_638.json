@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_e82fc408-a209-4221-9f6d-742b4b9d4c70___3e7fd381-0ae5-4421-8a70-279ee0ec1c61_848803268_2_1080x720_nissan-terrano-xl-d-plus-2014-diesel-upload-photos_638.jpg",
+  "width": 540,
+  "height": 720,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        308,
+        303,
+        441,
+        356
+      ]
+    }
+  ]
+}

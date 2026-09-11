@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>JH_JH10_974.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\JH_JH10_974.jpg</path>
+  <size>
+    <width>272</width>
+    <height>604</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>123</xmin>
+      <ymin>289</ymin>
+      <xmax>173</xmax>
+      <ymax>303</ymax>
+    </bndbox>
+  </object>
+</annotation>

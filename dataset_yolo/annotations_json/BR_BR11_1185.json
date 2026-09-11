@@ -1,0 +1,16 @@
+{
+  "filename": "BR_BR11_1185.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        76,
+        211,
+        140,
+        224
+      ]
+    }
+  ]
+}

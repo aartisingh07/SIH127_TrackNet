@@ -1,0 +1,16 @@
+{
+  "filename": "HR_HR15_1439.jpg",
+  "width": 272,
+  "height": 327,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        93,
+        221,
+        157,
+        239
+      ]
+    }
+  ]
+}

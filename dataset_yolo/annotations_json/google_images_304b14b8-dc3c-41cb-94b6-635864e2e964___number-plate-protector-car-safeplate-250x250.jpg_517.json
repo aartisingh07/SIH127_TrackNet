@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_304b14b8-dc3c-41cb-94b6-635864e2e964___number-plate-protector-car-safeplate-250x250.jpg_517.jpg",
+  "width": 250,
+  "height": 250,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        10,
+        87,
+        244,
+        176
+      ]
+    }
+  ]
+}

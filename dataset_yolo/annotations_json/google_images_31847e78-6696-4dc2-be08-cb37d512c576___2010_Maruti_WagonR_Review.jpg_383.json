@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_31847e78-6696-4dc2-be08-cb37d512c576___2010_Maruti_WagonR_Review.jpg_383.jpg",
+  "width": 500,
+  "height": 409,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        29,
+        264,
+        161,
+        324
+      ]
+    }
+  ]
+}

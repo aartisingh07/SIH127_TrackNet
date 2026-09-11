@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>DL_DL31_339.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\DL_DL31_339.jpg</path>
+  <size>
+    <width>272</width>
+    <height>363</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>201</xmin>
+      <ymin>225</ymin>
+      <xmax>248</xmax>
+      <ymax>244</ymax>
+    </bndbox>
+  </object>
+</annotation>

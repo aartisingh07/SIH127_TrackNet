@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_125b5cda-9691-47aa-8e57-f6d8a8537d83___fancy_number_plates_in_india.jpg_673.jpg",
+  "width": 498,
+  "height": 313,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        51,
+        86,
+        400,
+        174
+      ]
+    }
+  ]
+}

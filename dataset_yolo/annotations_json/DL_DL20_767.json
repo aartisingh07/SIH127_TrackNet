@@ -1,0 +1,16 @@
+{
+  "filename": "DL_DL20_767.jpg",
+  "width": 272,
+  "height": 204,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        106,
+        115,
+        174,
+        129
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_bb767d81-73b4-4c47-b619-7efde490b199___3e7fd381-0ae5-4421-8a70-279ee0ec1c61_oem-name0_1312.jpg",
+  "width": 482,
+  "height": 417,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        254,
+        254,
+        375,
+        288
+      ]
+    }
+  ]
+}

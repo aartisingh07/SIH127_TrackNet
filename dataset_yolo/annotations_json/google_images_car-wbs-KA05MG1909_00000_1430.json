@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_car-wbs-KA05MG1909_00000_1430.jpg",
+  "width": 400,
+  "height": 300,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        95,
+        100,
+        295,
+        190
+      ]
+    }
+  ]
+}

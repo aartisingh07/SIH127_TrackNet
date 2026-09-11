@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_304b14b8-dc3c-41cb-94b6-635864e2e964___number-plate-protector-car-safeplate-250x250.jpg_517.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_304b14b8-dc3c-41cb-94b6-635864e2e964___number-plate-protector-car-safeplate-250x250.jpg_517.jpg</path>
+  <size>
+    <width>250</width>
+    <height>250</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>10</xmin>
+      <ymin>87</ymin>
+      <xmax>244</xmax>
+      <ymax>176</ymax>
+    </bndbox>
+  </object>
+</annotation>

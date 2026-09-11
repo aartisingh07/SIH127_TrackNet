@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_7070d6ac-5425-4d33-a78e-a48c62d0fac5___Honda-Jazz-Number-Plate-Designs.jpg_953.jpg",
+  "width": 600,
+  "height": 450,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        75,
+        134,
+        545,
+        295
+      ]
+    }
+  ]
+}

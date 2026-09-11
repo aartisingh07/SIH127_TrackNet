@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_e77e5db3-2bc6-4223-a258-2334256be65e___new_205356-maruti-swift-torque-blue-vdi-ddis-glistening-rockstar-enters-home-img_7531.jpg_26.jpg",
+  "width": 450,
+  "height": 290,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        115,
+        133,
+        376,
+        199
+      ]
+    }
+  ]
+}

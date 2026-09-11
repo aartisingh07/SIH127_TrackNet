@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>ML_ML24_113.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\ML_ML24_113.jpg</path>
+  <size>
+    <width>271</width>
+    <height>182</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>108</xmin>
+      <ymin>115</ymin>
+      <xmax>162</xmax>
+      <ymax>129</ymax>
+    </bndbox>
+  </object>
+</annotation>

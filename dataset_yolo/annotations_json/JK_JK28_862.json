@@ -1,0 +1,16 @@
+{
+  "filename": "JK_JK28_862.jpg",
+  "width": 266,
+  "height": 332,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        143,
+        253,
+        218,
+        290
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_55aa4ee8-13fd-45bd-b83b-651ac665d71a___200560387_4_1000x700_2012-toyota-innova-diesel-130000-kms-cars.jpg_527.jpg",
+  "width": 518,
+  "height": 458,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        155,
+        240,
+        323,
+        280
+      ]
+    }
+  ]
+}

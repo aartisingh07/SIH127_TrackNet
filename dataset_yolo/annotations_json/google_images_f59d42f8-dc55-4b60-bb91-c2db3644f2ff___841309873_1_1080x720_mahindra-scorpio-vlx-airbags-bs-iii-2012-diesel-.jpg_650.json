@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_f59d42f8-dc55-4b60-bb91-c2db3644f2ff___841309873_1_1080x720_mahindra-scorpio-vlx-airbags-bs-iii-2012-diesel-.jpg_650.jpg",
+  "width": 960,
+  "height": 720,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        387,
+        394,
+        592,
+        442
+      ]
+    }
+  ]
+}

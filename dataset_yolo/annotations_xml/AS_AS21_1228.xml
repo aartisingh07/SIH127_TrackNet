@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>AS_AS21_1228.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\AS_AS21_1228.jpg</path>
+  <size>
+    <width>272</width>
+    <height>363</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>112</xmin>
+      <ymin>190</ymin>
+      <xmax>180</xmax>
+      <ymax>206</ymax>
+    </bndbox>
+  </object>
+</annotation>

@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_car-wbs-UP50AS4535_00000_944.jpg",
+  "width": 960,
+  "height": 601,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        397,
+        427,
+        613,
+        489
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_d1115e64-987f-4a72-b9bb-853f67ca37b6___new_2014-Volkswagen-Polo-Review.jpg_183.jpg",
+  "width": 500,
+  "height": 354,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        159,
+        259,
+        329,
+        297
+      ]
+    }
+  ]
+}

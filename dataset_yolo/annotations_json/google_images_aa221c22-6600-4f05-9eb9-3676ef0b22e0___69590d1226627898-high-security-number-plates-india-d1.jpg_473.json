@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_aa221c22-6600-4f05-9eb9-3676ef0b22e0___69590d1226627898-high-security-number-plates-india-d1.jpg_473.jpg",
+  "width": 1024,
+  "height": 768,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        163,
+        255,
+        899,
+        434
+      ]
+    }
+  ]
+}

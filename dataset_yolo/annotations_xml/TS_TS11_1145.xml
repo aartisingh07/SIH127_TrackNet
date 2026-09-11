@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>TS_TS11_1145.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\TS_TS11_1145.jpg</path>
+  <size>
+    <width>271</width>
+    <height>326</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>135</xmin>
+      <ymin>223</ymin>
+      <xmax>196</xmax>
+      <ymax>248</ymax>
+    </bndbox>
+  </object>
+</annotation>

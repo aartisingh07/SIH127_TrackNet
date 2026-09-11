@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>MP_MP9_1072.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\MP_MP9_1072.jpg</path>
+  <size>
+    <width>272</width>
+    <height>471</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>189</xmin>
+      <ymin>215</ymin>
+      <xmax>248</xmax>
+      <ymax>248</ymax>
+    </bndbox>
+  </object>
+</annotation>

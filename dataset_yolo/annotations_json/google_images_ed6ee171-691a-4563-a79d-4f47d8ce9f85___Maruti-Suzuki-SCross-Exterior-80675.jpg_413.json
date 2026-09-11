@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_ed6ee171-691a-4563-a79d-4f47d8ce9f85___Maruti-Suzuki-SCross-Exterior-80675.jpg_413.jpg",
+  "width": 600,
+  "height": 337,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        124,
+        269,
+        400,
+        330
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_6ed8b283-5cf5-4727-9969-c79f70f47e80___2-cars-same-numbers.jpg_2.jpg",
+  "width": 305,
+  "height": 274,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        71,
+        145,
+        160,
+        175
+      ]
+    }
+  ]
+}

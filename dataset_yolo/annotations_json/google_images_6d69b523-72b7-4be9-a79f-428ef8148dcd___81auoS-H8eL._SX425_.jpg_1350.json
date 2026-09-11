@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_6d69b523-72b7-4be9-a79f-428ef8148dcd___81auoS-H8eL._SX425_.jpg_1350.jpg",
+  "width": 425,
+  "height": 290,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        79,
+        6,
+        368,
+        277
+      ]
+    }
+  ]
+}

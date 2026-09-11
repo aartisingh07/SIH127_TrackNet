@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>google_images_074d85b8-42ec-4d17-9b8e-9e51ae060243___hqdefault.jpg_75.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\google_images_074d85b8-42ec-4d17-9b8e-9e51ae060243___hqdefault.jpg_75.jpg</path>
+  <size>
+    <width>480</width>
+    <height>360</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>141</xmin>
+      <ymin>147</ymin>
+      <xmax>315</xmax>
+      <ymax>230</ymax>
+    </bndbox>
+  </object>
+</annotation>

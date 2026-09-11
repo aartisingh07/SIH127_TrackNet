@@ -1,0 +1,16 @@
+{
+  "filename": "ML_ML19_859.jpg",
+  "width": 272,
+  "height": 483,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        104,
+        297,
+        188,
+        318
+      ]
+    }
+  ]
+}

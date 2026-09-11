@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_car-wbs-HRDK0830_00000_883.jpg",
+  "width": 600,
+  "height": 398,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        341,
+        240,
+        491,
+        289
+      ]
+    }
+  ]
+}

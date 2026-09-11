@@ -1,0 +1,16 @@
+{
+  "filename": "AS_AS3_91.jpg",
+  "width": 272,
+  "height": 204,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        70,
+        138,
+        121,
+        164
+      ]
+    }
+  ]
+}

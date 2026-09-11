@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_2e23964b-ce59-4bcf-8c35-98f3a096a748___design-ind-number-plates-vijayanagar-bangalore-number-plate-dealers-2etqybj.jpg_1046.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_2e23964b-ce59-4bcf-8c35-98f3a096a748___design-ind-number-plates-vijayanagar-bangalore-number-plate-dealers-2etqybj.jpg_1046.jpg</path>
+  <size>
+    <width>750</width>
+    <height>562</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>1</xmin>
+      <ymin>45</ymin>
+      <xmax>702</xmax>
+      <ymax>401</ymax>
+    </bndbox>
+  </object>
+</annotation>

@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_931dfd5a-3d1f-4a08-9234-0453545e27ea___1297127d1412798792-maruti-ciaz-official-review-imag0627.jpg_769.jpg",
+  "width": 500,
+  "height": 265,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        155,
+        117,
+        354,
+        178
+      ]
+    }
+  ]
+}

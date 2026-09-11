@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_59e121dc-ebc6-4e4c-ba88-7fe04b569218___Autopsyches-Skoda-Laura-6.jpg_113.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_59e121dc-ebc6-4e4c-ba88-7fe04b569218___Autopsyches-Skoda-Laura-6.jpg_113.jpg</path>
+  <size>
+    <width>740</width>
+    <height>490</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>288</xmin>
+      <ymin>216</ymin>
+      <xmax>446</xmax>
+      <ymax>256</ymax>
+    </bndbox>
+  </object>
+</annotation>

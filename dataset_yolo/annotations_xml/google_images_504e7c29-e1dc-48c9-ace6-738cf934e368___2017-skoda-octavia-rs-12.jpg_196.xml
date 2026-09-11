@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_504e7c29-e1dc-48c9-ace6-738cf934e368___2017-skoda-octavia-rs-12.jpg_196.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_504e7c29-e1dc-48c9-ace6-738cf934e368___2017-skoda-octavia-rs-12.jpg_196.jpg</path>
+  <size>
+    <width>500</width>
+    <height>269</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>292</xmin>
+      <ymin>183</ymin>
+      <xmax>424</xmax>
+      <ymax>234</ymax>
+    </bndbox>
+  </object>
+</annotation>

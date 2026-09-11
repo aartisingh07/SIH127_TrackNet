@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_b117ba53-d563-49c2-806b-343666616815___new_Maruti-Suzuki-recalls-75419-Baleno-cars-1961-DZire-cars-only-AGS-variant-Motown-India-Bureau-2-810.jpg_393.jpg",
+  "width": 317,
+  "height": 215,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        118,
+        116,
+        215,
+        145
+      ]
+    }
+  ]
+}

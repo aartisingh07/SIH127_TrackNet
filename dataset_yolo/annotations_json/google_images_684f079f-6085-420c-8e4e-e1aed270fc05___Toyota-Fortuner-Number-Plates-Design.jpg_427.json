@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_684f079f-6085-420c-8e4e-e1aed270fc05___Toyota-Fortuner-Number-Plates-Design.jpg_427.jpg",
+  "width": 1250,
+  "height": 703,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        541,
+        389,
+        769,
+        457
+      ]
+    }
+  ]
+}

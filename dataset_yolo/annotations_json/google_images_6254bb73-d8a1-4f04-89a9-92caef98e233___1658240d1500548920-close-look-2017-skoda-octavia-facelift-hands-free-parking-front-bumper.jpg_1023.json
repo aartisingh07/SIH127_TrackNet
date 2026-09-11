@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_6254bb73-d8a1-4f04-89a9-92caef98e233___1658240d1500548920-close-look-2017-skoda-octavia-facelift-hands-free-parking-front-bumper.jpg_1023.jpg",
+  "width": 3720,
+  "height": 2472,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        1205,
+        974,
+        2492,
+        1286
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "LA_LA1_1376.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        78,
+        182,
+        143,
+        202
+      ]
+    }
+  ]
+}

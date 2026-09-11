@@ -1,0 +1,16 @@
+{
+  "filename": "TS_TS11_1145.jpg",
+  "width": 271,
+  "height": 326,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        135,
+        223,
+        196,
+        248
+      ]
+    }
+  ]
+}

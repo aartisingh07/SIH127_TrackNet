@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_car-wbs-UP32FH2653_00000_262.jpg",
+  "width": 539,
+  "height": 432,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        311,
+        303,
+        442,
+        356
+      ]
+    }
+  ]
+}

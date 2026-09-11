@@ -1,0 +1,16 @@
+{
+  "filename": "MP_MP1_1416.jpg",
+  "width": 269,
+  "height": 436,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        90,
+        269,
+        170,
+        287
+      ]
+    }
+  ]
+}

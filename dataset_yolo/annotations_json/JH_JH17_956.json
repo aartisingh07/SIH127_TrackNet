@@ -1,0 +1,16 @@
+{
+  "filename": "JH_JH17_956.jpg",
+  "width": 270,
+  "height": 184,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        107,
+        143,
+        160,
+        155
+      ]
+    }
+  ]
+}

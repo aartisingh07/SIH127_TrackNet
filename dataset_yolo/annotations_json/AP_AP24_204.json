@@ -1,0 +1,16 @@
+{
+  "filename": "AP_AP24_204.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        89,
+        265,
+        182,
+        285
+      ]
+    }
+  ]
+}

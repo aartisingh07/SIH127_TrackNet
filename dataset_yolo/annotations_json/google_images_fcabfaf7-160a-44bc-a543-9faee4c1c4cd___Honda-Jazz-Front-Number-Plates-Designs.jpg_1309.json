@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_fcabfaf7-160a-44bc-a543-9faee4c1c4cd___Honda-Jazz-Front-Number-Plates-Designs.jpg_1309.jpg",
+  "width": 600,
+  "height": 450,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        57,
+        82,
+        600,
+        186
+      ]
+    }
+  ]
+}

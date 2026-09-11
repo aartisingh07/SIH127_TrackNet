@@ -1,0 +1,16 @@
+{
+  "filename": "HR_HR18_850.jpg",
+  "width": 272,
+  "height": 605,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        95,
+        333,
+        163,
+        352
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>google_images_car-wbs-MH14EU3498_00000_77.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\google_images_car-wbs-MH14EU3498_00000_77.jpg</path>
+  <size>
+    <width>376</width>
+    <height>216</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>63</xmin>
+      <ymin>94</ymin>
+      <xmax>275</xmax>
+      <ymax>146</ymax>
+    </bndbox>
+  </object>
+</annotation>

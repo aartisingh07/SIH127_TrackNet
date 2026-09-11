@@ -1,0 +1,16 @@
+{
+  "filename": "MN_MN4_983.jpg",
+  "width": 272,
+  "height": 87,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        103,
+        9,
+        159,
+        21
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>google_images_8906af57-0d29-417d-ac46-408425527b57___VW-Vento-TDI-CNG-Spy-Pic-2.jpg_160.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\google_images_8906af57-0d29-417d-ac46-408425527b57___VW-Vento-TDI-CNG-Spy-Pic-2.jpg_160.jpg</path>
+  <size>
+    <width>600</width>
+    <height>430</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>245</xmin>
+      <ymin>239</ymin>
+      <xmax>372</xmax>
+      <ymax>295</ymax>
+    </bndbox>
+  </object>
+</annotation>

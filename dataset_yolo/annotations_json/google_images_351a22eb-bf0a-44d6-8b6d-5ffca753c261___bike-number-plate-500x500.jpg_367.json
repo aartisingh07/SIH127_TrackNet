@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_351a22eb-bf0a-44d6-8b6d-5ffca753c261___bike-number-plate-500x500.jpg_367.jpg",
+  "width": 500,
+  "height": 291,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        111,
+        112,
+        258,
+        187
+      ]
+    }
+  ]
+}

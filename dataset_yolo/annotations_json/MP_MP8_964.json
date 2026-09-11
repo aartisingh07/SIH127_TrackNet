@@ -1,0 +1,16 @@
+{
+  "filename": "MP_MP8_964.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        92,
+        181,
+        174,
+        205
+      ]
+    }
+  ]
+}

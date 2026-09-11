@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_2c9306ab-3454-4ca0-89fd-db3f51dabcef___3e7fd381-0ae5-4421-8a70-279ee0ec1c61_Nissan-Terrano-front-three-quarters-on-plain-ground_231.jpg",
+  "width": 1280,
+  "height": 848,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        140,
+        511,
+        348,
+        610
+      ]
+    }
+  ]
+}

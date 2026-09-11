@@ -1,0 +1,16 @@
+{
+  "filename": "DN_DN1_190.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        94,
+        208,
+        173,
+        225
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>AP_AP29_180.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\AP_AP29_180.jpg</path>
+  <size>
+    <width>269</width>
+    <height>141</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>104</xmin>
+      <ymin>1</ymin>
+      <xmax>183</xmax>
+      <ymax>16</ymax>
+    </bndbox>
+  </object>
+</annotation>

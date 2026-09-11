@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_41209caa-2aa2-4003-b057-e0508c1d5ac9___Volkswagen-Ameo-Exterior-68165.jpg_774.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_41209caa-2aa2-4003-b057-e0508c1d5ac9___Volkswagen-Ameo-Exterior-68165.jpg_774.jpg</path>
+  <size>
+    <width>600</width>
+    <height>337</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>201</xmin>
+      <ymin>202</ymin>
+      <xmax>273</xmax>
+      <ymax>227</ymax>
+    </bndbox>
+  </object>
+</annotation>

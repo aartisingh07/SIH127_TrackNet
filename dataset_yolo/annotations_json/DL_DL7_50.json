@@ -1,0 +1,16 @@
+{
+  "filename": "DL_DL7_50.jpg",
+  "width": 272,
+  "height": 305,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        97,
+        214,
+        170,
+        230
+      ]
+    }
+  ]
+}

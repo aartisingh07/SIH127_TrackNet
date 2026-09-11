@@ -1,0 +1,16 @@
+{
+  "filename": "JK_JK35_202.jpg",
+  "width": 270,
+  "height": 448,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        95,
+        259,
+        172,
+        275
+      ]
+    }
+  ]
+}

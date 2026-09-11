@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>google_images_car-wbs-KL10AV6633_00000_110.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\google_images_car-wbs-KL10AV6633_00000_110.jpg</path>
+  <size>
+    <width>959</width>
+    <height>693</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>310</xmin>
+      <ymin>429</ymin>
+      <xmax>669</xmax>
+      <ymax>533</ymax>
+    </bndbox>
+  </object>
+</annotation>

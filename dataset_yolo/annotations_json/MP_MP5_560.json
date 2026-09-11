@@ -1,0 +1,16 @@
+{
+  "filename": "MP_MP5_560.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        100,
+        230,
+        171,
+        244
+      ]
+    }
+  ]
+}

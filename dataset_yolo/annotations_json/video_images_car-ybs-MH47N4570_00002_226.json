@@ -1,0 +1,16 @@
+{
+  "filename": "video_images_car-ybs-MH47N4570_00002_226.jpg",
+  "width": 682,
+  "height": 509,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        218,
+        332,
+        469,
+        402
+      ]
+    }
+  ]
+}

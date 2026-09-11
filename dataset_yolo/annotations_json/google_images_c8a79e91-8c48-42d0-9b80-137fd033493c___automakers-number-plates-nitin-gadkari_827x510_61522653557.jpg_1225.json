@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_c8a79e91-8c48-42d0-9b80-137fd033493c___automakers-number-plates-nitin-gadkari_827x510_61522653557.jpg_1225.jpg",
+  "width": 377,
+  "height": 244,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        65,
+        162,
+        157,
+        198
+      ]
+    }
+  ]
+}

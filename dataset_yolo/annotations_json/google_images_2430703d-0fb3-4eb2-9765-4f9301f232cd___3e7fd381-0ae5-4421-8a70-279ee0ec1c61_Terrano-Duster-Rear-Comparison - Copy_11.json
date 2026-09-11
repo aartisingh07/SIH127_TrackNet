@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_2430703d-0fb3-4eb2-9765-4f9301f232cd___3e7fd381-0ae5-4421-8a70-279ee0ec1c61_Terrano-Duster-Rear-Comparison - Copy_11.jpg",
+  "width": 1021,
+  "height": 588,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        450,
+        272,
+        692,
+        327
+      ]
+    }
+  ]
+}

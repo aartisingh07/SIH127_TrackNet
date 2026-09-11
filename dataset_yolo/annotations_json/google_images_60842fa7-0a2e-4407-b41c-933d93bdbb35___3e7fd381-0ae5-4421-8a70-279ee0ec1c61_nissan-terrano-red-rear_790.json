@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_60842fa7-0a2e-4407-b41c-933d93bdbb35___3e7fd381-0ae5-4421-8a70-279ee0ec1c61_nissan-terrano-red-rear_790.jpg",
+  "width": 660,
+  "height": 440,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        146,
+        215,
+        237,
+        244
+      ]
+    }
+  ]
+}

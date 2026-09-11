@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>WhatsApp Image 2026-09-11 at 00.05.55 (2).jpeg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\WhatsApp Image 2026-09-11 at 00.05.55 (2).jpeg</path>
+  <size>
+    <width>960</width>
+    <height>1280</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>330</xmin>
+      <ymin>564</ymin>
+      <xmax>637</xmax>
+      <ymax>683</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>378</xmin>
+      <ymin>124</ymin>
+      <xmax>548</xmax>
+      <ymax>168</ymax>
+    </bndbox>
+  </object>
+</annotation>

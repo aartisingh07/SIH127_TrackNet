@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_car-wbs-TN58AM1_00000_807.jpg",
+  "width": 536,
+  "height": 684,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        169,
+        390,
+        372,
+        440
+      ]
+    }
+  ]
+}

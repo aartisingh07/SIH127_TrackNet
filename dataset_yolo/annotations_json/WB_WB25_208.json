@@ -1,0 +1,16 @@
+{
+  "filename": "WB_WB25_208.jpg",
+  "width": 272,
+  "height": 172,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        16,
+        115,
+        63,
+        138
+      ]
+    }
+  ]
+}

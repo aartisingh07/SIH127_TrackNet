@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_d9023f53-f90d-4b98-bd52-30796777ddcf___Maruti-Suzuki-Baleno-hatchback-56545.jpg_1404.jpg",
+  "width": 389,
+  "height": 267,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        223,
+        156,
+        306,
+        182
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_52abe2c4-fde3-45b2-beec-f070e6ed98c7___Volkswagen-Vento-Rear-view-46765.jpg_503.jpg",
+  "width": 630,
+  "height": 353,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        250,
+        197,
+        369,
+        227
+      ]
+    }
+  ]
+}

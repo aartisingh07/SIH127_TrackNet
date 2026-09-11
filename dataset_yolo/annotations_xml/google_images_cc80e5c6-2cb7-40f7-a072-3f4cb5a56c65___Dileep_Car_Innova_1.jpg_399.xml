@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_cc80e5c6-2cb7-40f7-a072-3f4cb5a56c65___Dileep_Car_Innova_1.jpg_399.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_cc80e5c6-2cb7-40f7-a072-3f4cb5a56c65___Dileep_Car_Innova_1.jpg_399.jpg</path>
+  <size>
+    <width>1200</width>
+    <height>1600</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>424</xmin>
+      <ymin>761</ymin>
+      <xmax>895</xmax>
+      <ymax>936</ymax>
+    </bndbox>
+  </object>
+</annotation>

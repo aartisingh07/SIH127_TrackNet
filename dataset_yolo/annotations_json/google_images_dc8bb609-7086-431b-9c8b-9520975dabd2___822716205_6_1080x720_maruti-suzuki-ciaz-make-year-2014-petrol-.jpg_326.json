@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_dc8bb609-7086-431b-9c8b-9520975dabd2___822716205_6_1080x720_maruti-suzuki-ciaz-make-year-2014-petrol-.jpg_326.jpg",
+  "width": 500,
+  "height": 281,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        214,
+        133,
+        331,
+        166
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_car-wbs-TN37CR4019_00000_885.jpg",
+  "width": 405,
+  "height": 546,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        101,
+        270,
+        294,
+        362
+      ]
+    }
+  ]
+}

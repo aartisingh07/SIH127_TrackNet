@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_e706cec0-783a-42bc-b934-64788481cd92___4-Innova-After-2.jpg_1220.jpg",
+  "width": 500,
+  "height": 372,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        175,
+        176,
+        323,
+        211
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "DL_DL22_217.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        104,
+        230,
+        167,
+        244
+      ]
+    }
+  ]
+}

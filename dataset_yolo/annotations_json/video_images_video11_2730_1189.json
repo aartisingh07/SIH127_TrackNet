@@ -1,0 +1,16 @@
+{
+  "filename": "video_images_video11_2730_1189.jpg",
+  "width": 975,
+  "height": 1075,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        174,
+        298,
+        541,
+        412
+      ]
+    }
+  ]
+}

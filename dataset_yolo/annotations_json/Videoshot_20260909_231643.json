@@ -1,0 +1,16 @@
+{
+  "filename": "Videoshot_20260909_231643.jpg",
+  "width": 1080,
+  "height": 1920,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        640,
+        1389,
+        943,
+        1474
+      ]
+    }
+  ]
+}

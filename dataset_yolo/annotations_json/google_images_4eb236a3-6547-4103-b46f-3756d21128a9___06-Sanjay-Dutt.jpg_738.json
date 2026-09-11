@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_4eb236a3-6547-4103-b46f-3756d21128a9___06-Sanjay-Dutt.jpg_738.jpg",
+  "width": 494,
+  "height": 449,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        85,
+        387,
+        256,
+        449
+      ]
+    }
+  ]
+}

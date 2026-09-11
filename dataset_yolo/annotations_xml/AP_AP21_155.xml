@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>AP_AP21_155.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\AP_AP21_155.jpg</path>
+  <size>
+    <width>272</width>
+    <height>173</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>120</xmin>
+      <ymin>99</ymin>
+      <xmax>228</xmax>
+      <ymax>129</ymax>
+    </bndbox>
+  </object>
+</annotation>

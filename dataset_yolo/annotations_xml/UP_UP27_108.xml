@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>UP_UP27_108.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\UP_UP27_108.jpg</path>
+  <size>
+    <width>272</width>
+    <height>363</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>97</xmin>
+      <ymin>252</ymin>
+      <xmax>165</xmax>
+      <ymax>274</ymax>
+    </bndbox>
+  </object>
+</annotation>

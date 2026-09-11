@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_car-wbs-TN21AT0480_00000_194.jpg",
+  "width": 573,
+  "height": 573,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        186,
+        321,
+        390,
+        373
+      ]
+    }
+  ]
+}

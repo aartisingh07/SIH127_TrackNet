@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_2adfb5e7-e70a-4749-b5fa-8c233c0d47d9___new_1572920d1478091901-your-favourite-number-plate-font-jetta-german-font.jpg_121.jpg",
+  "width": 500,
+  "height": 250,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        155,
+        92,
+        372,
+        147
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "video_images_video3_1970_1403.jpg",
+  "width": 707,
+  "height": 729,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        184,
+        357,
+        316,
+        391
+      ]
+    }
+  ]
+}

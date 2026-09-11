@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>HR_HR5_1086.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\HR_HR5_1086.jpg</path>
+  <size>
+    <width>272</width>
+    <height>204</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>93</xmin>
+      <ymin>139</ymin>
+      <xmax>165</xmax>
+      <ymax>155</ymax>
+    </bndbox>
+  </object>
+</annotation>

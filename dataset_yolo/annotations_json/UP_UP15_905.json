@@ -1,0 +1,16 @@
+{
+  "filename": "UP_UP15_905.jpg",
+  "width": 272,
+  "height": 604,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        74,
+        332,
+        176,
+        359
+      ]
+    }
+  ]
+}

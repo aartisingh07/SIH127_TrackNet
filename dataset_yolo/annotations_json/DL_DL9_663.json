@@ -1,0 +1,16 @@
+{
+  "filename": "DL_DL9_663.jpg",
+  "width": 272,
+  "height": 134,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        94,
+        96,
+        147,
+        107
+      ]
+    }
+  ]
+}

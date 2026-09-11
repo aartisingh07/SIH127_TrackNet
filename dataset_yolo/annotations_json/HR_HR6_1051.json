@@ -1,0 +1,16 @@
+{
+  "filename": "HR_HR6_1051.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        101,
+        266,
+        171,
+        281
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_6bf2730d-82bf-43ac-8802-b61315d85b96___2017-Skoda-Octavia-rear-high-revealed-for-India-images.jpg_142.jpg",
+  "width": 400,
+  "height": 374,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        108,
+        234,
+        261,
+        276
+      ]
+    }
+  ]
+}

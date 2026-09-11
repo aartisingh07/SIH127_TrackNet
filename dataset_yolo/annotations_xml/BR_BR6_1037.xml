@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>BR_BR6_1037.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\BR_BR6_1037.jpg</path>
+  <size>
+    <width>272</width>
+    <height>592</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>121</xmin>
+      <ymin>244</ymin>
+      <xmax>206</xmax>
+      <ymax>265</ymax>
+    </bndbox>
+  </object>
+</annotation>

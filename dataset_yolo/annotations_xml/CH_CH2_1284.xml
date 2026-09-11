@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>CH_CH2_1284.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\CH_CH2_1284.jpg</path>
+  <size>
+    <width>272</width>
+    <height>204</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>108</xmin>
+      <ymin>139</ymin>
+      <xmax>189</xmax>
+      <ymax>159</ymax>
+    </bndbox>
+  </object>
+</annotation>

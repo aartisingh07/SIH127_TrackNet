@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_ef2dc97f-bc6d-49a3-9ddb-03f54f3a20e7___Skoda-Rapid-new-Exterior-84398.jpg_610.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_ef2dc97f-bc6d-49a3-9ddb-03f54f3a20e7___Skoda-Rapid-new-Exterior-84398.jpg_610.jpg</path>
+  <size>
+    <width>541</width>
+    <height>423</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>211</xmin>
+      <ymin>277</ymin>
+      <xmax>339</xmax>
+      <ymax>308</ymax>
+    </bndbox>
+  </object>
+</annotation>

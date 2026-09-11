@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_8187c22d-5fa4-4976-9c00-80b2ab66b97d___1290890d1411349145-take-look-number-plate-img_20140903_093600_hdr.jpg_1344.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_8187c22d-5fa4-4976-9c00-80b2ab66b97d___1290890d1411349145-take-look-number-plate-img_20140903_093600_hdr.jpg_1344.jpg</path>
+  <size>
+    <width>550</width>
+    <height>534</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>93</xmin>
+      <ymin>240</ymin>
+      <xmax>240</xmax>
+      <ymax>320</ymax>
+    </bndbox>
+  </object>
+</annotation>

@@ -1,0 +1,16 @@
+{
+  "filename": "IMG-20260823-WA0019.jpg",
+  "width": 960,
+  "height": 1150,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        366,
+        877,
+        563,
+        923
+      ]
+    }
+  ]
+}

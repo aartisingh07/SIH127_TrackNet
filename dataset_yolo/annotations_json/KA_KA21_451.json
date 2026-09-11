@@ -1,0 +1,16 @@
+{
+  "filename": "KA_KA21_451.jpg",
+  "width": 272,
+  "height": 604,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        105,
+        318,
+        174,
+        336
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_8e0b8c6f-850f-4918-983a-7fa110368d32___banner_4_471.jpg",
+  "width": 900,
+  "height": 350,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        327,
+        201,
+        577,
+        251
+      ]
+    }
+  ]
+}

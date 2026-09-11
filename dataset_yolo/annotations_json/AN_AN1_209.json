@@ -1,0 +1,16 @@
+{
+  "filename": "AN_AN1_209.jpg",
+  "width": 272,
+  "height": 575,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        94,
+        363,
+        185,
+        384
+      ]
+    }
+  ]
+}

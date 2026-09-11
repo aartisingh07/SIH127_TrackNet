@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_f8a992cc-a1cc-4d68-88c1-bec1a46fc148___Honda-City-Number-Plates-Design.jpg_5.jpg",
+  "width": 557,
+  "height": 520,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        180,
+        359,
+        385,
+        413
+      ]
+    }
+  ]
+}

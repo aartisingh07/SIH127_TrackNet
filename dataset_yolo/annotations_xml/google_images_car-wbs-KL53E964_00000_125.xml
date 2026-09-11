@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>google_images_car-wbs-KL53E964_00000_125.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\google_images_car-wbs-KL53E964_00000_125.jpg</path>
+  <size>
+    <width>717</width>
+    <height>634</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>258</xmin>
+      <ymin>389</ymin>
+      <xmax>484</xmax>
+      <ymax>462</ymax>
+    </bndbox>
+  </object>
+</annotation>

@@ -1,0 +1,16 @@
+{
+  "filename": "CH_CH3_1056.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        55,
+        269,
+        144,
+        290
+      ]
+    }
+  ]
+}

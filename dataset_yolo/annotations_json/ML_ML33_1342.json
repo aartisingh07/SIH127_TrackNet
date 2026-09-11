@@ -1,0 +1,16 @@
+{
+  "filename": "ML_ML33_1342.jpg",
+  "width": 272,
+  "height": 590,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        86,
+        277,
+        168,
+        299
+      ]
+    }
+  ]
+}

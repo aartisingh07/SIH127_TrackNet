@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_bdad5f66-70ad-4241-9a62-bba1123c3486___3e7fd381-0ae5-4421-8a70-279ee0ec1c61_1447945d1449508546t-my-nissan-terrano-85-ps-_img_000000_000000_625.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_bdad5f66-70ad-4241-9a62-bba1123c3486___3e7fd381-0ae5-4421-8a70-279ee0ec1c61_1447945d1449508546t-my-nissan-terrano-85-ps-_img_000000_000000_625.jpg</path>
+  <size>
+    <width>802</width>
+    <height>465</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>402</xmin>
+      <ymin>275</ymin>
+      <xmax>458</xmax>
+      <ymax>301</ymax>
+    </bndbox>
+  </object>
+</annotation>

@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_car-wbs-HR26CK8571_00000_900.jpg",
+  "width": 608,
+  "height": 302,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        384,
+        214,
+        487,
+        245
+      ]
+    }
+  ]
+}

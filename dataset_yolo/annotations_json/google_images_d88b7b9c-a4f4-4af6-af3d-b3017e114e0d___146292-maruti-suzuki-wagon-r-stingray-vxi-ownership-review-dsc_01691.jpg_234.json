@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_d88b7b9c-a4f4-4af6-af3d-b3017e114e0d___146292-maruti-suzuki-wagon-r-stingray-vxi-ownership-review-dsc_01691.jpg_234.jpg",
+  "width": 600,
+  "height": 361,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        168,
+        210,
+        416,
+        267
+      ]
+    }
+  ]
+}

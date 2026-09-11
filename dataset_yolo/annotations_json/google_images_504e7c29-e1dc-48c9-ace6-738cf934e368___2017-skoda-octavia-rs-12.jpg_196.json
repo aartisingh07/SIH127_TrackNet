@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_504e7c29-e1dc-48c9-ace6-738cf934e368___2017-skoda-octavia-rs-12.jpg_196.jpg",
+  "width": 500,
+  "height": 269,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        292,
+        183,
+        424,
+        234
+      ]
+    }
+  ]
+}

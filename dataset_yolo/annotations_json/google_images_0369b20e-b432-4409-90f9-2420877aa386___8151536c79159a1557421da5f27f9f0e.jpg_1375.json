@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_0369b20e-b432-4409-90f9-2420877aa386___8151536c79159a1557421da5f27f9f0e.jpg_1375.jpg",
+  "width": 480,
+  "height": 480,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        334,
+        313,
+        452,
+        346
+      ]
+    }
+  ]
+}

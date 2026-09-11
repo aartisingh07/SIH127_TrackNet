@@ -1,0 +1,16 @@
+{
+  "filename": "AR_AR1_1385.jpg",
+  "width": 272,
+  "height": 153,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        98,
+        110,
+        156,
+        121
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_fb939bb1-5257-4879-bafb-539472ffb73d___Maruti-Suzuki-Brezza-Number-Plates-Design.jpg_135.jpg",
+  "width": 484,
+  "height": 456,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        186,
+        213,
+        335,
+        252
+      ]
+    }
+  ]
+}

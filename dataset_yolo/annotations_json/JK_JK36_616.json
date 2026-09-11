@@ -1,0 +1,16 @@
+{
+  "filename": "JK_JK36_616.jpg",
+  "width": 272,
+  "height": 484,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        137,
+        285,
+        202,
+        321
+      ]
+    }
+  ]
+}

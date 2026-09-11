@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>IMG-20251107-WA0166.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\IMG-20251107-WA0166.jpg</path>
+  <size>
+    <width>762</width>
+    <height>1280</height>
+    <depth>3</depth>
+  </size>
+</annotation>

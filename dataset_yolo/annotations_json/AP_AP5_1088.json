@@ -1,0 +1,16 @@
+{
+  "filename": "AP_AP5_1088.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        92,
+        162,
+        154,
+        178
+      ]
+    }
+  ]
+}

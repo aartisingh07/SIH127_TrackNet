@@ -1,0 +1,16 @@
+{
+  "filename": "NL_NL5_97.jpg",
+  "width": 272,
+  "height": 604,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        51,
+        360,
+        122,
+        406
+      ]
+    }
+  ]
+}

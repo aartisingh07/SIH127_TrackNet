@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_f8a992cc-a1cc-4d68-88c1-bec1a46fc148___Honda-City-Number-Plates-Design.jpg_5.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_f8a992cc-a1cc-4d68-88c1-bec1a46fc148___Honda-City-Number-Plates-Design.jpg_5.jpg</path>
+  <size>
+    <width>557</width>
+    <height>520</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>180</xmin>
+      <ymin>359</ymin>
+      <xmax>385</xmax>
+      <ymax>413</ymax>
+    </bndbox>
+  </object>
+</annotation>

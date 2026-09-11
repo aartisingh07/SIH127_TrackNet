@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_20dd73fd-9e05-4bdc-b380-d8148b194ae7___Maruti-Swift-Number-Plates-Design.jpg_290.jpg",
+  "width": 960,
+  "height": 720,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        333,
+        214,
+        856,
+        410
+      ]
+    }
+  ]
+}

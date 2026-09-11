@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_d4bec046-caac-4e59-bd05-44de2232d83b___2017-Skoda-Octavia-Front.jpg_1365.jpg",
+  "width": 400,
+  "height": 278,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        215,
+        148,
+        345,
+        192
+      ]
+    }
+  ]
+}

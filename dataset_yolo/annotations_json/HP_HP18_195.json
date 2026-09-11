@@ -1,0 +1,16 @@
+{
+  "filename": "HP_HP18_195.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        140,
+        282,
+        182,
+        292
+      ]
+    }
+  ]
+}

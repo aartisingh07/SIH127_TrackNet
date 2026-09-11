@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_22dc6b5f-ff5d-4bb4-beb2-0f5fd9e75787___i10_Latest_Acrylic_Number_Plate.jpg_52.jpg",
+  "width": 496,
+  "height": 287,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        143,
+        166,
+        341,
+        212
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "MH_MH8_22.jpg",
+  "width": 272,
+  "height": 204,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        103,
+        151,
+        172,
+        172
+      ]
+    }
+  ]
+}

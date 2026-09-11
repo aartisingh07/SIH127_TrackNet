@@ -1,0 +1,16 @@
+{
+  "filename": "MH_MH24_916.jpg",
+  "width": 272,
+  "height": 229,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        90,
+        172,
+        177,
+        189
+      ]
+    }
+  ]
+}

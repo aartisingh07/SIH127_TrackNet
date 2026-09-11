@@ -1,0 +1,16 @@
+{
+  "filename": "AP_AP39_8.jpg",
+  "width": 272,
+  "height": 204,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        93,
+        157,
+        166,
+        172
+      ]
+    }
+  ]
+}

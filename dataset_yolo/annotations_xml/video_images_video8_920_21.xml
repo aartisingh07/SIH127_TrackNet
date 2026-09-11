@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>video_images_video8_920_21.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\video_images_video8_920_21.jpg</path>
+  <size>
+    <width>717</width>
+    <height>591</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>69</xmin>
+      <ymin>455</ymin>
+      <xmax>181</xmax>
+      <ymax>498</ymax>
+    </bndbox>
+  </object>
+</annotation>

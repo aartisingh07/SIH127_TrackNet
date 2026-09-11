@@ -1,0 +1,16 @@
+{
+  "filename": "AS_AS8_942.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        96,
+        241,
+        163,
+        257
+      ]
+    }
+  ]
+}

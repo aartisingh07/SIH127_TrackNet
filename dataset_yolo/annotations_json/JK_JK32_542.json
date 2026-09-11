@@ -1,0 +1,16 @@
+{
+  "filename": "JK_JK32_542.jpg",
+  "width": 271,
+  "height": 220,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        162,
+        199,
+        211,
+        218
+      ]
+    }
+  ]
+}

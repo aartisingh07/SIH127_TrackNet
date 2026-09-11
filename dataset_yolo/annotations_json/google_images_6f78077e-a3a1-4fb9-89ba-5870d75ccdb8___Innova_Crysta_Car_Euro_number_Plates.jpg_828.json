@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_6f78077e-a3a1-4fb9-89ba-5870d75ccdb8___Innova_Crysta_Car_Euro_number_Plates.jpg_828.jpg",
+  "width": 500,
+  "height": 306,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        166,
+        101,
+        281,
+        134
+      ]
+    }
+  ]
+}

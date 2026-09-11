@@ -1,0 +1,16 @@
+{
+  "filename": "PB_PB26_1091.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        23,
+        243,
+        91,
+        294
+      ]
+    }
+  ]
+}

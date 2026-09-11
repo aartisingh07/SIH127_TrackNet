@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>AN_AN1_209.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\AN_AN1_209.jpg</path>
+  <size>
+    <width>272</width>
+    <height>575</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>94</xmin>
+      <ymin>363</ymin>
+      <xmax>185</xmax>
+      <ymax>384</ymax>
+    </bndbox>
+  </object>
+</annotation>

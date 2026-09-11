@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_07e787a7-6cc3-482c-9ce5-f0ce115b47f1___new_VW-Polo-GT-TSI-badges-on-the-boot-lid.jpg_19.jpg",
+  "width": 395,
+  "height": 147,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        27,
+        29,
+        341,
+        106
+      ]
+    }
+  ]
+}

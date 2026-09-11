@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>AS_AS20_15.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\AS_AS20_15.jpg</path>
+  <size>
+    <width>272</width>
+    <height>189</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>50</xmin>
+      <ymin>124</ymin>
+      <xmax>114</xmax>
+      <ymax>152</ymax>
+    </bndbox>
+  </object>
+</annotation>

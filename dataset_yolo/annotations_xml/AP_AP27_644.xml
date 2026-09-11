@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>AP_AP27_644.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\AP_AP27_644.jpg</path>
+  <size>
+    <width>272</width>
+    <height>363</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>97</xmin>
+      <ymin>197</ymin>
+      <xmax>174</xmax>
+      <ymax>216</ymax>
+    </bndbox>
+  </object>
+</annotation>

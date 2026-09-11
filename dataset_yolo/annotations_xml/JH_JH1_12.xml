@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>JH_JH1_12.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\JH_JH1_12.jpg</path>
+  <size>
+    <width>272</width>
+    <height>363</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>76</xmin>
+      <ymin>328</ymin>
+      <xmax>225</xmax>
+      <ymax>356</ymax>
+    </bndbox>
+  </object>
+</annotation>

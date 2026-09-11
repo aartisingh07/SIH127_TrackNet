@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>HP_HP16_485.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\HP_HP16_485.jpg</path>
+  <size>
+    <width>272</width>
+    <height>204</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>80</xmin>
+      <ymin>124</ymin>
+      <xmax>131</xmax>
+      <ymax>136</ymax>
+    </bndbox>
+  </object>
+</annotation>

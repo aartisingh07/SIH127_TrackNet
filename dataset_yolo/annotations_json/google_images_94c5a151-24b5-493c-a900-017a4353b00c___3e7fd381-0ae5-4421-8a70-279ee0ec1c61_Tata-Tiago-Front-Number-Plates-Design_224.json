@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_94c5a151-24b5-493c-a900-017a4353b00c___3e7fd381-0ae5-4421-8a70-279ee0ec1c61_Tata-Tiago-Front-Number-Plates-Design_224.jpg",
+  "width": 960,
+  "height": 720,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        260,
+        234,
+        696,
+        337
+      ]
+    }
+  ]
+}

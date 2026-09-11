@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_6f680368-4a15-464a-b314-7f9cd0f3db11___91852d1232463201-high-security-registration-plates-hsrp-india-num1.jpg_763.jpg",
+  "width": 441,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        205,
+        167,
+        350,
+        288
+      ]
+    }
+  ]
+}

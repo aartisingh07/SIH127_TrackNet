@@ -1,0 +1,16 @@
+{
+  "filename": "DL_DL8_423.jpg",
+  "width": 272,
+  "height": 204,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        117,
+        147,
+        175,
+        160
+      ]
+    }
+  ]
+}

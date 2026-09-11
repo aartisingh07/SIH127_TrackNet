@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>google_images_6bf2730d-82bf-43ac-8802-b61315d85b96___2017-Skoda-Octavia-rear-high-revealed-for-India-images.jpg_142.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\google_images_6bf2730d-82bf-43ac-8802-b61315d85b96___2017-Skoda-Octavia-rear-high-revealed-for-India-images.jpg_142.jpg</path>
+  <size>
+    <width>400</width>
+    <height>374</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>108</xmin>
+      <ymin>234</ymin>
+      <xmax>261</xmax>
+      <ymax>276</ymax>
+    </bndbox>
+  </object>
+</annotation>

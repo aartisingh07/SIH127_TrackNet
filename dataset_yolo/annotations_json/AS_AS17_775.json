@@ -1,0 +1,16 @@
+{
+  "filename": "AS_AS17_775.jpg",
+  "width": 271,
+  "height": 342,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        89,
+        249,
+        181,
+        268
+      ]
+    }
+  ]
+}

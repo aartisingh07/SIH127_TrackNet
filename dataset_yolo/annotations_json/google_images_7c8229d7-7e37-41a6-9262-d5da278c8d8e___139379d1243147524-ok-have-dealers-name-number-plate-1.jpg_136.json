@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_7c8229d7-7e37-41a6-9262-d5da278c8d8e___139379d1243147524-ok-have-dealers-name-number-plate-1.jpg_136.jpg",
+  "width": 919,
+  "height": 532,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        259,
+        200,
+        728,
+        347
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_377b225b-e978-4e7c-8e5e-f10d8effc336___Maruti-Suzuki-Ignis-Rear-view-94486.jpg_238.jpg",
+  "width": 600,
+  "height": 337,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        153,
+        230,
+        314,
+        277
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "SK_SK3_196.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        104,
+        236,
+        183,
+        255
+      ]
+    }
+  ]
+}

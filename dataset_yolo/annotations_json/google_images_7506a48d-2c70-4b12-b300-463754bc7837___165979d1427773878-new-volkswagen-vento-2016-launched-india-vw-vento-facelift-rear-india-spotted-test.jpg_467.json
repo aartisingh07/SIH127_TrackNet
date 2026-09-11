@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_7506a48d-2c70-4b12-b300-463754bc7837___165979d1427773878-new-volkswagen-vento-2016-launched-india-vw-vento-facelift-rear-india-spotted-test.jpg_467.jpg",
+  "width": 850,
+  "height": 681,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        335,
+        272,
+        535,
+        319
+      ]
+    }
+  ]
+}

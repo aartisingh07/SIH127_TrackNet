@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_car-wbs-DL3CAY9324_00000_253.jpg",
+  "width": 769,
+  "height": 417,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        299,
+        260,
+        485,
+        304
+      ]
+    }
+  ]
+}

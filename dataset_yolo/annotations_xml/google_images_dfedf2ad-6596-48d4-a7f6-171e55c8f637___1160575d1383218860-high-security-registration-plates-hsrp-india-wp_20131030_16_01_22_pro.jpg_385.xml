@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_dfedf2ad-6596-48d4-a7f6-171e55c8f637___1160575d1383218860-high-security-registration-plates-hsrp-india-wp_20131030_16_01_22_pro.jpg_385.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_dfedf2ad-6596-48d4-a7f6-171e55c8f637___1160575d1383218860-high-security-registration-plates-hsrp-india-wp_20131030_16_01_22_pro.jpg_385.jpg</path>
+  <size>
+    <width>1632</width>
+    <height>918</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>681</xmin>
+      <ymin>377</ymin>
+      <xmax>934</xmax>
+      <ymax>580</ymax>
+    </bndbox>
+  </object>
+</annotation>

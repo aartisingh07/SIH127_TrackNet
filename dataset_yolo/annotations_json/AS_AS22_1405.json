@@ -1,0 +1,16 @@
+{
+  "filename": "AS_AS22_1405.jpg",
+  "width": 272,
+  "height": 481,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        100,
+        280,
+        166,
+        298
+      ]
+    }
+  ]
+}

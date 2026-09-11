@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_6254bb73-d8a1-4f04-89a9-92caef98e233___1658240d1500548920-close-look-2017-skoda-octavia-facelift-hands-free-parking-front-bumper.jpg_1023.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_6254bb73-d8a1-4f04-89a9-92caef98e233___1658240d1500548920-close-look-2017-skoda-octavia-facelift-hands-free-parking-front-bumper.jpg_1023.jpg</path>
+  <size>
+    <width>3720</width>
+    <height>2472</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>1205</xmin>
+      <ymin>974</ymin>
+      <xmax>2492</xmax>
+      <ymax>1286</ymax>
+    </bndbox>
+  </object>
+</annotation>

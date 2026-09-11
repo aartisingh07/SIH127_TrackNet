@@ -1,0 +1,16 @@
+{
+  "filename": "AP_AP29_180.jpg",
+  "width": 269,
+  "height": 141,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        104,
+        1,
+        183,
+        16
+      ]
+    }
+  ]
+}

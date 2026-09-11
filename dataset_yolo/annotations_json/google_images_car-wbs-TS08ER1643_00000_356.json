@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_car-wbs-TS08ER1643_00000_356.jpg",
+  "width": 480,
+  "height": 286,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        0,
+        27,
+        465,
+        146
+      ]
+    }
+  ]
+}

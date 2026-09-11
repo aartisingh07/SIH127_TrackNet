@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_07064c2c-2aa3-4419-91a4-92916de8e54c___mahindra-scorpio-old-car-500x500.jpg_81.jpg",
+  "width": 500,
+  "height": 415,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        205,
+        290,
+        335,
+        353
+      ]
+    }
+  ]
+}

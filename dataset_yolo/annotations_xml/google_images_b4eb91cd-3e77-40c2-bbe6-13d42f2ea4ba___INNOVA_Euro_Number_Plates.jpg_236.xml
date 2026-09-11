@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>google_images_b4eb91cd-3e77-40c2-bbe6-13d42f2ea4ba___INNOVA_Euro_Number_Plates.jpg_236.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\google_images_b4eb91cd-3e77-40c2-bbe6-13d42f2ea4ba___INNOVA_Euro_Number_Plates.jpg_236.jpg</path>
+  <size>
+    <width>500</width>
+    <height>350</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>162</xmin>
+      <ymin>151</ymin>
+      <xmax>339</xmax>
+      <ymax>193</ymax>
+    </bndbox>
+  </object>
+</annotation>

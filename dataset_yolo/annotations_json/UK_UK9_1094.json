@@ -1,0 +1,16 @@
+{
+  "filename": "UK_UK9_1094.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        95,
+        333,
+        172,
+        353
+      ]
+    }
+  ]
+}

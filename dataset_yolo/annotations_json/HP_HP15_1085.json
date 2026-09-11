@@ -1,0 +1,16 @@
+{
+  "filename": "HP_HP15_1085.jpg",
+  "width": 272,
+  "height": 214,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        110,
+        156,
+        170,
+        169
+      ]
+    }
+  ]
+}

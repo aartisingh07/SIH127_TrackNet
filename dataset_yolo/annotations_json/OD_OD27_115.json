@@ -1,0 +1,16 @@
+{
+  "filename": "OD_OD27_115.jpg",
+  "width": 272,
+  "height": 183,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        118,
+        129,
+        175,
+        141
+      ]
+    }
+  ]
+}

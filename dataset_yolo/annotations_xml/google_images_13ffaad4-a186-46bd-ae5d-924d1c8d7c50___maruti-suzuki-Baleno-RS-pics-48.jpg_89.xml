@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>google_images_13ffaad4-a186-46bd-ae5d-924d1c8d7c50___maruti-suzuki-Baleno-RS-pics-48.jpg_89.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\google_images_13ffaad4-a186-46bd-ae5d-924d1c8d7c50___maruti-suzuki-Baleno-RS-pics-48.jpg_89.jpg</path>
+  <size>
+    <width>800</width>
+    <height>485</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>646</xmin>
+      <ymin>328</ymin>
+      <xmax>734</xmax>
+      <ymax>388</ymax>
+    </bndbox>
+  </object>
+</annotation>

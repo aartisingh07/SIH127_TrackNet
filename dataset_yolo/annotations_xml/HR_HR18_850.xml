@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>HR_HR18_850.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\HR_HR18_850.jpg</path>
+  <size>
+    <width>272</width>
+    <height>605</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>95</xmin>
+      <ymin>333</ymin>
+      <xmax>163</xmax>
+      <ymax>352</ymax>
+    </bndbox>
+  </object>
+</annotation>

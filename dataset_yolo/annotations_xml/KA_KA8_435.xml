@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>KA_KA8_435.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\KA_KA8_435.jpg</path>
+  <size>
+    <width>272</width>
+    <height>204</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>113</xmin>
+      <ymin>161</ymin>
+      <xmax>192</xmax>
+      <ymax>179</ymax>
+    </bndbox>
+  </object>
+</annotation>

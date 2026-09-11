@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_b5b41a4b-8913-4af6-9419-ac6398d266b0___161893107_2_1000x700_innava-with-fancy-number-upload-photos.jpg_631.jpg",
+  "width": 610,
+  "height": 485,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        127,
+        247,
+        261,
+        292
+      ]
+    }
+  ]
+}

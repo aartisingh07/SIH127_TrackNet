@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_59a40238-6b01-4bb9-9faf-3b595e67bcb3___3d-font-number-plate-500x500.jpg_40.jpg",
+  "width": 446,
+  "height": 282,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        173,
+        228,
+        288,
+        251
+      ]
+    }
+  ]
+}

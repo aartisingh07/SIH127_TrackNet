@@ -1,0 +1,16 @@
+{
+  "filename": "video_images_video11_1980_791.jpg",
+  "width": 1920,
+  "height": 1080,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        68,
+        704,
+        428,
+        910
+      ]
+    }
+  ]
+}

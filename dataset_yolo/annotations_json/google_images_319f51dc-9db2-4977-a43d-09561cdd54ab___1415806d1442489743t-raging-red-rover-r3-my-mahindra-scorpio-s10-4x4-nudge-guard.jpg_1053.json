@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_319f51dc-9db2-4977-a43d-09561cdd54ab___1415806d1442489743t-raging-red-rover-r3-my-mahindra-scorpio-s10-4x4-nudge-guard.jpg_1053.jpg",
+  "width": 802,
+  "height": 615,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        270,
+        0,
+        501,
+        58
+      ]
+    }
+  ]
+}

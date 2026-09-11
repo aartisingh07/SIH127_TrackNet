@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>AP_AP3_595.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\AP_AP3_595.jpg</path>
+  <size>
+    <width>272</width>
+    <height>363</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>175</xmin>
+      <ymin>272</ymin>
+      <xmax>249</xmax>
+      <ymax>319</ymax>
+    </bndbox>
+  </object>
+</annotation>

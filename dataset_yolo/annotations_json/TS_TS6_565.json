@@ -1,0 +1,16 @@
+{
+  "filename": "TS_TS6_565.jpg",
+  "width": 272,
+  "height": 204,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        109,
+        144,
+        154,
+        156
+      ]
+    }
+  ]
+}

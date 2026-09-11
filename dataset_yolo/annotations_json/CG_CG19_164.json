@@ -1,0 +1,16 @@
+{
+  "filename": "CG_CG19_164.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        106,
+        204,
+        170,
+        219
+      ]
+    }
+  ]
+}

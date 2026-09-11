@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_8625b831-13a1-4b7d-9466-826cd6d36c67___1304650d1414861991-number-plates-merchandise-canvas-ink-gurgaon-edit-closed-10471269_1537317779842156_5063668061078329632_n.jpg_1176.jpg",
+  "width": 774,
+  "height": 642,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        284,
+        351,
+        498,
+        397
+      ]
+    }
+  ]
+}

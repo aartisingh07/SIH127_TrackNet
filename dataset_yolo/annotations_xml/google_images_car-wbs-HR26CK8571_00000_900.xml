@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_car-wbs-HR26CK8571_00000_900.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_car-wbs-HR26CK8571_00000_900.jpg</path>
+  <size>
+    <width>608</width>
+    <height>302</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>384</xmin>
+      <ymin>214</ymin>
+      <xmax>487</xmax>
+      <ymax>245</ymax>
+    </bndbox>
+  </object>
+</annotation>

@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_car-wbs-MH04DW8351_00000_805.jpg",
+  "width": 434,
+  "height": 372,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        128,
+        177,
+        277,
+        213
+      ]
+    }
+  ]
+}

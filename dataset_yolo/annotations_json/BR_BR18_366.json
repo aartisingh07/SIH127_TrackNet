@@ -1,0 +1,16 @@
+{
+  "filename": "BR_BR18_366.jpg",
+  "width": 272,
+  "height": 484,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        91,
+        337,
+        197,
+        359
+      ]
+    }
+  ]
+}

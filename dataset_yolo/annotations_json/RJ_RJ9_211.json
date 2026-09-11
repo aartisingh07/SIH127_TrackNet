@@ -1,0 +1,16 @@
+{
+  "filename": "RJ_RJ9_211.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        100,
+        261,
+        171,
+        274
+      ]
+    }
+  ]
+}

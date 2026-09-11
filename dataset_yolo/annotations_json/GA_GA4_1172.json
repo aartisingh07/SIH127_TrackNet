@@ -1,0 +1,16 @@
+{
+  "filename": "GA_GA4_1172.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        118,
+        251,
+        226,
+        306
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_bb210ab4-795c-4b2b-9b6e-4597cbc67375___White-2BPlate_711.jpg",
+  "width": 442,
+  "height": 333,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        163,
+        223,
+        273,
+        247
+      ]
+    }
+  ]
+}

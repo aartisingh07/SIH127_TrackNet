@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_a285cdf6-4640-41ee-b3f3-b721f334466f___Skoda-Octavia-RS-launched-in-India-3.jpg_1334.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_a285cdf6-4640-41ee-b3f3-b721f334466f___Skoda-Octavia-RS-launched-in-India-3.jpg_1334.jpg</path>
+  <size>
+    <width>500</width>
+    <height>344</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>176</xmin>
+      <ymin>255</ymin>
+      <xmax>348</xmax>
+      <ymax>291</ymax>
+    </bndbox>
+  </object>
+</annotation>
