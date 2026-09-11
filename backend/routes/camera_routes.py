@@ -135,15 +135,18 @@ def sync_cameras():
     synchronizer = OSMCameraSynchronizer(session=session)
     synced_count = synchronizer.sync_city_cameras(city_name)
 
-    # If OSM returns 0 mapped cameras, seed baseline demo nodes clearly marked as 'Demo Network'
-    if synced_count == 0:
+    # If OSM returns 0 mapped cameras and DB is empty, seed baseline demo nodes clearly marked as 'Demo Network'
+    total_cameras = session.query(OSMCameraNode).filter_by(city=city_name).count()
+    if total_cameras == 0:
         synced_count = synchronizer.seed_demo_cameras(city_name)
+        total_cameras = session.query(OSMCameraNode).filter_by(city=city_name).count()
 
     return jsonify({
         "success": True,
         "message": f"Successfully synchronized OpenStreetMap cameras for {city_name}",
         "city": city_name,
-        "cameras_synced": synced_count
+        "cameras_synced": total_cameras,
+        "new_cameras_added": synced_count
     })
 
 

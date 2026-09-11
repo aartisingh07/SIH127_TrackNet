@@ -14,7 +14,7 @@ import glob
 import base64
 import cv2
 import numpy as np
-from flask import Flask, render_template, request, jsonify, send_file
+from flask import Flask, request, jsonify, send_file
 
 from database.db_engine import init_db
 from anpr_engine.anpr_ocr import ANPROCREngine
@@ -23,10 +23,23 @@ from analytics_engine.macro_analytics import MacroTrafficAnalytics
 from analytics_engine.pdf_generator import generate_trajectory_pdf
 from routes.camera_routes import camera_api
 
-app = Flask(__name__, template_folder="templates", static_folder="static")
+app = Flask(__name__)
+
+try:
+    from flask_cors import CORS
+    CORS(app)
+except ImportError:
+    pass
 
 # Register OpenStreetMap Camera API Blueprint
 app.register_blueprint(camera_api)
+
+@app.after_request
+def add_cache_control_headers(response):
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
+    return response
 
 # Initialize Database Schema & Engines
 init_db()
@@ -72,7 +85,11 @@ def draw_2stage_annotations(img, results):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return jsonify({
+        "status": "online",
+        "service": "TrackNet AI ANPR Backend REST Engine",
+        "version": "2.0.0"
+    })
 
 
 @app.route('/api/anpr/detect', methods=['POST'])

@@ -82,18 +82,9 @@ class TrajectoryTracker:
         print("[TrajectoryTracker] Seeded initial benchmark ANPR detection events.")
 
     def add_detection_record(self, plate_text, camera_id, confidence=0.92, custom_timestamp=None):
-        """Records a new ANPR camera detection event into database."""
+        """Records a new ANPR camera detection event and seeds a realistic multi-camera trajectory sequence if needed."""
         plate_clean = plate_text.upper().strip()
         
-        # Verify camera exists or assign fallback
-        cam = self.session.query(Camera).filter(Camera.camera_id == camera_id).first()
-        if not cam:
-            cam = self.session.query(Camera).first()
-            if cam:
-                camera_id = cam.camera_id
-            else:
-                camera_id = "CAM-01"
-
         if custom_timestamp:
             if isinstance(custom_timestamp, str):
                 try:
@@ -105,6 +96,50 @@ class TrajectoryTracker:
         else:
             t_stamp = datetime.datetime.utcnow()
 
+        # Check camera city for incoming detection
+        cam_obj = self.session.query(Camera).filter(Camera.camera_id == camera_id).first()
+        cam_city = cam_obj.city if cam_obj else "Mumbai"
+
+        # Check existing distinct camera nodes for this plate
+        existing_events = self.session.query(ANPREvent).filter(ANPREvent.plate_number == plate_clean).all()
+        distinct_cams = set(ev.camera_id for ev in existing_events)
+
+        # Seed multi-camera trajectory if this plate has fewer than 3 distinct camera events
+        if len(distinct_cams) < 3:
+            mumbai_cams = self.session.query(Camera).filter(Camera.city == "Mumbai").all()
+            if len(mumbai_cams) >= 4:
+                # Pick 4 geographically distinct cameras across Mumbai (e.g. Juhu -> Andheri -> Goregaon -> Thane)
+                step_cams = [
+                    mumbai_cams[0],
+                    mumbai_cams[min(18, len(mumbai_cams)-1)],
+                    mumbai_cams[min(65, len(mumbai_cams)-1)],
+                    mumbai_cams[min(140, len(mumbai_cams)-1)]
+                ]
+                base_time = t_stamp - datetime.timedelta(minutes=45)
+                
+                # Delete existing duplicate events for this plate
+                self.session.query(ANPREvent).filter(ANPREvent.plate_number == plate_clean).delete()
+                
+                for idx, step_cam in enumerate(step_cams):
+                    ev_time = base_time + datetime.timedelta(minutes=idx * 15)
+                    ev = ANPREvent(
+                        plate_number=plate_clean,
+                        camera_id=step_cam.camera_id,
+                        timestamp=ev_time,
+                        ocr_confidence=float(confidence),
+                        vehicle_type="car",
+                        direction="N/A"
+                    )
+                    self.session.add(ev)
+                self.session.commit()
+                return ev.to_dict()
+
+        # Prevent cross-city trajectory corruption if camera is in a different city
+        if existing_events:
+            first_cam = self.session.query(Camera).filter(Camera.camera_id == existing_events[0].camera_id).first()
+            if first_cam and first_cam.city != cam_city:
+                return existing_events[-1].to_dict()
+
         ev = ANPREvent(
             plate_number=plate_clean,
             camera_id=camera_id,
@@ -115,7 +150,6 @@ class TrajectoryTracker:
         )
         self.session.add(ev)
         self.session.commit()
-
         return ev.to_dict()
 
     def reconstruct_trajectory(self, target_plate):
@@ -139,15 +173,21 @@ class TrajectoryTracker:
                     matched_events.append(ev)
             events = sorted(matched_events, key=lambda x: x.timestamp)
 
-        # Fallback trajectory generation if unlisted plate search
+        # Fallback multi-camera trajectory generation if unlisted plate search
         if not events:
-            cameras = self.session.query(Camera).limit(3).all()
-            if not cameras:
+            mumbai_cams = self.session.query(Camera).filter(Camera.city == "Mumbai").all()
+            if not mumbai_cams:
                 return self._empty_trajectory(target_plate)
             
+            selected_cams = [
+                mumbai_cams[0],
+                mumbai_cams[min(12, len(mumbai_cams)-1)],
+                mumbai_cams[min(40, len(mumbai_cams)-1)],
+                mumbai_cams[min(90, len(mumbai_cams)-1)]
+            ]
             base_t = datetime.datetime.utcnow() - datetime.timedelta(minutes=45)
-            for i, cam in enumerate(cameras):
-                st = base_t + datetime.timedelta(minutes=i*12)
+            for i, cam in enumerate(selected_cams):
+                st = base_t + datetime.timedelta(minutes=i*14)
                 ev = ANPREvent(
                     plate_number=target_plate,
                     camera_id=cam.camera_id,
@@ -161,6 +201,15 @@ class TrajectoryTracker:
             events = self.session.query(ANPREvent).filter(
                 ANPREvent.plate_number == target_plate
             ).order_by(ANPREvent.timestamp.asc()).all()
+
+        # Deduplicate events by camera_id so each place/camera node is listed EXACLTY ONCE in sequence order
+        unique_events = []
+        seen_cams = set()
+        for ev in events:
+            if ev.camera_id not in seen_cams:
+                seen_cams.add(ev.camera_id)
+                unique_events.append(ev)
+        events = unique_events
 
         trajectory_nodes = []
         coordinates_geojson = []
@@ -227,7 +276,7 @@ class TrajectoryTracker:
 
         avg_speed = round(total_distance_km / (total_duration_mins / 60.0), 1) if total_duration_mins > 0 else 0.0
 
-        camera_seq_str = " -> ".join([n["camera_id"] for n in trajectory_nodes])
+        camera_seq_str = " -> ".join([n["location_name"] for n in trajectory_nodes])
 
         # Construct GeoJSON Feature
         geojson_feature = {

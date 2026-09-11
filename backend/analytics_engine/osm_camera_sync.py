@@ -76,7 +76,8 @@ def derive_area_name(lat, lng, city_name, tags):
         tags.get("area") or
         tags.get("location") or
         tags.get("name") or
-        tags.get("description")
+        tags.get("description") or
+        tags.get("camera:location")
     )
     if osm_place and len(str(osm_place).strip()) > 2 and not str(osm_place).lower().startswith("osm"):
         place_clean = str(osm_place).strip()
@@ -87,28 +88,43 @@ def derive_area_name(lat, lng, city_name, tags):
     if city_name == "Mumbai":
         if lng > 73.00:
             return "Navi Mumbai (Vashi / Belapur / Nerul Sector)"
-        elif lat > 19.17 and lng > 72.95:
-            return "Thane / Airoli Corridor"
-        elif lat > 19.20:
-            return "Borivali / Dahisar North Corridor"
-        elif 19.15 <= lat <= 19.20 and lng < 72.86:
-            return "Kandivali / Malad West Area"
-        elif 19.11 <= lat < 19.15 and lng < 72.86:
-            return "Andheri West Area (Versova / Lokhandwala / SV Road)"
-        elif 19.10 <= lat < 19.16 and lng >= 72.86:
-            return "Andheri East Area (Marol / MIDC / Sakinaka)"
-        elif 19.07 <= lat < 19.11 and lng < 72.86:
-            return "Juhu / Vile Parle West Area"
-        elif 19.07 <= lat < 19.11 and lng >= 72.86:
-            return "Vile Parle East / Airport Corridor"
-        elif 19.04 <= lat < 19.07 and lng < 72.86:
-            return "Bandra West / Khar Area"
-        elif 19.04 <= lat < 19.07 and lng >= 72.86:
-            return "BKC / Kurla Business District"
+        elif lat > 19.25:
+            return "Dahisar / Mira Road North Corridor"
+        elif 19.20 <= lat <= 19.25:
+            return "Borivali Area (Borivali West / East / National Park)"
+        elif 19.16 <= lat < 19.20:
+            if lng < 72.86:
+                return "Kandivali / Malad West Area"
+            else:
+                return "Goregaon East / Aarey Colony / WEH Corridor"
+        elif 19.11 <= lat < 19.16:
+            if lng < 72.86:
+                return "Andheri West Area (Versova / Lokhandwala / SV Road)"
+            elif 72.86 <= lng < 72.92:
+                return "Andheri East Area (Marol / MIDC / Sakinaka / JVLR)"
+            else:
+                return "Powai / Kanjurmarg Corridor"
+        elif 19.07 <= lat < 19.11:
+            if lng < 72.86:
+                return "Juhu / Vile Parle West Area"
+            elif 72.86 <= lng < 72.90:
+                return "Vile Parle East / Airport Corridor"
+            else:
+                return "Ghatkopar / Vidyavihar East Area"
+        elif 19.04 <= lat < 19.07:
+            if lng < 72.86:
+                return "Bandra West / Khar Area"
+            elif 72.86 <= lng < 72.90:
+                return "BKC / Kurla Business District"
+            else:
+                return "Chembur / Mankhurd / Govandi Area"
         elif 19.00 <= lat < 19.04:
-            return "Dadar / Worli / Prabhadevi Central Area"
+            if lng < 72.86:
+                return "Dadar / Worli / Prabhadevi Central Area"
+            else:
+                return "Sion / Wadala / Chunabhatti Area"
         elif lat < 19.00:
-            return "South Mumbai (Colaba / Marine Drive / Fort)"
+            return "South Mumbai (Colaba / Marine Drive / Fort / Lower Parel)"
         else:
             return "Central Mumbai Traffic Grid"
 
