@@ -70,30 +70,47 @@ def derive_area_name(lat, lng, city_name, tags):
         tags.get("addr:street") or
         tags.get("road") or
         tags.get("highway") or
+        tags.get("note") or
+        tags.get("comment") or
+        tags.get("mapping") or
+        tags.get("area") or
+        tags.get("location") or
         tags.get("name") or
         tags.get("description")
     )
     if osm_place and len(str(osm_place).strip()) > 2 and not str(osm_place).lower().startswith("osm"):
-        return str(osm_place).strip()
+        place_clean = str(osm_place).strip()
+        if "cctv" not in place_clean.lower() and "surveillance" not in place_clean.lower():
+            return place_clean
 
     # Spatial coordinate area mapping per city
     if city_name == "Mumbai":
         if lng > 73.00:
             return "Navi Mumbai (Vashi / Belapur / Nerul Sector)"
+        elif lat > 19.17 and lng > 72.95:
+            return "Thane / Airoli Corridor"
         elif lat > 19.20:
-            return "Borivali / Kandivali North Area"
-        elif lat > 19.14 and lng < 72.85:
-            return "Andheri West / Malad Link Road Corridor"
-        elif lat > 19.10 and lng > 72.88:
-            return "Powai / Vikhroli / Kanjurmarg Corridor"
-        elif lat > 19.05 and lng < 72.85:
-            return "Bandra West / Khar / Juhu Seaface Node"
-        elif lat > 19.04 and lng > 72.85:
-            return "Kurla / BKC Business Corridor"
-        elif lat < 19.02:
+            return "Borivali / Dahisar North Corridor"
+        elif 19.15 <= lat <= 19.20 and lng < 72.86:
+            return "Kandivali / Malad West Area"
+        elif 19.11 <= lat < 19.15 and lng < 72.86:
+            return "Andheri West Area (Versova / Lokhandwala / SV Road)"
+        elif 19.10 <= lat < 19.16 and lng >= 72.86:
+            return "Andheri East Area (Marol / MIDC / Sakinaka)"
+        elif 19.07 <= lat < 19.11 and lng < 72.86:
+            return "Juhu / Vile Parle West Area"
+        elif 19.07 <= lat < 19.11 and lng >= 72.86:
+            return "Vile Parle East / Airport Corridor"
+        elif 19.04 <= lat < 19.07 and lng < 72.86:
+            return "Bandra West / Khar Area"
+        elif 19.04 <= lat < 19.07 and lng >= 72.86:
+            return "BKC / Kurla Business District"
+        elif 19.00 <= lat < 19.04:
+            return "Dadar / Worli / Prabhadevi Central Area"
+        elif lat < 19.00:
             return "South Mumbai (Colaba / Marine Drive / Fort)"
         else:
-            return "Dadar / Worli Central Corridor"
+            return "Central Mumbai Traffic Grid"
 
     elif city_name == "Pune":
         if lng < 73.78:
@@ -264,14 +281,35 @@ class OSMCameraSynchronizer:
         print(f"[OSMSync] Successfully synced {count} OpenStreetMap cameras for city: {city_name}")
         return count
 
+    def update_all_camera_areas(self):
+        """Updates location_description for all existing database cameras using refined area rules."""
+        cameras = self.session.query(Camera).all()
+        updated = 0
+        for cam in cameras:
+            tags = {}
+            if cam.raw_osm_tags:
+                try:
+                    tags = json.loads(cam.raw_osm_tags)
+                except Exception:
+                    tags = {}
+            new_area = derive_area_name(cam.latitude, cam.longitude, cam.city, tags)
+            if cam.location_description != new_area:
+                cam.location_description = new_area
+                updated += 1
+        if updated > 0:
+            self.session.commit()
+            print(f"[OSMSync] Updated area location descriptions for {updated} cameras in database.")
+        return updated
+
     def sync_if_cache_empty(self, city_name=DEFAULT_CITY):
         """
         Performs initial startup sync only when the local database camera cache is empty.
-        If cache already contains cameras, skips Overpass network call.
+        If cache already contains cameras, updates area descriptions and skips Overpass network call.
         """
         existing_count = self.session.query(Camera).filter(Camera.city == city_name).count()
         if existing_count > 0:
-            print(f"[OSMSync] Camera cache already populated ({existing_count} nodes for {city_name}). Skipping startup Overpass query.")
+            print(f"[OSMSync] Camera cache already populated ({existing_count} nodes for {city_name}). Refreshing area descriptions...")
+            self.update_all_camera_areas()
             return existing_count
 
         print(f"[OSMSync] Camera cache is empty for {city_name}. Initiating startup Overpass synchronization...")
