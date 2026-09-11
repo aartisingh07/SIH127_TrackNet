@@ -1,58 +1,154 @@
-# TrackNet AI - City-Wide Multi-Camera ANPR & Urban Traffic Analytics Engine
+# 🛰️ TrackNet AI - City-Wide Multi-Camera ANPR & Urban Traffic Analytics Engine
 
-TrackNet is a high-precision Automatic Number Plate Recognition (ANPR), multi-camera spatial-temporal trajectory tracking, and macro traffic analytics engine designed for modern urban smart cities.
+**TrackNet AI** is an enterprise-grade, high-precision Automatic Number Plate Recognition (ANPR), multi-camera spatial-temporal trajectory tracking, and urban traffic analytics platform built for modern smart city surveillance infrastructure.
 
 ---
 
-## 📁 Repository & Dataset Structure
+## 🌟 Key Features
+
+1. **2-Stage Hierarchical ANPR Engine**:
+   - **Stage 1 (Detection)**: Fine-tuned YOLOv8 model for real-time license plate detection & localized bounding box extraction.
+   - **Stage 2 (Recognition & Enhancement)**: OpenCV image preprocessor (CLAHE, BlackHat filter, Adaptive Thresholding) + EasyOCR high-precision optical character recognition with Fallback Super-Resolution and Indian syntax rules.
+2. **OpenStreetMap (OSM) Live Camera Synchronizer**:
+   - Dynamic real-world surveillance node discovery via OpenStreetMap Overpass API for major Indian metropolitan regions (*Mumbai, Pune, Ahmedabad, Gandhinagar, Surat, Vadodara, Rajkot*).
+3. **Multi-Camera Spatial-Temporal Trajectory Tracking**:
+   - Reconstructs vehicle movement chronologically across camera nodes, calculates segment speeds & segment distances using Haversine formulas, and renders interactive routes on Leaflet GIS maps.
+4. **Automated PDF Trajectory Reporting**:
+   - Generates official, downloadable PDF reports (powered by ReportLab) containing spatial-temporal timeline steps, GIS coordinates, vehicle metrics, and QR signatures.
+5. **Macro Urban Traffic Analytics & Hotlist Watchdog**:
+   - City-wide traffic volume heatmaps, peak-hour hourly flow breakdowns, origin-destination matrix, and real-time blacklisted vehicle alert registry.
+
+---
+
+## 📁 Repository Structure
 
 ```text
 SIH127-I/
-├── dataset_yolo/                  # Structured YOLOv8 Training Dataset
-│   ├── data.yaml                  # Dataset configuration (classes & paths)
-│   ├── images/                    # Image splits (1,441 train, 339 val)
-│   └── labels/                    # Bounding box labels (.txt)
-├── train_dataset/                 # Raw & Multi-Source Training Datasets
-│   ├── google_images/             # Scraped traffic images (883 samples)
-│   ├── manual_annotations/        # Manually annotated datasets 1 & 2
-│   ├── olx_statewise/             # 36 Indian States/UTs sample plates
-│   ├── roboflow_yolov8/           # Roboflow Indian Cars License Plate Dataset
-│   └── video_frames/              # CCTV video frame extractions (1,308 samples)
-├── test_dataset/                  # Web App Test Images & Online Test Set
-│   ├── test1/                     # Online dataset (images & labels)
-│   └── test1.jpg .. test51.jpeg   # Benchmark test images
-├── models/                        # Deep Learning Model Weights
-│   └── anpr_yolo_best.pt          # Fine-tuned YOLOv8 License Plate Detector
-├── analytics_engine/              # Trajectory reconstruction & PDF reports
-├── anpr_engine/                   # 2-Stage Hierarchical ANPR & OCR Engine
-├── static/                        # CSS styles & JS Zoom Engine
-├── templates/                     # Web Dashboard (index.html)
-├── app.py                         # Flask Web App Server & REST API
-└── train_yolo.py                  # One-Click YOLOv8 Model Training Script
+├── backend/                           # Python Flask REST API & AI Engine
+│   ├── analytics_engine/              # Trajectory tracking, OSM sync, PDF reports & analytics
+│   │   ├── macro_analytics.py         # Traffic volume, speed & origin-destination matrix
+│   │   ├── osm_camera_sync.py         # OpenStreetMap Overpass API camera discoverer
+│   │   ├── pdf_generator.py           # ReportLab spatial-temporal PDF exporter
+│   │   └── trajectory_tracker.py      # Spatial-temporal sequence & route reconstruction
+│   ├── anpr_engine/                   # Deep Learning & Image Preprocessing Pipeline
+│   │   ├── dataset_converter.py       # Dataset format converter
+│   │   └── train_yolo.py              # YOLOv8 license plate detector fine-tuning script
+│   ├── config/                        # Multi-city bounding box & geospatial configurations
+│   │   └── city_config.py             # Supported Indian cities & Overpass queries
+│   ├── database/                      # SQLite / PostgreSQL Relational Database
+│   │   ├── db_engine.py               # SQLAlchemy database session & engine
+│   │   └── models.py                  # Camera, CameraConnection & ANPREvent schemas
+│   ├── models/                        # Deep Learning Model Weights
+│   │   └── anpr_yolo_best.pt          # Fine-tuned YOLOv8 Indian License Plate Detector
+│   ├── reports/                       # Generated PDF Trajectory Audit Reports
+│   ├── routes/                        # Flask API Blueprints & REST Endpoints
+│   │   └── camera_routes.py           # Camera discovery, sync, trajectory & report routes
+│   ├── test_dataset/                  # Benchmark test images & dataset files
+│   ├── train_dataset/                 # Multi-source raw training image collections
+│   ├── app.py                         # Main Flask REST API server (Port 5000)
+│   └── tracknet.db                    # Synchronized camera & trajectory SQLite database
+│
+├── frontend/                          # Decoupled React 18 + Vite Web Application
+│   ├── public/                        # Static public assets
+│   ├── src/
+│   │   ├── components/                # Modular React UI Components
+│   │   │   ├── ANPRHub.jsx            # ANPR test hub, bounding box overlay & preprocessors
+│   │   │   ├── BlacklistAlerts.jsx    # Hotlist vehicle watchlist & real-time alert feed
+│   │   │   ├── Header.jsx             # Top bar, region selector & live OSM sync trigger
+│   │   │   ├── MacroAnalytics.jsx     # Traffic heatmaps & hourly volume analytics
+│   │   │   ├── MultiCameraTrajectory.jsx # GIS Leaflet route map & step-by-step timeline
+│   │   │   └── Navbar.jsx             # Primary navigation tab bar
+│   │   ├── styles/
+│   │   │   └── main.css               # Glassmorphic CSS design system & utility classes
+│   │   ├── App.jsx                    # Root React application wrapper
+│   │   └── main.jsx                   # React DOM entrypoint
+│   ├── index.html                     # Single-Page Application HTML host
+│   ├── package.json                   # Frontend dependencies & scripts
+│   └── vite.config.js                 # Vite bundler & API proxy configuration
+├── .gitignore                         # Git exclusion rules
+└── README.md                          # Comprehensive project documentation
 ```
 
 ---
 
-## 🚀 Quick Start & How to Train Model
+## 🛠️ Tools & Technologies Used
 
-### 1. Install Dependencies
-```bash
-pip install ultralytics easyocr opencv-python flask reportlab pillow numpy
-```
+### **Frontend & UI Stack**
+- **React 18 & Vite**: Component-driven SPA architecture with high-frequency rendering and lightning-fast HMR dev server.
+- **Vanilla CSS Design System**: Custom glassmorphism aesthetic (`--bg-primary: #0b0f19`, `--accent-blue: #0284c7`), responsive CSS grid/flexbox layouts, and custom utility classes.
+- **Leaflet.js GIS Mapping**: Interactive city map visualization rendered with OpenStreetMap HOT map tiles (`https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png`).
+- **FontAwesome 6**: Modern vector icons for UI state indicators, tab controls, and metrics headers.
 
-### 2. Train / Fine-tune YOLOv8 Model
-To train or re-train the plate detector on the complete dataset:
-```bash
-python train_yolo.py
-```
-The script will fine-tune YOLOv8 on `dataset_yolo/data.yaml` and save the updated weights to `models/anpr_yolo_best.pt`.
+### **Backend & Database**
+- **Python 3.10+ & Flask**: Modular REST API built with Flask Blueprints and `Flask-CORS` for asynchronous client-server communication.
+- **SQLAlchemy & SQLite**: ORM relational database schema managing `Camera`, `CameraConnection`, and `ANPREvent` records.
+- **OpenStreetMap Overpass API**: Live Overpass QL queries (`[out:json]; node["man_made"="surveillance"]...`) for automated surveillance camera discovery.
 
-### 3. Run Web Dashboard
+### **Computer Vision & AI/ML**
+- **Ultralytics YOLOv8**: Object detection model fine-tuned on custom Indian vehicle license plate annotations (`models/anpr_yolo_best.pt`).
+- **EasyOCR Engine**: PyTorch-backed optical character recognition (OCR) engine for multi-character license plate text extraction.
+- **OpenCV (cv2)**: Digital image processing pipeline featuring Contrast Limited Adaptive Histogram Equalization (CLAHE), BlackHat morphological filtering, Adaptive Thresholding, and Sobel edge detection.
+
+### **Analytics & PDF Reporting**
+- **ReportLab**: Programmatic PDF report generator featuring flowables, dynamic canvas styling, spatial-temporal timeline tables, and QR code verification signatures.
+- **Geospatial Analytics**: Custom Haversine spherical distance calculation algorithms for inter-camera segment distance and vehicle speed metrics.
+
+---
+
+## 📊 Datasets Used So Far
+
+1. **YOLOv8 Indian License Plate Training Dataset**:
+   - **Annotated Samples**: 1,441 training images & 339 validation images with precise bounding box coordinates formatted for YOLOv8 (`data.yaml`).
+2. **Multi-Source Raw Training Image Collections**:
+   - **Roboflow Indian License Plates Dataset**: Standardized Indian vehicle license plate annotations.
+   - **Scraped Indian Traffic Images**: 883 real-world traffic camera snapshots captured under varied lighting and angles.
+   - **Manually Annotated Plate Datasets (Sets 1 & 2)**: Custom annotated high-resolution vehicle front/rear plates.
+   - **OLX Statewise Sample Plates**: License plate samples representing 36 Indian States & Union Territories.
+   - **CCTV Video Frame Extractions**: 1,308 frame captures from city traffic surveillance cameras.
+3. **Benchmark Test Dataset**:
+   - 50+ benchmark test images (`test1.jpg` .. `test51.jpeg`) covering daylight, night IR, rain, multi-plate, and angled vehicle shots.
+4. **Geospatial OpenStreetMap Camera Datasets**:
+   - Real-world surveillance camera nodes fetched dynamically from OpenStreetMap across Indian metropolitan regions (*Mumbai, Pune, Ahmedabad, Gandhinagar, Surat, Vadodara, Rajkot*).
+
+---
+
+## 🚀 Setup & Quick Start Guide
+
+### 1. Backend Setup
 ```bash
+# Navigate to backend folder
+cd backend
+
+# Create & activate virtual environment (optional)
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install required Python dependencies
+pip install flask flask-cors ultralytics easyocr opencv-python sqlalchemy reportlab requests pillow numpy
+
+# Start Flask Backend REST Server (Runs on http://127.0.0.1:5000)
 python app.py
 ```
-Open your browser at `http://127.0.0.1:5000` to access:
-- **ANPR & OCR Test Hub**: 2-Stage detection, zoom controls, and image inspection viewer.
-- **Multi-Camera Trajectory Tracking**: Leaflet GIS spatial-temporal route reconstruction & PDF reporting.
-- **Macro Traffic Analytics**: City heatmaps, speed monitoring, and origin-destination matrix.
-- **Hotlist Watchdog**: Real-time stolen/blacklisted vehicle alert registry.
+
+### 2. Frontend Setup
+```bash
+# Open a new terminal and navigate to frontend folder
+cd frontend
+
+# Install Node modules
+npm install
+
+# Start Vite Development Server (Runs on http://localhost:5173)
+npm run dev
+```
+
+### 3. Build Frontend for Production
+```bash
+cd frontend
+npm run build
+```
+
+---
+
+## 📄 License & Attribution
+Developed for smart city traffic management, multi-camera trajectory tracking, and law enforcement vehicle audit workflows. Powered by OpenStreetMap, Ultralytics YOLOv8, and EasyOCR.
