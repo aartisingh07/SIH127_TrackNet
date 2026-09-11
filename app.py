@@ -1,17 +1,35 @@
+"""
+================================================================================
+File: app.py
+Project: TrackNet AI - City-Wide Multi-Camera ANPR & Urban Traffic Analytics Engine
+Purpose: Main Flask web application server, REST API router, and engine orchestrator.
+Why this file was made:
+  To serve the index dashboard template, expose 2-Stage ANPR detection APIs, register
+  the modular OpenStreetMap camera discovery blueprint, and orchestrate analytics engines.
+================================================================================
+"""
+
 import os
 import glob
 import base64
 import cv2
 import numpy as np
 from flask import Flask, render_template, request, jsonify, send_file
+
+from database.db_engine import init_db
 from anpr_engine.anpr_ocr import ANPROCREngine
-from analytics_engine.trajectory_tracker import TrajectoryTracker, CAMERA_NODES
+from analytics_engine.trajectory_tracker import TrajectoryTracker
 from analytics_engine.macro_analytics import MacroTrafficAnalytics
 from analytics_engine.pdf_generator import generate_trajectory_pdf
+from routes.camera_routes import camera_api
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
 
-# Initialize AI & Analytics Engines
+# Register OpenStreetMap Camera API Blueprint
+app.register_blueprint(camera_api)
+
+# Initialize Database Schema & Engines
+init_db()
 anpr_engine = ANPROCREngine()
 trajectory_tracker = TrajectoryTracker()
 macro_analytics = MacroTrafficAnalytics(trajectory_tracker=trajectory_tracker)
@@ -21,17 +39,18 @@ TEST_DATASET_DIR = os.path.join(BASE_DIR, "test_dataset")
 REPORTS_DIR = os.path.join(BASE_DIR, "reports")
 os.makedirs(REPORTS_DIR, exist_ok=True)
 
+
 def image_to_base64(img_np):
     if img_np is None or img_np.size == 0:
         return ""
     _, buffer = cv2.imencode('.jpg', img_np)
     return base64.b64encode(buffer).decode('utf-8')
 
+
 def draw_2stage_annotations(img, results):
     """Draws Stage-1 Vehicle Box (Blue) and Stage-2 License Plate Box (Green)."""
     annotated = img.copy()
     for res in results:
-        # Draw Stage 1 Vehicle Bounding Box (Blue)
         if 'vehicle_bbox' in res:
             vx1, vy1, vx2, vy2 = res['vehicle_bbox']
             vtype = res.get('vehicle_type', 'vehicle').upper()
@@ -40,7 +59,6 @@ def draw_2stage_annotations(img, results):
             cv2.putText(annotated, f"VEHICLE: {vtype} ({int(vconf*100)}%)", (vx1 + 5, vy1 + 18),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 144, 30), 2)
 
-        # Draw Stage 2 License Plate Bounding Box (Green)
         px1, py1, px2, py2 = res['bbox']
         plate = res['plate_text']
         conf = res['confidence']
@@ -51,9 +69,11 @@ def draw_2stage_annotations(img, results):
 
     return annotated
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 @app.route('/api/anpr/detect', methods=['POST'])
 def api_anpr_detect():
@@ -73,7 +93,7 @@ def api_anpr_detect():
             return jsonify({'success': False, 'error': 'Invalid image format'}), 400
 
         camera_id = request.form.get('camera_id', 'CAM-01')
-        
+
         # Run 2-Stage ANPR Detection
         results = anpr_engine.detect_and_recognize(np_img)
         annotated_img = draw_2stage_annotations(np_img, results)
@@ -82,10 +102,10 @@ def api_anpr_detect():
             x1, y1, x2, y2 = res['bbox']
             plate = res['plate_text']
             conf = res['confidence']
-            
+
             crop_img = np_img[y1:y2, x1:x2]
             res['crop_b64'] = image_to_base64(crop_img)
-            
+
             trajectory_tracker.add_detection_record(plate, camera_id, confidence=conf)
             res['alert'] = macro_analytics.check_blacklist_and_alerts(plate, camera_id)
 
@@ -105,18 +125,20 @@ def api_anpr_detect():
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 500
 
+
 @app.route('/api/test_dataset', methods=['GET'])
 def list_test_dataset():
     files = sorted(os.listdir(TEST_DATASET_DIR))
     images = [f for f in files if f.lower().endswith(('.jpg', '.jpeg', '.png'))]
     return jsonify({'success': True, 'test_images': images})
 
+
 @app.route('/api/test_dataset/run/<filename>', methods=['POST'])
 def run_test_dataset_image(filename):
     filepath = os.path.join(TEST_DATASET_DIR, filename)
     if not os.path.exists(filepath):
         return jsonify({'success': False, 'error': 'Test image not found'}), 404
-        
+
     img = cv2.imread(filepath)
     if img is None:
         return jsonify({'success': False, 'error': 'Failed to read test image'}), 500
@@ -124,15 +146,15 @@ def run_test_dataset_image(filename):
     camera_id = request.json.get('camera_id', 'CAM-01') if request.json else 'CAM-01'
     results = anpr_engine.detect_and_recognize(filepath)
     annotated_img = draw_2stage_annotations(img, results)
-    
+
     for res in results:
         x1, y1, x2, y2 = res['bbox']
         plate = res['plate_text']
         conf = res['confidence']
-        
+
         crop_img = img[y1:y2, x1:x2]
         res['crop_b64'] = image_to_base64(crop_img)
-        
+
         trajectory_tracker.add_detection_record(plate, camera_id, confidence=conf)
         res['alert'] = macro_analytics.check_blacklist_and_alerts(plate, camera_id)
 
@@ -152,16 +174,20 @@ def run_test_dataset_image(filename):
         'preprocessing_previews': preprocessed_previews
     })
 
+
 @app.route('/api/trajectory/search', methods=['GET'])
 def get_trajectory():
     plate = request.args.get('plate', 'MH12AB1234')
     res = trajectory_tracker.reconstruct_trajectory(plate)
     return jsonify({'success': True, 'trajectory': res})
 
+
 @app.route('/api/analytics/macro', methods=['GET'])
 def get_macro_analytics():
-    summary = macro_analytics.get_city_traffic_summary()
+    city = request.args.get('city', 'Mumbai')
+    summary = macro_analytics.get_city_traffic_summary(city)
     return jsonify({'success': True, 'analytics': summary})
+
 
 @app.route('/api/alerts/blacklist', methods=['GET', 'POST'])
 def manage_blacklist():
@@ -177,6 +203,7 @@ def manage_blacklist():
     else:
         return jsonify({'success': True, 'blacklist': macro_analytics.get_all_blacklist()})
 
+
 @app.route('/api/reports/pdf', methods=['GET'])
 def download_pdf_report():
     plate = request.args.get('plate', 'MH12AB1234')
@@ -186,6 +213,7 @@ def download_pdf_report():
     generate_trajectory_pdf(traj, filepath)
     return send_file(filepath, as_attachment=True)
 
+
 if __name__ == '__main__':
-    print("Launching 2-Stage Hierarchical ANPR Platform on http://127.0.0.1:5000")
+    print("Launching 2-Stage Hierarchical ANPR Platform with OpenStreetMap Camera Sync on http://127.0.0.1:5000")
     app.run(host='0.0.0.0', port=5000, debug=False)

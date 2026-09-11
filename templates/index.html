@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>City-Wide ANPR Trajectory Tracking & Traffic Analytics Platform</title>
+    <title>City-Wide ANPR Trajectory Tracking & Urban Traffic Analytics Platform</title>
     <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
@@ -27,9 +27,27 @@
                 <p>Multi-Camera Trajectory Tracking & Urban Traffic Analytics</p>
             </div>
         </div>
+
+        <!-- City Selector & OSM Sync Control -->
+        <div class="city-selector-bar">
+            <label for="global-city-select"><i class="fa-solid fa-city"></i> Region:</label>
+            <select id="global-city-select" class="form-select city-dropdown">
+                <option value="Mumbai" selected>Mumbai (Maharashtra)</option>
+                <option value="Pune">Pune (Maharashtra)</option>
+                <option value="Ahmedabad">Ahmedabad (Gujarat)</option>
+                <option value="Gandhinagar">Gandhinagar (Gujarat)</option>
+                <option value="Surat">Surat (Gujarat)</option>
+                <option value="Vadodara">Vadodara (Gujarat)</option>
+                <option value="Rajkot">Rajkot (Gujarat)</option>
+            </select>
+            <button id="btn-sync-osm" class="btn btn-secondary sync-btn" title="Sync OpenStreetMap Cameras for Region">
+                <i class="fa-solid fa-rotate"></i> Sync OSM Cameras
+            </button>
+        </div>
+
         <div class="header-status">
-            <div class="status-badge live-dot">
-                <span class="dot"></span> 8 CAMERA NODES ACTIVE
+            <div class="status-badge live-dot" id="header-camera-count-badge">
+                <span class="dot"></span> <span id="header-cam-count">238</span> OSM NODES SYNCED
             </div>
             <div class="status-badge sys-ok">
                 <i class="fa-solid fa-microchip"></i> OCR ENGINE: ONLINE
@@ -81,14 +99,7 @@
                     <div class="input-group mt-3">
                         <label>Simulated Camera Location Node:</label>
                         <select id="camera-node-select" class="form-select">
-                            <option value="CAM-01">CAM-01: Connaught Place North Node</option>
-                            <option value="CAM-02">CAM-02: Ring Road Lajpat Nagar</option>
-                            <option value="CAM-03">CAM-03: AIIMS Flyover Intersection</option>
-                            <option value="CAM-04">CAM-04: DND Flyway Expressway</option>
-                            <option value="CAM-05">CAM-05: IGI Airport Terminal 3 Toll</option>
-                            <option value="CAM-06">CAM-06: Cyber Hub Gurgaon Highway</option>
-                            <option value="CAM-07">CAM-07: Noida Sector 18 Outer Circle</option>
-                            <option value="CAM-08">CAM-08: ISBT Kashmiri Gate Express</option>
+                            <!-- Populated dynamically from DB -->
                         </select>
                     </div>
 
@@ -193,7 +204,7 @@
                             <span id="traj-dist-display" class="val">-- km</span>
                         </div>
                         <div class="summary-item">
-                            <span class="label">Max Speed:</span>
+                            <span class="label">Est. Avg Speed:</span>
                             <span id="traj-speed-display" class="val">-- km/h</span>
                         </div>
                     </div>
@@ -216,8 +227,9 @@
                     <div class="panel-header">
                         <h2><i class="fa-solid fa-map-location-dot"></i> City Multi-Camera GIS Trajectory Map</h2>
                         <div class="map-legend">
-                            <span class="legend-item"><span class="legend-dot green"></span> Camera Node</span>
-                            <span class="legend-item"><span class="legend-dot blue"></span> Trajectory Path</span>
+                            <span class="legend-item"><span class="legend-dot osm-mapped-dot"></span> OpenStreetMap Camera</span>
+                            <span class="legend-item"><span class="legend-dot demo-dot"></span> Demo Network Camera</span>
+                            <span class="legend-item"><span class="legend-dot blue"></span> Vehicle Trajectory</span>
                         </div>
                     </div>
                     <div id="gis-map" class="map-container"></div>
@@ -234,7 +246,7 @@
                         <div class="icon-box"><i class="fa-solid fa-video"></i></div>
                         <div class="metric-info">
                             <span class="title">Active ANPR Nodes</span>
-                            <h3 id="stat-cameras">8</h3>
+                            <h3 id="stat-cameras">--</h3>
                         </div>
                     </div>
                     <div class="metric-card">
@@ -272,8 +284,7 @@
                     <!-- OD Matrix & Bottlenecks -->
                     <div class="panel analytics-tables-panel">
                         <div class="panel-header">
-                            <h2><i class="fa-solid fa-arrows-split-up-and-left"></i> Origin-Destination (O-D) Movement
-                                Matrix</h2>
+                            <h2><i class="fa-solid fa-arrows-split-up-and-left"></i> Origin-Destination (O-D) Movement Matrix</h2>
                         </div>
                         <div class="table-wrapper">
                             <table class="data-table">
@@ -299,8 +310,8 @@
                                 <thead>
                                     <tr>
                                         <th>Camera Node</th>
-                                        <th>Location</th>
-                                        <th>Sector</th>
+                                        <th>Location / Description</th>
+                                        <th>City / Sector</th>
                                         <th>Hourly Count</th>
                                         <th>Avg Speed</th>
                                     </tr>

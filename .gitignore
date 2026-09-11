@@ -1,0 +1,14 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# SQLite Local Database Cache
+tracknet.db
+
+# YOLO runs & temporary logs
+runs/detect/runs/
+*.log
+
+# Reports
+reports/*.pdf

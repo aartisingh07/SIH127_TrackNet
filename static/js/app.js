@@ -1,8 +1,33 @@
-// Global GIS Map Instances
+"""
+================================================================================
+File: static/js/app.js
+Project: TrackNet AI - City-Wide Multi-Camera ANPR & Urban Traffic Analytics Engine
+Purpose: Frontend JavaScript logic for Leaflet GIS maps, OpenStreetMap camera layer,
+         city switching, manual Overpass synchronization, trajectory rendering, and UI.
+Why this file was made:
+  To provide an interactive GIS dashboard that renders real OpenStreetMap camera markers,
+  draws vehicle trajectory polylines from GeoJSON, updates macro analytics, and controls
+  the 2-Stage ANPR image zoom inspection viewer.
+================================================================================
+"""
+
+// Global GIS Map Instances & State
 let trajectoryMap = null;
 let heatmapMap = null;
 let trajectoryPolyline = null;
 let trajectoryMarkers = [];
+let allCameraMarkers = [];
+let currentCity = 'Mumbai';
+
+const CITY_CENTERS = {
+    'Mumbai': { lat: 19.0760, lng: 72.8777, zoom: 12 },
+    'Pune': { lat: 18.5204, lng: 73.8567, zoom: 12 },
+    'Ahmedabad': { lat: 23.0225, lng: 72.5714, zoom: 12 },
+    'Gandhinagar': { lat: 23.2156, lng: 72.6369, zoom: 13 },
+    'Surat': { lat: 21.1702, lng: 72.8311, zoom: 12 },
+    'Vadodara': { lat: 22.3072, lng: 73.1812, zoom: 12 },
+    'Rajkot': { lat: 22.3039, lng: 70.8022, zoom: 13 }
+};
 
 document.addEventListener('DOMContentLoaded', () => {
     initNavigationTabs();
@@ -10,21 +35,26 @@ document.addEventListener('DOMContentLoaded', () => {
     initTrajectoryMap();
     initHeatmapMap();
     loadBlacklistTable();
-    loadMacroAnalytics();
     initImageZoomControls();
 
-    // Default search on load
-    searchTrajectory('MH12AB1234');
-
     // Event Listeners
-    document.getElementById('btn-run-test').addEventListener('click', runSelectedTestImage);
-    document.getElementById('file-upload-input').addEventListener('change', handleCustomFileUpload);
-    document.getElementById('btn-search-trajectory').addEventListener('click', () => {
+    document.getElementById('global-city-select')?.addEventListener('change', (e) => {
+        handleCityChange(e.target.value);
+    });
+
+    document.getElementById('btn-sync-osm')?.addEventListener('click', handleOSMCameraSync);
+    document.getElementById('btn-run-test')?.addEventListener('click', runSelectedTestImage);
+    document.getElementById('file-upload-input')?.addEventListener('change', handleCustomFileUpload);
+    document.getElementById('btn-search-trajectory')?.addEventListener('click', () => {
         const p = document.getElementById('plate-search-input').value;
         if (p) searchTrajectory(p);
     });
-    document.getElementById('btn-export-pdf').addEventListener('click', exportPDFReport);
-    document.getElementById('btn-add-blacklist').addEventListener('click', handleAddBlacklist);
+    document.getElementById('btn-export-pdf')?.addEventListener('click', exportPDFReport);
+    document.getElementById('btn-add-blacklist')?.addEventListener('click', handleAddBlacklist);
+
+    // Initial load for default city (Mumbai)
+    handleCityChange('Mumbai');
+    searchTrajectory('MH12AB1234');
 });
 
 /* Tab Switching Logic */
@@ -41,14 +71,136 @@ function initNavigationTabs() {
             const target = tab.getAttribute('data-tab');
             document.getElementById(target).classList.add('active');
 
-            // Invalidate Map sizes when switching tabs
             if (target === 'trajectory-tracker' && trajectoryMap) {
                 setTimeout(() => trajectoryMap.invalidateSize(), 200);
             } else if (target === 'macro-analytics' && heatmapMap) {
                 setTimeout(() => heatmapMap.invalidateSize(), 200);
-                loadMacroAnalytics();
+                loadMacroAnalytics(currentCity);
             }
         });
+    });
+}
+
+/* Handles Switching City via Region Dropdown */
+async function handleCityChange(cityName) {
+    currentCity = cityName;
+    console.log(`[TrackNet UI] Switching city focus to: ${cityName}`);
+
+    const centerInfo = CITY_CENTERS[cityName] || CITY_CENTERS['Mumbai'];
+
+    if (trajectoryMap) {
+        trajectoryMap.setView([centerInfo.lat, centerInfo.lng], centerInfo.zoom);
+    }
+    if (heatmapMap) {
+        heatmapMap.setView([centerInfo.lat, centerInfo.lng], centerInfo.zoom);
+    }
+
+    await loadCityCameras(cityName);
+    await loadMacroAnalytics(cityName);
+}
+
+/* Loads Camera Nodes for Selected City from DB API */
+async function loadCityCameras(cityName) {
+    try {
+        const resp = await fetch(`/api/cameras?city=${encodeURIComponent(cityName)}`);
+        const data = await resp.json();
+        if (!data.success) return;
+
+        const cameras = data.cameras || [];
+        document.getElementById('header-cam-count').textContent = cameras.length;
+
+        // Populate Simulated Camera Dropdown in ANPR Hub
+        const camSelect = document.getElementById('camera-node-select');
+        if (camSelect) {
+            camSelect.innerHTML = '';
+            cameras.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c.camera_id;
+                opt.textContent = `${c.camera_id}: ${c.location_description} [${c.camera_type}]`;
+                camSelect.appendChild(opt);
+            });
+        }
+
+        // Render Camera Node Markers on Trajectory Map
+        renderCameraMarkersOnMap(cameras);
+
+    } catch (e) {
+        console.error('Failed to load city cameras:', e);
+    }
+}
+
+/* Manual OpenStreetMap Overpass Synchronization Handler */
+async function handleOSMCameraSync() {
+    const syncBtn = document.getElementById('btn-sync-osm');
+    const origHTML = syncBtn.innerHTML;
+
+    syncBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Syncing...';
+    syncBtn.disabled = true;
+
+    try {
+        const resp = await fetch('/api/cameras/sync', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ city: currentCity })
+        });
+        const data = await resp.json();
+
+        if (data.success) {
+            alert(`[OSM Sync Success] ${data.message}\nTotal Nodes: ${data.cameras_synced}`);
+            await loadCityCameras(currentCity);
+            await loadMacroAnalytics(currentCity);
+        } else {
+            alert('OSM Sync Failed: ' + data.error);
+        }
+    } catch (e) {
+        console.error('OSM Sync Error:', e);
+        alert('Failed to connect to Overpass synchronization service.');
+    } finally {
+        syncBtn.innerHTML = origHTML;
+        syncBtn.disabled = false;
+    }
+}
+
+/* Renders Camera Node Markers with Provenance Badges on Leaflet Map */
+function renderCameraMarkersOnMap(cameras) {
+    if (!trajectoryMap) return;
+
+    // Clear existing static camera markers
+    allCameraMarkers.forEach(m => trajectoryMap.removeLayer(m));
+    allCameraMarkers = [];
+
+    cameras.forEach(c => {
+        const isOsm = (c.verification_status === 'osm_mapped');
+        const markerColor = isOsm ? '#0284c7' : '#f59e0b'; // Cyan/Blue for OSM, Orange for Demo
+
+        const marker = L.circleMarker([c.lat, c.lng], {
+            radius: isOsm ? 7 : 6,
+            fillColor: markerColor,
+            color: '#ffffff',
+            weight: 1.5,
+            fillOpacity: 0.85
+        }).addTo(trajectoryMap);
+
+        const badgeClass = isOsm ? 'sys-ok' : 'live-dot';
+        const badgeLabel = isOsm ? 'Mapped camera infrastructure from OpenStreetMap' : 'DEMO / PROPOSED CAMERA NETWORK';
+
+        const popupContent = `
+            <div style="font-family: sans-serif; font-size: 13px; line-height: 1.5; color: #111;">
+                <b style="font-size: 14px; color: #0284c7;">${c.camera_id}</b><br>
+                <div style="margin: 4px 0; font-size: 11px; padding: 2px 6px; border-radius: 4px; background: ${isOsm ? '#e0f2fe' : '#fef3c7'}; color: ${isOsm ? '#0369a1' : '#92400e'}; font-weight: bold; display: inline-block;">
+                    ${badgeLabel}
+                </div><br>
+                <b>Type:</b> ${c.camera_type}<br>
+                <b>Description:</b> ${c.location_description}<br>
+                <b>City:</b> ${c.city} (${c.state})<br>
+                <b>Coords:</b> ${c.lat.toFixed(5)}, ${c.lng.toFixed(5)}<br>
+                <b>Mount:</b> ${c.mount} | <b>Direction:</b> ${c.direction}<br>
+                ${c.source_url ? `<a href="${c.source_url}" target="_blank" style="color: #0284c7; text-decoration: underline;">View on OpenStreetMap ↗</a>` : ''}
+            </div>
+        `;
+
+        marker.bindPopup(popupContent);
+        allCameraMarkers.push(marker);
     });
 }
 
@@ -81,7 +233,7 @@ async function runSelectedTestImage() {
         return;
     }
 
-    const camera_id = document.getElementById('camera-node-select').value;
+    const camera_id = document.getElementById('camera-node-select')?.value || 'CAM-01';
     const startTime = performance.now();
 
     try {
@@ -109,7 +261,7 @@ async function handleCustomFileUpload(e) {
     const file = e.target.files[0];
     if (!file) return;
 
-    const camera_id = document.getElementById('camera-node-select').value;
+    const camera_id = document.getElementById('camera-node-select')?.value || 'CAM-01';
     const formData = new FormData();
     formData.append('image', file);
     formData.append('camera_id', camera_id);
@@ -156,7 +308,7 @@ function renderANPRResults(data) {
     data.detections.forEach(det => {
         const card = document.createElement('div');
         card.className = 'output-card';
-        
+
         let alertHTML = '';
         if (det.alert) {
             alertHTML = `<div class="alert-banner"><i class="fa-solid fa-triangle-exclamation"></i> ALERT: ${det.alert.reason} (${det.alert.risk_level})</div>`;
@@ -181,7 +333,6 @@ function renderANPRResults(data) {
         container.appendChild(card);
     });
 
-    // Render Preprocessing Filter Thumbnails
     if (data.preprocessing_previews) {
         if (data.preprocessing_previews.clahe) {
             document.getElementById('prep-clahe').style.backgroundImage = `url('data:image/jpeg;base64,${data.preprocessing_previews.clahe}')`;
@@ -197,8 +348,8 @@ function renderANPRResults(data) {
 
 /* Initialize Trajectory GIS Map (Leaflet) */
 function initTrajectoryMap() {
-    const center = [28.58, 77.20]; // Delhi-NCR Center
-    trajectoryMap = L.map('gis-map').setView(center, 11);
+    const center = CITY_CENTERS['Mumbai'];
+    trajectoryMap = L.map('gis-map').setView([center.lat, center.lng], center.zoom);
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; OpenStreetMap &copy; CARTO',
@@ -215,7 +366,7 @@ function quickTrack(plate) {
 /* Search Trajectory & Render Multi-Camera Route on GIS Map */
 async function searchTrajectory(plateText) {
     try {
-        const resp = await fetch(`/api/trajectory/search?plate=${encodeURIComponent(plateText)}`);
+        const resp = await fetch(`/api/vehicles/${encodeURIComponent(plateText)}/trajectory`);
         const data = await resp.json();
         if (!data.success) return;
 
@@ -225,7 +376,7 @@ async function searchTrajectory(plateText) {
         document.getElementById('traj-plate-display').textContent = traj.target_plate;
         document.getElementById('traj-seq-display').textContent = traj.camera_sequence;
         document.getElementById('traj-dist-display').textContent = `${traj.total_distance_km} km`;
-        document.getElementById('traj-speed-display').textContent = `${traj.max_speed_kmh} km/h`;
+        document.getElementById('traj-speed-display').textContent = `${traj.estimated_average_speed_kmh || traj.max_speed_kmh} km/h`;
 
         // Render Timeline Sequence
         const timelineList = document.getElementById('timeline-list');
@@ -240,47 +391,53 @@ async function searchTrajectory(plateText) {
             item.className = 'timeline-item';
             item.innerHTML = `
                 <div class="timeline-step">STEP ${node.step} - CAMERA ${node.camera_id}</div>
-                <div class="timeline-title">${node.location_name}</div>
+                <div class="timeline-title">${node.location_name} (${node.camera_type})</div>
                 <div class="timeline-time"><i class="fa-regular fa-clock"></i> ${node.timestamp} | Speed: <b>${node.calculated_speed_kmh} km/h</b></div>
             `;
             timelineList.appendChild(item);
         });
 
-        // Clear previous map objects
+        // Clear previous trajectory route objects
         if (trajectoryPolyline) trajectoryMap.removeLayer(trajectoryPolyline);
         trajectoryMarkers.forEach(m => trajectoryMap.removeLayer(m));
         trajectoryMarkers = [];
 
-        // Draw Polyline for Trajectory Path
-        trajectoryPolyline = L.polyline(latLngs, {
-            color: '#0284c7',
-            weight: 4,
-            opacity: 0.8,
-            dashArray: '8, 8'
-        }).addTo(trajectoryMap);
+        // Draw Polyline using GeoJSON LineString coordinates
+        if (traj.geojson && traj.geojson.geometry && traj.geojson.geometry.coordinates.length > 0) {
+            const lineCoords = traj.geojson.geometry.coordinates.map(c => [c[1], c[0]]); // Swap [lon, lat] to [lat, lon] for Leaflet
+            trajectoryPolyline = L.polyline(lineCoords, {
+                color: '#0284c7',
+                weight: 5,
+                opacity: 0.9,
+                dashArray: '8, 8'
+            }).addTo(trajectoryMap);
 
-        // Add Camera Node Markers
+            if (lineCoords.length > 0) {
+                trajectoryMap.fitBounds(L.latLngBounds(lineCoords), { padding: [40, 40] });
+            }
+        }
+
+        // Add Step Markers
         traj.trajectory_nodes.forEach((node, idx) => {
             const marker = L.circleMarker([node.lat, node.lng], {
-                radius: 8,
+                radius: 9,
                 fillColor: idx === 0 ? '#10b981' : (idx === traj.trajectory_nodes.length - 1 ? '#ef4444' : '#0284c7'),
                 color: '#ffffff',
                 weight: 2,
-                fillOpacity: 0.9
+                fillOpacity: 0.95
             }).addTo(trajectoryMap);
 
             marker.bindPopup(`
-                <b>${node.location_name} (${node.camera_id})</b><br>
-                Timestamp: ${node.timestamp}<br>
-                Step: ${node.step} of ${traj.trajectory_nodes.length}<br>
-                Speed: ${node.calculated_speed_kmh} km/h
+                <div style="font-size:12px;">
+                    <b style="color:#0284c7;">STEP ${node.step}: ${node.camera_id}</b><br>
+                    <b>Location:</b> ${node.location_name}<br>
+                    <b>Time:</b> ${node.timestamp}<br>
+                    <b>Segment Speed:</b> ${node.calculated_speed_kmh} km/h<br>
+                    <b>Source:</b> ${node.source} (${node.verification_status})
+                </div>
             `);
             trajectoryMarkers.push(marker);
         });
-
-        if (latLngs.length > 0) {
-            trajectoryMap.fitBounds(L.latLngBounds(latLngs), { padding: [40, 40] });
-        }
 
     } catch (e) {
         console.error('Trajectory Search Error:', e);
@@ -295,8 +452,8 @@ function exportPDFReport() {
 
 /* Initialize Heatmap GIS Map */
 function initHeatmapMap() {
-    const center = [28.58, 77.20];
-    heatmapMap = L.map('heatmap-gis-map').setView(center, 11);
+    const center = CITY_CENTERS['Mumbai'];
+    heatmapMap = L.map('heatmap-gis-map').setView([center.lat, center.lng], center.zoom);
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; OpenStreetMap &copy; CARTO',
@@ -304,10 +461,10 @@ function initHeatmapMap() {
     }).addTo(heatmapMap);
 }
 
-/* Load Macro Traffic Analytics Data */
-async function loadMacroAnalytics() {
+/* Load Macro Traffic Analytics Data for Target City */
+async function loadMacroAnalytics(cityName = 'Mumbai') {
     try {
-        const resp = await fetch('/api/analytics/macro');
+        const resp = await fetch(`/api/analytics/macro?city=${encodeURIComponent(cityName)}`);
         const data = await resp.json();
         if (!data.success) return;
 
@@ -320,35 +477,39 @@ async function loadMacroAnalytics() {
 
         // Render O-D Matrix Table
         const odBody = document.getElementById('od-matrix-body');
-        odBody.innerHTML = '';
-        analytics.od_matrix.forEach(row => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td><b>${row.origin}</b></td>
-                <td><b>${row.destination}</b></td>
-                <td>${row.vehicle_count.toLocaleString()}</td>
-                <td><span class="badge-risk ${row.corridor_status === 'CONGESTED' ? 'HIGH' : 'MEDIUM'}">${row.corridor_status}</span></td>
-            `;
-            odBody.appendChild(tr);
-        });
+        if (odBody) {
+            odBody.innerHTML = '';
+            analytics.od_matrix.forEach(row => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><b>${row.origin}</b></td>
+                    <td><b>${row.destination}</b></td>
+                    <td>${row.vehicle_count.toLocaleString()}</td>
+                    <td><span class="badge-risk ${row.corridor_status === 'CONGESTED' ? 'HIGH' : 'MEDIUM'}">${row.corridor_status}</span></td>
+                `;
+                odBody.appendChild(tr);
+            });
+        }
 
         // Render Bottlenecks Table
         const bnBody = document.getElementById('bottlenecks-body');
-        bnBody.innerHTML = '';
-        analytics.bottlenecks.forEach(row => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td><b class="highlight">${row.camera_id}</b></td>
-                <td>${row.name}</td>
-                <td>${row.sector}</td>
-                <td>${row.hourly_volume} veh/h</td>
-                <td><font color="#ef4444"><b>${row.avg_speed_kmh} km/h</b></font></td>
-            `;
-            bnBody.appendChild(tr);
-        });
+        if (bnBody) {
+            bnBody.innerHTML = '';
+            analytics.bottlenecks.forEach(row => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><b class="highlight">${row.camera_id}</b></td>
+                    <td>${row.name}</td>
+                    <td>${row.sector}</td>
+                    <td>${row.hourly_volume} veh/h</td>
+                    <td><font color="#ef4444"><b>${row.avg_speed_kmh} km/h</b></font></td>
+                `;
+                bnBody.appendChild(tr);
+            });
+        }
 
         // Render Heatmap Layer if available
-        if (typeof L.heatLayer === 'function' && analytics.heatmap_points) {
+        if (heatmapMap && typeof L.heatLayer === 'function' && analytics.heatmap_points) {
             L.heatLayer(analytics.heatmap_points, { radius: 25, blur: 15, maxZoom: 17 }).addTo(heatmapMap);
         }
 
@@ -365,6 +526,7 @@ async function loadBlacklistTable() {
         if (!data.success) return;
 
         const body = document.getElementById('blacklist-table-body');
+        if (!body) return;
         body.innerHTML = '';
 
         data.blacklist.forEach(item => {
@@ -430,7 +592,6 @@ function initImageZoomControls() {
         }
     };
 
-    // Toolbar Buttons
     document.getElementById('btn-zoom-in')?.addEventListener('click', () => {
         inlineZoomState.scale = Math.min(5.0, inlineZoomState.scale + 0.3);
         updateInlineTransform();
@@ -447,7 +608,6 @@ function initImageZoomControls() {
         updateInlineTransform();
     });
 
-    // Scroll Wheel Zoom on Image Container
     inlineContainer?.addEventListener('wheel', (e) => {
         if (!inlineImg || inlineImg.classList.contains('hidden')) return;
         e.preventDefault();
@@ -457,7 +617,6 @@ function initImageZoomControls() {
         updateInlineTransform();
     }, { passive: false });
 
-    // Drag / Pan Mouse Events for Inline Image
     inlineContainer?.addEventListener('mousedown', (e) => {
         if (inlineZoomState.scale <= 1.0 || !inlineImg || inlineImg.classList.contains('hidden')) return;
         inlineZoomState.isDragging = true;
@@ -480,14 +639,12 @@ function initImageZoomControls() {
         }
     });
 
-    // Double click to open fullscreen modal
     inlineImg?.addEventListener('dblclick', () => {
         if (inlineImg.src && !inlineImg.classList.contains('hidden')) {
             openImageModal(inlineImg.src);
         }
     });
 
-    // Fullscreen Expand Button
     document.getElementById('btn-zoom-modal')?.addEventListener('click', () => {
         if (inlineImg && inlineImg.src && !inlineImg.classList.contains('hidden')) {
             openImageModal(inlineImg.src);
