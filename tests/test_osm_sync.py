@@ -81,6 +81,10 @@ class TestOSMCameraSync(unittest.TestCase):
 
     def test_04_demo_network_seeding_and_provenance(self):
         """Tests demo network camera seeding and verification status tagging."""
+        # Clean up any pre-existing test records for Gandhinagar to ensure idempotency
+        self.session.query(Camera).filter(Camera.city == "Gandhinagar").delete()
+        self.session.commit()
+
         synchronizer = OSMCameraSynchronizer(session=self.session)
         count = synchronizer.seed_demo_cameras("Gandhinagar")
         self.assertGreater(count, 0)

@@ -23,12 +23,22 @@ Base = declarative_base()
 _engine = None
 _session_factory = None
 
+def reset_db_engine():
+    """Resets the global engine and session factory."""
+    global _engine, _session_factory
+    if _engine:
+        _engine.dispose()
+    _engine = None
+    _session_factory = None
+
 def get_db_engine(db_url=None):
     """Initializes and returns the SQLAlchemy engine."""
     global _engine
+    target_url = db_url or DATABASE_URL
+    if _engine is not None and db_url is not None and str(_engine.url) != target_url:
+        reset_db_engine()
+
     if _engine is None:
-        target_url = db_url or DATABASE_URL
-        # Handle SQLite vs PostgreSQL specific connect args
         if target_url.startswith("sqlite"):
             _engine = create_engine(target_url, connect_args={"check_same_thread": False})
         else:
