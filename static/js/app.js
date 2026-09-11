@@ -90,9 +90,11 @@ async function handleCityChange(cityName) {
 
     if (trajectoryMap) {
         trajectoryMap.setView([centerInfo.lat, centerInfo.lng], centerInfo.zoom);
+        setTimeout(() => trajectoryMap.invalidateSize(), 150);
     }
     if (heatmapMap) {
         heatmapMap.setView([centerInfo.lat, centerInfo.lng], centerInfo.zoom);
+        setTimeout(() => heatmapMap.invalidateSize(), 150);
     }
 
     await loadCityCameras(cityName);
