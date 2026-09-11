@@ -29,8 +29,10 @@ export default function BlacklistAlerts() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          plate: plateInput,
           plate_number: plateInput,
           reason: reasonInput || 'Stolen Vehicle Alert',
+          risk: riskInput,
           risk_level: riskInput
         })
       });
@@ -74,14 +76,14 @@ export default function BlacklistAlerts() {
               <tbody>
                 {blacklist.map((item, idx) => (
                   <tr key={idx}>
-                    <td><span className="plate-badge">{item.plate_number}</span></td>
+                    <td><span className="plate-badge">{item.plate || item.plate_number}</span></td>
                     <td>{item.reason}</td>
                     <td>
-                      <span className={`risk-tag ${item.risk_level?.toLowerCase() || 'high'}`}>
-                        {item.risk_level}
+                      <span className={`risk-tag ${(item.risk || item.risk_level || 'HIGH').toLowerCase()}`}>
+                        {item.risk || item.risk_level}
                       </span>
                     </td>
-                    <td>{item.created_at || 'Recently'}</td>
+                    <td>{item.registered || item.created_at || 'Recently'}</td>
                     <td><span className="status-dot-active">Active Watch</span></td>
                   </tr>
                 ))}
@@ -102,10 +104,10 @@ export default function BlacklistAlerts() {
                 <div className="feed-icon"><i className="fa-solid fa-[#ef4444] fa-shield-cat"></i></div>
                 <div className="feed-content">
                   <div className="feed-title">
-                    Target Vehicle Detected: <span className="highlight">{item.plate_number}</span>
+                    Target Vehicle Detected: <span className="highlight">{item.plate || item.plate_number}</span>
                   </div>
                   <div className="feed-desc">
-                    Reason: <b>{item.reason}</b> &bull; Priority: <b style={{ color: '#ef4444' }}>{item.risk_level}</b>
+                    Reason: <b>{item.reason}</b> &bull; Priority: <b style={{ color: '#ef4444' }}>{item.risk || item.risk_level}</b>
                   </div>
                   <div className="feed-time">OpenStreetMap Camera Network Surveillance Watchdog Active</div>
                 </div>
