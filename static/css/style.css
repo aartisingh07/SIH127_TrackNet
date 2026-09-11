@@ -79,24 +79,24 @@ body.dark-theme {
     color: var(--text-muted);
 }
 
-/* City Selector Bar */
+/* City Selector Bar Container */
 .city-selector-bar {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 12px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.04);
     padding: 6px 14px;
-    border-radius: 10px;
+    border-radius: 12px;
     border: 1px solid var(--border-color);
-    flex-wrap: nowrap;
+    box-sizing: border-box;
     white-space: nowrap;
 }
 
 .city-selector-bar label {
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     font-weight: 700;
     color: var(--accent-blue);
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 6px;
     white-space: nowrap;
@@ -105,8 +105,9 @@ body.dark-theme {
 
 .city-dropdown {
     width: auto;
-    height: 38px;
-    padding: 6px 14px;
+    max-width: 220px;
+    height: 36px;
+    padding: 0 12px;
     font-size: 0.85rem;
     font-weight: 600;
     background: var(--bg-card);
@@ -114,12 +115,19 @@ body.dark-theme {
     border-radius: 8px;
     color: var(--text-main);
     white-space: nowrap;
-    flex-shrink: 0;
+    outline: none;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.city-dropdown:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 8px var(--accent-blue-glow);
 }
 
 .sync-btn {
-    height: 38px;
-    padding: 0 16px;
+    height: 36px;
+    padding: 0 14px;
     font-size: 0.85rem;
     font-weight: 600;
     background: linear-gradient(135deg, var(--accent-blue), #2563eb);
@@ -135,6 +143,7 @@ body.dark-theme {
     box-shadow: 0 2px 10px var(--accent-blue-glow);
     cursor: pointer;
     transition: all 0.2s ease;
+    box-sizing: border-box;
 }
 
 .sync-btn:hover {
