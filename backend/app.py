@@ -130,6 +130,32 @@ def api_anpr_detect():
             crop_img = np_img[y1:y2, x1:x2]
             res['crop_b64'] = image_to_base64(crop_img)
 
+            # Stage 2 Super-Resolution Zoomed License Plate Crop (3.5x Lanczos + CLAHE)
+            if crop_img is not None and crop_img.size > 0:
+                h_c, w_c = crop_img.shape[:2]
+                zoom_scale = max(3.5, 120.0 / float(max(1, h_c)))
+                zoomed_plate = cv2.resize(crop_img, (int(w_c * zoom_scale), int(h_c * zoom_scale)), interpolation=cv2.INTER_LANCZOS4)
+                z_gray = cv2.cvtColor(zoomed_plate, cv2.COLOR_BGR2GRAY)
+                z_clahe = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8, 8)).apply(z_gray)
+                z_clahe_bgr = cv2.cvtColor(z_clahe, cv2.COLOR_GRAY2BGR)
+                res['zoomed_plate_b64'] = image_to_base64(z_clahe_bgr)
+            else:
+                res['zoomed_plate_b64'] = res['crop_b64']
+
+            # Stage 1 Zoomed Vehicle Crop
+            if 'vehicle_bbox' in res:
+                vx1, vy1, vx2, vy2 = res['vehicle_bbox']
+                v_crop = np_img[vy1:vy2, vx1:vx2]
+                if v_crop is not None and v_crop.size > 0:
+                    vh_c, vw_c = v_crop.shape[:2]
+                    v_scale = max(1.5, 300.0 / float(max(1, vh_c)))
+                    zoomed_vehicle = cv2.resize(v_crop, (int(vw_c * v_scale), int(vh_c * v_scale)), interpolation=cv2.INTER_CUBIC)
+                    res['zoomed_vehicle_b64'] = image_to_base64(zoomed_vehicle)
+                else:
+                    res['zoomed_vehicle_b64'] = ""
+            else:
+                res['zoomed_vehicle_b64'] = ""
+
             trajectory_tracker.add_detection_record(plate, camera_id, confidence=conf)
             res['alert'] = macro_analytics.check_blacklist_and_alerts(plate, camera_id)
 
@@ -207,6 +233,32 @@ def run_test_dataset_image(filename):
 
             crop_img = img[y1:y2, x1:x2]
             res['crop_b64'] = image_to_base64(crop_img)
+
+            # Stage 2 Super-Resolution Zoomed License Plate Crop (3.5x Lanczos + CLAHE)
+            if crop_img is not None and crop_img.size > 0:
+                h_c, w_c = crop_img.shape[:2]
+                zoom_scale = max(3.5, 120.0 / float(max(1, h_c)))
+                zoomed_plate = cv2.resize(crop_img, (int(w_c * zoom_scale), int(h_c * zoom_scale)), interpolation=cv2.INTER_LANCZOS4)
+                z_gray = cv2.cvtColor(zoomed_plate, cv2.COLOR_BGR2GRAY)
+                z_clahe = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8, 8)).apply(z_gray)
+                z_clahe_bgr = cv2.cvtColor(z_clahe, cv2.COLOR_GRAY2BGR)
+                res['zoomed_plate_b64'] = image_to_base64(z_clahe_bgr)
+            else:
+                res['zoomed_plate_b64'] = res['crop_b64']
+
+            # Stage 1 Zoomed Vehicle Crop
+            if 'vehicle_bbox' in res:
+                vx1, vy1, vx2, vy2 = res['vehicle_bbox']
+                v_crop = img[vy1:vy2, vx1:vx2]
+                if v_crop is not None and v_crop.size > 0:
+                    vh_c, vw_c = v_crop.shape[:2]
+                    v_scale = max(1.5, 300.0 / float(max(1, vh_c)))
+                    zoomed_vehicle = cv2.resize(v_crop, (int(vw_c * v_scale), int(vh_c * v_scale)), interpolation=cv2.INTER_CUBIC)
+                    res['zoomed_vehicle_b64'] = image_to_base64(zoomed_vehicle)
+                else:
+                    res['zoomed_vehicle_b64'] = ""
+            else:
+                res['zoomed_vehicle_b64'] = ""
 
             trajectory_tracker.add_detection_record(plate, camera_id, confidence=conf)
             res['alert'] = macro_analytics.check_blacklist_and_alerts(plate, camera_id)

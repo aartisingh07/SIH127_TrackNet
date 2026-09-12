@@ -254,6 +254,36 @@ export default function ANPRHub({ cityCameras, onANPRSuccess, onViewTrajectory }
                         </div>
                       </div>
 
+                      {/* 2-Stage High-Clarity Zoom Inspection Lens Card */}
+                      <div style={{ background: 'rgba(30, 41, 59, 0.7)', border: '1px solid #3b82f6', borderRadius: '6px', padding: '8px', marginTop: '4px' }}>
+                        <div style={{ fontSize: '0.78rem', color: '#60a5fa', fontWeight: 700, marginBottom: '6px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                          <span><i className="fa-solid fa-magnifying-glass-plus"></i> 2-Stage Zoom-In Preview</span>
+                          <span style={{ background: '#1d4ed8', color: '#fff', fontSize: '0.7rem', padding: '2px 6px', borderRadius: '4px' }}>3.5x Super-Res</span>
+                        </div>
+                        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                          {det.zoomed_vehicle_b64 && (
+                            <div style={{ flex: 1, textAlign: 'center' }}>
+                              <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginBottom: '2px' }}>Stage 1: Vehicle Zoom</div>
+                              <img
+                                src={`data:image/jpeg;base64,${det.zoomed_vehicle_b64}`}
+                                alt="Vehicle Zoom"
+                                style={{ width: '100%', maxHeight: '65px', objectFit: 'contain', borderRadius: '4px', border: '1px solid #475569' }}
+                              />
+                            </div>
+                          )}
+                          {det.zoomed_plate_b64 && (
+                            <div style={{ flex: 1, textAlign: 'center' }}>
+                              <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginBottom: '2px' }}>Stage 2: Plate Super-Res</div>
+                              <img
+                                src={`data:image/jpeg;base64,${det.zoomed_plate_b64}`}
+                                alt="Plate Super Res"
+                                style={{ width: '100%', maxHeight: '65px', objectFit: 'contain', borderRadius: '4px', border: '1px solid #f59e0b' }}
+                              />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
                       {/* Step 4 Trajectory Navigation Button */}
                       <button
                         className="btn btn-secondary full-width"
