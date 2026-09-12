@@ -3,11 +3,14 @@ import sys
 import shutil
 from ultralytics import YOLO
 
-def prepare_yaml_config(project_root):
+def prepare_yaml_config(backend_root):
     """Dynamically updates dataset_yolo/data.yaml with absolute path for current machine."""
-    dataset_dir = os.path.join(project_root, "dataset_yolo")
+    workspace_root = os.path.dirname(backend_root)
+    dataset_dir = os.path.join(workspace_root, "dataset_yolo")
+    if not os.path.exists(dataset_dir):
+        dataset_dir = os.path.join(backend_root, "dataset_yolo")
+
     yaml_path = os.path.join(dataset_dir, "data.yaml")
-    
     clean_path = dataset_dir.replace("\\", "/")
     content = f"""# TrackNet ANPR 2-Class YOLOv8 Configuration (Vehicle + License Plate)
 path: {clean_path}

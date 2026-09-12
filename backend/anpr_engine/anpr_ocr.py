@@ -190,7 +190,7 @@ class ANPROCREngine:
         inferred_state = False
         ctx_state = resolve_state_from_camera_context(camera_context)
 
-        if len(raw) < 4:
+        if len(raw) < 3:
             return (ctx_state + raw + "?" * max(0, 8 - (len(ctx_state) + len(raw)))), 0.65, True
 
         chars = list(raw)
@@ -220,7 +220,7 @@ class ANPROCREngine:
                 inferred_state = True
 
         rest = chars[2:] if not inferred_state else chars
-        if len(rest) < 4:
+        if len(rest) < 3:
             missing_pad = "?" * (4 - len(rest))
             return state_code + "".join(rest) + missing_pad, 0.70, inferred_state
 
@@ -252,9 +252,9 @@ class ANPROCREngine:
         if len(rto_part) == 1:
             rto_part = "0" + rto_part
         elif not rto_part or rto_part == "00":
-            rto_part = "04" if state_code == "MH" else ("51" if state_code == "KA" else "02")
+            rto_part = "??"
 
-        series_part = "".join(series_chars[:2]) if series_chars else ("CL" if state_code == "MH" else "P")
+        series_part = "".join(series_chars[:2]) if series_chars else "?"
 
         res_str = state_code + rto_part + series_part + number_part
         valid_state = state_code in INDIAN_STATES
@@ -274,7 +274,7 @@ class ANPROCREngine:
     def run_ocr(self, crop_img, camera_context=None):
         """
         High-Precision Multi-Variant OCR Engine with Side-Angle De-skewing, Dynamic High-Scale Resizing,
-        Line Grouping & Sorting, and Adaptive Binarization
+        Line Grouping & Sorting, Morphological Enhancement, and Character Allowlisting.
         """
         if crop_img is None or crop_img.size == 0:
             return "??", 0.0, False
@@ -290,11 +290,16 @@ class ANPROCREngine:
         target_w = int(cw * scale_factor)
         target_h = int(ch * scale_factor)
         scaled = cv2.resize(crop_img, (target_w, target_h), interpolation=cv2.INTER_LANCZOS4)
+        scaled = cv2.copyMakeBorder(scaled, 25, 25, 25, 25, cv2.BORDER_CONSTANT, value=[255, 255, 255])
         sh, sw = scaled.shape[:2]
 
         gray = cv2.cvtColor(scaled, cv2.COLOR_BGR2GRAY) if len(scaled.shape) == 3 else scaled
         clahe = cv2.createCLAHE(clipLimit=4.0, tileGridSize=(8, 8)).apply(gray)
         
+        kernel_rect = cv2.getStructuringElement(cv2.MORPH_RECT, (13, 5))
+        blackhat = cv2.morphologyEx(gray, cv2.MORPH_BLACKHAT, kernel_rect)
+        tophat = cv2.morphologyEx(gray, cv2.MORPH_TOPHAT, kernel_rect)
+
         gaussian = cv2.GaussianBlur(gray, (0, 0), 3.0)
         unsharp = cv2.addWeighted(gray, 2.0, gaussian, -1.0, 0)
 
@@ -307,10 +312,17 @@ class ANPROCREngine:
             clahe, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2
         )
 
+        red_blue_sub = cv2.subtract(scaled[:,:,2], scaled[:,:,0]) if len(scaled.shape) == 3 else scaled
+        rb_clahe = cv2.createCLAHE(clipLimit=4.0, tileGridSize=(8, 8)).apply(red_blue_sub)
+
         variants = [
             ("unsharp", unsharp),
             ("sharpened", sharpened),
             ("clahe", clahe),
+            ("red_blue_sub", red_blue_sub),
+            ("rb_clahe", rb_clahe),
+            ("blackhat", blackhat),
+            ("tophat", tophat),
             ("adaptive_thresh", adaptive_thresh),
             ("scaled_gray", gray),
             ("otsu", otsu)
@@ -322,7 +334,15 @@ class ANPROCREngine:
 
         for v_name, cand in variants:
             try:
-                res = reader.readtext(cand, detail=1)
+                res = reader.readtext(
+                    cand,
+                    detail=1,
+                    allowlist='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
+                    text_threshold=0.25,
+                    low_text=0.15,
+                    contrast_ths=0.05,
+                    adjust_contrast=0.7
+                )
                 if not res:
                     continue
 
@@ -341,11 +361,12 @@ class ANPROCREngine:
                 boxes.sort(key=lambda b: b['yc'])
                 lines = []
                 curr = []
+                line_thresh = (sh * 0.28) if (cw / float(ch + 1e-5)) < 2.5 else (sh * 0.18)
                 for b in boxes:
                     if not curr:
                         curr.append(b)
                     else:
-                        if abs(b['yc'] - curr[0]['yc']) < (sh * 0.18):
+                        if abs(b['yc'] - curr[0]['yc']) < line_thresh:
                             curr.append(b)
                         else:
                             curr.sort(key=lambda x: x['xc'])
@@ -448,6 +469,32 @@ class ANPROCREngine:
             except Exception as e:
                 print(f"Plate detect error: {e}")
 
+        # Multi-Scale Grid Tile Search for high-resolution images (> 1200 px)
+        if (w > 1200 or h > 1200) and self.plate_detector is not None:
+            tile_w = int(w * 0.6)
+            tile_h = int(h * 0.6)
+            tiles = [
+                (0, 0, tile_w, tile_h),
+                (w - tile_w, 0, w, tile_h),
+                (0, h - tile_h, tile_w, h),
+                (w - tile_w, h - tile_h, w, h),
+                (int(w * 0.2), int(h * 0.2), int(w * 0.8), int(h * 0.8))
+            ]
+            for tx1, ty1, tx2, ty2 in tiles:
+                tile_crop = img[ty1:ty2, tx1:tx2]
+                if tile_crop.size > 0:
+                    try:
+                        t_preds = self.plate_detector.predict(tile_crop, conf=0.06, verbose=False)
+                        for tpred in t_preds:
+                            for tbox in tpred.boxes:
+                                cpx1, cpy1, cpx2, cpy2 = map(int, tbox.xyxy[0].cpu().numpy())
+                                cp_conf = float(tbox.conf[0].cpu().numpy())
+                                abs_box = [tx1 + cpx1, ty1 + cpy1, tx1 + cpx2, ty1 + cpy2]
+                                if (cpx2 - cpx1) > 12 and (cpy2 - cpy1) > 6:
+                                    plate_dets.append((abs_box, cp_conf))
+                    except Exception:
+                        pass
+
         # Step 3: Stage 2 Vehicle Zoom & Multi-Vehicle ROI Search if direct detection missed distant plates
         if vehicles:
             for (vx1, vy1, vx2, vy2), v_type, v_conf in vehicles:
@@ -469,39 +516,21 @@ class ANPROCREngine:
                     except Exception:
                         pass
 
-            if not plate_dets:
-                try:
-                    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) if len(img.shape) == 3 else img
-                    clahe_img = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8, 8)).apply(gray)
-                    clahe_bgr = cv2.cvtColor(clahe_img, cv2.COLOR_GRAY2BGR)
-                    c_preds = self.plate_detector.predict(clahe_bgr, conf=0.08, verbose=False)
-                    for pred in c_preds:
-                        for box in pred.boxes:
-                            if int(box.cls[0]) in [0, 1]:
-                                px1, py1, px2, py2 = map(int, box.xyxy[0].cpu().numpy())
-                                p_conf = float(box.conf[0].cpu().numpy())
-                                px1, py1 = max(0, px1), max(0, py1)
-                                px2, py2 = min(w, px2), min(h, py2)
-                                plate_dets.append(([px1, py1, px2, py2], p_conf))
-                except Exception:
-                    pass
-
-            if not plate_dets:
-                try:
-                    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) if len(img.shape) == 3 else img
-                    clahe_img = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8, 8)).apply(gray)
-                    clahe_bgr = cv2.cvtColor(clahe_img, cv2.COLOR_GRAY2BGR)
-                    c_preds = self.plate_detector.predict(clahe_bgr, conf=0.08, verbose=False)
-                    for pred in c_preds:
-                        for box in pred.boxes:
-                            if int(box.cls[0]) in [0, 1]:
-                                px1, py1, px2, py2 = map(int, box.xyxy[0].cpu().numpy())
-                                p_conf = float(box.conf[0].cpu().numpy())
-                                px1, py1 = max(0, px1), max(0, py1)
-                                px2, py2 = min(w, px2), min(h, py2)
-                                plate_dets.append(([px1, py1, px2, py2], p_conf))
-                except Exception:
-                    pass
+        if not plate_dets:
+            try:
+                gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) if len(img.shape) == 3 else img
+                clahe_img = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8, 8)).apply(gray)
+                clahe_bgr = cv2.cvtColor(clahe_img, cv2.COLOR_GRAY2BGR)
+                c_preds = self.plate_detector.predict(clahe_bgr, conf=0.06, verbose=False)
+                for pred in c_preds:
+                    for box in pred.boxes:
+                        px1, py1, px2, py2 = map(int, box.xyxy[0].cpu().numpy())
+                        p_conf = float(box.conf[0].cpu().numpy())
+                        px1, py1 = max(0, px1), max(0, py1)
+                        px2, py2 = min(w, px2), min(h, py2)
+                        plate_dets.append(([px1, py1, px2, py2], p_conf))
+            except Exception:
+                pass
 
         # Filter overlapping plate boxes (IoU > 0.40 deduplication)
         final_plate_dets = []
@@ -532,9 +561,6 @@ class ANPROCREngine:
             cx2, cy2 = min(w, px2 + pad_x), min(h, py2 + pad_y)
             
             plate_crop = img[cy1:cy2, cx1:cx2]
-            if plate_crop.size == 0:
-                continue
-                
             v_type = 'vehicle'
             v_bbox = [max(0, px1-40), max(0, py1-100), min(w, px2+40), min(h, py2+150)]
             v_conf = 0.85
@@ -544,23 +570,30 @@ class ANPROCREngine:
                     v_type, v_bbox, v_conf = vt, [vx1, vy1, vx2, vy2], vc
                     break
 
+            vx1, vy1, vx2, vy2 = v_bbox
+            v_area_ratio = float((vx2 - vx1) * (vy2 - vy1)) / float(w * h + 1e-5)
+            v_bottom_ratio = float(vy2) / float(h + 1e-5)
+            v_prom = round(float((v_area_ratio * 3.0) + (v_bottom_ratio * 2.0)), 4)
+
             plate_text, ocr_conf, _ = self.run_ocr(plate_crop, camera_context=camera_context)
                 
-            final_confidence = round(float(0.5 * min(0.98, p_conf + 0.15) + 0.5 * ocr_conf), 4)
+            final_confidence = round(float(0.5 * p_conf + 0.5 * ocr_conf), 4)
+            if p_conf >= 0.35 and ocr_conf >= 0.60 and "?" not in plate_text and len(plate_text) >= 8:
+                final_confidence = max(final_confidence, 0.88)
             
             results.append({
                 'vehicle_type': v_type,
                 'vehicle_bbox': v_bbox,
                 'vehicle_confidence': round(v_conf, 4),
+                'vehicle_prominence': v_prom,
                 'plate_text': plate_text if plate_text else "??",
-                'confidence': max(0.92, final_confidence) if ("?" not in plate_text and len(plate_text) >= 8) else final_confidence,
+                'confidence': final_confidence,
                 'bbox': [cx1, cy1, cx2, cy2],
                 'det_confidence': round(p_conf, 4),
                 'ocr_confidence': round(ocr_conf, 4)
             })
 
-        # Strict 1-Plate-Per-Vehicle Selection Rule
-        # Group candidate detections by vehicle bbox and keep ONLY the single best license plate candidate per vehicle
+        # Strict 1-Plate-Per-Vehicle Selection Rule with Nearest Vehicle Prominence Weighting
         if results:
             vehicle_groups = {}
             for res in results:
@@ -573,20 +606,25 @@ class ANPROCREngine:
             for v_key, cand_list in vehicle_groups.items():
                 def candidate_rank(item):
                     p_text = item['plate_text']
-                    score = item['confidence']
-                    # Give priority to valid Indian state codes (e.g. MH, DL, KA) and valid length 8-10
-                    if len(p_text) >= 8 and p_text[:2] in INDIAN_STATES and "?" not in p_text:
-                        score += 1.0
-                    elif len(p_text) >= 7 and p_text[:2] in INDIAN_STATES:
+                    det_c = item['det_confidence']
+                    ocr_c = item['ocr_confidence']
+                    v_prom = item.get('vehicle_prominence', 0.5)
+                    score = (det_c * 2.5) + (ocr_c * 1.0) + (v_prom * 2.0)
+                    # Priority for valid Indian state codes with reasonable detection confidence
+                    if det_c >= 0.25 and len(p_text) >= 8 and p_text[:2] in INDIAN_STATES and "?" not in p_text:
                         score += 0.5
+                    elif det_c >= 0.25 and len(p_text) >= 7 and p_text[:2] in INDIAN_STATES:
+                        score += 0.25
                     # Penalize logo text or non-plate candidates
-                    if "BULLET" in p_text or "HONDA" in p_text or "ROYAL" in p_text or "YAMAHA" in p_text:
-                        score -= 2.0
+                    if any(w in p_text for w in ["BULLET", "HONDA", "ROYAL", "YAMAHA", "SUZUKI", "TOYOTA"]):
+                        score -= 3.0
                     return score
 
                 cand_list.sort(key=candidate_rank, reverse=True)
                 filtered_results.append(cand_list[0])
 
+            # Sort overall results by candidate_rank so nearest/most prominent vehicle comes first
+            filtered_results.sort(key=candidate_rank, reverse=True)
             results = filtered_results
 
         return results
