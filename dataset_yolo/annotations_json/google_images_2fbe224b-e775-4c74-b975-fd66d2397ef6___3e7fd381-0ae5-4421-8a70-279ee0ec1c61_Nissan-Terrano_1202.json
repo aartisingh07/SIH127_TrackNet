@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_2fbe224b-e775-4c74-b975-fd66d2397ef6___3e7fd381-0ae5-4421-8a70-279ee0ec1c61_Nissan-Terrano_1202.jpg",
+  "width": 1024,
+  "height": 683,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        709,
+        344,
+        773,
+        373
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "HP_HP22_221.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        85,
+        198,
+        157,
+        215
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "KL_KL14_60.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        154,
+        224,
+        223,
+        260
+      ]
+    }
+  ]
+}

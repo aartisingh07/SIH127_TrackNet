@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>JK_JK2_581.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\JK_JK2_581.jpg</path>
+  <size>
+    <width>270</width>
+    <height>219</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>82</xmin>
+      <ymin>142</ymin>
+      <xmax>191</xmax>
+      <ymax>172</ymax>
+    </bndbox>
+  </object>
+</annotation>

@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_79094948-25d3-418e-86fc-3c2d62917f62___513039-volkswagen-vento-test-drive-review-06032011612.jpg_249.jpg",
+  "width": 2592,
+  "height": 1944,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        1048,
+        934,
+        2246,
+        1311
+      ]
+    }
+  ]
+}

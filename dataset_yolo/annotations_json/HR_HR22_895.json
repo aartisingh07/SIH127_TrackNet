@@ -1,0 +1,16 @@
+{
+  "filename": "HR_HR22_895.jpg",
+  "width": 265,
+  "height": 329,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        73,
+        215,
+        135,
+        232
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "HP_HP20_397.jpg",
+  "width": 153,
+  "height": 272,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        43,
+        157,
+        97,
+        174
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>GJ_GJ7_555.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\GJ_GJ7_555.jpg</path>
+  <size>
+    <width>272</width>
+    <height>204</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>110</xmin>
+      <ymin>133</ymin>
+      <xmax>187</xmax>
+      <ymax>150</ymax>
+    </bndbox>
+  </object>
+</annotation>

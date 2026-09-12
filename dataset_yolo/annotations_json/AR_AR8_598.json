@@ -1,0 +1,16 @@
+{
+  "filename": "AR_AR8_598.jpg",
+  "width": 272,
+  "height": 592,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        32,
+        299,
+        73,
+        316
+      ]
+    }
+  ]
+}

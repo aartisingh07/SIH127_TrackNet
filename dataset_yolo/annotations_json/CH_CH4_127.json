@@ -1,0 +1,16 @@
+{
+  "filename": "CH_CH4_127.jpg",
+  "width": 272,
+  "height": 259,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        96,
+        192,
+        192,
+        218
+      ]
+    }
+  ]
+}

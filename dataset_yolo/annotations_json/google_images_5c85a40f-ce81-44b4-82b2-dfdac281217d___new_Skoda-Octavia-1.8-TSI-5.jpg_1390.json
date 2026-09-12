@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_5c85a40f-ce81-44b4-82b2-dfdac281217d___new_Skoda-Octavia-1.8-TSI-5.jpg_1390.jpg",
+  "width": 500,
+  "height": 332,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        179,
+        210,
+        300,
+        238
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "TS_TS13_210.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        87,
+        233,
+        197,
+        261
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_fd0140cc-e887-43b8-a439-24877ea77670___Maruti-Suzuki-Baleno-Number-Plates-Design.jpg_1380.jpg",
+  "width": 500,
+  "height": 274,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        150,
+        131,
+        370,
+        189
+      ]
+    }
+  ]
+}

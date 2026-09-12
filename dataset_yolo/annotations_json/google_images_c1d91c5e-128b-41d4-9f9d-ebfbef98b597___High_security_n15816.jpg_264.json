@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_c1d91c5e-128b-41d4-9f9d-ebfbef98b597___High_security_n15816.jpg_264.jpg",
+  "width": 570,
+  "height": 400,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        18,
+        141,
+        436,
+        289
+      ]
+    }
+  ]
+}

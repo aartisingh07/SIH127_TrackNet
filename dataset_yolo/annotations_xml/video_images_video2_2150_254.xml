@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>video_images_video2_2150_254.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\video_images_video2_2150_254.jpg</path>
+  <size>
+    <width>752</width>
+    <height>1079</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>286</xmin>
+      <ymin>426</ymin>
+      <xmax>686</xmax>
+      <ymax>540</ymax>
+    </bndbox>
+  </object>
+</annotation>

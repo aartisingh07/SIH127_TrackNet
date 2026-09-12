@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_e54fb93b-020f-4c55-b4db-86e17ba9b9e0___2014-VW-Polo-facelift-rear-spotted-testing-in-Pune-India.jpg_971.jpg",
+  "width": 341,
+  "height": 368,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        135,
+        205,
+        194,
+        223
+      ]
+    }
+  ]
+}

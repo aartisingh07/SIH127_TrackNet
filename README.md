@@ -1,121 +1,155 @@
-# Indian Vehicle Automatic Number Plate Recognition (ANPR) System
+# 🛰️ TrackNet AI - City-Wide Multi-Camera ANPR & Urban Traffic Analytics Engine
 
-A high-accuracy, low-latency AI-powered Automatic Number Plate Recognition (ANPR) system tailored specifically for Indian License Plates (cars, commercial vehicles, and 2-line motorcycle plates).
-
-![License](https://img.shields.io/badge/License-MIT-blue.svg)
-![Python](https://img.shields.io/badge/Python-3.11+-green.svg)
-![YOLOv8](https://img.shields.io/badge/Model-YOLOv8n-orange.svg)
-![Accuracy](https://img.shields.io/badge/Accuracy-99.5%25-brightgreen.svg)
+**TrackNet AI** is an enterprise-grade, high-precision Automatic Number Plate Recognition (ANPR), multi-camera spatial-temporal trajectory tracking, and urban traffic analytics platform built for modern smart city surveillance infrastructure.
 
 ---
 
 ## 🌟 Key Features
 
-- 🚘 **High Precision Localization**: Custom fine-tuned Ultralytics YOLOv8 object detection model (`best_indian_plate.pt`) optimized for Indian vehicle license plates.
-- 🏍️ **2-Line Motorcycle Plate Recognition**: Automatic bounding box candidate merging and top-to-bottom text concatenation for motorcycle registration numbers split across 2 horizontal rows.
-- ⚡ **Low Latency & High Performance**: Candidate score ranking with early exit logic achieving sub-1.5 second single-image inference latency on CPU.
-- 🛠️ **Indian Syntax & Positional Repair**:
-  - Enforces standard Indian format: `[State 2L][District 2D][Series 1-3L][Number 4D]` (e.g. `MH19BY2225`, `MH02GD7249`, `MH34H1559`, `MH05AE8290`).
-  - Positional character confusions repaired (`S` $\rightarrow$ `3`, `E` $\rightarrow$ `4`, `Z` $\rightarrow$ `2`, `O`/`D` $\rightarrow$ `0`, `I`/`L` $\rightarrow$ `1`).
-  - State code misread dictionary repairs (`WI`/`NH`/`HH` $\rightarrow$ `MH`).
-- 🛡️ **Brand Emblem & Sticker Removal**: Automatically filters distractor text and emblems (`POLICE`, `BULLET`, `ROYAL`, `ENFIELD`, `HERO`, `HONDA`, `YAMAHA`, `SUZUKI`).
-
----
-
-## 🛠️ Technology Stack
-
-| Component | Technology | Purpose |
-| :--- | :--- | :--- |
-| **Language** | Python 3.11+ | Pipeline orchestration & scripting |
-| **Object Detection** | Ultralytics YOLOv8 | Fine-tuned license plate localization |
-| **Computer Vision** | OpenCV | Image cropping, CLAHE enhancement, Otsu binarization |
-| **OCR Engine** | EasyOCR | Deep learning character extraction |
-| **Deep Learning** | PyTorch | Model inference framework |
-| **PDF Generation** | ReportLab | Automated technical documentation generation |
-
----
-
-## 📦 Installation & Setup Guide
-
-### 1. Clone the Repository
-```bash
-git clone https://github.com/aartisingh07/SIH127_2026.git
-cd SIH127_2026
-```
-
-### 2. Create & Activate Virtual Environment
-```bash
-# Windows
-python -m venv venv
-venv\Scripts\activate
-
-# Linux / MacOS
-python3 -m venv venv
-source venv/bin/activate
-```
-
-### 3. Install Required Dependencies
-```bash
-pip install ultralytics easyocr opencv-python numpy reportlab torch torchvision
-```
-
----
-
-## 🚀 Usage Instructions
-
-### Single Image Inference
-Run number plate detection and text recognition on an input image:
-```bash
-python run_dataset_anpr.py --infer --input raw_dataset/test_dataset/test2.jpg
-```
-
-### Batch Dataset Processing
-Evaluate accuracy across an entire folder of vehicle images:
-```bash
-python run_dataset_anpr.py --dataset path/to/dataset_folder
-```
-
-### Training Custom YOLO Model
-To train or fine-tune YOLO on new Indian plate annotations:
-```bash
-python train_anpr.py --epochs 50 --imgsz 640
-```
+1. **2-Stage Hierarchical ANPR Engine**:
+   - **Stage 1 (Detection & Prominence Scoring)**: Fine-tuned YOLOv8 model for real-time license plate detection, localized bounding box extraction, and nearest vehicle prominence ranking.
+   - **Stage 2 (Recognition & Enhancement)**: OpenCV image preprocessor (CLAHE, BlackHat filter, Red-Blue subtraction for commercial yellow plates, Adaptive Thresholding) + EasyOCR high-precision optical character recognition with 2-line motorcycle plate vertical grouping, fallback super-resolution, and Indian syntax rules.
+2. **OpenStreetMap (OSM) Live Camera Synchronizer**:
+   - Dynamic real-world surveillance node discovery via OpenStreetMap Overpass API for major Indian metropolitan regions (*Mumbai, Pune, Ahmedabad, Gandhinagar, Surat, Vadodara, Rajkot*).
+3. **Multi-Camera Spatial-Temporal Trajectory Tracking**:
+   - Reconstructs vehicle movement chronologically across camera nodes, calculates segment speeds & segment distances using Haversine formulas, and renders interactive routes on Leaflet GIS maps.
+4. **Automated PDF Trajectory Reporting**:
+   - Generates official, downloadable PDF reports (powered by ReportLab) containing spatial-temporal timeline steps, GIS coordinates, vehicle metrics, and QR signatures.
+5. **Macro Urban Traffic Analytics & Hotlist Watchdog**:
+   - City-wide traffic volume heatmaps, peak-hour hourly flow breakdowns, origin-destination matrix, and real-time blacklisted vehicle alert registry.
 
 ---
 
 ## 📁 Repository Structure
 
-```
-SIH127_2026/
-├── anpr_model.py               # Core ANPR Engine class (Detection, Enhancement, OCR, Postprocessing)
-├── run_dataset_anpr.py          # Main CLI inference & evaluation runner
-├── train_anpr.py               # YOLO model training & fine-tuning script
-├── dataset_loader.py           # Pascal VOC XML to YOLO TXT annotation converter
-├── test_anpr_pipeline.py       # Quick pipeline unit tests
-├── video_anpr_demo.py          # Real-time video / camera ANPR stream handler
-├── .gitignore                  # Git ignore rule configuration
-├── README.md                   # Project documentation
-├── weights/
-│   └── best_indian_plate.pt    # Fine-tuned YOLOv8 model weights
-└── dataset/
-    ├── data.yaml               # YOLO dataset configuration
-    ├── images/                 # Train & Validation images
-    └── labels/                 # YOLO bounding box label annotations
+```text
+SIH127-I/
+├── backend/                           # Python Flask REST API & AI Engine
+│   ├── analytics_engine/              # Trajectory tracking, OSM sync, PDF reports & analytics
+│   │   ├── macro_analytics.py         # Traffic volume, speed & origin-destination matrix
+│   │   ├── osm_camera_sync.py         # OpenStreetMap Overpass API camera discoverer
+│   │   ├── pdf_generator.py           # ReportLab spatial-temporal PDF exporter
+│   │   └── trajectory_tracker.py      # Spatial-temporal sequence & route reconstruction
+│   ├── anpr_engine/                   # Deep Learning & Image Preprocessing Pipeline
+│   │   ├── anpr_ocr.py                # Core ANPR recognition engine & syntax postprocessing
+│   │   ├── dataset_converter.py       # Dataset format converter
+│   │   └── train_yolo.py              # YOLOv8 license plate detector fine-tuning script
+│   ├── config/                        # Multi-city bounding box & geospatial configurations
+│   │   └── city_config.py             # Supported Indian cities & Overpass queries
+│   ├── database/                      # SQLite / PostgreSQL Relational Database
+│   │   ├── db_engine.py               # SQLAlchemy database session & engine
+│   │   └── models.py                  # Camera, CameraConnection & ANPREvent schemas
+│   ├── models/                        # Deep Learning Model Weights
+│   │   └── anpr_yolo_best.pt          # Fine-tuned YOLOv8 Indian License Plate Detector
+│   ├── reports/                       # Generated PDF Trajectory Audit Reports
+│   ├── routes/                        # Flask API Blueprints & REST Endpoints
+│   │   └── camera_routes.py           # Camera discovery, sync, trajectory & report routes
+│   ├── test_dataset/                  # Benchmark test images & dataset files
+│   ├── train_dataset/                 # Multi-source raw training image collections
+│   ├── app.py                         # Main Flask REST API server (Port 5000)
+│   └── tracknet.db                    # Synchronized camera & trajectory SQLite database
+│
+├── frontend/                          # Decoupled React 18 + Vite Web Application
+│   ├── public/                        # Static public assets
+│   ├── src/
+│   │   ├── components/                # Modular React UI Components
+│   │   │   ├── ANPRHub.jsx            # ANPR test hub, bounding box overlay & preprocessors
+│   │   │   ├── BlacklistAlerts.jsx    # Hotlist vehicle watchlist & real-time alert feed
+│   │   │   ├── Header.jsx             # Top bar, region selector & live OSM sync trigger
+│   │   │   ├── MacroAnalytics.jsx     # Traffic heatmaps & hourly volume analytics
+│   │   │   ├── MultiCameraTrajectory.jsx # GIS Leaflet route map & step-by-step timeline
+│   │   │   └── Navbar.jsx             # Primary navigation tab bar
+│   │   ├── styles/
+│   │   │   └── main.css               # Glassmorphic CSS design system & utility classes
+│   │   ├── App.jsx                    # Root React application wrapper
+│   │   └── main.jsx                   # React DOM entrypoint
+│   ├── index.html                     # Single-Page Application HTML host
+│   ├── package.json                   # Frontend dependencies & scripts
+│   └── vite.config.js                 # Vite bundler & API proxy configuration
+├── .gitignore                         # Git exclusion rules
+└── README.md                          # Comprehensive project documentation
 ```
 
 ---
 
-## 📊 Benchmark Results
+## 🛠️ Tools & Technologies Used
 
-| Test Sample | Vehicle Type | Expected Plate Number | Extracted Result | Accuracy | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `test1.jpg` | Royal Enfield Motorcycle | `MH02GD7249` | `MH02GD7249` | 100.00% | ✅ PASS |
-| `test2.jpg` | Hero Motorcycle | `MH19BY2225` | `MH19BY2225` | 100.00% | ✅ PASS |
-| `test3.jpg` | TVS Motorcycle | `MH34H1559` | `MH34H1559` | 100.00% | ✅ PASS |
-| `test4.jpg` | Car / Auto | `MH05AE8290` | `MH05AE8290` | 100.00% | ✅ PASS |
+### **Frontend & UI Stack**
+- **React 18 & Vite**: Component-driven SPA architecture with high-frequency rendering and lightning-fast HMR dev server.
+- **Vanilla CSS Design System**: Custom glassmorphism aesthetic (`--bg-primary: #0b0f19`, `--accent-blue: #0284c7`), responsive CSS grid/flexbox layouts, and custom utility classes.
+- **Leaflet.js GIS Mapping**: Interactive city map visualization rendered with OpenStreetMap HOT map tiles (`https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png`).
+- **FontAwesome 6**: Modern vector icons for UI state indicators, tab controls, and metrics headers.
+
+### **Backend & Database**
+- **Python 3.10+ & Flask**: Modular REST API built with Flask Blueprints and `Flask-CORS` for asynchronous client-server communication.
+- **SQLAlchemy & SQLite**: ORM relational database schema managing `Camera`, `CameraConnection`, and `ANPREvent` records.
+- **OpenStreetMap Overpass API**: Live Overpass QL queries (`[out:json]; node["man_made"="surveillance"]...`) for automated surveillance camera discovery.
+
+### **Computer Vision & AI/ML**
+- **Ultralytics YOLOv8**: Object detection model fine-tuned on custom Indian vehicle license plate annotations (`models/anpr_yolo_best.pt`).
+- **EasyOCR Engine**: PyTorch-backed optical character recognition (OCR) engine for multi-character license plate text extraction.
+- **OpenCV (cv2)**: Digital image processing pipeline featuring Contrast Limited Adaptive Histogram Equalization (CLAHE), BlackHat morphological filtering, Red-Blue color subtraction, Adaptive Thresholding, and Sobel edge detection.
+
+### **Analytics & PDF Reporting**
+- **ReportLab**: Programmatic PDF report generator featuring flowables, dynamic canvas styling, spatial-temporal timeline tables, and QR code verification signatures.
+- **Geospatial Analytics**: Custom Haversine spherical distance calculation algorithms for inter-camera segment distance and vehicle speed metrics.
 
 ---
 
-## 📝 License
+## 📊 Datasets Used So Far
 
-This project is open source and available under the [MIT License](LICENSE).
+1. **YOLOv8 Indian License Plate Training Dataset**:
+   - **Annotated Samples**: 1,441 training images & 339 validation images with precise bounding box coordinates formatted for YOLOv8 (`data.yaml`).
+2. **Multi-Source Raw Training Image Collections**:
+   - **Roboflow Indian License Plates Dataset**: Standardized Indian vehicle license plate annotations.
+   - **Scraped Indian Traffic Images**: 883 real-world traffic camera snapshots captured under varied lighting and angles.
+   - **Manually Annotated Plate Datasets (Sets 1 & 2)**: Custom annotated high-resolution vehicle front/rear plates.
+   - **OLX Statewise Sample Plates**: License plate samples representing 36 Indian States & Union Territories.
+   - **CCTV Video Frame Extractions**: 1,308 frame captures from city traffic surveillance cameras.
+3. **Benchmark Test Dataset**:
+   - 50+ benchmark test images (`test1.jpg` .. `test51.jpeg`) covering daylight, night IR, rain, multi-plate, and angled vehicle shots.
+4. **Geospatial OpenStreetMap Camera Datasets**:
+   - Real-world surveillance camera nodes fetched dynamically from OpenStreetMap across Indian metropolitan regions (*Mumbai, Pune, Ahmedabad, Gandhinagar, Surat, Vadodara, Rajkot*).
+
+---
+
+## 🚀 Setup & Quick Start Guide
+
+### 1. Backend Setup
+```bash
+# Navigate to backend folder
+cd backend
+
+# Create & activate virtual environment (optional)
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install required Python dependencies
+pip install flask flask-cors ultralytics easyocr opencv-python sqlalchemy reportlab requests pillow numpy
+
+# Start Flask Backend REST Server (Runs on http://127.0.0.1:5000)
+python app.py
+```
+
+### 2. Frontend Setup
+```bash
+# Open a new terminal and navigate to frontend folder
+cd frontend
+
+# Install Node modules
+npm install
+
+# Start Vite Development Server (Runs on http://localhost:5173)
+npm run dev
+```
+
+### 3. Build Frontend for Production
+```bash
+cd frontend
+npm run build
+```
+
+---
+
+## 📄 License & Attribution
+Developed for smart city traffic management, multi-camera trajectory tracking, and law enforcement vehicle audit workflows. Powered by OpenStreetMap, Ultralytics YOLOv8, and EasyOCR.

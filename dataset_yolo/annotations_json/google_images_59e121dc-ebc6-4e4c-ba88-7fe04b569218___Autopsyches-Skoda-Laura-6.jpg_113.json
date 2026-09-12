@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_59e121dc-ebc6-4e4c-ba88-7fe04b569218___Autopsyches-Skoda-Laura-6.jpg_113.jpg",
+  "width": 740,
+  "height": 490,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        288,
+        216,
+        446,
+        256
+      ]
+    }
+  ]
+}

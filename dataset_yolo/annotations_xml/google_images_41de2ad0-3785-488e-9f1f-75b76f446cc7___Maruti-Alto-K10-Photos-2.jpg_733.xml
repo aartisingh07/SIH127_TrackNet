@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_41de2ad0-3785-488e-9f1f-75b76f446cc7___Maruti-Alto-K10-Photos-2.jpg_733.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_41de2ad0-3785-488e-9f1f-75b76f446cc7___Maruti-Alto-K10-Photos-2.jpg_733.jpg</path>
+  <size>
+    <width>450</width>
+    <height>417</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>129</xmin>
+      <ymin>305</ymin>
+      <xmax>303</xmax>
+      <ymax>354</ymax>
+    </bndbox>
+  </object>
+</annotation>

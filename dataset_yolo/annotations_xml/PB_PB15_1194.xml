@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>PB_PB15_1194.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\PB_PB15_1194.jpg</path>
+  <size>
+    <width>272</width>
+    <height>484</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>99</xmin>
+      <ymin>293</ymin>
+      <xmax>171</xmax>
+      <ymax>310</ymax>
+    </bndbox>
+  </object>
+</annotation>

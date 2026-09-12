@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_10c96324-3452-43e2-aa68-c8ae7d3c1b6e___844874771_1_1080x720_maruti-suzuki-wagon-r-vxi-bs-iii-2014-petrol-.jpg_233.jpg",
+  "width": 500,
+  "height": 457,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        138,
+        249,
+        348,
+        301
+      ]
+    }
+  ]
+}

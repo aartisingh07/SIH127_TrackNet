@@ -1,0 +1,16 @@
+{
+  "filename": "MP_MP7_1076.jpg",
+  "width": 272,
+  "height": 484,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        96,
+        229,
+        180,
+        253
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "MP_MP3_912.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        92,
+        205,
+        166,
+        222
+      ]
+    }
+  ]
+}

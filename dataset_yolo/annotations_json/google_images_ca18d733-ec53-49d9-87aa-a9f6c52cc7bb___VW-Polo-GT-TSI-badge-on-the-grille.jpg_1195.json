@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_ca18d733-ec53-49d9-87aa-a9f6c52cc7bb___VW-Polo-GT-TSI-badge-on-the-grille.jpg_1195.jpg",
+  "width": 500,
+  "height": 333,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        108,
+        225,
+        392,
+        290
+      ]
+    }
+  ]
+}

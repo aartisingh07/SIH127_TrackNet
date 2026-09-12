@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>HR_HR21_1268.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\HR_HR21_1268.jpg</path>
+  <size>
+    <width>272</width>
+    <height>153</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>94</xmin>
+      <ymin>109</ymin>
+      <xmax>164</xmax>
+      <ymax>122</ymax>
+    </bndbox>
+  </object>
+</annotation>

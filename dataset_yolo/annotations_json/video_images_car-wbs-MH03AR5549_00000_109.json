@@ -1,0 +1,16 @@
+{
+  "filename": "video_images_car-wbs-MH03AR5549_00000_109.jpg",
+  "width": 4000,
+  "height": 3000,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        1298,
+        711,
+        4000,
+        1611
+      ]
+    }
+  ]
+}

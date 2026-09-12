@@ -1,0 +1,16 @@
+{
+  "filename": "video_images_car-ybs-MH43BP8173_00000_225.jpg",
+  "width": 456,
+  "height": 487,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        181,
+        351,
+        329,
+        399
+      ]
+    }
+  ]
+}

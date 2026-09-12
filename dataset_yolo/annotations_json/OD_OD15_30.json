@@ -1,0 +1,16 @@
+{
+  "filename": "OD_OD15_30.jpg",
+  "width": 268,
+  "height": 109,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        110,
+        56,
+        171,
+        72
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "MN_MN6_180.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        85,
+        243,
+        157,
+        261
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_f265077a-611f-4a18-abe5-46518b1756e6___1232700-take-look-number-plate-uploadfromtaptalk1398055489406.jpg_563.jpg",
+  "width": 1024,
+  "height": 769,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        357,
+        374,
+        495,
+        431
+      ]
+    }
+  ]
+}

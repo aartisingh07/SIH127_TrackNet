@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>OD_OD14_213.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\OD_OD14_213.jpg</path>
+  <size>
+    <width>271</width>
+    <height>453</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>89</xmin>
+      <ymin>186</ymin>
+      <xmax>168</xmax>
+      <ymax>204</ymax>
+    </bndbox>
+  </object>
+</annotation>

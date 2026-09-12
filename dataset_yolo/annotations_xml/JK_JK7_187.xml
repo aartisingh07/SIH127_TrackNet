@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>JK_JK7_187.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\JK_JK7_187.jpg</path>
+  <size>
+    <width>272</width>
+    <height>363</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>142</xmin>
+      <ymin>232</ymin>
+      <xmax>218</xmax>
+      <ymax>252</ymax>
+    </bndbox>
+  </object>
+</annotation>

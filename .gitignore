@@ -1,5 +1,6 @@
 __pycache__/
 *.pyc
+*.pyo
 *.cache
 raw_dataset/
 runs/
@@ -11,7 +12,13 @@ scratch/
 generate_pdf.py
 samples/
 output_results/
-
-
-
-
+node_modules/
+frontend/node_modules/
+frontend/dist/
+backend/instance/
+backend/*.db
+backend/reports/*.pdf
+backend/__pycache__/
+backend/*/__pycache__/
+backend/*/*/__pycache__/
+.env

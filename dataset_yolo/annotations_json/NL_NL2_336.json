@@ -1,0 +1,16 @@
+{
+  "filename": "NL_NL2_336.jpg",
+  "width": 271,
+  "height": 333,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        77,
+        302,
+        178,
+        331
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "video_images_car-wbs-MH01DE2780_00000_38.jpg",
+  "width": 731,
+  "height": 425,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        480,
+        206,
+        628,
+        252
+      ]
+    }
+  ]
+}

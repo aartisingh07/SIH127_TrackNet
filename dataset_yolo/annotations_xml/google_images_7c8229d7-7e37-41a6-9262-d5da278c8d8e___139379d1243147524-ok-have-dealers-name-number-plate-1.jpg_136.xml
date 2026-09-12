@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>google_images_7c8229d7-7e37-41a6-9262-d5da278c8d8e___139379d1243147524-ok-have-dealers-name-number-plate-1.jpg_136.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\google_images_7c8229d7-7e37-41a6-9262-d5da278c8d8e___139379d1243147524-ok-have-dealers-name-number-plate-1.jpg_136.jpg</path>
+  <size>
+    <width>919</width>
+    <height>532</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>259</xmin>
+      <ymin>200</ymin>
+      <xmax>728</xmax>
+      <ymax>347</ymax>
+    </bndbox>
+  </object>
+</annotation>

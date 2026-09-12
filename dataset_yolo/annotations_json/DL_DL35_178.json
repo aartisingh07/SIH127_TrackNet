@@ -1,0 +1,16 @@
+{
+  "filename": "DL_DL35_178.jpg",
+  "width": 272,
+  "height": 483,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        78,
+        306,
+        155,
+        324
+      ]
+    }
+  ]
+}

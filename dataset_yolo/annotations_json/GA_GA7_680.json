@@ -1,0 +1,16 @@
+{
+  "filename": "GA_GA7_680.jpg",
+  "width": 272,
+  "height": 226,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        45,
+        109,
+        103,
+        127
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "BR_BR9_756.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        167,
+        218,
+        218,
+        239
+      ]
+    }
+  ]
+}

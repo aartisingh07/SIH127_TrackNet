@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_ae0bb069-0e7e-412a-9473-e8e0d4041cbc___135718d1400912281-skoda-rapid-1-6tdi-cr-mt-elegance-ultima-candy-white-white-monster-_mg_3000comp.jpg_924.jpg",
+  "width": 492,
+  "height": 393,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        341,
+        197,
+        423,
+        222
+      ]
+    }
+  ]
+}

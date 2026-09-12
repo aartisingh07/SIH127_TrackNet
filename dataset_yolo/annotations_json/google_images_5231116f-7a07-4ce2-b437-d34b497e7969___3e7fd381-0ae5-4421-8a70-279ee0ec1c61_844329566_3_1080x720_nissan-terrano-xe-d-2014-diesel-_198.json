@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_5231116f-7a07-4ce2-b437-d34b497e7969___3e7fd381-0ae5-4421-8a70-279ee0ec1c61_844329566_3_1080x720_nissan-terrano-xe-d-2014-diesel-_198.jpg",
+  "width": 540,
+  "height": 720,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        186,
+        342,
+        351,
+        384
+      ]
+    }
+  ]
+}

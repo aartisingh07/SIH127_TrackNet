@@ -1,0 +1,16 @@
+{
+  "filename": "video_images_car-wbs-MH43BU2401_00000_1146.jpg",
+  "width": 915,
+  "height": 412,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        585,
+        191,
+        755,
+        239
+      ]
+    }
+  ]
+}

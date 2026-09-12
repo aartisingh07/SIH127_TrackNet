@@ -1,0 +1,16 @@
+{
+  "filename": "KA_KA8_435.jpg",
+  "width": 272,
+  "height": 204,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        113,
+        161,
+        192,
+        179
+      ]
+    }
+  ]
+}

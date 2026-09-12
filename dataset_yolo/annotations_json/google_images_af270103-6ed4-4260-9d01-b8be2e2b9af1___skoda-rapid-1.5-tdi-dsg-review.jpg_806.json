@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_af270103-6ed4-4260-9d01-b8be2e2b9af1___skoda-rapid-1.5-tdi-dsg-review.jpg_806.jpg",
+  "width": 500,
+  "height": 271,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        106,
+        153,
+        249,
+        197
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_07bd977e-d578-49a2-b345-7cee5a4db6bf___new_1031520d1356604430-skoda-rapid-joins-family-edit-sold-wp_000281.jpg_269.jpg",
+  "width": 500,
+  "height": 358,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        158,
+        204,
+        365,
+        254
+      ]
+    }
+  ]
+}

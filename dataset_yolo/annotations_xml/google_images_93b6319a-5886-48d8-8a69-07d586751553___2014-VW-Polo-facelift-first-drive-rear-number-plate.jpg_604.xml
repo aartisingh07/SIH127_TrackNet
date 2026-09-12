@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_93b6319a-5886-48d8-8a69-07d586751553___2014-VW-Polo-facelift-first-drive-rear-number-plate.jpg_604.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_93b6319a-5886-48d8-8a69-07d586751553___2014-VW-Polo-facelift-first-drive-rear-number-plate.jpg_604.jpg</path>
+  <size>
+    <width>1280</width>
+    <height>847</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>362</xmin>
+      <ymin>290</ymin>
+      <xmax>1045</xmax>
+      <ymax>556</ymax>
+    </bndbox>
+  </object>
+</annotation>

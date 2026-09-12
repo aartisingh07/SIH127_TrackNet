@@ -1,0 +1,16 @@
+{
+  "filename": "AP_AP41_71.jpg",
+  "width": 271,
+  "height": 327,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        79,
+        264,
+        189,
+        290
+      ]
+    }
+  ]
+}

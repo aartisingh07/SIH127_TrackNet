@@ -1,0 +1,16 @@
+{
+  "filename": "video_images_car-wbs-MH12FU1014_00000_798.jpg",
+  "width": 554,
+  "height": 354,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        88,
+        183,
+        192,
+        214
+      ]
+    }
+  ]
+}

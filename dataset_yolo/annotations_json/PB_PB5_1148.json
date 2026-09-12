@@ -1,0 +1,16 @@
+{
+  "filename": "PB_PB5_1148.jpg",
+  "width": 268,
+  "height": 314,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        37,
+        215,
+        78,
+        230
+      ]
+    }
+  ]
+}

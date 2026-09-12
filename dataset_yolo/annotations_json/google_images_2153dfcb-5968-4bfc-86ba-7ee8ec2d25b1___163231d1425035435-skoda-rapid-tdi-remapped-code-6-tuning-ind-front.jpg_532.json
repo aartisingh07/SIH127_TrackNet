@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_2153dfcb-5968-4bfc-86ba-7ee8ec2d25b1___163231d1425035435-skoda-rapid-tdi-remapped-code-6-tuning-ind-front.jpg_532.jpg",
+  "width": 730,
+  "height": 563,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        61,
+        359,
+        238,
+        407
+      ]
+    }
+  ]
+}

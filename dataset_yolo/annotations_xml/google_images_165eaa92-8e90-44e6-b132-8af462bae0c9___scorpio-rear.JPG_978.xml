@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_165eaa92-8e90-44e6-b132-8af462bae0c9___scorpio-rear.JPG_978.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_165eaa92-8e90-44e6-b132-8af462bae0c9___scorpio-rear.JPG_978.jpg</path>
+  <size>
+    <width>400</width>
+    <height>300</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>42</xmin>
+      <ymin>128</ymin>
+      <xmax>106</xmax>
+      <ymax>157</ymax>
+    </bndbox>
+  </object>
+</annotation>

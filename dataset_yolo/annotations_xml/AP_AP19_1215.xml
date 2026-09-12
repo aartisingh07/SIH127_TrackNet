@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>AP_AP19_1215.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\AP_AP19_1215.jpg</path>
+  <size>
+    <width>272</width>
+    <height>604</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>97</xmin>
+      <ymin>341</ymin>
+      <xmax>157</xmax>
+      <ymax>357</ymax>
+    </bndbox>
+  </object>
+</annotation>

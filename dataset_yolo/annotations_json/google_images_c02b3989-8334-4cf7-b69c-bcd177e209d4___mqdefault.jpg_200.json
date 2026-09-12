@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_c02b3989-8334-4cf7-b69c-bcd177e209d4___mqdefault.jpg_200.jpg",
+  "width": 320,
+  "height": 180,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        96,
+        18,
+        226,
+        53
+      ]
+    }
+  ]
+}

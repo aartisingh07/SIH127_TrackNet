@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_23d775eb-842f-4f57-ad7a-affafa21660a___215453-new-2016-maruti-ertiga-granite-grey-zdi-shvs-highway-champion-img_8168.jpg_1014.jpg",
+  "width": 547,
+  "height": 546,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        97,
+        267,
+        296,
+        365
+      ]
+    }
+  ]
+}

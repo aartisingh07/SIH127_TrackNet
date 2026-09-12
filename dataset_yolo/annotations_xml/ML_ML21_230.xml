@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>ML_ML21_230.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\ML_ML21_230.jpg</path>
+  <size>
+    <width>270</width>
+    <height>243</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>103</xmin>
+      <ymin>209</ymin>
+      <xmax>174</xmax>
+      <ymax>227</ymax>
+    </bndbox>
+  </object>
+</annotation>

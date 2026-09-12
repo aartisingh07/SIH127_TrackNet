@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_car-wbs-TN52U1580_00000_124.jpg",
+  "width": 360,
+  "height": 450,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        40,
+        241,
+        252,
+        295
+      ]
+    }
+  ]
+}

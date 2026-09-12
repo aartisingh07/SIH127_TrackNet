@@ -1,0 +1,16 @@
+{
+  "filename": "WB_WB15_129.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        94,
+        246,
+        181,
+        272
+      ]
+    }
+  ]
+}

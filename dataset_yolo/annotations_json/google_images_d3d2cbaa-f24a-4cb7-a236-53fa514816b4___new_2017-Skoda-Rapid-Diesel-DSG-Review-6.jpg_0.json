@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_d3d2cbaa-f24a-4cb7-a236-53fa514816b4___new_2017-Skoda-Rapid-Diesel-DSG-Review-6.jpg_0.jpg",
+  "width": 500,
+  "height": 336,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        244,
+        113,
+        378,
+        149
+      ]
+    }
+  ]
+}

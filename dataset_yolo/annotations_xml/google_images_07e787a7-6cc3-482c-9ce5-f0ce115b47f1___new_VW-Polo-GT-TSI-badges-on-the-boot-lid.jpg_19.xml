@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_07e787a7-6cc3-482c-9ce5-f0ce115b47f1___new_VW-Polo-GT-TSI-badges-on-the-boot-lid.jpg_19.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_07e787a7-6cc3-482c-9ce5-f0ce115b47f1___new_VW-Polo-GT-TSI-badges-on-the-boot-lid.jpg_19.jpg</path>
+  <size>
+    <width>395</width>
+    <height>147</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>27</xmin>
+      <ymin>29</ymin>
+      <xmax>341</xmax>
+      <ymax>106</ymax>
+    </bndbox>
+  </object>
+</annotation>

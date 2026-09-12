@@ -1,0 +1,16 @@
+{
+  "filename": "JK_JK7_187.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        142,
+        232,
+        218,
+        252
+      ]
+    }
+  ]
+}

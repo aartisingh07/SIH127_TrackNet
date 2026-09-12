@@ -1,0 +1,106 @@
+{
+    "description": "",
+    "tags": [],
+    "size": {
+        "height": 300,
+        "width": 400
+    },
+    "objects": [
+        {
+            "id": 6325379,
+            "classId": 8709,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "az@datasetninja.com",
+            "createdAt": "2023-06-13T22:39:25.258Z",
+            "updatedAt": "2023-06-13T22:39:25.258Z",
+            "tags": [],
+            "classTitle": "license plate",
+            "points": {
+                "exterior": [
+                    [
+                        29,
+                        192
+                    ],
+                    [
+                        57,
+                        203
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 6325378,
+            "classId": 8709,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "az@datasetninja.com",
+            "createdAt": "2023-06-13T22:39:25.258Z",
+            "updatedAt": "2023-06-13T22:39:25.258Z",
+            "tags": [],
+            "classTitle": "license plate",
+            "points": {
+                "exterior": [
+                    [
+                        168,
+                        202
+                    ],
+                    [
+                        198,
+                        214
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 6325377,
+            "classId": 8709,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "az@datasetninja.com",
+            "createdAt": "2023-06-13T22:39:25.257Z",
+            "updatedAt": "2023-06-13T22:39:25.257Z",
+            "tags": [],
+            "classTitle": "license plate",
+            "points": {
+                "exterior": [
+                    [
+                        313,
+                        180
+                    ],
+                    [
+                        333,
+                        191
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 6325376,
+            "classId": 8709,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "az@datasetninja.com",
+            "createdAt": "2023-06-13T22:39:25.257Z",
+            "updatedAt": "2023-06-13T22:39:25.257Z",
+            "tags": [],
+            "classTitle": "license plate",
+            "points": {
+                "exterior": [
+                    [
+                        385,
+                        172
+                    ],
+                    [
+                        399,
+                        181
+                    ]
+                ],
+                "interior": []
+            }
+        }
+    ]
+}

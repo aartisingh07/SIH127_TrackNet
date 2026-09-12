@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_a508ecb5-bfdd-46ba-8640-bb827b7c089c___Volkswagen-Polo.jpg_1043.jpg",
+  "width": 704,
+  "height": 330,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        565,
+        206,
+        674,
+        237
+      ]
+    }
+  ]
+}

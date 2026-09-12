@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_d1115e64-987f-4a72-b9bb-853f67ca37b6___new_2014-Volkswagen-Polo-Review.jpg_183.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_d1115e64-987f-4a72-b9bb-853f67ca37b6___new_2014-Volkswagen-Polo-Review.jpg_183.jpg</path>
+  <size>
+    <width>500</width>
+    <height>354</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>159</xmin>
+      <ymin>259</ymin>
+      <xmax>329</xmax>
+      <ymax>297</ymax>
+    </bndbox>
+  </object>
+</annotation>

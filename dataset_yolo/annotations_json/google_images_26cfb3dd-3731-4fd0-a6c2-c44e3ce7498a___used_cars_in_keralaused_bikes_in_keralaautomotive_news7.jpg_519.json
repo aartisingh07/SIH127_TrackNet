@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_26cfb3dd-3731-4fd0-a6c2-c44e3ce7498a___used_cars_in_keralaused_bikes_in_keralaautomotive_news7.jpg_519.jpg",
+  "width": 531,
+  "height": 512,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        165,
+        276,
+        324,
+        327
+      ]
+    }
+  ]
+}

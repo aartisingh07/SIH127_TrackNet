@@ -1,0 +1,16 @@
+{
+  "filename": "OD_OD24_591.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        104,
+        221,
+        159,
+        232
+      ]
+    }
+  ]
+}

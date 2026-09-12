@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_3febea0e-53c0-4b30-880c-3061458b93ce___Maruti-Vitara-Brezza-rear-end-full-review.jpg_1255.jpg",
+  "width": 700,
+  "height": 419,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        345,
+        181,
+        568,
+        306
+      ]
+    }
+  ]
+}

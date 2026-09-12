@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_a1928183-9ebe-40f0-9a84-500aecc61474___2014-Skoda-Superb-facelift-spied-in-India.jpg_205.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_a1928183-9ebe-40f0-9a84-500aecc61474___2014-Skoda-Superb-facelift-spied-in-India.jpg_205.jpg</path>
+  <size>
+    <width>594</width>
+    <height>379</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>419</xmin>
+      <ymin>168</ymin>
+      <xmax>517</xmax>
+      <ymax>214</ymax>
+    </bndbox>
+  </object>
+</annotation>

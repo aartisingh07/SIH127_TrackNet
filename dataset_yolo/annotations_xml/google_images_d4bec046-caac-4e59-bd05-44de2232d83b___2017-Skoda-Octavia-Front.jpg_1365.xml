@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_d4bec046-caac-4e59-bd05-44de2232d83b___2017-Skoda-Octavia-Front.jpg_1365.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_d4bec046-caac-4e59-bd05-44de2232d83b___2017-Skoda-Octavia-Front.jpg_1365.jpg</path>
+  <size>
+    <width>400</width>
+    <height>278</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>215</xmin>
+      <ymin>148</ymin>
+      <xmax>345</xmax>
+      <ymax>192</ymax>
+    </bndbox>
+  </object>
+</annotation>

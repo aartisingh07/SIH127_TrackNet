@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>video_images_video11_1850_759.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\video_images_video11_1850_759.jpg</path>
+  <size>
+    <width>1549</width>
+    <height>1079</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>224</xmin>
+      <ymin>562</ymin>
+      <xmax>523</xmax>
+      <ymax>661</ymax>
+    </bndbox>
+  </object>
+</annotation>

@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_13ffaad4-a186-46bd-ae5d-924d1c8d7c50___maruti-suzuki-Baleno-RS-pics-48.jpg_89.jpg",
+  "width": 800,
+  "height": 485,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        646,
+        328,
+        734,
+        388
+      ]
+    }
+  ]
+}

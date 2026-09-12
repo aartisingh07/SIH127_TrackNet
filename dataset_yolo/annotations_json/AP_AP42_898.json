@@ -1,0 +1,16 @@
+{
+  "filename": "AP_AP42_898.jpg",
+  "width": 272,
+  "height": 204,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        114,
+        94,
+        183,
+        109
+      ]
+    }
+  ]
+}

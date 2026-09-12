@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_e53076d3-c3b7-47b8-8c63-30a08b8ad983___40213__Maruti_Suzuki_Swift--016.JPG_506.jpg",
+  "width": 500,
+  "height": 349,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        160,
+        259,
+        331,
+        299
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_41de2ad0-3785-488e-9f1f-75b76f446cc7___Maruti-Alto-K10-Photos-2.jpg_733.jpg",
+  "width": 450,
+  "height": 417,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        129,
+        305,
+        303,
+        354
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_03273806-bb1e-48da-8c8b-a0133a90197a___2014-Skoda-Yeti-Test-Drive.jpg_1182.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_03273806-bb1e-48da-8c8b-a0133a90197a___2014-Skoda-Yeti-Test-Drive.jpg_1182.jpg</path>
+  <size>
+    <width>588</width>
+    <height>476</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>184</xmin>
+      <ymin>289</ymin>
+      <xmax>374</xmax>
+      <ymax>338</ymax>
+    </bndbox>
+  </object>
+</annotation>

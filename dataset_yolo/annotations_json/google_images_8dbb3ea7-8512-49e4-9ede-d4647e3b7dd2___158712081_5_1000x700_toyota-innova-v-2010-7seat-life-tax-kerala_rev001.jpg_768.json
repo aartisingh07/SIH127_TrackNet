@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_8dbb3ea7-8512-49e4-9ede-d4647e3b7dd2___158712081_5_1000x700_toyota-innova-v-2010-7seat-life-tax-kerala_rev001.jpg_768.jpg",
+  "width": 1000,
+  "height": 562,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        462,
+        289,
+        558,
+        344
+      ]
+    }
+  ]
+}

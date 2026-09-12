@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_6cd15e75-3e26-41f2-a6aa-b1b58dec1c48___volkswagen-polo-exquisite-limited-edition-m1_720x540.jpg_379.jpg",
+  "width": 654,
+  "height": 380,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        17,
+        246,
+        88,
+        312
+      ]
+    }
+  ]
+}

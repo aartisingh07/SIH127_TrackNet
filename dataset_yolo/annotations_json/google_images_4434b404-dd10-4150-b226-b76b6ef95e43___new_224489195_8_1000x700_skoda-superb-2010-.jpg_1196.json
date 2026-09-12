@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_4434b404-dd10-4150-b226-b76b6ef95e43___new_224489195_8_1000x700_skoda-superb-2010-.jpg_1196.jpg",
+  "width": 397,
+  "height": 247,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        140,
+        156,
+        306,
+        207
+      ]
+    }
+  ]
+}

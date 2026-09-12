@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_car-wbs-DL8CX4850_00000_808.jpg",
+  "width": 400,
+  "height": 300,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        121,
+        197,
+        263,
+        232
+      ]
+    }
+  ]
+}

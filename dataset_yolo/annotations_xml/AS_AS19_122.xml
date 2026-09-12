@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>AS_AS19_122.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\AS_AS19_122.jpg</path>
+  <size>
+    <width>272</width>
+    <height>363</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>83</xmin>
+      <ymin>247</ymin>
+      <xmax>167</xmax>
+      <ymax>269</ymax>
+    </bndbox>
+  </object>
+</annotation>

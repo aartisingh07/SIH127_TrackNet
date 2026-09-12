@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_bd742e42-bacc-430e-b9aa-9df666f5d9b3___kicker-647_010517112446.jpg_147.jpg",
+  "width": 647,
+  "height": 404,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        201,
+        214,
+        294,
+        241
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>DL_DL10_1271.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\DL_DL10_1271.jpg</path>
+  <size>
+    <width>272</width>
+    <height>363</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>97</xmin>
+      <ymin>214</ymin>
+      <xmax>161</xmax>
+      <ymax>228</ymax>
+    </bndbox>
+  </object>
+</annotation>

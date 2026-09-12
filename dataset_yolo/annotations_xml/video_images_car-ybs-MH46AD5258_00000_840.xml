@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>video_images_car-ybs-MH46AD5258_00000_840.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\video_images_car-ybs-MH46AD5258_00000_840.jpg</path>
+  <size>
+    <width>451</width>
+    <height>351</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>202</xmin>
+      <ymin>160</ymin>
+      <xmax>340</xmax>
+      <ymax>198</ymax>
+    </bndbox>
+  </object>
+</annotation>

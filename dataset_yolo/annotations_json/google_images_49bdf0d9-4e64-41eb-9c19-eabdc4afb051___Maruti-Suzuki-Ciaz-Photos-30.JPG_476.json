@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_49bdf0d9-4e64-41eb-9c19-eabdc4afb051___Maruti-Suzuki-Ciaz-Photos-30.JPG_476.jpg",
+  "width": 600,
+  "height": 337,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        197,
+        135,
+        354,
+        176
+      ]
+    }
+  ]
+}

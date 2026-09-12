@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_a285cdf6-4640-41ee-b3f3-b721f334466f___Skoda-Octavia-RS-launched-in-India-3.jpg_1334.jpg",
+  "width": 500,
+  "height": 344,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        176,
+        255,
+        348,
+        291
+      ]
+    }
+  ]
+}

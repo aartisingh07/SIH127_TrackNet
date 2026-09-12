@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_07064c2c-2aa3-4419-91a4-92916de8e54c___mahindra-scorpio-old-car-500x500.jpg_81.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_07064c2c-2aa3-4419-91a4-92916de8e54c___mahindra-scorpio-old-car-500x500.jpg_81.jpg</path>
+  <size>
+    <width>500</width>
+    <height>415</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>205</xmin>
+      <ymin>290</ymin>
+      <xmax>335</xmax>
+      <ymax>353</ymax>
+    </bndbox>
+  </object>
+</annotation>

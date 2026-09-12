@@ -1,0 +1,16 @@
+{
+  "filename": "DN_DN8_1364.jpg",
+  "width": 272,
+  "height": 484,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        54,
+        267,
+        132,
+        290
+      ]
+    }
+  ]
+}

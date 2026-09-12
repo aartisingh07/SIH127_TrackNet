@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_4f86fbad-3a04-4c11-a8fa-e897727fc2c7___Number-plate-1.jpg_1248.jpg",
+  "width": 650,
+  "height": 572,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        314,
+        313,
+        569,
+        400
+      ]
+    }
+  ]
+}

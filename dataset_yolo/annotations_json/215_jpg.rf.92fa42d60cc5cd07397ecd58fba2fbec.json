@@ -1,0 +1,16 @@
+{
+  "filename": "215_jpg.rf.92fa42d60cc5cd07397ecd58fba2fbec.jpg",
+  "width": 640,
+  "height": 640,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        247,
+        460,
+        381,
+        520
+      ]
+    }
+  ]
+}

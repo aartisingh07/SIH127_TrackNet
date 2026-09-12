@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_b4eb91cd-3e77-40c2-bbe6-13d42f2ea4ba___INNOVA_Euro_Number_Plates.jpg_236.jpg",
+  "width": 500,
+  "height": 350,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        162,
+        151,
+        339,
+        193
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>IMG-20260823-WA0019.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\IMG-20260823-WA0019.jpg</path>
+  <size>
+    <width>960</width>
+    <height>1150</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>366</xmin>
+      <ymin>877</ymin>
+      <xmax>563</xmax>
+      <ymax>923</ymax>
+    </bndbox>
+  </object>
+</annotation>

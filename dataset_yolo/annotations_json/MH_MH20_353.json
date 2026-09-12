@@ -1,0 +1,16 @@
+{
+  "filename": "MH_MH20_353.jpg",
+  "width": 272,
+  "height": 300,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        100,
+        232,
+        179,
+        248
+      ]
+    }
+  ]
+}

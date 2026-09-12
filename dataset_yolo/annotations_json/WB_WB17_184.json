@@ -1,0 +1,16 @@
+{
+  "filename": "WB_WB17_184.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        96,
+        265,
+        184,
+        287
+      ]
+    }
+  ]
+}

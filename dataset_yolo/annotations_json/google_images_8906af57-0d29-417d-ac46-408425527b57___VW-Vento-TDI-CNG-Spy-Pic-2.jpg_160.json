@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_8906af57-0d29-417d-ac46-408425527b57___VW-Vento-TDI-CNG-Spy-Pic-2.jpg_160.jpg",
+  "width": 600,
+  "height": 430,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        245,
+        239,
+        372,
+        295
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_254b647f-4cb3-46c3-a206-4e70041f4c78___speedex-number-plates-nandanam-chennai-car-number-plate-dealers-33nu2i6.jpg_60.jpg",
+  "width": 350,
+  "height": 263,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        118,
+        83,
+        218,
+        108
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_52abe2c4-fde3-45b2-beec-f070e6ed98c7___Volkswagen-Vento-Rear-view-46765.jpg_503.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_52abe2c4-fde3-45b2-beec-f070e6ed98c7___Volkswagen-Vento-Rear-view-46765.jpg_503.jpg</path>
+  <size>
+    <width>630</width>
+    <height>353</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>250</xmin>
+      <ymin>197</ymin>
+      <xmax>369</xmax>
+      <ymax>227</ymax>
+    </bndbox>
+  </object>
+</annotation>

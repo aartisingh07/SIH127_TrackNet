@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_97846647-16f1-4ee2-b260-60774a21cc74___new_Maruti-Suzuki-Swift-Dzire-1.jpg_192.jpg",
+  "width": 330,
+  "height": 267,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        108,
+        144,
+        253,
+        182
+      ]
+    }
+  ]
+}

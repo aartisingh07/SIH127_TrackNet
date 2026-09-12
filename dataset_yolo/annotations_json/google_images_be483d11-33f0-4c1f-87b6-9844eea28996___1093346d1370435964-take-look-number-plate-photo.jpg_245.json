@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_be483d11-33f0-4c1f-87b6-9844eea28996___1093346d1370435964-take-look-number-plate-photo.jpg_245.jpg",
+  "width": 550,
+  "height": 537,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        268,
+        259,
+        389,
+        301
+      ]
+    }
+  ]
+}

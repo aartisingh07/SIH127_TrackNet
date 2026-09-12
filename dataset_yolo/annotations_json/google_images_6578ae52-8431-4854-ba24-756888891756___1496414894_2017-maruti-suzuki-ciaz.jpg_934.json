@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_6578ae52-8431-4854-ba24-756888891756___1496414894_2017-maruti-suzuki-ciaz.jpg_934.jpg",
+  "width": 624,
+  "height": 450,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        294,
+        169,
+        425,
+        220
+      ]
+    }
+  ]
+}

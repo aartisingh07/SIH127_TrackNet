@@ -1,0 +1,16 @@
+{
+  "filename": "CG_CG15_124.jpg",
+  "width": 272,
+  "height": 204,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        109,
+        130,
+        166,
+        142
+      ]
+    }
+  ]
+}

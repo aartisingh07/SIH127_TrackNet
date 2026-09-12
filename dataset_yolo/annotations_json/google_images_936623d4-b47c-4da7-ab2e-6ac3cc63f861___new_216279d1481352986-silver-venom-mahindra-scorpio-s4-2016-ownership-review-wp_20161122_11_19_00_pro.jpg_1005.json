@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_936623d4-b47c-4da7-ab2e-6ac3cc63f861___new_216279d1481352986-silver-venom-mahindra-scorpio-s4-2016-ownership-review-wp_20161122_11_19_00_pro.jpg_1005.jpg",
+  "width": 500,
+  "height": 274,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        179,
+        116,
+        375,
+        184
+      ]
+    }
+  ]
+}

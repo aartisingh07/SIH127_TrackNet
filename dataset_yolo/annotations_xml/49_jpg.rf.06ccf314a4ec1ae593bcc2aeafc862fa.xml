@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>49_jpg.rf.06ccf314a4ec1ae593bcc2aeafc862fa.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\49_jpg.rf.06ccf314a4ec1ae593bcc2aeafc862fa.jpg</path>
+  <size>
+    <width>640</width>
+    <height>640</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>252</xmin>
+      <ymin>369</ymin>
+      <xmax>440</xmax>
+      <ymax>556</ymax>
+    </bndbox>
+  </object>
+</annotation>

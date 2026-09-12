@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_f9e27b82-9e65-44ba-bf9a-b3ced8901937___Skoda-Superb-Exterior-deadfront-69204.jpg_166.jpg",
+  "width": 600,
+  "height": 337,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        201,
+        191,
+        389,
+        225
+      ]
+    }
+  ]
+}

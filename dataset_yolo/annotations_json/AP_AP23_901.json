@@ -1,0 +1,16 @@
+{
+  "filename": "AP_AP23_901.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        77,
+        223,
+        135,
+        234
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_41209caa-2aa2-4003-b057-e0508c1d5ac9___Volkswagen-Ameo-Exterior-68165.jpg_774.jpg",
+  "width": 600,
+  "height": 337,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        201,
+        202,
+        273,
+        227
+      ]
+    }
+  ]
+}

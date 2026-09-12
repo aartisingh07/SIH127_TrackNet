@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_a2f87691-b9f5-4274-ac5a-8764e9ba282c___1571669d1477648169-your-favourite-number-plate-font-13.jpg_700.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_a2f87691-b9f5-4274-ac5a-8764e9ba282c___1571669d1477648169-your-favourite-number-plate-font-13.jpg_700.jpg</path>
+  <size>
+    <width>1512</width>
+    <height>825</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>240</xmin>
+      <ymin>208</ymin>
+      <xmax>1397</xmax>
+      <ymax>703</ymax>
+    </bndbox>
+  </object>
+</annotation>

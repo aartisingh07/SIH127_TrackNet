@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>AR_AR1_1385.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\AR_AR1_1385.jpg</path>
+  <size>
+    <width>272</width>
+    <height>153</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>98</xmin>
+      <ymin>110</ymin>
+      <xmax>156</xmax>
+      <ymax>121</ymax>
+    </bndbox>
+  </object>
+</annotation>

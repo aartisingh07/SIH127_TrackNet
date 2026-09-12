@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_car-wbs-KA18P2987_00000_1306.jpg",
+  "width": 2448,
+  "height": 2448,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        1306,
+        1704,
+        1801,
+        1867
+      ]
+    }
+  ]
+}

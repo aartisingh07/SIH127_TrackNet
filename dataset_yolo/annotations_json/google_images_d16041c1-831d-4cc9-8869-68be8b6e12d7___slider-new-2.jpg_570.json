@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_d16041c1-831d-4cc9-8869-68be8b6e12d7___slider-new-2.jpg_570.jpg",
+  "width": 1266,
+  "height": 453,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        808,
+        239,
+        1030,
+        300
+      ]
+    }
+  ]
+}

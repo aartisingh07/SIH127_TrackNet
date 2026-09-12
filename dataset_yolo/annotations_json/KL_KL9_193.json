@@ -1,0 +1,16 @@
+{
+  "filename": "KL_KL9_193.jpg",
+  "width": 272,
+  "height": 272,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        104,
+        188,
+        180,
+        201
+      ]
+    }
+  ]
+}

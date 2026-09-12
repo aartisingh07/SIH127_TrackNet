@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_28fc10e3-681b-4086-9c15-28934ae86f7e___3e7fd381-0ae5-4421-8a70-279ee0ec1c61_nissan-terrano-amt_827x510_71478504527_781.jpg",
+  "width": 827,
+  "height": 510,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        115,
+        281,
+        181,
+        320
+      ]
+    }
+  ]
+}

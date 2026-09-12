@@ -1,0 +1,16 @@
+{
+  "filename": "DL_DL28_1371.jpg",
+  "width": 272,
+  "height": 364,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        102,
+        259,
+        170,
+        277
+      ]
+    }
+  ]
+}

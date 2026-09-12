@@ -1,0 +1,16 @@
+{
+  "filename": "AP_AP17_523.jpg",
+  "width": 272,
+  "height": 590,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        105,
+        339,
+        179,
+        355
+      ]
+    }
+  ]
+}

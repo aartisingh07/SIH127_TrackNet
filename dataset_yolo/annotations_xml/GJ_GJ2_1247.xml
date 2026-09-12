@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>GJ_GJ2_1247.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\GJ_GJ2_1247.jpg</path>
+  <size>
+    <width>272</width>
+    <height>484</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>88</xmin>
+      <ymin>185</ymin>
+      <xmax>175</xmax>
+      <ymax>210</ymax>
+    </bndbox>
+  </object>
+</annotation>

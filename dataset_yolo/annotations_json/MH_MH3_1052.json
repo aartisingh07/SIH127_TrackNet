@@ -1,0 +1,16 @@
+{
+  "filename": "MH_MH3_1052.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        103,
+        233,
+        168,
+        248
+      ]
+    }
+  ]
+}

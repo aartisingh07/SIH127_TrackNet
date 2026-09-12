@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_8c4371ee-a997-4b21-82c4-cb5e767c4d06___kia-sorento-spied-in-India.jpg_1311.jpg",
+  "width": 660,
+  "height": 432,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        231,
+        187,
+        359,
+        214
+      ]
+    }
+  ]
+}

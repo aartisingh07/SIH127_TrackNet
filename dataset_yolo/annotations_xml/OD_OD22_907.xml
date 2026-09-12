@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>OD_OD22_907.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\OD_OD22_907.jpg</path>
+  <size>
+    <width>271</width>
+    <height>179</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>103</xmin>
+      <ymin>51</ymin>
+      <xmax>221</xmax>
+      <ymax>120</ymax>
+    </bndbox>
+  </object>
+</annotation>

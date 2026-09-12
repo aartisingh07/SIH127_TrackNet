@@ -1,0 +1,16 @@
+{
+  "filename": "UP_UP8_287.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        172,
+        223,
+        239,
+        253
+      ]
+    }
+  ]
+}

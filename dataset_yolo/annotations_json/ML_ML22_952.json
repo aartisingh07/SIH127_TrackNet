@@ -1,0 +1,16 @@
+{
+  "filename": "ML_ML22_952.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        105,
+        196,
+        162,
+        210
+      ]
+    }
+  ]
+}

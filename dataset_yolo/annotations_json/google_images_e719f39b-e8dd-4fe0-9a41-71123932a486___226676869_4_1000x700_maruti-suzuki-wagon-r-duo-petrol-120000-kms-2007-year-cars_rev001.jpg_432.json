@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_e719f39b-e8dd-4fe0-9a41-71123932a486___226676869_4_1000x700_maruti-suzuki-wagon-r-duo-petrol-120000-kms-2007-year-cars_rev001.jpg_432.jpg",
+  "width": 414,
+  "height": 432,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        134,
+        215,
+        277,
+        253
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+# TrackNet ANPR 2-Class YOLOv8 Configuration (Vehicle + License Plate)
+path: F:/SIH127/dataset_yolo
+train: images/train
+val: images/val
+
+nc: 2
+names: ['vehicle', 'license-plate']

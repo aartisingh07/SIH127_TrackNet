@@ -1,0 +1,16 @@
+{
+  "filename": "AP_AP46_693.jpg",
+  "width": 272,
+  "height": 411,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        74,
+        261,
+        180,
+        286
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "PB_PB4_1264.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        103,
+        270,
+        184,
+        285
+      ]
+    }
+  ]
+}

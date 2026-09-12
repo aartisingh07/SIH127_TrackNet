@@ -1,0 +1,16 @@
+{
+  "filename": "DL_DL19_468.jpg",
+  "width": 272,
+  "height": 204,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        102,
+        161,
+        181,
+        176
+      ]
+    }
+  ]
+}

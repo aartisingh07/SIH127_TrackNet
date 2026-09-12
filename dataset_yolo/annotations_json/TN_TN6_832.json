@@ -1,0 +1,16 @@
+{
+  "filename": "TN_TN6_832.jpg",
+  "width": 271,
+  "height": 170,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        98,
+        87,
+        190,
+        110
+      ]
+    }
+  ]
+}

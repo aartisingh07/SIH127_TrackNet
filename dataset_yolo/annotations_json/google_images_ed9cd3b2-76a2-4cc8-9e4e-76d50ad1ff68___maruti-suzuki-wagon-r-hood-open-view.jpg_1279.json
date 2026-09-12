@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_ed9cd3b2-76a2-4cc8-9e4e-76d50ad1ff68___maruti-suzuki-wagon-r-hood-open-view.jpg_1279.jpg",
+  "width": 350,
+  "height": 467,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        122,
+        264,
+        226,
+        289
+      ]
+    }
+  ]
+}

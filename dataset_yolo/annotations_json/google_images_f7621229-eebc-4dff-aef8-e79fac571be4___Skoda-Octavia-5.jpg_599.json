@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_f7621229-eebc-4dff-aef8-e79fac571be4___Skoda-Octavia-5.jpg_599.jpg",
+  "width": 586,
+  "height": 331,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        185,
+        209,
+        247,
+        231
+      ]
+    }
+  ]
+}

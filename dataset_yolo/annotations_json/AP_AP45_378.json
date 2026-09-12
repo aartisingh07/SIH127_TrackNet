@@ -1,0 +1,16 @@
+{
+  "filename": "AP_AP45_378.jpg",
+  "width": 272,
+  "height": 483,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        97,
+        230,
+        182,
+        263
+      ]
+    }
+  ]
+}

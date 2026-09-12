@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>TR_TR1_1048.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\TR_TR1_1048.jpg</path>
+  <size>
+    <width>271</width>
+    <height>242</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>83</xmin>
+      <ymin>94</ymin>
+      <xmax>163</xmax>
+      <ymax>110</ymax>
+    </bndbox>
+  </object>
+</annotation>

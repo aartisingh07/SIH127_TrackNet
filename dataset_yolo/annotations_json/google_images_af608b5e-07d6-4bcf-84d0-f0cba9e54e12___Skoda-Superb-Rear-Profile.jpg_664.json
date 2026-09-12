@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_af608b5e-07d6-4bcf-84d0-f0cba9e54e12___Skoda-Superb-Rear-Profile.jpg_664.jpg",
+  "width": 600,
+  "height": 400,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        238,
+        187,
+        349,
+        213
+      ]
+    }
+  ]
+}

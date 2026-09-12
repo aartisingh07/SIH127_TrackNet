@@ -1,0 +1,16 @@
+{
+  "filename": "DL_DL32_975.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        113,
+        150,
+        166,
+        163
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "AN_AN2_682.jpg",
+  "width": 271,
+  "height": 325,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        121,
+        224,
+        179,
+        237
+      ]
+    }
+  ]
+}

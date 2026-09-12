@@ -1,0 +1,16 @@
+{
+  "filename": "BR_BR13_83.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        97,
+        196,
+        165,
+        213
+      ]
+    }
+  ]
+}

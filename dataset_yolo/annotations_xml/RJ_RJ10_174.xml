@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>RJ_RJ10_174.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\RJ_RJ10_174.jpg</path>
+  <size>
+    <width>272</width>
+    <height>363</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>97</xmin>
+      <ymin>277</ymin>
+      <xmax>174</xmax>
+      <ymax>295</ymax>
+    </bndbox>
+  </object>
+</annotation>

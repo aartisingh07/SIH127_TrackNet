@@ -1,0 +1,16 @@
+{
+  "filename": "TR_TR3_392.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        143,
+        228,
+        208,
+        246
+      ]
+    }
+  ]
+}

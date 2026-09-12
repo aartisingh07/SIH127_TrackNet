@@ -1,0 +1,16 @@
+{
+  "filename": "HR_HR7_207.jpg",
+  "width": 272,
+  "height": 153,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        112,
+        119,
+        171,
+        134
+      ]
+    }
+  ]
+}

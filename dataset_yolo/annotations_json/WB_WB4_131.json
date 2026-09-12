@@ -1,0 +1,16 @@
+{
+  "filename": "WB_WB4_131.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        119,
+        267,
+        191,
+        292
+      ]
+    }
+  ]
+}

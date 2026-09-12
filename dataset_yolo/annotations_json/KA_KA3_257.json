@@ -1,0 +1,16 @@
+{
+  "filename": "KA_KA3_257.jpg",
+  "width": 270,
+  "height": 447,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        69,
+        235,
+        143,
+        260
+      ]
+    }
+  ]
+}

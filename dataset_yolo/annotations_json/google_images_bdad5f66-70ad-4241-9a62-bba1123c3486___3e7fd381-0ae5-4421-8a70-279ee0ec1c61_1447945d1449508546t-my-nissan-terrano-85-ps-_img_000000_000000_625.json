@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_bdad5f66-70ad-4241-9a62-bba1123c3486___3e7fd381-0ae5-4421-8a70-279ee0ec1c61_1447945d1449508546t-my-nissan-terrano-85-ps-_img_000000_000000_625.jpg",
+  "width": 802,
+  "height": 465,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        402,
+        275,
+        458,
+        301
+      ]
+    }
+  ]
+}

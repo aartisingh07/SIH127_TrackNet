@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_car-wbs-UP16CT2233_00000_992.jpg",
+  "width": 539,
+  "height": 658,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        180,
+        585,
+        343,
+        618
+      ]
+    }
+  ]
+}

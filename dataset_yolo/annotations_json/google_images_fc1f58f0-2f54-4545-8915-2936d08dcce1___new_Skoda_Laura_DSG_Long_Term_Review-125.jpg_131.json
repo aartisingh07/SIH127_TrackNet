@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_fc1f58f0-2f54-4545-8915-2936d08dcce1___new_Skoda_Laura_DSG_Long_Term_Review-125.jpg_131.jpg",
+  "width": 500,
+  "height": 366,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        179,
+        234,
+        352,
+        273
+      ]
+    }
+  ]
+}

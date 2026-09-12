@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>OD_OD18_938.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\OD_OD18_938.jpg</path>
+  <size>
+    <width>181</width>
+    <height>153</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>64</xmin>
+      <ymin>123</ymin>
+      <xmax>130</xmax>
+      <ymax>133</ymax>
+    </bndbox>
+  </object>
+</annotation>

@@ -1,0 +1,16 @@
+{
+  "filename": "WhatsApp Image 2026-09-11 at 00.05.56.jpeg",
+  "width": 960,
+  "height": 1280,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        370,
+        635,
+        513,
+        806
+      ]
+    }
+  ]
+}

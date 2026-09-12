@@ -1,0 +1,16 @@
+{
+  "filename": "DL_DL34_499.jpg",
+  "width": 272,
+  "height": 188,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        159,
+        144,
+        213,
+        172
+      ]
+    }
+  ]
+}

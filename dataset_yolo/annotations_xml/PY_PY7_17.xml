@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>PY_PY7_17.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\PY_PY7_17.jpg</path>
+  <size>
+    <width>272</width>
+    <height>364</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>116</xmin>
+      <ymin>312</ymin>
+      <xmax>188</xmax>
+      <ymax>331</ymax>
+    </bndbox>
+  </object>
+</annotation>

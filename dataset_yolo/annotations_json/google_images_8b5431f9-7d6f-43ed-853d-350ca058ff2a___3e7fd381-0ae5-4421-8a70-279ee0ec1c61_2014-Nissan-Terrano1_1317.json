@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_8b5431f9-7d6f-43ed-853d-350ca058ff2a___3e7fd381-0ae5-4421-8a70-279ee0ec1c61_2014-Nissan-Terrano1_1317.jpg",
+  "width": 930,
+  "height": 768,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        606,
+        392,
+        793,
+        468
+      ]
+    }
+  ]
+}

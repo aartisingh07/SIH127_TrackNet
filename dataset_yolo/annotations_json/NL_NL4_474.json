@@ -1,0 +1,16 @@
+{
+  "filename": "NL_NL4_474.jpg",
+  "width": 271,
+  "height": 555,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        176,
+        387,
+        233,
+        419
+      ]
+    }
+  ]
+}

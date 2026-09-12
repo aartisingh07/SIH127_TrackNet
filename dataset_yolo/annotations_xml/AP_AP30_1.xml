@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>AP_AP30_1.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\AP_AP30_1.jpg</path>
+  <size>
+    <width>272</width>
+    <height>483</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>90</xmin>
+      <ymin>276</ymin>
+      <xmax>173</xmax>
+      <ymax>292</ymax>
+    </bndbox>
+  </object>
+</annotation>

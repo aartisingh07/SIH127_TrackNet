@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>google_images_97846647-16f1-4ee2-b260-60774a21cc74___new_Maruti-Suzuki-Swift-Dzire-1.jpg_192.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\google_images_97846647-16f1-4ee2-b260-60774a21cc74___new_Maruti-Suzuki-Swift-Dzire-1.jpg_192.jpg</path>
+  <size>
+    <width>330</width>
+    <height>267</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>108</xmin>
+      <ymin>144</ymin>
+      <xmax>253</xmax>
+      <ymax>182</ymax>
+    </bndbox>
+  </object>
+</annotation>

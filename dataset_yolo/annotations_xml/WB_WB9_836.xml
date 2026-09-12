@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>WB_WB9_836.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\WB_WB9_836.jpg</path>
+  <size>
+    <width>272</width>
+    <height>366</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>91</xmin>
+      <ymin>203</ymin>
+      <xmax>151</xmax>
+      <ymax>220</ymax>
+    </bndbox>
+  </object>
+</annotation>

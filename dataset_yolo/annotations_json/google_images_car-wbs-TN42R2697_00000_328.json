@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_car-wbs-TN42R2697_00000_328.jpg",
+  "width": 526,
+  "height": 320,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        7,
+        79,
+        526,
+        187
+      ]
+    }
+  ]
+}

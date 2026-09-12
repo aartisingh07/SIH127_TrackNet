@@ -1,0 +1,16 @@
+{
+  "filename": "AN_AN10_513.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        108,
+        167,
+        164,
+        180
+      ]
+    }
+  ]
+}

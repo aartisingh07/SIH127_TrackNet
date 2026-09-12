@@ -1,0 +1,16 @@
+{
+  "filename": "AP_AP18_1221.jpg",
+  "width": 271,
+  "height": 170,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        105,
+        114,
+        162,
+        128
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_df2f7a76-d701-468f-b54a-c5d63d13b349___CM-Akhilesh-Number-Plate.jpg_241.jpg",
+  "width": 1024,
+  "height": 576,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        307,
+        196,
+        567,
+        271
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_ec4bde57-11dd-4d59-96ae-b5d3b28afda5___Maruti-Suzuki-Celerio-Back-Number-Plates-Design.jpg_854.jpg",
+  "width": 500,
+  "height": 376,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        110,
+        189,
+        418,
+        261
+      ]
+    }
+  ]
+}

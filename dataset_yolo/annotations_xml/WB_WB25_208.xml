@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>WB_WB25_208.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\WB_WB25_208.jpg</path>
+  <size>
+    <width>272</width>
+    <height>172</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>16</xmin>
+      <ymin>115</ymin>
+      <xmax>63</xmax>
+      <ymax>138</ymax>
+    </bndbox>
+  </object>
+</annotation>

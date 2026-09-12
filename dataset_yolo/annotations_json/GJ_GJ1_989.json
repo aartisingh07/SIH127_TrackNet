@@ -1,0 +1,16 @@
+{
+  "filename": "GJ_GJ1_989.jpg",
+  "width": 264,
+  "height": 469,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        42,
+        286,
+        105,
+        321
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "PY_PY6_493.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        93,
+        261,
+        182,
+        281
+      ]
+    }
+  ]
+}

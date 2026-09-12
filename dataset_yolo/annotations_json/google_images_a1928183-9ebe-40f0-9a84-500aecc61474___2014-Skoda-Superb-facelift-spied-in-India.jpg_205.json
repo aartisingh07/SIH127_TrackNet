@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_a1928183-9ebe-40f0-9a84-500aecc61474___2014-Skoda-Superb-facelift-spied-in-India.jpg_205.jpg",
+  "width": 594,
+  "height": 379,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        419,
+        168,
+        517,
+        214
+      ]
+    }
+  ]
+}

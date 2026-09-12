@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>HP_HP19_151.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\HP_HP19_151.jpg</path>
+  <size>
+    <width>272</width>
+    <height>306</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>105</xmin>
+      <ymin>182</ymin>
+      <xmax>166</xmax>
+      <ymax>197</ymax>
+    </bndbox>
+  </object>
+</annotation>

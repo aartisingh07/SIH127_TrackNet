@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_car-wbs-DL12C3536_00000_855.jpg",
+  "width": 2592,
+  "height": 1944,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        1051,
+        934,
+        2248,
+        1306
+      ]
+    }
+  ]
+}

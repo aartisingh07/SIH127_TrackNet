@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_ed9cd3b2-76a2-4cc8-9e4e-76d50ad1ff68___maruti-suzuki-wagon-r-hood-open-view.jpg_1279.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_ed9cd3b2-76a2-4cc8-9e4e-76d50ad1ff68___maruti-suzuki-wagon-r-hood-open-view.jpg_1279.jpg</path>
+  <size>
+    <width>350</width>
+    <height>467</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>122</xmin>
+      <ymin>264</ymin>
+      <xmax>226</xmax>
+      <ymax>289</ymax>
+    </bndbox>
+  </object>
+</annotation>

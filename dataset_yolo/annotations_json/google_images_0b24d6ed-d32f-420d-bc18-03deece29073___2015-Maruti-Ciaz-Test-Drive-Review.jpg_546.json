@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_0b24d6ed-d32f-420d-bc18-03deece29073___2015-Maruti-Ciaz-Test-Drive-Review.jpg_546.jpg",
+  "width": 608,
+  "height": 302,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        384,
+        212,
+        489,
+        246
+      ]
+    }
+  ]
+}

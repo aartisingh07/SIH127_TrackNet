@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_175ff546-0679-4cbb-ab03-acfcd96877b7___Maruti_Wagon_R_Rear.jpg_238.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_175ff546-0679-4cbb-ab03-acfcd96877b7___Maruti_Wagon_R_Rear.jpg_238.jpg</path>
+  <size>
+    <width>583</width>
+    <height>450</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>192</xmin>
+      <ymin>278</ymin>
+      <xmax>362</xmax>
+      <ymax>324</ymax>
+    </bndbox>
+  </object>
+</annotation>

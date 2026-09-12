@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_e204c50d-b861-4f68-827f-575351d150b4___Maruti-Baleno-RS-4.jpg_386.jpg",
+  "width": 505,
+  "height": 343,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        24,
+        207,
+        143,
+        246
+      ]
+    }
+  ]
+}

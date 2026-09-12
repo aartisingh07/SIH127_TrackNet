@@ -1,0 +1,16 @@
+{
+  "filename": "DL_DL18_334.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        97,
+        217,
+        166,
+        233
+      ]
+    }
+  ]
+}

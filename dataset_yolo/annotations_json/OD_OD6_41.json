@@ -1,0 +1,16 @@
+{
+  "filename": "OD_OD6_41.jpg",
+  "width": 271,
+  "height": 545,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        98,
+        329,
+        176,
+        356
+      ]
+    }
+  ]
+}

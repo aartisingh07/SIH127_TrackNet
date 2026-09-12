@@ -1,0 +1,16 @@
+{
+  "filename": "MH_MH26_347.jpg",
+  "width": 272,
+  "height": 274,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        100,
+        212,
+        171,
+        228
+      ]
+    }
+  ]
+}

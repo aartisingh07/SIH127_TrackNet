@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_78a85f8b-de01-4036-ae91-2a1fa48bcf9f___new_995920d1349421647-cappuccino-beige-czech-tank-here-my-skoda-laura-2-0-elegance-mt-20121005_121433.jpg_32.jpg",
+  "width": 500,
+  "height": 333,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        148,
+        220,
+        336,
+        265
+      ]
+    }
+  ]
+}

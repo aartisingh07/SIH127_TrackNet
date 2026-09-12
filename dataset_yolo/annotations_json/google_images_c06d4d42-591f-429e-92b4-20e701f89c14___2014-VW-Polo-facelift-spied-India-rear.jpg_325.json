@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_c06d4d42-591f-429e-92b4-20e701f89c14___2014-VW-Polo-facelift-spied-India-rear.jpg_325.jpg",
+  "width": 960,
+  "height": 1280,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        448,
+        717,
+        648,
+        762
+      ]
+    }
+  ]
+}

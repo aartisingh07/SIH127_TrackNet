@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_a2f87691-b9f5-4274-ac5a-8764e9ba282c___1571669d1477648169-your-favourite-number-plate-font-13.jpg_700.jpg",
+  "width": 1512,
+  "height": 825,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        240,
+        208,
+        1397,
+        703
+      ]
+    }
+  ]
+}

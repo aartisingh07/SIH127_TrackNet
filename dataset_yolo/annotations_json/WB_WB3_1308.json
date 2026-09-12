@@ -1,0 +1,16 @@
+{
+  "filename": "WB_WB3_1308.jpg",
+  "width": 272,
+  "height": 204,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        93,
+        146,
+        170,
+        162
+      ]
+    }
+  ]
+}

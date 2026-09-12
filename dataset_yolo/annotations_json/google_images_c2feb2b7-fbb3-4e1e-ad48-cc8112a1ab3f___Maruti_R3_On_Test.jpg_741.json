@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_c2feb2b7-fbb3-4e1e-ad48-cc8112a1ab3f___Maruti_R3_On_Test.jpg_741.jpg",
+  "width": 500,
+  "height": 332,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        162,
+        212,
+        313,
+        260
+      ]
+    }
+  ]
+}

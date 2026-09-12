@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_e354039f-d73c-4f12-9df5-f0129345fa79___scorpio.JPG_1179.jpg",
+  "width": 400,
+  "height": 300,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        152,
+        194,
+        252,
+        218
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>NL_NL2_336.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\NL_NL2_336.jpg</path>
+  <size>
+    <width>271</width>
+    <height>333</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>77</xmin>
+      <ymin>302</ymin>
+      <xmax>178</xmax>
+      <ymax>331</ymax>
+    </bndbox>
+  </object>
+</annotation>

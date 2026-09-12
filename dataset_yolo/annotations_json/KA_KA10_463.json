@@ -1,0 +1,16 @@
+{
+  "filename": "KA_KA10_463.jpg",
+  "width": 272,
+  "height": 250,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        98,
+        165,
+        172,
+        184
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_dd58e02d-51a5-4bfd-87af-ff51c576086e___2014-mahindra-scorpio-suv-10.jpg_1213.jpg",
+  "width": 1200,
+  "height": 800,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        645,
+        455,
+        840,
+        548
+      ]
+    }
+  ]
+}

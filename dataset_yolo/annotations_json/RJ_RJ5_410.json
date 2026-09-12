@@ -1,0 +1,16 @@
+{
+  "filename": "RJ_RJ5_410.jpg",
+  "width": 272,
+  "height": 287,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        90,
+        199,
+        180,
+        224
+      ]
+    }
+  ]
+}

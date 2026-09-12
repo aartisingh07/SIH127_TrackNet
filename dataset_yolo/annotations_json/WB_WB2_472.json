@@ -1,0 +1,16 @@
+{
+  "filename": "WB_WB2_472.jpg",
+  "width": 272,
+  "height": 606,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        83,
+        419,
+        187,
+        444
+      ]
+    }
+  ]
+}

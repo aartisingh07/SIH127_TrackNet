@@ -1,0 +1,16 @@
+{
+  "filename": "video_images_car-ybs-MH46AD5258_00001_243.jpg",
+  "width": 430,
+  "height": 335,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        154,
+        154,
+        301,
+        195
+      ]
+    }
+  ]
+}

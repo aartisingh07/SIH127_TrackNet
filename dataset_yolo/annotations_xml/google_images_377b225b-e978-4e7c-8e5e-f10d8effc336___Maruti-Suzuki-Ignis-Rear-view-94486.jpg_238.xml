@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>google_images_377b225b-e978-4e7c-8e5e-f10d8effc336___Maruti-Suzuki-Ignis-Rear-view-94486.jpg_238.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\google_images_377b225b-e978-4e7c-8e5e-f10d8effc336___Maruti-Suzuki-Ignis-Rear-view-94486.jpg_238.jpg</path>
+  <size>
+    <width>600</width>
+    <height>337</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>153</xmin>
+      <ymin>230</ymin>
+      <xmax>314</xmax>
+      <ymax>277</ymax>
+    </bndbox>
+  </object>
+</annotation>

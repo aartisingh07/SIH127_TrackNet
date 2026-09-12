@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_2e23964b-ce59-4bcf-8c35-98f3a096a748___design-ind-number-plates-vijayanagar-bangalore-number-plate-dealers-2etqybj.jpg_1046.jpg",
+  "width": 750,
+  "height": 562,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        1,
+        45,
+        702,
+        401
+      ]
+    }
+  ]
+}

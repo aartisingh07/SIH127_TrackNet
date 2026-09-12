@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_0c9ebe94-827d-4c74-9950-6816e70d1bab___IMG_8883.jpg_858.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_0c9ebe94-827d-4c74-9950-6816e70d1bab___IMG_8883.jpg_858.jpg</path>
+  <size>
+    <width>500</width>
+    <height>333</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>185</xmin>
+      <ymin>113</ymin>
+      <xmax>324</xmax>
+      <ymax>147</ymax>
+    </bndbox>
+  </object>
+</annotation>

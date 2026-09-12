@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_206c95ff-83b8-4273-b105-6637bf9a3038___numerix-number-plates-thodupuzha-idukki-number-plate-dealers-1lhwiga.jpg_101.jpg",
+  "width": 2000,
+  "height": 1500,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        624,
+        537,
+        1715,
+        1008
+      ]
+    }
+  ]
+}

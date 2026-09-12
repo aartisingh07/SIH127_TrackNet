@@ -1,0 +1,16 @@
+{
+  "filename": "OD_OD3_587.jpg",
+  "width": 272,
+  "height": 153,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        107,
+        81,
+        164,
+        96
+      ]
+    }
+  ]
+}

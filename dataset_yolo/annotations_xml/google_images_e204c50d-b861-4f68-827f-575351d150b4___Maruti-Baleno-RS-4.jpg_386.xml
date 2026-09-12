@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_e204c50d-b861-4f68-827f-575351d150b4___Maruti-Baleno-RS-4.jpg_386.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_e204c50d-b861-4f68-827f-575351d150b4___Maruti-Baleno-RS-4.jpg_386.jpg</path>
+  <size>
+    <width>505</width>
+    <height>343</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>24</xmin>
+      <ymin>207</ymin>
+      <xmax>143</xmax>
+      <ymax>246</ymax>
+    </bndbox>
+  </object>
+</annotation>

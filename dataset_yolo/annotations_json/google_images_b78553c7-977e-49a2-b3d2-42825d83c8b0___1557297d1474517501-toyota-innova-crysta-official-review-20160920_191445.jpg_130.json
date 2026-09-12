@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_b78553c7-977e-49a2-b3d2-42825d83c8b0___1557297d1474517501-toyota-innova-crysta-official-review-20160920_191445.jpg_130.jpg",
+  "width": 500,
+  "height": 399,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        56,
+        199,
+        220,
+        275
+      ]
+    }
+  ]
+}

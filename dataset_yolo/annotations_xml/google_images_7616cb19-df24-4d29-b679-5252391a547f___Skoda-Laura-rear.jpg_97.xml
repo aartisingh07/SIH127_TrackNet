@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>google_images_7616cb19-df24-4d29-b679-5252391a547f___Skoda-Laura-rear.jpg_97.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\google_images_7616cb19-df24-4d29-b679-5252391a547f___Skoda-Laura-rear.jpg_97.jpg</path>
+  <size>
+    <width>800</width>
+    <height>533</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>316</xmin>
+      <ymin>260</ymin>
+      <xmax>479</xmax>
+      <ymax>295</ymax>
+    </bndbox>
+  </object>
+</annotation>

@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_93b6ca4e-17cc-4b12-b7f5-66fb37c6107c___number-plate-factory-fitted1.jpg_1090.jpg",
+  "width": 642,
+  "height": 336,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        217,
+        143,
+        427,
+        194
+      ]
+    }
+  ]
+}

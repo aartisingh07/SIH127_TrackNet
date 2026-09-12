@@ -1,0 +1,16 @@
+{
+  "filename": "IMG_20260907_113844.jpg",
+  "width": 4160,
+  "height": 3120,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        1763,
+        1107,
+        2769,
+        1318
+      ]
+    }
+  ]
+}

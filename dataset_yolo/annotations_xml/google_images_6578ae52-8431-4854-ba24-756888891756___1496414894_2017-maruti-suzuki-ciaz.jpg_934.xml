@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>google_images_6578ae52-8431-4854-ba24-756888891756___1496414894_2017-maruti-suzuki-ciaz.jpg_934.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\google_images_6578ae52-8431-4854-ba24-756888891756___1496414894_2017-maruti-suzuki-ciaz.jpg_934.jpg</path>
+  <size>
+    <width>624</width>
+    <height>450</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>294</xmin>
+      <ymin>169</ymin>
+      <xmax>425</xmax>
+      <ymax>220</ymax>
+    </bndbox>
+  </object>
+</annotation>

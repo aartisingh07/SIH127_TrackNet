@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>train</folder>
+  <filename>HP_HP13_246.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\train\HP_HP13_246.jpg</path>
+  <size>
+    <width>272</width>
+    <height>590</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>53</xmin>
+      <ymin>354</ymin>
+      <xmax>184</xmax>
+      <ymax>384</ymax>
+    </bndbox>
+  </object>
+</annotation>

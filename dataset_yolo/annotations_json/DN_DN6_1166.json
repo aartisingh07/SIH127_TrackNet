@@ -1,0 +1,16 @@
+{
+  "filename": "DN_DN6_1166.jpg",
+  "width": 272,
+  "height": 153,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        74,
+        70,
+        129,
+        82
+      ]
+    }
+  ]
+}

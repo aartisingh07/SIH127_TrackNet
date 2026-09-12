@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>google_images_fc1f58f0-2f54-4545-8915-2936d08dcce1___new_Skoda_Laura_DSG_Long_Term_Review-125.jpg_131.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\google_images_fc1f58f0-2f54-4545-8915-2936d08dcce1___new_Skoda_Laura_DSG_Long_Term_Review-125.jpg_131.jpg</path>
+  <size>
+    <width>500</width>
+    <height>366</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>179</xmin>
+      <ymin>234</ymin>
+      <xmax>352</xmax>
+      <ymax>273</ymax>
+    </bndbox>
+  </object>
+</annotation>

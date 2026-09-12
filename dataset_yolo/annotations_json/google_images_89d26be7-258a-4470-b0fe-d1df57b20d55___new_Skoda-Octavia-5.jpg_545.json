@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_89d26be7-258a-4470-b0fe-d1df57b20d55___new_Skoda-Octavia-5.jpg_545.jpg",
+  "width": 586,
+  "height": 331,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        184,
+        209,
+        248,
+        229
+      ]
+    }
+  ]
+}

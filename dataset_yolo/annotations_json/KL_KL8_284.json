@@ -1,0 +1,16 @@
+{
+  "filename": "KL_KL8_284.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        123,
+        207,
+        199,
+        223
+      ]
+    }
+  ]
+}

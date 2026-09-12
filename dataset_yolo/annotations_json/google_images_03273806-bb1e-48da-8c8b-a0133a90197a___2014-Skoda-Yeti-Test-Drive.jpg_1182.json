@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_03273806-bb1e-48da-8c8b-a0133a90197a___2014-Skoda-Yeti-Test-Drive.jpg_1182.jpg",
+  "width": 588,
+  "height": 476,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        184,
+        289,
+        374,
+        338
+      ]
+    }
+  ]
+}

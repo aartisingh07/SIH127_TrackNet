@@ -1,0 +1,16 @@
+{
+  "filename": "OD_OD4_380.jpg",
+  "width": 272,
+  "height": 586,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        124,
+        327,
+        219,
+        349
+      ]
+    }
+  ]
+}

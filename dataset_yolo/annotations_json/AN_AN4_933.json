@@ -1,0 +1,16 @@
+{
+  "filename": "AN_AN4_933.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        81,
+        229,
+        140,
+        245
+      ]
+    }
+  ]
+}

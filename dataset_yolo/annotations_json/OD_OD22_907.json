@@ -1,0 +1,16 @@
+{
+  "filename": "OD_OD22_907.jpg",
+  "width": 271,
+  "height": 179,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        103,
+        51,
+        221,
+        120
+      ]
+    }
+  ]
+}

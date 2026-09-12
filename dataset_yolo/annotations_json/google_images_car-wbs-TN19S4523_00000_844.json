@@ -1,0 +1,16 @@
+{
+  "filename": "google_images_car-wbs-TN19S4523_00000_844.jpg",
+  "width": 266,
+  "height": 223,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        151,
+        180,
+        214,
+        193
+      ]
+    }
+  ]
+}

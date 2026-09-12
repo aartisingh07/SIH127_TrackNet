@@ -1,0 +1,16 @@
+{
+  "filename": "PB_PB8_681.jpg",
+  "width": 272,
+  "height": 363,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        89,
+        241,
+        174,
+        262
+      ]
+    }
+  ]
+}

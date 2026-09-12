@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<annotation>
+  <folder>val</folder>
+  <filename>PY_PY2_222.jpg</filename>
+  <path>F:\SIH127\dataset_yolo\images\val\PY_PY2_222.jpg</path>
+  <size>
+    <width>269</width>
+    <height>333</height>
+    <depth>3</depth>
+  </size>
+  <object>
+    <name>vehicle</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>91</xmin>
+      <ymin>263</ymin>
+      <xmax>188</xmax>
+      <ymax>284</ymax>
+    </bndbox>
+  </object>
+</annotation>

@@ -1,0 +1,16 @@
+{
+  "filename": "MH_MH21_291.jpg",
+  "width": 272,
+  "height": 589,
+  "objects": [
+    {
+      "label": "vehicle",
+      "bbox": [
+        98,
+        367,
+        185,
+        389
+      ]
+    }
+  ]
+}
