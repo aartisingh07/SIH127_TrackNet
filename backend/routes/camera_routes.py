@@ -150,14 +150,17 @@ def sync_cameras():
     })
 
 
+_tracker = TrajectoryTracker()
+_macro = MacroTrafficAnalytics(trajectory_tracker=_tracker)
+
+
 @camera_api.route("/api/vehicles/<plate>/trajectory", methods=["GET"])
 def get_vehicle_trajectory(plate):
     """
     Reconstructs spatial-temporal vehicle trajectory for a target plate.
     Returns GeoJSON LineString and node step array.
     """
-    tracker = TrajectoryTracker()
-    result = tracker.reconstruct_trajectory(plate)
+    result = _tracker.reconstruct_trajectory(plate)
     return jsonify({"success": True, "trajectory": result})
 
 
@@ -165,8 +168,7 @@ def get_vehicle_trajectory(plate):
 def get_traffic_density():
     """Returns camera traffic volume & GIS density heatmap points for a city."""
     city_name = request.args.get("city", DEFAULT_CITY)
-    macro = MacroTrafficAnalytics()
-    summary = macro.get_city_traffic_summary(city_name)
+    summary = _macro.get_city_traffic_summary(city_name)
     return jsonify({
         "success": True,
         "city": city_name,

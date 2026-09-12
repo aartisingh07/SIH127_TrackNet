@@ -71,6 +71,16 @@ export default function App() {
     }
   };
 
+  const handleViewTrajectory = (plateText, targetCity) => {
+    if (targetCity && targetCity !== currentCity) {
+      setCurrentCity(targetCity);
+    }
+    if (plateText) {
+      fetchTrajectory(plateText);
+      setActiveTab('trajectory-tracker');
+    }
+  };
+
   return (
     <div className="dark-theme" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Header
@@ -82,7 +92,11 @@ export default function App() {
       <Navbar activeTab={activeTab} onTabChange={setActiveTab} />
       <main className="app-container" style={{ flex: 1 }}>
         {activeTab === 'anpr-hub' && (
-          <ANPRHub cityCameras={cityCameras} onANPRSuccess={handleANPRSuccess} />
+          <ANPRHub
+            cityCameras={cityCameras}
+            onANPRSuccess={handleANPRSuccess}
+            onViewTrajectory={handleViewTrajectory}
+          />
         )}
         {activeTab === 'trajectory-tracker' && (
           <MultiCameraTrajectory

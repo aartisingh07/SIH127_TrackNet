@@ -36,10 +36,11 @@ class TrajectoryTracker:
         self._ensure_initial_data()
 
     def _ensure_initial_data(self):
-        """Ensures camera database and benchmark detection logs are populated."""
+        """Ensures camera database and benchmark detection logs are populated across all supported cities."""
         init_db()
         synchronizer = OSMCameraSynchronizer(session=self.session)
-        synchronizer.sync_if_cache_empty("Mumbai")
+        for target_city in ["Mumbai", "Pune", "Ahmedabad", "Surat", "Gandhinagar", "Vadodara"]:
+            synchronizer.sync_if_cache_empty(target_city)
         self._seed_benchmark_anpr_events()
 
     def _seed_benchmark_anpr_events(self):
@@ -82,7 +83,7 @@ class TrajectoryTracker:
         print("[TrajectoryTracker] Seeded initial benchmark ANPR detection events.")
 
     def add_detection_record(self, plate_text, camera_id, confidence=0.92, custom_timestamp=None):
-        """Records a new ANPR camera detection event and seeds a realistic multi-camera trajectory sequence if needed."""
+        """Records a new ANPR camera detection event and seeds a unique regional multi-camera trajectory sequence."""
         plate_clean = plate_text.upper().strip()
         
         if custom_timestamp:
@@ -104,53 +105,70 @@ class TrajectoryTracker:
         existing_events = self.session.query(ANPREvent).filter(ANPREvent.plate_number == plate_clean).all()
         distinct_cams = set(ev.camera_id for ev in existing_events)
 
-        # Seed multi-camera trajectory if this plate has fewer than 3 distinct camera events
+        # Always build a unique multi-camera trajectory sequence per plate in target city
         if len(distinct_cams) < 3:
-            mumbai_cams = self.session.query(Camera).filter(Camera.city == "Mumbai").all()
-            if len(mumbai_cams) >= 4:
-                # Pick 4 geographically distinct cameras across Mumbai (e.g. Juhu -> Andheri -> Goregaon -> Thane)
-                step_cams = [
-                    mumbai_cams[0],
-                    mumbai_cams[min(18, len(mumbai_cams)-1)],
-                    mumbai_cams[min(65, len(mumbai_cams)-1)],
-                    mumbai_cams[min(140, len(mumbai_cams)-1)]
-                ]
-                base_time = t_stamp - datetime.timedelta(minutes=45)
+            city_cams = self.session.query(Camera).filter(Camera.city == cam_city).all()
+            if not city_cams:
+                city_cams = self.session.query(Camera).filter(Camera.city == "Mumbai").all()
+
+            if len(city_cams) >= 2:
+                seed_val = sum(ord(c) * (idx + 1) for idx, c in enumerate(plate_clean))
+                num_steps = min(5, max(3, len(city_cams)))
                 
-                # Delete existing duplicate events for this plate
-                self.session.query(ANPREvent).filter(ANPREvent.plate_number == plate_clean).delete()
+                step_cams = []
+                stride = max(1, len(city_cams) // num_steps)
+                for i in range(num_steps):
+                    c_idx = (seed_val + i * stride + i * 7) % len(city_cams)
+                    step_cams.append(city_cams[c_idx])
                 
-                for idx, step_cam in enumerate(step_cams):
-                    ev_time = base_time + datetime.timedelta(minutes=idx * 15)
-                    ev = ANPREvent(
-                        plate_number=plate_clean,
-                        camera_id=step_cam.camera_id,
-                        timestamp=ev_time,
-                        ocr_confidence=float(confidence),
-                        vehicle_type="car",
-                        direction="N/A"
-                    )
-                    self.session.add(ev)
-                self.session.commit()
-                return ev.to_dict()
+                # Ensure primary camera is included
+                if cam_obj and cam_obj not in step_cams:
+                    step_cams[min(1, len(step_cams)-1)] = cam_obj
+
+                try:
+                    # Delete existing duplicate events for this plate
+                    self.session.query(ANPREvent).filter(ANPREvent.plate_number == plate_clean).delete()
+                    
+                    base_time = t_stamp - datetime.timedelta(minutes=num_steps * 12)
+                    for idx, step_cam in enumerate(step_cams):
+                        ev_time = base_time + datetime.timedelta(minutes=idx * 12 + (seed_val % 5))
+                        ev = ANPREvent(
+                            plate_number=plate_clean,
+                            camera_id=step_cam.camera_id,
+                            timestamp=ev_time,
+                            ocr_confidence=float(confidence),
+                            vehicle_type="car",
+                            direction="N/A"
+                        )
+                        self.session.add(ev)
+                    self.session.commit()
+                    return ev.to_dict()
+                except Exception as ex:
+                    self.session.rollback()
+                    print(f"[TrajectoryTracker] Error adding trajectory sequence: {ex}")
 
         # Prevent cross-city trajectory corruption if camera is in a different city
-        if existing_events:
-            first_cam = self.session.query(Camera).filter(Camera.camera_id == existing_events[0].camera_id).first()
-            if first_cam and first_cam.city != cam_city:
-                return existing_events[-1].to_dict()
+        try:
+            if existing_events:
+                first_cam = self.session.query(Camera).filter(Camera.camera_id == existing_events[0].camera_id).first()
+                if first_cam and first_cam.city != cam_city:
+                    return existing_events[-1].to_dict()
 
-        ev = ANPREvent(
-            plate_number=plate_clean,
-            camera_id=camera_id,
-            timestamp=t_stamp,
-            ocr_confidence=float(confidence),
-            vehicle_type="car",
-            direction="N/A"
-        )
-        self.session.add(ev)
-        self.session.commit()
-        return ev.to_dict()
+            ev = ANPREvent(
+                plate_number=plate_clean,
+                camera_id=camera_id,
+                timestamp=t_stamp,
+                ocr_confidence=float(confidence),
+                vehicle_type="car",
+                direction="N/A"
+            )
+            self.session.add(ev)
+            self.session.commit()
+            return ev.to_dict()
+        except Exception as ex:
+            self.session.rollback()
+            print(f"[TrajectoryTracker] Error adding single detection event: {ex}")
+            return {'plate_number': plate_clean, 'camera_id': camera_id, 'timestamp': str(t_stamp)}
 
     def reconstruct_trajectory(self, target_plate):
         """
