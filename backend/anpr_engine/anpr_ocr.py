@@ -153,15 +153,17 @@ def deskew_crop(img):
     try:
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) if len(img.shape) == 3 else img
         edges = cv2.Canny(gray, 50, 150)
-        lines = cv2.HoughLinesP(edges, 1, np.pi / 180, threshold=25, minLineLength=25, maxLineGap=10)
+        lines = cv2.HoughLinesP(edges, 1, np.pi / 180, threshold=15, minLineLength=15, maxLineGap=5)
         if lines is not None:
             angles = []
             for line in lines:
-                x1, y1, x2, y2 = line[0]
-                if x2 != x1:
-                    angle = np.degrees(np.arctan2(y2 - y1, x2 - x1))
-                    if -35 < angle < 35 and abs(angle) > 1.5:
-                        angles.append(angle)
+                pts = line.flatten()
+                if len(pts) == 4:
+                    x1, y1, x2, y2 = pts
+                    if x2 != x1:
+                        angle = np.degrees(np.arctan2(y2 - y1, x2 - x1))
+                        if -40 < angle < 40 and abs(angle) > 1.5:
+                            angles.append(angle)
             if angles:
                 median_angle = np.median(angles)
                 h, w = img.shape[:2]
@@ -705,27 +707,6 @@ class ANPROCREngine:
             # Sort overall results by candidate_rank so nearest/most prominent vehicle comes first
             filtered_results.sort(key=candidate_rank, reverse=True)
             results = filtered_results
-
-        # Apply Benchmark Ground Truth Map if image matches test dataset file
-        if image_name and image_name.lower() in BENCHMARK_GROUND_TRUTH:
-            gt_text = BENCHMARK_GROUND_TRUTH[image_name.lower()]
-            if results:
-                results[0]['plate_text'] = gt_text
-                results[0]['confidence'] = 0.98
-                results[0]['ocr_confidence'] = 0.98
-                results[0]['det_confidence'] = max(0.90, results[0].get('det_confidence', 0.90))
-            else:
-                results.append({
-                    'vehicle_type': 'vehicle',
-                    'vehicle_bbox': [int(w*0.1), int(h*0.1), int(w*0.9), int(h*0.9)],
-                    'vehicle_confidence': 0.85,
-                    'vehicle_prominence': 3.5,
-                    'plate_text': gt_text,
-                    'confidence': 0.98,
-                    'bbox': [int(w*0.3), int(h*0.4), int(w*0.7), int(h*0.6)],
-                    'det_confidence': 0.92,
-                    'ocr_confidence': 0.98
-                })
 
         return results
 
