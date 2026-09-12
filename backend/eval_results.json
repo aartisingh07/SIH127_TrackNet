@@ -1,0 +1,1938 @@
+{
+  "test1.jpg": {
+    "time": 12.32,
+    "results": [
+      {
+        "vehicle_type": "motorcycle",
+        "vehicle_bbox": [
+          74,
+          54,
+          406,
+          615
+        ],
+        "vehicle_confidence": 0.7652,
+        "vehicle_prominence": 3.5013,
+        "plate_text": "GA??N0344",
+        "confidence": 0.8664,
+        "bbox": [
+          121,
+          284,
+          295,
+          380
+        ],
+        "det_confidence": 0.9228,
+        "ocr_confidence": 0.81
+      }
+    ]
+  },
+  "test10.jpg": {
+    "time": 1.93,
+    "results": [
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          59,
+          43,
+          243,
+          184
+        ],
+        "vehicle_confidence": 0.8752,
+        "vehicle_prominence": 3.2066,
+        "plate_text": "TS???751?",
+        "confidence": 0.8302,
+        "bbox": [
+          125,
+          152,
+          169,
+          163
+        ],
+        "det_confidence": 0.8305,
+        "ocr_confidence": 0.83
+      }
+    ]
+  },
+  "test11.jpeg": {
+    "time": 4.54,
+    "results": [
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          195,
+          405,
+          899,
+          1017
+        ],
+        "vehicle_confidence": 0.9006,
+        "vehicle_prominence": 2.1712,
+        "plate_text": "RJ???0591",
+        "confidence": 0.794,
+        "bbox": [
+          278,
+          689,
+          393,
+          780
+        ],
+        "det_confidence": 0.768,
+        "ocr_confidence": 0.82
+      }
+    ]
+  },
+  "test12.jpeg": {
+    "time": 3.53,
+    "results": [
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          2,
+          462,
+          747,
+          983
+        ],
+        "vehicle_confidence": 0.9295,
+        "vehicle_prominence": 2.0396,
+        "plate_text": "BR92AJ0220",
+        "confidence": 0.88,
+        "bbox": [
+          557,
+          740,
+          689,
+          811
+        ],
+        "det_confidence": 0.8442,
+        "ocr_confidence": 0.88
+      }
+    ]
+  },
+  "test13.jpeg": {
+    "time": 7.61,
+    "results": [
+      {
+        "vehicle_type": "truck",
+        "vehicle_bbox": [
+          0,
+          436,
+          899,
+          1282
+        ],
+        "vehicle_confidence": 0.6812,
+        "vehicle_prominence": 3.1907,
+        "plate_text": "AP74O0174",
+        "confidence": 0.8889,
+        "bbox": [
+          153,
+          837,
+          365,
+          953
+        ],
+        "det_confidence": 0.8977,
+        "ocr_confidence": 0.88
+      }
+    ]
+  },
+  "test15.jpeg": {
+    "time": 1.99,
+    "results": [
+      {
+        "vehicle_type": "truck",
+        "vehicle_bbox": [
+          504,
+          2,
+          1559,
+          980
+        ],
+        "vehicle_confidence": 0.4378,
+        "vehicle_prominence": 3.2455,
+        "plate_text": "GA05IG5989",
+        "confidence": 0.88,
+        "bbox": [
+          653,
+          422,
+          1089,
+          513
+        ],
+        "det_confidence": 0.8669,
+        "ocr_confidence": 0.88
+      }
+    ]
+  },
+  "test16.jpeg": {
+    "time": 62.42,
+    "results": [
+      {
+        "vehicle_type": "motorcycle",
+        "vehicle_bbox": [
+          100,
+          36,
+          1015,
+          756
+        ],
+        "vehicle_confidence": 0.8725,
+        "vehicle_prominence": 2.2894,
+        "plate_text": "TS???703?",
+        "confidence": 0.7563,
+        "bbox": [
+          589,
+          377,
+          664,
+          426
+        ],
+        "det_confidence": 0.6926,
+        "ocr_confidence": 0.82
+      },
+      {
+        "vehicle_type": "motorcycle",
+        "vehicle_bbox": [
+          478,
+          44,
+          1142,
+          668
+        ],
+        "vehicle_confidence": 0.4549,
+        "vehicle_prominence": 1.7607,
+        "plate_text": "LD02OE4051",
+        "confidence": 0.4856,
+        "bbox": [
+          728,
+          454,
+          1077,
+          705
+        ],
+        "det_confidence": 0.0912,
+        "ocr_confidence": 0.88
+      },
+      {
+        "vehicle_type": "vehicle",
+        "vehicle_bbox": [
+          0,
+          218,
+          256,
+          579
+        ],
+        "vehicle_confidence": 0.85,
+        "vehicle_prominence": 1.1094,
+        "plate_text": "MH03FZ0001",
+        "confidence": 0.4818,
+        "bbox": [
+          0,
+          312,
+          228,
+          435
+        ],
+        "det_confidence": 0.0836,
+        "ocr_confidence": 0.88
+      },
+      {
+        "vehicle_type": "motorcycle",
+        "vehicle_bbox": [
+          1300,
+          59,
+          1599,
+          275
+        ],
+        "vehicle_confidence": 0.5984,
+        "vehicle_prominence": 0.5592,
+        "plate_text": "GA74TE1065",
+        "confidence": 0.4663,
+        "bbox": [
+          1369,
+          133,
+          1600,
+          283
+        ],
+        "det_confidence": 0.0526,
+        "ocr_confidence": 0.88
+      }
+    ]
+  },
+  "test19.jpeg": {
+    "time": 9.18,
+    "results": [
+      {
+        "vehicle_type": "motorcycle",
+        "vehicle_bbox": [
+          606,
+          490,
+          1043,
+          989
+        ],
+        "vehicle_confidence": 0.6196,
+        "vehicle_prominence": 1.9891,
+        "plate_text": "WB55IZ1023",
+        "confidence": 0.88,
+        "bbox": [
+          863,
+          766,
+          991,
+          830
+        ],
+        "det_confidence": 0.8201,
+        "ocr_confidence": 0.88
+      },
+      {
+        "vehicle_type": "truck",
+        "vehicle_bbox": [
+          1034,
+          161,
+          1435,
+          642
+        ],
+        "vehicle_confidence": 0.2019,
+        "vehicle_prominence": 1.3714,
+        "plate_text": "TS01CE4560",
+        "confidence": 0.4885,
+        "bbox": [
+          1295,
+          432,
+          1391,
+          452
+        ],
+        "det_confidence": 0.0969,
+        "ocr_confidence": 0.88
+      },
+      {
+        "vehicle_type": "motorcycle",
+        "vehicle_bbox": [
+          537,
+          279,
+          622,
+          402
+        ],
+        "vehicle_confidence": 0.377,
+        "vehicle_prominence": 0.6863,
+        "plate_text": "??",
+        "confidence": 0.0221,
+        "bbox": [
+          528,
+          287,
+          624,
+          368
+        ],
+        "det_confidence": 0.0443,
+        "ocr_confidence": 0.0
+      }
+    ]
+  },
+  "test2.jpg": {
+    "time": 12.34,
+    "results": [
+      {
+        "vehicle_type": "vehicle",
+        "vehicle_bbox": [
+          84,
+          145,
+          421,
+          480
+        ],
+        "vehicle_confidence": 0.85,
+        "vehicle_prominence": 3.1025,
+        "plate_text": "JH???501?",
+        "confidence": 0.7854,
+        "bbox": [
+          109,
+          239,
+          396,
+          363
+        ],
+        "det_confidence": 0.7808,
+        "ocr_confidence": 0.79
+      }
+    ]
+  },
+  "test21.jpeg": {
+    "time": 15.78,
+    "results": [
+      {
+        "vehicle_type": "bus",
+        "vehicle_bbox": [
+          636,
+          519,
+          1338,
+          1119
+        ],
+        "vehicle_confidence": 0.7269,
+        "vehicle_prominence": 2.5231,
+        "plate_text": "NL05C574?",
+        "confidence": 0.5294,
+        "bbox": [
+          672,
+          820,
+          747,
+          891
+        ],
+        "det_confidence": 0.2588,
+        "ocr_confidence": 0.8
+      },
+      {
+        "vehicle_type": "truck",
+        "vehicle_bbox": [
+          275,
+          520,
+          684,
+          930
+        ],
+        "vehicle_confidence": 0.6262,
+        "vehicle_prominence": 1.812,
+        "plate_text": "AN31LA4504",
+        "confidence": 0.5003,
+        "bbox": [
+          407,
+          936,
+          653,
+          949
+        ],
+        "det_confidence": 0.1206,
+        "ocr_confidence": 0.88
+      },
+      {
+        "vehicle_type": "vehicle",
+        "vehicle_bbox": [
+          600,
+          245,
+          793,
+          609
+        ],
+        "vehicle_confidence": 0.85,
+        "vehicle_prominence": 1.1248,
+        "plate_text": "SK07PF8401",
+        "confidence": 0.504,
+        "bbox": [
+          634,
+          339,
+          759,
+          465
+        ],
+        "det_confidence": 0.128,
+        "ocr_confidence": 0.88
+      }
+    ]
+  },
+  "test22.jpeg": {
+    "time": 13.96,
+    "results": [
+      {
+        "vehicle_type": "truck",
+        "vehicle_bbox": [
+          438,
+          60,
+          1585,
+          1189
+        ],
+        "vehicle_confidence": 0.8369,
+        "vehicle_prominence": 4.005,
+        "plate_text": "MN31GE4573",
+        "confidence": 0.8945,
+        "bbox": [
+          839,
+          769,
+          1130,
+          945
+        ],
+        "det_confidence": 0.8989,
+        "ocr_confidence": 0.89
+      }
+    ]
+  },
+  "test23.jpeg": {
+    "time": 2.3,
+    "results": [
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          277,
+          462,
+          515,
+          699
+        ],
+        "vehicle_confidence": 0.8644,
+        "vehicle_prominence": 1.2758,
+        "plate_text": "TR51G5518",
+        "confidence": 0.88,
+        "bbox": [
+          377,
+          595,
+          459,
+          618
+        ],
+        "det_confidence": 0.5945,
+        "ocr_confidence": 0.88
+      }
+    ]
+  },
+  "test24.jpeg": {
+    "time": 7.02,
+    "results": [
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          730,
+          359,
+          1084,
+          653
+        ],
+        "vehicle_confidence": 0.9083,
+        "vehicle_prominence": 2.1527,
+        "plate_text": "GA???11??",
+        "confidence": 0.7466,
+        "bbox": [
+          898,
+          485,
+          996,
+          517
+        ],
+        "det_confidence": 0.7131,
+        "ocr_confidence": 0.78
+      },
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          1188,
+          529,
+          1279,
+          707
+        ],
+        "vehicle_confidence": 0.6369,
+        "vehicle_prominence": 2.0166,
+        "plate_text": "MH4?????",
+        "confidence": 0.478,
+        "bbox": [
+          1223,
+          583,
+          1267,
+          630
+        ],
+        "det_confidence": 0.276,
+        "ocr_confidence": 0.68
+      },
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          97,
+          415,
+          340,
+          608
+        ],
+        "vehicle_confidence": 0.7376,
+        "vehicle_prominence": 1.8416,
+        "plate_text": "MH20?1231",
+        "confidence": 0.4659,
+        "bbox": [
+          144,
+          503,
+          211,
+          524
+        ],
+        "det_confidence": 0.1219,
+        "ocr_confidence": 0.81
+      }
+    ]
+  },
+  "test25.jpeg": {
+    "time": 4.96,
+    "results": [
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          147,
+          494,
+          564,
+          850
+        ],
+        "vehicle_confidence": 0.8884,
+        "vehicle_prominence": 1.8114,
+        "plate_text": "SK08AZ0430",
+        "confidence": 0.88,
+        "bbox": [
+          249,
+          655,
+          401,
+          701
+        ],
+        "det_confidence": 0.8661,
+        "ocr_confidence": 0.88
+      }
+    ]
+  },
+  "test26.jpeg": {
+    "time": 0.78,
+    "results": [
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          44,
+          387,
+          472,
+          792
+        ],
+        "vehicle_confidence": 0.9114,
+        "vehicle_prominence": 1.8018,
+        "plate_text": "MH46DT0001",
+        "confidence": 0.88,
+        "bbox": [
+          161,
+          668,
+          307,
+          699
+        ],
+        "det_confidence": 0.8201,
+        "ocr_confidence": 0.88
+      }
+    ]
+  },
+  "test27.jpeg": {
+    "time": 0.57,
+    "results": [
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          1,
+          567,
+          556,
+          910
+        ],
+        "vehicle_confidence": 0.9433,
+        "vehicle_prominence": 2.0416,
+        "plate_text": "MH30S9522",
+        "confidence": 0.88,
+        "bbox": [
+          409,
+          702,
+          497,
+          732
+        ],
+        "det_confidence": 0.7336,
+        "ocr_confidence": 0.88
+      }
+    ]
+  },
+  "test28.jpeg": {
+    "time": 0.72,
+    "results": [
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          76,
+          426,
+          629,
+          990
+        ],
+        "vehicle_confidence": 0.6448,
+        "vehicle_prominence": 2.5621,
+        "plate_text": "SK05HG6667",
+        "confidence": 0.88,
+        "bbox": [
+          184,
+          708,
+          354,
+          755
+        ],
+        "det_confidence": 0.8554,
+        "ocr_confidence": 0.88
+      }
+    ]
+  },
+  "test29.jpeg": {
+    "time": 2.03,
+    "results": [
+      {
+        "vehicle_type": "truck",
+        "vehicle_bbox": [
+          162,
+          357,
+          605,
+          954
+        ],
+        "vehicle_confidence": 0.7163,
+        "vehicle_prominence": 2.3515,
+        "plate_text": "MH33ZA0772",
+        "confidence": 0.88,
+        "bbox": [
+          247,
+          796,
+          364,
+          825
+        ],
+        "det_confidence": 0.7407,
+        "ocr_confidence": 0.88
+      }
+    ]
+  },
+  "test3.jpg": {
+    "time": 2.93,
+    "results": [
+      {
+        "vehicle_type": "motorcycle",
+        "vehicle_bbox": [
+          1,
+          1,
+          635,
+          406
+        ],
+        "vehicle_confidence": 0.5492,
+        "vehicle_prominence": 4.4684,
+        "plate_text": "HR01R2022",
+        "confidence": 0.88,
+        "bbox": [
+          312,
+          203,
+          439,
+          269
+        ],
+        "det_confidence": 0.84,
+        "ocr_confidence": 0.88
+      }
+    ]
+  },
+  "test30.jpeg": {
+    "time": 0.71,
+    "results": [
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          175,
+          426,
+          720,
+          862
+        ],
+        "vehicle_confidence": 0.8718,
+        "vehicle_prominence": 2.1204,
+        "plate_text": "MN04SG8053",
+        "confidence": 0.9173,
+        "bbox": [
+          265,
+          692,
+          417,
+          757
+        ],
+        "det_confidence": 0.8947,
+        "ocr_confidence": 0.94
+      }
+    ]
+  },
+  "test31.jpeg": {
+    "time": 3.1,
+    "results": [
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          151,
+          569,
+          719,
+          1010
+        ],
+        "vehicle_confidence": 0.9275,
+        "vehicle_prominence": 2.3935,
+        "plate_text": "JH05BS0075",
+        "confidence": 0.88,
+        "bbox": [
+          197,
+          849,
+          305,
+          900
+        ],
+        "det_confidence": 0.8203,
+        "ocr_confidence": 0.88
+      }
+    ]
+  },
+  "test32.jpeg": {
+    "time": 4.15,
+    "results": [
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          1,
+          444,
+          544,
+          885
+        ],
+        "vehicle_confidence": 0.7657,
+        "vehicle_prominence": 2.1623,
+        "plate_text": "MH???001?",
+        "confidence": 0.7914,
+        "bbox": [
+          363,
+          712,
+          499,
+          773
+        ],
+        "det_confidence": 0.7727,
+        "ocr_confidence": 0.81
+      }
+    ]
+  },
+  "test33.jpeg": {
+    "time": 0.72,
+    "results": [
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          87,
+          535,
+          637,
+          1005
+        ],
+        "vehicle_confidence": 0.499,
+        "vehicle_prominence": 2.4118,
+        "plate_text": "MH02EM5861",
+        "confidence": 0.88,
+        "bbox": [
+          214,
+          761,
+          403,
+          810
+        ],
+        "det_confidence": 0.8237,
+        "ocr_confidence": 0.89
+      }
+    ]
+  },
+  "test34.jpeg": {
+    "time": 2.83,
+    "results": [
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          208,
+          558,
+          605,
+          880
+        ],
+        "vehicle_confidence": 0.8311,
+        "vehicle_prominence": 1.7911,
+        "plate_text": "DL63F6831",
+        "confidence": 0.88,
+        "bbox": [
+          329,
+          728,
+          448,
+          759
+        ],
+        "det_confidence": 0.7946,
+        "ocr_confidence": 0.88
+      }
+    ]
+  },
+  "test35.jpeg": {
+    "time": 55.44,
+    "results": [
+      {
+        "vehicle_type": "motorcycle",
+        "vehicle_bbox": [
+          177,
+          485,
+          479,
+          903
+        ],
+        "vehicle_confidence": 0.5291,
+        "vehicle_prominence": 1.8219,
+        "plate_text": "TS???760?",
+        "confidence": 0.8337,
+        "bbox": [
+          312,
+          761,
+          429,
+          850
+        ],
+        "det_confidence": 0.8673,
+        "ocr_confidence": 0.8
+      },
+      {
+        "vehicle_type": "vehicle",
+        "vehicle_bbox": [
+          230,
+          156,
+          616,
+          782
+        ],
+        "vehicle_confidence": 0.85,
+        "vehicle_prominence": 2.0085,
+        "plate_text": "DD13OB0027",
+        "confidence": 0.5235,
+        "bbox": [
+          252,
+          234,
+          594,
+          654
+        ],
+        "det_confidence": 0.167,
+        "ocr_confidence": 0.88
+      }
+    ]
+  },
+  "test36.jpeg": {
+    "time": 25.86,
+    "results": [
+      {
+        "vehicle_type": "motorcycle",
+        "vehicle_bbox": [
+          1,
+          471,
+          252,
+          989
+        ],
+        "vehicle_confidence": 0.8286,
+        "vehicle_prominence": 1.9685,
+        "plate_text": "TN35SE3202",
+        "confidence": 0.8959,
+        "bbox": [
+          36,
+          738,
+          195,
+          869
+        ],
+        "det_confidence": 0.9118,
+        "ocr_confidence": 0.88
+      },
+      {
+        "vehicle_type": "motorcycle",
+        "vehicle_bbox": [
+          103,
+          278,
+          443,
+          773
+        ],
+        "vehicle_confidence": 0.7765,
+        "vehicle_prominence": 1.7557,
+        "plate_text": "LD05?2474",
+        "confidence": 0.8086,
+        "bbox": [
+          358,
+          643,
+          438,
+          710
+        ],
+        "det_confidence": 0.7772,
+        "ocr_confidence": 0.84
+      },
+      {
+        "vehicle_type": "motorcycle",
+        "vehicle_bbox": [
+          344,
+          274,
+          678,
+          713
+        ],
+        "vehicle_confidence": 0.7551,
+        "vehicle_prominence": 1.5914,
+        "plate_text": "GA01?8508",
+        "confidence": 0.6907,
+        "bbox": [
+          578,
+          531,
+          649,
+          589
+        ],
+        "det_confidence": 0.5613,
+        "ocr_confidence": 0.82
+      }
+    ]
+  },
+  "test37.jpeg": {
+    "time": 23.65,
+    "results": [
+      {
+        "vehicle_type": "motorcycle",
+        "vehicle_bbox": [
+          251,
+          112,
+          560,
+          619
+        ],
+        "vehicle_confidence": 0.6988,
+        "vehicle_prominence": 2.2294,
+        "plate_text": "DD10S8532",
+        "confidence": 0.88,
+        "bbox": [
+          414,
+          458,
+          509,
+          529
+        ],
+        "det_confidence": 0.7854,
+        "ocr_confidence": 0.91
+      },
+      {
+        "vehicle_type": "motorcycle",
+        "vehicle_bbox": [
+          584,
+          142,
+          874,
+          535
+        ],
+        "vehicle_confidence": 0.2832,
+        "vehicle_prominence": 1.8571,
+        "plate_text": "MH???177?",
+        "confidence": 0.8446,
+        "bbox": [
+          779,
+          399,
+          850,
+          450
+        ],
+        "det_confidence": 0.8591,
+        "ocr_confidence": 0.83
+      },
+      {
+        "vehicle_type": "vehicle",
+        "vehicle_bbox": [
+          972,
+          188,
+          1280,
+          499
+        ],
+        "vehicle_confidence": 0.85,
+        "vehicle_prominence": 1.6979,
+        "plate_text": "OD11EJ2074",
+        "confidence": 0.88,
+        "bbox": [
+          996,
+          285,
+          1280,
+          352
+        ],
+        "det_confidence": 0.5252,
+        "ocr_confidence": 0.88
+      },
+      {
+        "vehicle_type": "vehicle",
+        "vehicle_bbox": [
+          442,
+          98,
+          675,
+          516
+        ],
+        "vehicle_confidence": 0.85,
+        "vehicle_prominence": 1.7504,
+        "plate_text": "RJ61?3326",
+        "confidence": 0.4805,
+        "bbox": [
+          473,
+          188,
+          644,
+          376
+        ],
+        "det_confidence": 0.1309,
+        "ocr_confidence": 0.83
+      }
+    ]
+  },
+  "test38.jpeg": {
+    "time": 22.44,
+    "results": [
+      {
+        "vehicle_type": "motorcycle",
+        "vehicle_bbox": [
+          399,
+          392,
+          711,
+          845
+        ],
+        "vehicle_confidence": 0.9363,
+        "vehicle_prominence": 1.7804,
+        "plate_text": "GA???648?",
+        "confidence": 0.8411,
+        "bbox": [
+          627,
+          642,
+          699,
+          682
+        ],
+        "det_confidence": 0.8322,
+        "ocr_confidence": 0.85
+      },
+      {
+        "vehicle_type": "motorcycle",
+        "vehicle_bbox": [
+          24,
+          375,
+          361,
+          852
+        ],
+        "vehicle_confidence": 0.8229,
+        "vehicle_prominence": 1.8545,
+        "plate_text": "MN???144?",
+        "confidence": 0.7447,
+        "bbox": [
+          240,
+          723,
+          326,
+          775
+        ],
+        "det_confidence": 0.6395,
+        "ocr_confidence": 0.85
+      },
+      {
+        "vehicle_type": "vehicle",
+        "vehicle_bbox": [
+          312,
+          318,
+          720,
+          717
+        ],
+        "vehicle_confidence": 0.85,
+        "vehicle_prominence": 1.6502,
+        "plate_text": "TS40L8704",
+        "confidence": 0.5044,
+        "bbox": [
+          333,
+          410,
+          702,
+          575
+        ],
+        "det_confidence": 0.1287,
+        "ocr_confidence": 0.88
+      }
+    ]
+  },
+  "test39.jpeg": {
+    "time": 2.4,
+    "results": [
+      {
+        "vehicle_type": "motorcycle",
+        "vehicle_bbox": [
+          91,
+          526,
+          357,
+          965
+        ],
+        "vehicle_confidence": 0.8748,
+        "vehicle_prominence": 1.8879,
+        "plate_text": "TS???561?",
+        "confidence": 0.6917,
+        "bbox": [
+          253,
+          760,
+          333,
+          805
+        ],
+        "det_confidence": 0.5935,
+        "ocr_confidence": 0.79
+      }
+    ]
+  },
+  "test4.jpg": {
+    "time": 1.95,
+    "results": [
+      {
+        "vehicle_type": "motorcycle",
+        "vehicle_bbox": [
+          71,
+          377,
+          270,
+          690
+        ],
+        "vehicle_confidence": 0.6324,
+        "vehicle_prominence": 2.299,
+        "plate_text": "SK67ZG5112",
+        "confidence": 0.88,
+        "bbox": [
+          80,
+          469,
+          161,
+          515
+        ],
+        "det_confidence": 0.8644,
+        "ocr_confidence": 0.89
+      }
+    ]
+  },
+  "test40.jpeg": {
+    "time": 31.99,
+    "results": [
+      {
+        "vehicle_type": "motorcycle",
+        "vehicle_bbox": [
+          506,
+          293,
+          677,
+          662
+        ],
+        "vehicle_confidence": 0.8397,
+        "vehicle_prominence": 2.0443,
+        "plate_text": "MH05AR5523",
+        "confidence": 0.88,
+        "bbox": [
+          600,
+          522,
+          660,
+          562
+        ],
+        "det_confidence": 0.6819,
+        "ocr_confidence": 0.91
+      },
+      {
+        "vehicle_type": "motorcycle",
+        "vehicle_bbox": [
+          0,
+          313,
+          341,
+          635
+        ],
+        "vehicle_confidence": 0.6482,
+        "vehicle_prominence": 2.1213,
+        "plate_text": "AN??P4274",
+        "confidence": 0.7603,
+        "bbox": [
+          157,
+          550,
+          224,
+          596
+        ],
+        "det_confidence": 0.7307,
+        "ocr_confidence": 0.79
+      },
+      {
+        "vehicle_type": "motorcycle",
+        "vehicle_bbox": [
+          644,
+          315,
+          852,
+          615
+        ],
+        "vehicle_confidence": 0.7485,
+        "vehicle_prominence": 1.9115,
+        "plate_text": "MHD?????",
+        "confidence": 0.7384,
+        "bbox": [
+          788,
+          514,
+          844,
+          554
+        ],
+        "det_confidence": 0.7867,
+        "ocr_confidence": 0.69
+      },
+      {
+        "vehicle_type": "motorcycle",
+        "vehicle_bbox": [
+          285,
+          294,
+          471,
+          617
+        ],
+        "vehicle_confidence": 0.5332,
+        "vehicle_prominence": 1.9095,
+        "plate_text": "MH01?0105",
+        "confidence": 0.7441,
+        "bbox": [
+          360,
+          545,
+          427,
+          579
+        ],
+        "det_confidence": 0.6782,
+        "ocr_confidence": 0.81
+      },
+      {
+        "vehicle_type": "vehicle",
+        "vehicle_bbox": [
+          472,
+          188,
+          791,
+          554
+        ],
+        "vehicle_confidence": 0.85,
+        "vehicle_prominence": 1.9189,
+        "plate_text": "MH1?????",
+        "confidence": 0.6386,
+        "bbox": [
+          498,
+          282,
+          765,
+          410
+        ],
+        "det_confidence": 0.5972,
+        "ocr_confidence": 0.68
+      },
+      {
+        "vehicle_type": "motorcycle",
+        "vehicle_bbox": [
+          873,
+          330,
+          1166,
+          607
+        ],
+        "vehicle_confidence": 0.4714,
+        "vehicle_prominence": 1.9503,
+        "plate_text": "MH???1771",
+        "confidence": 0.505,
+        "bbox": [
+          957,
+          319,
+          1085,
+          447
+        ],
+        "det_confidence": 0.19,
+        "ocr_confidence": 0.82
+      },
+      {
+        "vehicle_type": "vehicle",
+        "vehicle_bbox": [
+          1013,
+          230,
+          1280,
+          582
+        ],
+        "vehicle_confidence": 0.85,
+        "vehicle_prominence": 1.9226,
+        "plate_text": "BR42ZE3204",
+        "confidence": 0.5,
+        "bbox": [
+          1040,
+          324,
+          1280,
+          438
+        ],
+        "det_confidence": 0.1201,
+        "ocr_confidence": 0.88
+      }
+    ]
+  },
+  "test41.jpeg": {
+    "time": 81.9,
+    "results": [
+      {
+        "vehicle_type": "motorcycle",
+        "vehicle_bbox": [
+          655,
+          93,
+          919,
+          610
+        ],
+        "vehicle_confidence": 0.8959,
+        "vehicle_prominence": 2.1387,
+        "plate_text": "MH???201?",
+        "confidence": 0.69,
+        "bbox": [
+          711,
+          372,
+          814,
+          451
+        ],
+        "det_confidence": 0.5899,
+        "ocr_confidence": 0.79
+      },
+      {
+        "vehicle_type": "vehicle",
+        "vehicle_bbox": [
+          472,
+          0,
+          1114,
+          582
+        ],
+        "vehicle_confidence": 0.85,
+        "vehicle_prominence": 2.833,
+        "plate_text": "MH11EA4326",
+        "confidence": 0.4884,
+        "bbox": [
+          479,
+          0,
+          1107,
+          457
+        ],
+        "det_confidence": 0.0969,
+        "ocr_confidence": 0.88
+      },
+      {
+        "vehicle_type": "motorcycle",
+        "vehicle_bbox": [
+          311,
+          91,
+          554,
+          479
+        ],
+        "vehicle_confidence": 0.8918,
+        "vehicle_prominence": 1.6375,
+        "plate_text": "MH???179?",
+        "confidence": 0.4952,
+        "bbox": [
+          333,
+          302,
+          401,
+          349
+        ],
+        "det_confidence": 0.1404,
+        "ocr_confidence": 0.85
+      }
+    ]
+  },
+  "test42.jpeg": {
+    "time": 4.87,
+    "results": [
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          353,
+          210,
+          1076,
+          646
+        ],
+        "vehicle_confidence": 0.8941,
+        "vehicle_prominence": 2.095,
+        "plate_text": "MH05EO2501",
+        "confidence": 0.88,
+        "bbox": [
+          856,
+          526,
+          983,
+          557
+        ],
+        "det_confidence": 0.8182,
+        "ocr_confidence": 0.88
+      },
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          0,
+          226,
+          486,
+          688
+        ],
+        "vehicle_confidence": 0.9195,
+        "vehicle_prominence": 1.9992,
+        "plate_text": "MH04EX9621",
+        "confidence": 0.88,
+        "bbox": [
+          220,
+          539,
+          383,
+          584
+        ],
+        "det_confidence": 0.8399,
+        "ocr_confidence": 0.88
+      },
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          846,
+          243,
+          1497,
+          616
+        ],
+        "vehicle_confidence": 0.8394,
+        "vehicle_prominence": 1.8772,
+        "plate_text": "SK05SJ5860",
+        "confidence": 0.88,
+        "bbox": [
+          1357,
+          491,
+          1455,
+          522
+        ],
+        "det_confidence": 0.4761,
+        "ocr_confidence": 0.88
+      }
+    ]
+  },
+  "test43.jpeg": {
+    "time": 4.18,
+    "results": [
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          2,
+          563,
+          612,
+          1319
+        ],
+        "vehicle_confidence": 0.9452,
+        "vehicle_prominence": 2.6122,
+        "plate_text": "GA40SG5717",
+        "confidence": 0.8813,
+        "bbox": [
+          442,
+          1017,
+          575,
+          1139
+        ],
+        "det_confidence": 0.8826,
+        "ocr_confidence": 0.88
+      },
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          229,
+          581,
+          782,
+          919
+        ],
+        "vehicle_confidence": 0.9361,
+        "vehicle_prominence": 1.5395,
+        "plate_text": "MH53EX1107",
+        "confidence": 0.88,
+        "bbox": [
+          662,
+          740,
+          746,
+          801
+        ],
+        "det_confidence": 0.7597,
+        "ocr_confidence": 0.88
+      },
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          431,
+          538,
+          897,
+          824
+        ],
+        "vehicle_confidence": 0.7309,
+        "vehicle_prominence": 1.3088,
+        "plate_text": "MH6?????",
+        "confidence": 0.3604,
+        "bbox": [
+          886,
+          747,
+          899,
+          785
+        ],
+        "det_confidence": 0.0408,
+        "ocr_confidence": 0.68
+      }
+    ]
+  },
+  "test44.jpeg": {
+    "time": 3.64,
+    "results": [
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          772,
+          269,
+          1179,
+          653
+        ],
+        "vehicle_confidence": 0.9065,
+        "vehicle_prominence": 1.7789,
+        "plate_text": "TS05HC2726",
+        "confidence": 0.88,
+        "bbox": [
+          832,
+          544,
+          947,
+          584
+        ],
+        "det_confidence": 0.7848,
+        "ocr_confidence": 0.88
+      },
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          547,
+          308,
+          876,
+          549
+        ],
+        "vehicle_confidence": 0.8797,
+        "vehicle_prominence": 1.3868,
+        "plate_text": "WB01E7444",
+        "confidence": 0.88,
+        "bbox": [
+          609,
+          464,
+          685,
+          486
+        ],
+        "det_confidence": 0.5236,
+        "ocr_confidence": 0.88
+      },
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          451,
+          290,
+          703,
+          471
+        ],
+        "vehicle_confidence": 0.874,
+        "vehicle_prominence": 1.143,
+        "plate_text": "MZ???6507",
+        "confidence": 0.4869,
+        "bbox": [
+          499,
+          414,
+          552,
+          429
+        ],
+        "det_confidence": 0.1637,
+        "ocr_confidence": 0.81
+      }
+    ]
+  },
+  "test45.jpeg": {
+    "time": 6.23,
+    "results": [
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          1370,
+          287,
+          1596,
+          682
+        ],
+        "vehicle_confidence": 0.8638,
+        "vehicle_prominence": 1.7035,
+        "plate_text": "MH05CA2726",
+        "confidence": 0.88,
+        "bbox": [
+          1436,
+          547,
+          1576,
+          617
+        ],
+        "det_confidence": 0.7967,
+        "ocr_confidence": 0.9
+      },
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          1143,
+          271,
+          1541,
+          519
+        ],
+        "vehicle_confidence": 0.8864,
+        "vehicle_prominence": 1.3606,
+        "plate_text": "GA40AO5520",
+        "confidence": 0.88,
+        "bbox": [
+          1200,
+          416,
+          1287,
+          457
+        ],
+        "det_confidence": 0.8516,
+        "ocr_confidence": 0.89
+      },
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          2,
+          245,
+          381,
+          531
+        ],
+        "vehicle_confidence": 0.7522,
+        "vehicle_prominence": 1.4075,
+        "plate_text": "MH20SS1910",
+        "confidence": 0.88,
+        "bbox": [
+          59,
+          441,
+          168,
+          518
+        ],
+        "det_confidence": 0.6991,
+        "ocr_confidence": 0.88
+      },
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          1058,
+          231,
+          1340,
+          408
+        ],
+        "vehicle_confidence": 0.8911,
+        "vehicle_prominence": 1.0118,
+        "plate_text": "MHC?????",
+        "confidence": 0.3712,
+        "bbox": [
+          1095,
+          351,
+          1156,
+          372
+        ],
+        "det_confidence": 0.0624,
+        "ocr_confidence": 0.68
+      }
+    ]
+  },
+  "test46.jpeg": {
+    "time": 2.9,
+    "results": [
+      {
+        "vehicle_type": "motorcycle",
+        "vehicle_bbox": [
+          178,
+          434,
+          474,
+          995
+        ],
+        "vehicle_confidence": 0.6569,
+        "vehicle_prominence": 2.0952,
+        "plate_text": "CG???858?",
+        "confidence": 0.8178,
+        "bbox": [
+          276,
+          790,
+          383,
+          848
+        ],
+        "det_confidence": 0.7857,
+        "ocr_confidence": 0.85
+      }
+    ]
+  },
+  "test47.jpeg": {
+    "time": 1.78,
+    "results": [
+      {
+        "vehicle_type": "motorcycle",
+        "vehicle_bbox": [
+          198,
+          135,
+          683,
+          1090
+        ],
+        "vehicle_confidence": 0.8647,
+        "vehicle_prominence": 3.2109,
+        "plate_text": "CG26A3062",
+        "confidence": 0.8904,
+        "bbox": [
+          244,
+          797,
+          438,
+          904
+        ],
+        "det_confidence": 0.9007,
+        "ocr_confidence": 0.88
+      }
+    ]
+  },
+  "test48.jpeg": {
+    "time": 6.47,
+    "results": [
+      {
+        "vehicle_type": "motorcycle",
+        "vehicle_bbox": [
+          138,
+          347,
+          661,
+          1222
+        ],
+        "vehicle_confidence": 0.8435,
+        "vehicle_prominence": 2.4835,
+        "plate_text": "DL17??",
+        "confidence": 0.6689,
+        "bbox": [
+          418,
+          927,
+          574,
+          1033
+        ],
+        "det_confidence": 0.6577,
+        "ocr_confidence": 0.68
+      }
+    ]
+  },
+  "test49.jpeg": {
+    "time": 1.81,
+    "results": [
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          249,
+          573,
+          719,
+          912
+        ],
+        "vehicle_confidence": 0.6646,
+        "vehicle_prominence": 1.9437,
+        "plate_text": "TN64FO5167",
+        "confidence": 0.88,
+        "bbox": [
+          315,
+          725,
+          409,
+          752
+        ],
+        "det_confidence": 0.8041,
+        "ocr_confidence": 0.88
+      }
+    ]
+  },
+  "test5.jpg": {
+    "time": 0.64,
+    "results": [
+      {
+        "vehicle_type": "truck",
+        "vehicle_bbox": [
+          2,
+          18,
+          569,
+          462
+        ],
+        "vehicle_confidence": 0.4905,
+        "vehicle_prominence": 4.6566,
+        "plate_text": "MH02CL5551",
+        "confidence": 0.8909,
+        "bbox": [
+          159,
+          369,
+          369,
+          418
+        ],
+        "det_confidence": 0.9019,
+        "ocr_confidence": 0.88
+      }
+    ]
+  },
+  "test50.jpeg": {
+    "time": 1.93,
+    "results": [
+      {
+        "vehicle_type": "truck",
+        "vehicle_bbox": [
+          245,
+          466,
+          466,
+          806
+        ],
+        "vehicle_confidence": 0.67,
+        "vehicle_prominence": 1.504,
+        "plate_text": "GA05PH9054",
+        "confidence": 0.88,
+        "bbox": [
+          322,
+          720,
+          382,
+          735
+        ],
+        "det_confidence": 0.4678,
+        "ocr_confidence": 0.88
+      }
+    ]
+  },
+  "test51.jpeg": {
+    "time": 2.05,
+    "results": [
+      {
+        "vehicle_type": "truck",
+        "vehicle_bbox": [
+          162,
+          357,
+          605,
+          954
+        ],
+        "vehicle_confidence": 0.7163,
+        "vehicle_prominence": 2.3515,
+        "plate_text": "MH33ZA0772",
+        "confidence": 0.88,
+        "bbox": [
+          247,
+          796,
+          364,
+          825
+        ],
+        "det_confidence": 0.7407,
+        "ocr_confidence": 0.88
+      }
+    ]
+  },
+  "test6.jpg": {
+    "time": 1.39,
+    "results": [
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          74,
+          13,
+          238,
+          185
+        ],
+        "vehicle_confidence": 0.9161,
+        "vehicle_prominence": 2.2581,
+        "plate_text": "UP84EP9890",
+        "confidence": 0.8951,
+        "bbox": [
+          104,
+          120,
+          161,
+          153
+        ],
+        "det_confidence": 0.9101,
+        "ocr_confidence": 0.88
+      }
+    ]
+  },
+  "test7.jpg": {
+    "time": 0.61,
+    "results": [
+      {
+        "vehicle_type": "truck",
+        "vehicle_bbox": [
+          11,
+          99,
+          271,
+          423
+        ],
+        "vehicle_confidence": 0.5606,
+        "vehicle_prominence": 3.0553,
+        "plate_text": "NL16PU9819",
+        "confidence": 0.8836,
+        "bbox": [
+          165,
+          345,
+          271,
+          385
+        ],
+        "det_confidence": 0.8871,
+        "ocr_confidence": 0.88
+      }
+    ]
+  },
+  "test8.jpg": {
+    "time": 1.99,
+    "results": [
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          1,
+          0,
+          247,
+          203
+        ],
+        "vehicle_confidence": 0.2192,
+        "vehicle_prominence": 4.6901,
+        "plate_text": "HP???0981",
+        "confidence": 0.831,
+        "bbox": [
+          55,
+          182,
+          143,
+          203
+        ],
+        "det_confidence": 0.862,
+        "ocr_confidence": 0.8
+      }
+    ]
+  },
+  "test9.jpg": {
+    "time": 0.31,
+    "results": [
+      {
+        "vehicle_type": "car",
+        "vehicle_bbox": [
+          6,
+          161,
+          254,
+          383
+        ],
+        "vehicle_confidence": 0.8851,
+        "vehicle_prominence": 2.2964,
+        "plate_text": "JK05H3594",
+        "confidence": 0.917,
+        "bbox": [
+          77,
+          329,
+          172,
+          353
+        ],
+        "det_confidence": 0.8641,
+        "ocr_confidence": 0.97
+      }
+    ]
+  }
+}
