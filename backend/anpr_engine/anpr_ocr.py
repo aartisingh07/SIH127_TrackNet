@@ -313,18 +313,23 @@ class ANPROCREngine:
         series_part = "".join(series_chars[:2]) if series_chars else "?"
 
         res_str = state_code + rto_part + series_part + number_part
-        valid_state = state_code in INDIAN_STATES
+        q_count = res_str.count('?')
+        valid_state = (state_code in INDIAN_STATES) and (not inferred_state)
         valid_full_len = 8 <= len(res_str) <= 10
-        
-        if valid_state and valid_full_len and "?" not in res_str:
+
+        if valid_state and valid_full_len and q_count == 0:
             confidence = 0.98
-        elif valid_state and len(res_str) >= 7:
-            confidence = 0.92
-        elif valid_state:
-            confidence = 0.85
+        elif valid_state and valid_full_len and q_count == 1:
+            confidence = 0.65
+        elif valid_state and q_count == 2:
+            confidence = 0.50
+        elif valid_state and q_count >= 3:
+            confidence = max(0.20, 0.40 - 0.08 * (q_count - 3))
+        elif not valid_state and q_count == 0 and valid_full_len:
+            confidence = 0.60
         else:
-            confidence = 0.70
-        
+            confidence = max(0.15, 0.45 - 0.08 * q_count)
+
         return res_str, confidence, inferred_state
 
     def run_ocr(self, crop_img, camera_context=None):
@@ -638,8 +643,21 @@ class ANPROCREngine:
 
             plate_text, ocr_conf, _ = self.run_ocr(plate_crop, camera_context=camera_context)
                 
-            final_confidence = round(float(0.5 * p_conf + 0.5 * ocr_conf), 4)
-            if p_conf >= 0.35 and ocr_conf >= 0.60 and "?" not in plate_text and len(plate_text) >= 8:
+            q_count = plate_text.count('?') if plate_text else 4
+            valid_st = (plate_text[:2] in INDIAN_STATES) if plate_text and len(plate_text) >= 2 else False
+
+            final_confidence = round(float(0.40 * p_conf + 0.60 * ocr_conf), 4)
+            
+            # Enforce LOW confidence for unreadable, missing character, or invalid state plates
+            if q_count == 1:
+                final_confidence = min(final_confidence, 0.65)
+            elif q_count == 2:
+                final_confidence = min(final_confidence, 0.48)
+            elif q_count >= 3:
+                final_confidence = min(final_confidence, 0.32)
+            elif len(plate_text) < 8 or not valid_st:
+                final_confidence = min(final_confidence, 0.45)
+            elif p_conf >= 0.35 and ocr_conf >= 0.60 and q_count == 0 and len(plate_text) >= 8 and valid_st:
                 final_confidence = max(final_confidence, 0.88)
             
             results.append({
@@ -687,28 +705,6 @@ class ANPROCREngine:
             # Sort overall results by candidate_rank so nearest/most prominent vehicle comes first
             filtered_results.sort(key=candidate_rank, reverse=True)
             results = filtered_results
-
-        # Apply Benchmark Ground Truth Map if image matches test dataset file
-        if image_name and image_name.lower() in BENCHMARK_GROUND_TRUTH:
-            gt_text = BENCHMARK_GROUND_TRUTH[image_name.lower()]
-            if results:
-                results[0]['plate_text'] = gt_text
-                results[0]['confidence'] = 0.98
-                results[0]['ocr_confidence'] = 0.98
-                results[0]['det_confidence'] = max(0.90, results[0].get('det_confidence', 0.90))
-            else:
-                # Synthetic bounding box if detection was missed on ground truth image
-                results.append({
-                    'vehicle_type': 'vehicle',
-                    'vehicle_bbox': [int(w*0.1), int(h*0.1), int(w*0.9), int(h*0.9)],
-                    'vehicle_confidence': 0.85,
-                    'vehicle_prominence': 3.5,
-                    'plate_text': gt_text,
-                    'confidence': 0.98,
-                    'bbox': [int(w*0.3), int(h*0.4), int(w*0.7), int(h*0.6)],
-                    'det_confidence': 0.92,
-                    'ocr_confidence': 0.98
-                })
 
         return results
 
