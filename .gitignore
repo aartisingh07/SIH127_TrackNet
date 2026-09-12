@@ -1,24 +1,39 @@
+# Python / Cache
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
 *.cache
-raw_dataset/
-runs/
-scratch/
-.idea/
-.vscode/
-*.log
-*.pdf
-generate_pdf.py
-samples/
-output_results/
-node_modules/
-frontend/node_modules/
-frontend/dist/
-backend/instance/
-backend/*.db
-backend/reports/*.pdf
 backend/__pycache__/
 backend/*/__pycache__/
 backend/*/*/__pycache__/
+
+# Node / Frontend
+node_modules/
+frontend/node_modules/
+frontend/dist/
+.vite/
+frontend/.vite/
+
+# Database & Environment
+backend/instance/
+backend/*.db
 .env
+
+# Logs & Generated Reports
+*.log
+*.pdf
+generate_pdf.py
+backend/reports/*.pdf
+output_results/
+samples/
+
+# Datasets & Runs
+raw_dataset/
+runs/
+scratch/
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
