@@ -226,7 +226,11 @@ export default function ANPRHub({ cityCameras, onANPRSuccess, onViewTrajectory }
               disabled={loading}
               onClick={handleRunANPR}
             >
-              {loading ? <i className="fa-solid fa-spinner fa-spin"></i> : <i className="fa-solid fa-play"></i>} Run ANPR on Selected Image
+              {loading ? (
+                <span><i className="fa-solid fa-spinner fa-spin"></i> Processing ANPR...</span>
+              ) : (
+                <span><i className="fa-solid fa-play"></i> Run ANPR on Selected Image</span>
+              )}
             </button>
           </div>
 
@@ -236,7 +240,11 @@ export default function ANPRHub({ cityCameras, onANPRSuccess, onViewTrajectory }
               <i className="fa-solid fa-square-check"></i> Recognized Output & Engine Status
             </h3>
             <div id="output-cards-container" className="cards-list">
-              {resultData && resultData.detections && resultData.detections.length > 0 ? (
+              {loading ? (
+                <div className="no-data-msg" style={{ fontSize: '0.85rem', color: '#38bdf8', fontStyle: 'italic', textAlign: 'center', padding: '16px 0' }}>
+                  <i className="fa-solid fa-spinner fa-spin"></i> Running ANPR inference pipeline...
+                </div>
+              ) : resultData && resultData.detections && resultData.detections.length > 0 ? (
                 resultData.detections.map((det, idx) => (
                   <div key={idx} className="result-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', background: 'rgba(15, 23, 42, 0.9)', border: '1px solid #1e293b', borderRadius: '8px', padding: '12px' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
@@ -298,7 +306,18 @@ export default function ANPRHub({ cityCameras, onANPRSuccess, onViewTrajectory }
                     <div className="card-metrics" style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.82rem', color: '#cbd5e1' }}>
                       <div><b>Step 1 (Vehicle):</b> {det.vehicle_type?.toUpperCase() || 'VEHICLE'} ({(det.vehicle_confidence * 100).toFixed(1)}%)</div>
                       <div><b>Step 2 (Plate Box):</b> [{det.bbox?.join(', ')}]</div>
-                      <div><b>Step 3 (Exact Conf):</b> <b style={{ color: '#38bdf8' }}>{(det.confidence * 100).toFixed(1)}%</b></div>
+                      <div>
+                        <b>Step 3 (Exact Conf):</b> <b style={{ color: '#38bdf8' }}>{(det.confidence * 100).toFixed(1)}%</b>
+                        {det.confidence_flag ? (
+                          <span style={{ background: 'rgba(74, 222, 128, 0.2)', color: '#4ade80', padding: '2px 6px', borderRadius: '4px', fontSize: '0.72rem', marginLeft: '6px' }}>
+                            <i className="fa-solid fa-circle-check"></i> Pattern Validated
+                          </span>
+                        ) : (
+                          <span style={{ background: 'rgba(249, 115, 22, 0.2)', color: '#f97316', padding: '2px 6px', borderRadius: '4px', fontSize: '0.72rem', marginLeft: '6px' }}>
+                            <i className="fa-solid fa-triangle-exclamation"></i> Format Warning (Capped)
+                          </span>
+                        )}
+                      </div>
                       <div><b>DB Status:</b> <span style={{ color: '#4ade80' }}><i className="fa-solid fa-database"></i> Saved to SQLite</span></div>
                     </div>
 
@@ -338,7 +357,11 @@ export default function ANPRHub({ cityCameras, onANPRSuccess, onViewTrajectory }
             <h2><i className="fa-solid fa-object-group"></i> Detection & Recognition Result</h2>
             <div className="header-meta">
               <span id="processing-time" className="time-badge">
-                Latency: {latency !== null ? `${latency} ms` : '-- ms'}
+                {loading ? (
+                  <span className="pulse-text"><i className="fa-solid fa-spinner fa-spin"></i> Processing...</span>
+                ) : (
+                  `Latency: ${latency !== null ? `${latency} ms` : '-- ms'}`
+                )}
               </span>
             </div>
           </div>
@@ -351,7 +374,7 @@ export default function ANPRHub({ cityCameras, onANPRSuccess, onViewTrajectory }
                   className="zoom-btn"
                   onClick={handleZoomOut}
                   title="Zoom Out (-)"
-                  disabled={!resultData?.annotated_image_b64}
+                  disabled={!resultData?.annotated_image_b64 || loading}
                 >
                   <i className="fa-solid fa-minus"></i>
                 </button>
@@ -360,7 +383,7 @@ export default function ANPRHub({ cityCameras, onANPRSuccess, onViewTrajectory }
                   className="zoom-btn"
                   onClick={handleZoomIn}
                   title="Zoom In (+)"
-                  disabled={!resultData?.annotated_image_b64}
+                  disabled={!resultData?.annotated_image_b64 || loading}
                 >
                   <i className="fa-solid fa-plus"></i>
                 </button>
@@ -368,7 +391,7 @@ export default function ANPRHub({ cityCameras, onANPRSuccess, onViewTrajectory }
                   className="zoom-btn"
                   onClick={handleResetZoom}
                   title="Reset Zoom & Pan"
-                  disabled={!resultData?.annotated_image_b64}
+                  disabled={!resultData?.annotated_image_b64 || loading}
                 >
                   <i className="fa-solid fa-rotate-left"></i>
                 </button>
@@ -376,7 +399,7 @@ export default function ANPRHub({ cityCameras, onANPRSuccess, onViewTrajectory }
                   className="zoom-btn modal-btn"
                   onClick={() => setIsModalOpen(true)}
                   title="Expand Fullscreen Lightbox"
-                  disabled={!resultData?.annotated_image_b64}
+                  disabled={!resultData?.annotated_image_b64 || loading}
                 >
                   <i className="fa-solid fa-expand"></i>
                 </button>
@@ -393,9 +416,25 @@ export default function ANPRHub({ cityCameras, onANPRSuccess, onViewTrajectory }
               onDoubleClick={handleDoubleClick}
               style={{
                 overflow: 'hidden',
+                position: 'relative',
                 cursor: zoomScale > 1 ? (isDragging ? 'grabbing' : 'grab') : 'default'
               }}
             >
+              {loading && (
+                <div className="anpr-loading-overlay">
+                  <div className="spinner-ring"></div>
+                  <div className="loading-status-text">
+                    <i className="fa-solid fa-gear fa-spin"></i> Running ANPR on {selectedImage}...
+                  </div>
+                  <div className="loading-sub-text">
+                    YOLO Bounding Box Detection • 5x Super-Resolution Upscaling • CLAHE & Positional Indian Grammar Verification
+                  </div>
+                  <div className="loading-progress-bar">
+                    <div className="progress-fill"></div>
+                  </div>
+                </div>
+              )}
+
               {resultData && resultData.annotated_image_b64 ? (
                 <img
                   src={`data:image/jpeg;base64,${resultData.annotated_image_b64}`}

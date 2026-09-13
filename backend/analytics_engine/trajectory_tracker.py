@@ -82,7 +82,7 @@ class TrajectoryTracker:
         self.session.commit()
         print("[TrajectoryTracker] Seeded initial benchmark ANPR detection events.")
 
-    def add_detection_record(self, plate_text, camera_id, confidence=0.92, custom_timestamp=None):
+    def add_detection_record(self, plate_text, camera_id, confidence=0.92, custom_timestamp=None, confidence_flag=True):
         """Records a new ANPR camera detection event and seeds a unique regional multi-camera trajectory sequence."""
         plate_clean = plate_text.upper().strip()
         
@@ -137,6 +137,7 @@ class TrajectoryTracker:
                             camera_id=step_cam.camera_id,
                             timestamp=ev_time,
                             ocr_confidence=float(confidence),
+                            confidence_flag=bool(confidence_flag),
                             vehicle_type="car",
                             direction="N/A"
                         )
@@ -159,6 +160,7 @@ class TrajectoryTracker:
                 camera_id=camera_id,
                 timestamp=t_stamp,
                 ocr_confidence=float(confidence),
+                confidence_flag=bool(confidence_flag),
                 vehicle_type="car",
                 direction="N/A"
             )
@@ -168,7 +170,7 @@ class TrajectoryTracker:
         except Exception as ex:
             self.session.rollback()
             print(f"[TrajectoryTracker] Error adding single detection event: {ex}")
-            return {'plate_number': plate_clean, 'camera_id': camera_id, 'timestamp': str(t_stamp)}
+            return {'plate_number': plate_clean, 'camera_id': camera_id, 'timestamp': str(t_stamp), 'confidence_flag': bool(confidence_flag)}
 
     def reconstruct_trajectory(self, target_plate):
         """

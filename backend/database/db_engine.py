@@ -58,5 +58,8 @@ def init_db(db_url=None):
     engine = get_db_engine(db_url)
     # Import models to register schemas with Base
     import database.models  # noqa: F401
-    Base.metadata.create_all(bind=engine)
+    try:
+        Base.metadata.create_all(bind=engine, checkfirst=True)
+    except Exception as ex:
+        pass
     print(f"[DBEngine] Database initialized successfully with URI: {engine.url}")

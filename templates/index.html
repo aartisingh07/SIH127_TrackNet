@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City-Wide ANPR Trajectory Tracking & Traffic Analytics Platform</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Leaflet GIS Map CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="dark-theme">
+    <!-- Top Header Bar -->
+    <header class="app-header">
+        <div class="logo-area">
+            <div class="logo-icon"><i class="fa-solid fa-camera-rotate"></i></div>
+            <div class="logo-text">
+                <h1>TrackNet</h1>
+                <p>Multi-Camera Trajectory Tracking & Urban Traffic Analytics</p>
+            </div>
+        </div>
+        <div class="header-status">
+            <div class="status-badge live-dot">
+                <span class="dot"></span> 8 CAMERA NODES ACTIVE
+            </div>
+            <div class="status-badge sys-ok">
+                <i class="fa-solid fa-microchip"></i> OCR ENGINE: ONLINE
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Navigation Tabs -->
+    <nav class="main-nav">
+        <button class="nav-tab active" data-tab="anpr-hub"><i class="fa-solid fa-eye"></i> ANPR & OCR Test Hub</button>
+        <button class="nav-tab" data-tab="trajectory-tracker"><i class="fa-solid fa-route"></i> Multi-Camera
+            Trajectory</button>
+        <button class="nav-tab" data-tab="macro-analytics"><i class="fa-solid fa-chart-line"></i> Macro Traffic
+            Analytics</button>
+        <button class="nav-tab" data-tab="alert-watchdog"><i class="fa-solid fa-shield-halved"></i> Blacklist &
+            Alerts</button>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="app-container">
+        <!-- Tab 1: ANPR & OCR Test Hub -->
+        <section id="anpr-hub" class="tab-content active">
+            <div class="grid-layout">
+                <!-- Left Controls Panel -->
+                <div class="panel control-panel">
+                    <div class="panel-header">
+                        <h2><i class="fa-solid fa-sliders"></i> Input & Controls</h2>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Select Test Dataset Image:</label>
+                        <select id="test-image-select" class="form-select">
+                            <option value="">-- Choose from test_dataset/ --</option>
+                        </select>
+                        <button id="btn-run-test" class="btn btn-primary mt-2"><i class="fa-solid fa-play"></i> Run ANPR
+                            on Test Image</button>
+                    </div>
+
+                    <div class="divider"><span>OR</span></div>
+
+                    <div class="input-group">
+                        <label>Upload Custom Traffic Image:</label>
+                        <input type="file" id="file-upload-input" accept="image/*" class="file-input">
+                        <label for="file-upload-input" class="file-label">
+                            <i class="fa-solid fa-cloud-arrow-up"></i> Browse Traffic Image
+                        </label>
+                    </div>
+
+                    <div class="input-group mt-3">
+                        <label>Simulated Camera Location Node:</label>
+                        <select id="camera-node-select" class="form-select">
+                            <option value="CAM-01">CAM-01: Connaught Place North Node</option>
+                            <option value="CAM-02">CAM-02: Ring Road Lajpat Nagar</option>
+                            <option value="CAM-03">CAM-03: AIIMS Flyover Intersection</option>
+                            <option value="CAM-04">CAM-04: DND Flyway Expressway</option>
+                            <option value="CAM-05">CAM-05: IGI Airport Terminal 3 Toll</option>
+                            <option value="CAM-06">CAM-06: Cyber Hub Gurgaon Highway</option>
+                            <option value="CAM-07">CAM-07: Noida Sector 18 Outer Circle</option>
+                            <option value="CAM-08">CAM-08: ISBT Kashmiri Gate Express</option>
+                        </select>
+                    </div>
+
+                    <div class="specs-card mt-3">
+                        <h4><i class="fa-solid fa-microchip"></i> Engine Pipeline Info</h4>
+                        <ul>
+                            <li><b>Primary OCR:</b> EasyOCR High-Precision Engine</li>
+                            <li><b>Fallback OCR:</b> Multi-Variant Super-Resolution Engine</li>
+                            <li><b>Preprocessors:</b> CLAHE, BlackHat, Sobel, Adaptive Thresh</li>
+                            <li><b>Format Rule:</b> Indian Registration Syntax Check</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Right Display Panel -->
+                <div class="panel display-panel">
+                    <div class="panel-header">
+                        <h2><i class="fa-solid fa-expand"></i> Detection & Recognition Result</h2>
+                        <div id="processing-time" class="time-tag">Latency: -- ms</div>
+                    </div>
+
+                    <div class="result-display-area">
+                        <div class="image-box">
+                            <div class="image-box-header">
+                                <h3>Detection & Bounding Box Overlay</h3>
+                                <div class="zoom-toolbar">
+                                    <button id="btn-zoom-in" class="zoom-btn" title="Zoom In (+)"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                                    <button id="btn-zoom-out" class="zoom-btn" title="Zoom Out (-)"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                                    <button id="btn-zoom-reset" class="zoom-btn" title="Reset Zoom (100%)"><i class="fa-solid fa-rotate-left"></i></button>
+                                    <span id="zoom-level-indicator" class="zoom-level-tag">100%</span>
+                                    <button id="btn-zoom-modal" class="zoom-btn modal-btn" title="Fullscreen Zoom Viewer"><i class="fa-solid fa-expand"></i></button>
+                                </div>
+                            </div>
+                            <div id="image-container" class="image-wrapper">
+                                <div class="placeholder-text"><i class="fa-solid fa-image"></i> Select or upload an
+                                    image to run ANPR engine</div>
+                                <img id="annotated-result-img" class="result-img hidden" alt="Detection Output">
+                            </div>
+                        </div>
+
+                        <div class="results-cards-area">
+                            <h3>Recognized Output</h3>
+                            <div id="output-cards-container" class="cards-list">
+                                <div class="no-data-msg">No active detections</div>
+                            </div>
+
+                            <h3 class="mt-3">OpenCV Preprocessing Pipeline Steps</h3>
+                            <div id="preprocessing-steps-grid" class="prep-grid">
+                                <div class="prep-card">
+                                    <span>CLAHE Contrast</span>
+                                    <div class="prep-img-placeholder" id="prep-clahe"></div>
+                                </div>
+                                <div class="prep-card">
+                                    <span>BlackHat Filter</span>
+                                    <div class="prep-img-placeholder" id="prep-blackhat"></div>
+                                </div>
+                                <div class="prep-card">
+                                    <span>Adaptive Thresh</span>
+                                    <div class="prep-img-placeholder" id="prep-thresh"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab 2: Multi-Camera Trajectory -->
+        <section id="trajectory-tracker" class="tab-content">
+            <div class="trajectory-layout">
+                <!-- Search & Timeline Sidebar -->
+                <div class="panel sidebar-panel">
+                    <div class="panel-header">
+                        <h2><i class="fa-solid fa-magnifying-glass-location"></i> Trajectory Lookup</h2>
+                    </div>
+
+                    <div class="search-box">
+                        <input type="text" id="plate-search-input" class="form-input"
+                            placeholder="e.g. MH12AB1234 or DL6CJ8404" value="MH12AB1234">
+                        <button id="btn-search-trajectory" class="btn btn-primary"><i class="fa-solid fa-search"></i>
+                            Track Route</button>
+                    </div>
+
+                    <div class="quick-plates">
+                        <span>Quick Presets:</span>
+                        <button class="badge-btn" onclick="quickTrack('MH12AB1234')">MH12AB1234</button>
+                        <button class="badge-btn" onclick="quickTrack('DL6CJ8404')">DL6CJ8404</button>
+                        <button class="badge-btn" onclick="quickTrack('AP05BY7799')">AP05BY7799</button>
+                    </div>
+
+                    <div class="trajectory-summary-card mt-3">
+                        <div class="summary-item">
+                            <span class="label">Target Plate:</span>
+                            <span id="traj-plate-display" class="val highlight">--</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Camera Sequence:</span>
+                            <span id="traj-seq-display" class="val">--</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Total Distance:</span>
+                            <span id="traj-dist-display" class="val">-- km</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Max Speed:</span>
+                            <span id="traj-speed-display" class="val">-- km/h</span>
+                        </div>
+                    </div>
+
+                    <div class="pdf-export-area mt-3">
+                        <button id="btn-export-pdf" class="btn btn-secondary full-width"><i
+                                class="fa-solid fa-file-pdf"></i> Download PDF Trajectory Report</button>
+                    </div>
+
+                    <div class="panel-header mt-3">
+                        <h2><i class="fa-solid fa-timeline"></i> Spatial-Temporal Sequence</h2>
+                    </div>
+                    <div id="timeline-list" class="timeline-container">
+                        <!-- Timeline events rendered dynamically -->
+                    </div>
+                </div>
+
+                <!-- GIS Map Area -->
+                <div class="panel map-panel">
+                    <div class="panel-header">
+                        <h2><i class="fa-solid fa-map-location-dot"></i> City Multi-Camera GIS Trajectory Map</h2>
+                        <div class="map-legend">
+                            <span class="legend-item"><span class="legend-dot green"></span> Camera Node</span>
+                            <span class="legend-item"><span class="legend-dot blue"></span> Trajectory Path</span>
+                        </div>
+                    </div>
+                    <div id="gis-map" class="map-container"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab 3: Macro Traffic Analytics -->
+        <section id="macro-analytics" class="tab-content">
+            <div class="analytics-layout">
+                <!-- Metrics Bar -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="icon-box"><i class="fa-solid fa-video"></i></div>
+                        <div class="metric-info">
+                            <span class="title">Active ANPR Nodes</span>
+                            <h3 id="stat-cameras">8</h3>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="icon-box blue"><i class="fa-solid fa-car"></i></div>
+                        <div class="metric-info">
+                            <span class="title">24h Vehicle Volume</span>
+                            <h3 id="stat-volume">--</h3>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="icon-box green"><i class="fa-solid fa-gauge-high"></i></div>
+                        <div class="metric-info">
+                            <span class="title">City Avg Speed</span>
+                            <h3 id="stat-avg-speed">-- km/h</h3>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="icon-box red"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                        <div class="metric-info">
+                            <span class="title">Active Bottlenecks</span>
+                            <h3 id="stat-bottlenecks">--</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="charts-map-grid mt-3">
+                    <!-- GIS Traffic Heatmap -->
+                    <div class="panel map-analytics-panel">
+                        <div class="panel-header">
+                            <h2><i class="fa-solid fa-fire"></i> City Traffic Density GIS Heatmap</h2>
+                        </div>
+                        <div id="heatmap-gis-map" class="map-container"></div>
+                    </div>
+
+                    <!-- OD Matrix & Bottlenecks -->
+                    <div class="panel analytics-tables-panel">
+                        <div class="panel-header">
+                            <h2><i class="fa-solid fa-arrows-split-up-and-left"></i> Origin-Destination (O-D) Movement
+                                Matrix</h2>
+                        </div>
+                        <div class="table-wrapper">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Origin Zone</th>
+                                        <th>Destination Zone</th>
+                                        <th>Vehicle Flow Count</th>
+                                        <th>Corridor Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="od-matrix-body">
+                                    <!-- Dynamic rows -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="panel-header mt-3">
+                            <h2><i class="fa-solid fa-triangle-exclamation"></i> Congestion Bottleneck Corridors</h2>
+                        </div>
+                        <div class="table-wrapper">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Camera Node</th>
+                                        <th>Location</th>
+                                        <th>Sector</th>
+                                        <th>Hourly Count</th>
+                                        <th>Avg Speed</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bottlenecks-body">
+                                    <!-- Dynamic rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab 4: Blacklist & Alerts -->
+        <section id="alert-watchdog" class="tab-content">
+            <div class="grid-layout">
+                <!-- Add to Blacklist Form -->
+                <div class="panel control-panel">
+                    <div class="panel-header">
+                        <h2><i class="fa-solid fa-shield-plus"></i> Register Hotlist Vehicle</h2>
+                    </div>
+
+                    <div class="input-group">
+                        <label>License Plate Number:</label>
+                        <input type="text" id="blacklist-plate-input" class="form-input" placeholder="e.g. MH12AB1234">
+                    </div>
+                    <div class="input-group mt-2">
+                        <label>Reason / Flag Description:</label>
+                        <input type="text" id="blacklist-reason-input" class="form-input"
+                            placeholder="e.g. Stolen Vehicle Alert">
+                    </div>
+                    <div class="input-group mt-2">
+                        <label>Risk Level:</label>
+                        <select id="blacklist-risk-select" class="form-select">
+                            <option value="CRITICAL">CRITICAL</option>
+                            <option value="HIGH" selected>HIGH</option>
+                            <option value="MEDIUM">MEDIUM</option>
+                        </select>
+                    </div>
+
+                    <button id="btn-add-blacklist" class="btn btn-accent mt-3"><i class="fa-solid fa-plus"></i> Add to
+                        Hotlist Watchdog</button>
+                </div>
+
+                <!-- Active Blacklist Table -->
+                <div class="panel display-panel">
+                    <div class="panel-header">
+                        <h2><i class="fa-solid fa-list-check"></i> Active Blacklist Watchdog Registry</h2>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>License Plate</th>
+                                    <th>Flag Reason</th>
+                                    <th>Risk Level</th>
+                                    <th>Registration Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="blacklist-table-body">
+                                <!-- Dynamic rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Fullscreen Image Zoom Modal -->
+    <div id="image-modal" class="image-modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title"><i class="fa-solid fa-magnifying-glass"></i> Inspection Zoom Viewer</span>
+                <div class="modal-controls">
+                    <button id="modal-zoom-in" class="zoom-btn" title="Zoom In"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                    <button id="modal-zoom-out" class="zoom-btn" title="Zoom Out"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                    <button id="modal-zoom-reset" class="zoom-btn" title="Reset Zoom"><i class="fa-solid fa-rotate-left"></i></button>
+                    <span id="modal-zoom-indicator" class="zoom-level-tag">100%</span>
+                    <button id="modal-close" class="modal-close-btn" title="Close Viewer">&times;</button>
+                </div>
+            </div>
+            <div id="modal-img-wrapper" class="modal-img-wrapper">
+                <img id="modal-img" alt="Zoomed Output">
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Leaflet Heatmap Plugin -->
+    <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+    <!-- Custom App JS -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+
+</html>
