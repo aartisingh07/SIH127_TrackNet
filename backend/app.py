@@ -69,6 +69,15 @@ def image_to_base64(img_np):
     return base64.b64encode(buffer).decode('utf-8')
 
 
+def safe_image_to_base64_bgr(arr, fallback_img):
+    target = arr if (arr is not None and getattr(arr, 'size', 0) > 0) else fallback_img
+    if target is None or getattr(target, 'size', 0) == 0:
+        return ""
+    if len(target.shape) == 2:
+        target = cv2.cvtColor(target, cv2.COLOR_GRAY2BGR)
+    return image_to_base64(target)
+
+
 def draw_2stage_annotations(img, results):
     """Draws Stage-1 Vehicle Box (Blue) and Stage-2 License Plate Box (Green)."""
     annotated = img.copy()
@@ -192,9 +201,9 @@ def api_anpr_detect():
 
         _, prep_dict = anpr_engine.preprocess_image(np_img)
         preprocessed_previews = {
-            'clahe': image_to_base64(cv2.cvtColor(prep_dict.get('clahe', np_img), cv2.COLOR_GRAY2BGR)),
-            'blackhat': image_to_base64(cv2.cvtColor(prep_dict.get('blackhat', np_img), cv2.COLOR_GRAY2BGR)),
-            'thresh': image_to_base64(cv2.cvtColor(prep_dict.get('thresh', np_img), cv2.COLOR_GRAY2BGR))
+            'clahe': safe_image_to_base64_bgr(prep_dict.get('clahe'), np_img),
+            'blackhat': safe_image_to_base64_bgr(prep_dict.get('blackhat'), np_img),
+            'thresh': safe_image_to_base64_bgr(prep_dict.get('thresh'), np_img)
         }
 
         return jsonify({
@@ -301,9 +310,9 @@ def run_test_dataset_image(filename):
 
         _, prep_dict = anpr_engine.preprocess_image(img)
         preprocessed_previews = {
-            'clahe': image_to_base64(cv2.cvtColor(prep_dict.get('clahe', img), cv2.COLOR_GRAY2BGR)),
-            'blackhat': image_to_base64(cv2.cvtColor(prep_dict.get('blackhat', img), cv2.COLOR_GRAY2BGR)),
-            'thresh': image_to_base64(cv2.cvtColor(prep_dict.get('thresh', img), cv2.COLOR_GRAY2BGR))
+            'clahe': safe_image_to_base64_bgr(prep_dict.get('clahe'), img),
+            'blackhat': safe_image_to_base64_bgr(prep_dict.get('blackhat'), img),
+            'thresh': safe_image_to_base64_bgr(prep_dict.get('thresh'), img)
         }
 
         return jsonify({
