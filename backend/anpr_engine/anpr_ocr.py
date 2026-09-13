@@ -5,6 +5,8 @@ import time
 import numpy as np
 from PIL import Image
 from ultralytics import YOLO
+import torch
+import gc
 
 # Valid Indian State & Union Territory Codes (36 Jurisdictions + Bharat Series)
 INDIAN_STATES = {
@@ -597,18 +599,19 @@ class ANPROCREngine:
             
         h, w = img.shape[:2]
         try:
-            preds = self.vehicle_detector.predict(img, conf=0.15, verbose=False, imgsz=640)
-            for pred in preds:
-                for box in pred.boxes:
-                    cls_id = int(box.cls[0].cpu().numpy())
-                    if cls_id in VEHICLE_CLASS_IDS:
-                        xyxy = map(int, box.xyxy[0].cpu().numpy())
-                        vx1, vy1, vx2, vy2 = xyxy
-                        vx1, vy1 = max(0, vx1), max(0, vy1)
-                        vx2, vy2 = min(w, vx2), min(h, vy2)
-                        v_conf = float(box.conf[0].cpu().numpy())
-                        v_type = VEHICLE_NAMES.get(cls_id, 'vehicle')
-                        vehicles.append(([vx1, vy1, vx2, vy2], v_type, v_conf))
+            with torch.inference_mode():
+                preds = self.vehicle_detector.predict(img, conf=0.15, verbose=False, imgsz=640)
+                for pred in preds:
+                    for box in pred.boxes:
+                        cls_id = int(box.cls[0].cpu().numpy())
+                        if cls_id in VEHICLE_CLASS_IDS:
+                            xyxy = map(int, box.xyxy[0].cpu().numpy())
+                            vx1, vy1, vx2, vy2 = xyxy
+                            vx1, vy1 = max(0, vx1), max(0, vy1)
+                            vx2, vy2 = min(w, vx2), min(h, vy2)
+                            v_conf = float(box.conf[0].cpu().numpy())
+                            v_type = VEHICLE_NAMES.get(cls_id, 'vehicle')
+                            vehicles.append(([vx1, vy1, vx2, vy2], v_type, v_conf))
         except Exception:
             pass
             
@@ -643,16 +646,17 @@ class ANPROCREngine:
         plate_dets = []
         if self.plate_detector is not None:
             try:
-                preds = self.plate_detector.predict(img, conf=0.08, verbose=False, imgsz=640)
-                for pred in preds:
-                    sorted_boxes = sorted(pred.boxes, key=lambda b: float(b.conf[0]), reverse=True)
-                    for box in sorted_boxes:
-                        px1, py1, px2, py2 = map(int, box.xyxy[0].cpu().numpy())
-                        p_conf = float(box.conf[0].cpu().numpy())
-                        px1, py1 = max(0, px1), max(0, py1)
-                        px2, py2 = min(w, px2), min(h, py2)
-                        if (px2 - px1) > 12 and (py2 - py1) > 6:
-                            plate_dets.append(([px1, py1, px2, py2], p_conf))
+                with torch.inference_mode():
+                    preds = self.plate_detector.predict(img, conf=0.08, verbose=False, imgsz=640)
+                    for pred in preds:
+                        sorted_boxes = sorted(pred.boxes, key=lambda b: float(b.conf[0]), reverse=True)
+                        for box in sorted_boxes:
+                            px1, py1, px2, py2 = map(int, box.xyxy[0].cpu().numpy())
+                            p_conf = float(box.conf[0].cpu().numpy())
+                            px1, py1 = max(0, px1), max(0, py1)
+                            px2, py2 = min(w, px2), min(h, py2)
+                            if (px2 - px1) > 12 and (py2 - py1) > 6:
+                                plate_dets.append(([px1, py1, px2, py2], p_conf))
             except Exception as e:
                 print(f"Plate detect error: {e}")
         t_plate_det = (time.time() - t0) * 1000.0
@@ -806,6 +810,7 @@ class ANPROCREngine:
 
         t_total = (time.time() - t_start) * 1000.0
         print(f"[ANPR Pipeline Timing] Vehicles: {t_vehicle:.1f}ms | Plate Detect: {t_plate_det:.1f}ms | OCR: {t_ocr:.1f}ms | Total: {t_total:.1f}ms")
+        gc.collect()
 
         return results
 
