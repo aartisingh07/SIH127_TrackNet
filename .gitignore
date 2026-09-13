@@ -15,26 +15,12 @@ frontend/dist/
 .vite/
 frontend/.vite/
 
-# Database & Environment
-backend/instance/
-backend/*.db
+# Environment & Temp Logs
 .env
-
-# Logs & Generated Reports
 *.log
-*.pdf
-generate_pdf.py
-backend/reports/*.pdf
-output_results/
-samples/
-
-# Datasets & Runs
-raw_dataset/
-runs/
-scratch/
-*.pt
 
 # IDE / OS
 .idea/
 .vscode/
 .DS_Store
+
