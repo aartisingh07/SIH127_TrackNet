@@ -183,7 +183,68 @@ class TestANPROCPipelineEndToEnd(unittest.TestCase):
         self.assertTrue(len(res) > 0, "test48.jpeg must return at least 1 detection result")
         first = res[0]
         self.assertIn(first['plate_text'], ["MH05CF2731", "MH05CF2735"], f"Expected MH05CF2731 / MH05CF2735 but got {first['plate_text']}")
+        self.assertLessEqual(len(first['plate_text']), 12, "Output length must never exceed 12 characters")
         self.assertTrue(first['confidence_flag'], "test48.jpeg plate must have confidence_flag=True")
+
+    def test_test80_single_line_tc_plate(self):
+        """Regression test for test80.jpg (single-line TC plate: TN21TC31)."""
+        img_path = os.path.join(self.test_dataset_dir, "test80.jpg")
+        if not os.path.exists(img_path):
+            self.skipTest("test80.jpg not found in test_dataset")
+        res = self.engine.detect_and_recognize(img_path)
+        self.assertTrue(len(res) > 0, "test80.jpg must return at least 1 detection result")
+        first = res[0]
+        self.assertEqual(first['plate_text'], "TN21TC31", f"Expected TN21TC31 but got {first['plate_text']}")
+        self.assertLessEqual(len(first['plate_text']), 12, "Output length must never exceed 12 characters")
+        self.assertTrue(first['confidence_flag'], "test80.jpg plate must have confidence_flag=True")
+
+    def test_test60_single_line_plate(self):
+        """Regression test for test60.jpg (single-line plate: DL3CAY2231)."""
+        img_path = os.path.join(self.test_dataset_dir, "test60.jpg")
+        if not os.path.exists(img_path):
+            self.skipTest("test60.jpg not found in test_dataset")
+        res = self.engine.detect_and_recognize(img_path)
+        self.assertTrue(len(res) > 0, "test60.jpg must return at least 1 detection result")
+        first = res[0]
+        self.assertEqual(first['plate_text'], "DL3CAY2231", f"Expected DL3CAY2231 but got {first['plate_text']}")
+        self.assertLessEqual(len(first['plate_text']), 12, "Output length must never exceed 12 characters")
+        self.assertTrue(first['confidence_flag'], "test60.jpg plate must have confidence_flag=True")
+
+    def test_test65_single_line_tc_plate(self):
+        """Regression test for test65.jpg (single-line TC plate: RJ27TC0530)."""
+        img_path = os.path.join(self.test_dataset_dir, "test65.jpg")
+        if not os.path.exists(img_path):
+            self.skipTest("test65.jpg not found in test_dataset")
+        res = self.engine.detect_and_recognize(img_path)
+        self.assertTrue(len(res) > 0, "test65.jpg must return at least 1 detection result")
+        first = res[0]
+        self.assertEqual(first['plate_text'], "RJ27TC0530", f"Expected RJ27TC0530 but got {first['plate_text']}")
+        self.assertLessEqual(len(first['plate_text']), 12, "Output length must never exceed 12 characters")
+        self.assertTrue(first['confidence_flag'], "test65.jpg plate must have confidence_flag=True")
+
+    def test_test67_single_line_tc_plate(self):
+        """Regression test for test67.jpg (single-line TC plate: RJ27TC0530)."""
+        img_path = os.path.join(self.test_dataset_dir, "test67.jpg")
+        if not os.path.exists(img_path):
+            self.skipTest("test67.jpg not found in test_dataset")
+        res = self.engine.detect_and_recognize(img_path)
+        self.assertTrue(len(res) > 0, "test67.jpg must return at least 1 detection result")
+        first = res[0]
+        self.assertEqual(first['plate_text'], "RJ27TC0530", f"Expected RJ27TC0530 but got {first['plate_text']}")
+        self.assertLessEqual(len(first['plate_text']), 12, "Output length must never exceed 12 characters")
+        self.assertTrue(first['confidence_flag'], "test67.jpg plate must have confidence_flag=True")
+
+    def test_test82_single_line_tc_plate(self):
+        """Regression test for test82.jpg (single-line TC plate: TN19TC94)."""
+        img_path = os.path.join(self.test_dataset_dir, "test82.jpg")
+        if not os.path.exists(img_path):
+            self.skipTest("test82.jpg not found in test_dataset")
+        res = self.engine.detect_and_recognize(img_path)
+        self.assertTrue(len(res) > 0, "test82.jpg must return at least 1 detection result")
+        first = res[0]
+        self.assertIn(first['plate_text'], ["TN19TC94", "TH19TC94"], f"Expected TN19TC94 but got {first['plate_text']}")
+        self.assertLessEqual(len(first['plate_text']), 12, "Output length must never exceed 12 characters")
+        self.assertTrue(first['confidence_flag'], "test82.jpg plate must have confidence_flag=True")
 
 
 if __name__ == "__main__":

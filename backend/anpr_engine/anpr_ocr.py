@@ -48,7 +48,7 @@ known_state_fixes = {
     'W1': 'WB',
     'P1': 'PB',
     'C6': 'CG', 'C0': 'CG', 'K0': 'KA', 'K2': 'KA',
-    'ER': 'TR', 'E0': 'TR', 'OH': 'MH', 'NM': 'MH', 'NN': 'MH'
+    'ER': 'TR', 'E0': 'TR', 'OH': 'MH', 'NM': 'MH', 'NN': 'MH', 'TH': 'TN'
 }
 
 CITY_TO_STATE_CODE = {
@@ -131,7 +131,7 @@ def split_two_line_plate_crop(img):
         return None
     h, w = img.shape[:2]
 
-    if h < 25 or float(w) / float(max(1, h)) > 3.2:
+    if h < 25 or float(w) / float(max(1, h)) > 2.5:
         return None
 
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) if len(img.shape) == 3 else img.copy()
@@ -273,12 +273,10 @@ def force_digits(s: str) -> str:
 
 def clean_indian_plate(raw_text: str):
     """
-    Strips whitespace/special characters, forces uppercase, and parses standard format:
-    AA NN [A/AA] NNNN (State: 2 letters, RTO: 2 digits, Last: 4 digits, Middle: series letters).
-    Applies letter-forcing on letter positions (0->O, 1->I, 5->S, 8->B, 6->G)
-    and digit-forcing on digit positions (O->0, I->1, S->5, B->8, G->6).
-    Returns (cleaned_text, confidence_flag) where confidence_flag is True ONLY if state, RTO,
-    number format, and total length (9-11) strictly match expected Indian plate regex.
+    Strips whitespace/special characters, forces uppercase, enforces 12-char sanity cap,
+    and parses standard & temporary/TC format Indian license plates.
+    Returns (cleaned_text, confidence_flag) where confidence_flag is True ONLY if state and
+    number format strictly match expected Indian plate regex and length is <= 12.
     """
     if not raw_text:
         return "", False
@@ -286,27 +284,37 @@ def clean_indian_plate(raw_text: str):
     cleaned_raw = re.sub(r'[^A-Z0-9]', '', raw_text.upper())
     total_len = len(cleaned_raw)
 
-    if total_len < 8:
+    # Requirement 2: HARD SANITY CAP ON OUTPUT LENGTH (> 12 chars)
+    if total_len > 12:
+        print(f"[ANPR Warning] Candidate text '{cleaned_raw}' (len={total_len}) exceeded 12-char sanity cap. Discarding corrupted/merged candidate.")
+        return "", False
+
+    if total_len < 6:
         return cleaned_raw, False
 
     state_part = force_letters(cleaned_raw[0:2])
     state_part = known_state_fixes.get(state_part, state_part)
-    rto_part = force_digits(cleaned_raw[2:4])
-    num_part = force_digits(cleaned_raw[-4:])
-    
-    middle_raw = cleaned_raw[4:-4]
-    series_part = force_letters(middle_raw)
-
-    result = f"{state_part}{rto_part}{series_part}{num_part}"
-
     valid_state = state_part in INDIAN_STATES
-    valid_rto = rto_part.isdigit() and len(rto_part) == 2
-    valid_num = num_part.isdigit() and len(num_part) == 4
-    valid_length = (9 <= len(result) <= 11)
 
-    confidence_flag = valid_state and valid_rto and valid_num and valid_length
+    rest = cleaned_raw[2:]
+    
+    # Check flexible TC/Trade/Govt/Standard regex: State + 1-2 RTO Digits + 1-3 Series Letters + 1-4 Plate Digits
+    pattern_match = bool(re.match(r'^\d{1,2}[A-Z]{1,3}\d{1,4}$', rest))
+    if valid_state and pattern_match and (6 <= total_len <= 12):
+        return f"{state_part}{rest}", True
 
-    return result, confidence_flag
+    # Standard position-forced Indian plate format
+    if total_len >= 8:
+        rto_part = force_digits(cleaned_raw[2:4])
+        num_part = force_digits(cleaned_raw[-4:])
+        series_part = force_letters(cleaned_raw[4:-4])
+        std_result = f"{state_part}{rto_part}{series_part}{num_part}"
+        valid_rto = rto_part.isdigit() and len(rto_part) == 2
+        valid_num = num_part.isdigit() and len(num_part) == 4
+        if valid_state and valid_rto and valid_num and (8 <= len(std_result) <= 12):
+            return std_result, True
+
+    return cleaned_raw, False
 
 
 class ANPROCREngine:
@@ -382,10 +390,10 @@ class ANPROCREngine:
         return cleaned, conf, flag
 
     def _single_crop_ocr(self, crop_img, block_size=11, c_constant=2.0):
-        """Executes PaddleOCR on a single image crop and returns (raw_text, avg_confidence)."""
+        """Executes PaddleOCR on a single image crop and returns (raw_text, avg_confidence, token_candidates)."""
         reader = self.get_ocr_reader()
         if reader is None or crop_img is None or getattr(crop_img, 'size', 0) == 0:
-            return "", 0.0
+            return "", 0.0, []
 
         def extract_from_paddle_res(res_list):
             txts = []
@@ -397,7 +405,7 @@ class ANPROCREngine:
                     rec_texts = item.get('rec_texts', [])
                     rec_scores = item.get('rec_scores', [])
                     for t, s in zip(rec_texts, rec_scores):
-                        clean_token = re.sub(r'[^A-Z]', '', str(t).upper())
+                        clean_token = re.sub(r'[^A-Z0-9]', '', str(t).upper())
                         if clean_token not in ['IND', 'IN', 'ND', 'INDIA'] and t and str(t).strip():
                             txts.append(str(t).strip())
                             confs.append(float(s))
@@ -405,7 +413,7 @@ class ANPROCREngine:
                     for elem in item:
                         if len(elem) >= 2 and elem[1]:
                             t, s = elem[1][0], elem[1][1]
-                            clean_token = re.sub(r'[^A-Z]', '', str(t).upper())
+                            clean_token = re.sub(r'[^A-Z0-9]', '', str(t).upper())
                             if clean_token not in ['IND', 'IN', 'ND', 'INDIA'] and t and str(t).strip():
                                 txts.append(str(t).strip())
                                 confs.append(float(s))
@@ -413,7 +421,7 @@ class ANPROCREngine:
 
         def run_paddle_on_input(ocr_input):
             if ocr_input is None or getattr(ocr_input, 'size', 0) == 0:
-                return "", 0.0
+                return "", 0.0, []
             txts, confs = [], []
             try:
                 if hasattr(reader, 'predict'):
@@ -425,36 +433,56 @@ class ANPROCREngine:
                 print(f"PaddleOCR error: {e}")
             raw_text = " ".join(txts).strip() if txts else ""
             avg_conf = float(np.mean(confs)) if confs else 0.50
-            return raw_text, avg_conf
+            tokens = list(zip(txts, confs)) if txts and confs else []
+            return raw_text, avg_conf, tokens
 
         # 1. Try adaptive threshold preprocessed image first
         preprocessed = preprocess_plate_for_ocr(crop_img, block_size=block_size, c_constant=c_constant)
         prep_bgr = cv2.cvtColor(preprocessed, cv2.COLOR_GRAY2BGR) if len(preprocessed.shape) == 2 else preprocessed
-        raw_text, avg_conf = run_paddle_on_input(prep_bgr)
+        raw_text, avg_conf, tokens = run_paddle_on_input(prep_bgr)
 
         # 2. Fall back to raw BGR crop image if preprocessed image returned no text
         if not raw_text:
             raw_bgr = cv2.cvtColor(crop_img, cv2.COLOR_GRAY2BGR) if len(crop_img.shape) == 2 else crop_img
-            raw_text, avg_conf = run_paddle_on_input(raw_bgr)
+            raw_text, avg_conf, tokens = run_paddle_on_input(raw_bgr)
 
         # 3. Fall back to deskewed crop if still no text
         if not raw_text:
             deskewed = deskew_crop(crop_img)
             if deskewed is not None and getattr(deskewed, 'size', 0) > 0:
-                raw_text, avg_conf = run_paddle_on_input(deskewed)
+                raw_text, avg_conf, tokens = run_paddle_on_input(deskewed)
 
-        return raw_text, avg_conf
+        return raw_text, avg_conf, tokens
 
     def run_ocr(self, crop_img, camera_context=None, block_size=11, c_constant=2.0):
         """
         High-Precision OCR Pipeline using single-pass OCR, real line detection,
-        and clean_indian_plate candidate selection.
+        and clean_indian_plate candidate selection with a strict 12-char length cap.
         Returns: (plate_text, ocr_conf, confidence_flag)
         """
         if crop_img is None or getattr(crop_img, 'size', 0) == 0:
             return "??", 0.0, False
 
         candidates = []
+
+        def add_candidate(raw_str, conf, cand_type='single'):
+            if not raw_str or not str(raw_str).strip():
+                return
+            clean_txt, flag = clean_indian_plate(raw_str)
+            if not clean_txt:
+                return
+            if len(clean_txt) > 12:
+                print(f"[ANPR Warning] Candidate text '{clean_txt}' (len={len(clean_txt)}) exceeded 12-char sanity cap. Discarding candidate.")
+                return
+            # Prevent duplicates in candidates list
+            if not any(c['text'] == clean_txt for c in candidates):
+                candidates.append({
+                    'text': clean_txt,
+                    'conf': float(conf),
+                    'flag': flag,
+                    'raw': raw_str,
+                    'type': cand_type
+                })
 
         # 1. Detect underexposed crops before choosing enhancement path
         crop_gray = cv2.cvtColor(crop_img, cv2.COLOR_BGR2GRAY) if len(crop_img.shape) == 3 else crop_img.copy()
@@ -472,20 +500,14 @@ class ANPROCREngine:
             working_crop = crop_img
 
         # Pass 1: Single-line pass on full unsplit crop (ALWAYS RUN FIRST)
-        single_raw, single_conf = self._single_crop_ocr(working_crop, block_size=block_size, c_constant=c_constant)
+        single_raw, single_conf, single_tokens = self._single_crop_ocr(working_crop, block_size=block_size, c_constant=c_constant)
         if not single_raw and crop_mean < 80.0:
             # Fallback to unnormalized crop if normalized crop yielded no single-pass text
-            single_raw, single_conf = self._single_crop_ocr(crop_img, block_size=block_size, c_constant=c_constant)
+            single_raw, single_conf, single_tokens = self._single_crop_ocr(crop_img, block_size=block_size, c_constant=c_constant)
 
-        single_clean, single_flag = clean_indian_plate(single_raw)
-        if single_raw:
-            candidates.append({
-                'text': single_clean if single_clean else single_raw,
-                'conf': single_conf,
-                'flag': single_flag,
-                'raw': single_raw,
-                'type': 'single'
-            })
+        add_candidate(single_raw, single_conf, 'single_combined')
+        for tok_txt, tok_conf in single_tokens:
+            add_candidate(tok_txt, tok_conf, 'single_token')
 
         # Pass 2: Real line detection -> split 2-line pass ONLY IF genuine 2-line structure confirmed
         split_crops = split_two_line_plate_crop(working_crop)
@@ -496,15 +518,14 @@ class ANPROCREngine:
         if split_crops is not None:
             top_c, bot_c = split_crops
 
-            # Calculate independent per-band contrast statistics (standard deviation of pixel intensity)
             top_gray = cv2.cvtColor(top_c, cv2.COLOR_BGR2GRAY) if len(top_c.shape) == 3 else top_c.copy()
             bot_gray = cv2.cvtColor(bot_c, cv2.COLOR_BGR2GRAY) if len(bot_c.shape) == 3 else bot_c.copy()
             top_std = float(np.std(top_gray))
             bot_std = float(np.std(bot_gray))
             print(f"[ANPR Band Contrast] Top Band Contrast (std): {top_std:.2f} | Bot Band Contrast (std): {bot_std:.2f}")
 
-            top_txt, top_conf = self._single_crop_ocr(top_c, block_size, c_constant)
-            bot_txt, bot_conf = self._single_crop_ocr(bot_c, block_size, c_constant)
+            top_txt, top_conf, top_toks = self._single_crop_ocr(top_c, block_size, c_constant)
+            bot_txt, bot_conf, bot_toks = self._single_crop_ocr(bot_c, block_size, c_constant)
 
             # Retry Pass 1 for Line 1 (state/RTO) ONLY IF line 1 is empty or unreadable (< 2 chars)
             if not top_txt or len(top_txt.strip()) < 2:
@@ -512,7 +533,7 @@ class ANPROCREngine:
                 top_clahe = cv2.createCLAHE(clipLimit=4.0, tileGridSize=(8, 8)).apply(top_gray)
                 th, tw = top_c.shape[:2]
                 top_up = cv2.resize(cv2.cvtColor(top_clahe, cv2.COLOR_GRAY2BGR), (int(tw * 2.5), int(th * 2.5)), interpolation=cv2.INTER_CUBIC)
-                r_top_txt, r_top_conf = self._single_crop_ocr(top_up, block_size=15, c_constant=3.0)
+                r_top_txt, r_top_conf, r_top_toks = self._single_crop_ocr(top_up, block_size=15, c_constant=3.0)
                 if r_top_txt:
                     top_txt, top_conf = r_top_txt, max(top_conf, r_top_conf)
 
@@ -522,7 +543,7 @@ class ANPROCREngine:
                 bot_clahe = cv2.createCLAHE(clipLimit=4.0, tileGridSize=(8, 8)).apply(bot_gray)
                 bh, bw = bot_c.shape[:2]
                 bot_up = cv2.resize(cv2.cvtColor(bot_clahe, cv2.COLOR_GRAY2BGR), (int(bw * 2.5), int(bh * 2.5)), interpolation=cv2.INTER_CUBIC)
-                r_bot_txt, r_bot_conf = self._single_crop_ocr(bot_up, block_size=15, c_constant=3.0)
+                r_bot_txt, r_bot_conf, r_bot_toks = self._single_crop_ocr(bot_up, block_size=15, c_constant=3.0)
                 if r_bot_txt:
                     bot_txt, bot_conf = r_bot_txt, max(bot_conf, r_bot_conf)
 
@@ -530,7 +551,6 @@ class ANPROCREngine:
             if bot_txt and re.match(r'^[0O]\d{4}$', bot_txt.strip()):
                 bot_txt = 'D' + bot_txt.strip()[1:]
 
-            # Explicitly track band failures
             line_1_failed = not bool(top_txt and top_txt.strip())
             line_2_failed = not bool(bot_txt and bot_txt.strip())
 
@@ -540,39 +560,25 @@ class ANPROCREngine:
                 print("[ANPR Warning] line_2_read_failed: True (Digits line unreadable)")
 
             split_raw = f"{top_txt} {bot_txt}".strip()
-            if split_raw:
+            if split_raw and not line_1_failed and not line_2_failed:
                 split_avg_conf = (top_conf + bot_conf) / 2.0 if (top_conf > 0 and bot_conf > 0) else max(top_conf, bot_conf)
-                split_clean, split_flag = clean_indian_plate(split_raw)
-                
-                # Never silently trust a split if either line failed to read completely
-                if line_1_failed or line_2_failed:
-                    split_flag = False
+                add_candidate(split_raw, split_avg_conf, 'split_combined')
 
-                candidates.append({
-                    'text': split_clean if split_clean else split_raw,
-                    'conf': split_avg_conf,
-                    'flag': split_flag,
-                    'raw': split_raw,
-                    'type': 'split',
-                    'line_1_failed': line_1_failed,
-                    'line_2_failed': line_2_failed,
-                    'line_1_text': top_txt,
-                    'line_2_text': bot_txt,
-                    'top_contrast': top_std,
-                    'bot_contrast': bot_std
-                })
+        # Requirement 2: Filter candidates to enforce hard sanity cap (<= 12 chars)
+        candidates = [c for c in candidates if c['text'] and len(c['text']) <= 12]
 
         if not candidates:
             return "??", 0.0, False
 
-        # Selection rule:
-        # Prefer candidates matching valid Indian plate regex (flag == True).
-        # Pick the highest OCR confidence among valid candidates (or non-valid if none match).
+        # Requirement 1: Selection Rule
+        # 1. Prefer candidates matching valid Indian plate regex (flag == True).
+        # 2. Pick the candidate with HIGHEST underlying OCR confidence.
         valid_candidates = [c for c in candidates if c['flag']]
         if valid_candidates:
             best = max(valid_candidates, key=lambda c: c['conf'])
         else:
-            best = max(candidates, key=lambda c: (len(c['text']), c['conf']))
+            # Fallback: Pick single highest-confidence candidate (NEVER sort by length!)
+            best = max(candidates, key=lambda c: c['conf'])
 
         return best['text'] if best['text'] else "??", round(best['conf'], 2), best['flag']
 
@@ -726,7 +732,7 @@ class ANPROCREngine:
         # Step 4: Run OCR Pipeline on each plate crop
         t0 = time.time()
         for (px1, py1, px2, py2), p_conf in final_plate_dets:
-            cx1, cy1, cx2, cy2 = expand_and_clamp_bbox((px1, py1, px2, py2), img.shape, expand_pct=0.20)
+            cx1, cy1, cx2, cy2 = expand_and_clamp_bbox((px1, py1, px2, py2), img.shape, expand_pct=0.06)
             
             plate_crop = img[cy1:cy2, cx1:cx2]
             v_type = 'vehicle'
