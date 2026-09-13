@@ -11,7 +11,7 @@ Why this file was made:
 
 import datetime
 import json
-from sqlalchemy import Column, Integer, String, Float, DateTime, Text, UniqueConstraint, ForeignKey
+from sqlalchemy import Column, Integer, String, Float, DateTime, Text, UniqueConstraint, ForeignKey, Boolean
 from sqlalchemy.orm import relationship
 from database.db_engine import Base
 
@@ -121,6 +121,7 @@ class ANPREvent(Base):
     camera_id = Column(String(64), ForeignKey("cameras.camera_id"), nullable=False, index=True)
     timestamp = Column(DateTime, default=datetime.datetime.utcnow, index=True)
     ocr_confidence = Column(Float, nullable=False, default=0.95)
+    confidence_flag = Column(Boolean, nullable=False, default=True)
     vehicle_type = Column(String(32), nullable=False, default="car")
     direction = Column(String(32), nullable=True)
 
@@ -131,6 +132,7 @@ class ANPREvent(Base):
             "camera_id": self.camera_id,
             "timestamp": self.timestamp.strftime("%Y-%m-%d %H:%M:%S") if isinstance(self.timestamp, datetime.datetime) else str(self.timestamp),
             "ocr_confidence": round(self.ocr_confidence, 2),
+            "confidence_flag": self.confidence_flag,
             "vehicle_type": self.vehicle_type,
             "direction": self.direction or "N/A"
         }
