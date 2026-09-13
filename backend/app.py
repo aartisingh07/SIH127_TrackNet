@@ -15,6 +15,7 @@ import glob
 import base64
 import cv2
 import numpy as np
+import requests
 from flask import Flask, request, jsonify, send_file
 
 from database.db_engine import init_db
@@ -102,23 +103,44 @@ def index():
 
 @app.route('/api/anpr/detect', methods=['POST'])
 def api_anpr_detect():
-    """Runs 2-Stage Hierarchical ANPR (Vehicle Detection -> Plate Detection -> OCR)."""
+    """Runs 2-Stage Hierarchical ANPR (Vehicle Detection -> Plate Detection -> OCR) on File, URL, or Base64."""
     try:
-        req_b64 = request.get_json(force=True, silent=True) or {}
+        req_json = request.get_json(force=True, silent=True) or {}
+        np_img = None
+        filename = "External_Image.jpg"
+        target_city = "Mumbai"
+
         if 'image' in request.files:
             file = request.files['image']
+            filename = file.filename or "Uploaded_Image.jpg"
             np_img = cv2.imdecode(np.frombuffer(file.read(), np.uint8), cv2.IMREAD_COLOR)
-        elif 'image_base64' in req_b64:
-            b64_data = req_b64['image_base64'].split(',')[-1]
+        elif 'image_url' in req_json or 'url' in req_json:
+            url = req_json.get('image_url') or req_json.get('url')
+            if not url or not str(url).startswith(('http://', 'https://')):
+                return jsonify({'success': False, 'error': 'Invalid image URL provided. URL must start with http:// or https://'}), 400
+
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+            }
+            resp = requests.get(url, timeout=12, headers=headers)
+            if resp.status_code != 200:
+                return jsonify({'success': False, 'error': f'Failed to fetch image from URL (HTTP Status {resp.status_code}). Please verify the link is publicly accessible.'}), 400
+
+            np_img = cv2.imdecode(np.frombuffer(resp.content, np.uint8), cv2.IMREAD_COLOR)
+            parsed_name = url.split('/')[-1].split('?')[0]
+            filename = parsed_name if parsed_name and len(parsed_name) <= 30 else "URL_Image.jpg"
+        elif 'image_base64' in req_json:
+            b64_data = req_json['image_base64'].split(',')[-1]
             img_bytes = base64.b64decode(b64_data)
             np_img = cv2.imdecode(np.frombuffer(img_bytes, np.uint8), cv2.IMREAD_COLOR)
         else:
-            return jsonify({'success': False, 'error': 'No valid image provided'}), 400
+            return jsonify({'success': False, 'error': 'No valid image file, URL, or image data provided'}), 400
 
         if np_img is None:
-            return jsonify({'success': False, 'error': 'Invalid image format'}), 400
+            return jsonify({'success': False, 'error': 'Failed to decode image data. Please ensure the link or file is a valid image (JPG, PNG, WEBP).'}), 400
 
-        camera_id = request.form.get('camera_id', 'CAM-01')
+        camera_id = request.form.get('camera_id') or req_json.get('camera_id') or 'CAM-01'
+        target_city = request.form.get('target_city') or req_json.get('target_city') or 'Mumbai'
 
         # Lookup camera location metadata for geospatial state prediction
         cam_rec = trajectory_tracker.session.query(Camera).filter(Camera.camera_id == camera_id).first()
@@ -179,7 +201,9 @@ def api_anpr_detect():
             'success': True,
             'annotated_image_b64': image_to_base64(annotated_img),
             'detections': results,
-            'preprocessing_previews': preprocessed_previews
+            'preprocessing_previews': preprocessed_previews,
+            'filename': filename,
+            'target_city': target_city
         })
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 500

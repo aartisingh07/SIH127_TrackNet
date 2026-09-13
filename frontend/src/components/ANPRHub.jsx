@@ -28,6 +28,11 @@ export default function ANPRHub({ cityCameras, onANPRSuccess, onViewTrajectory }
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
 
+  // Input Mode state: 'preset' | 'url' | 'upload'
+  const [inputMode, setInputMode] = useState('preset');
+  const [imageUrl, setImageUrl] = useState('');
+  const [uploadedFile, setUploadedFile] = useState(null);
+
   // Lightbox Modal state & zoom controls
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalZoomScale, setModalZoomScale] = useState(1);
@@ -69,31 +74,69 @@ export default function ANPRHub({ cityCameras, onANPRSuccess, onViewTrajectory }
   }, []);
 
   const handleRunANPR = async () => {
-    if (!selectedImage) return;
     setLoading(true);
     // Reset zoom when running new image
     setZoomScale(1);
     setPanOffset({ x: 0, y: 0 });
     const start = performance.now();
+
     try {
-      const resp = await fetch(`/api/test_dataset/run/${selectedImage}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ camera_id: selectedCamera })
-      });
-      const data = await resp.json();
+      let resp, data;
+
+      if (inputMode === 'preset') {
+        if (!selectedImage) {
+          alert('Please select a dataset image');
+          setLoading(false);
+          return;
+        }
+        resp = await fetch(`/api/test_dataset/run/${selectedImage}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ camera_id: selectedCamera })
+        });
+        data = await resp.json();
+      } else if (inputMode === 'url') {
+        if (!imageUrl || !imageUrl.trim()) {
+          alert('Please enter a valid Image URL');
+          setLoading(false);
+          return;
+        }
+        resp = await fetch('/api/anpr/detect', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ image_url: imageUrl.trim(), camera_id: selectedCamera })
+        });
+        data = await resp.json();
+      } else if (inputMode === 'upload') {
+        if (!uploadedFile) {
+          alert('Please select an image file to upload');
+          setLoading(false);
+          return;
+        }
+        const formData = new FormData();
+        formData.append('image', uploadedFile);
+        formData.append('camera_id', selectedCamera);
+
+        resp = await fetch('/api/anpr/detect', {
+          method: 'POST',
+          body: formData
+        });
+        data = await resp.json();
+      }
+
       setLatency(Math.round(performance.now() - start));
-      if (data.success) {
+      if (data && data.success) {
         setResultData(data);
         if (data.detections && data.detections.length > 0) {
           onANPRSuccess(data.detections[0].plate_text);
-          setIsResultsModalOpen(true);
         }
+        setIsResultsModalOpen(true);
       } else {
-        alert('ANPR Error: ' + data.error);
+        alert('ANPR Error: ' + (data?.error || 'Failed to process image'));
       }
     } catch (e) {
       console.error('ANPR Execution Error:', e);
+      alert('Error running ANPR: ' + e.message);
     } finally {
       setLoading(false);
     }
@@ -226,19 +269,146 @@ export default function ANPRHub({ cityCameras, onANPRSuccess, onViewTrajectory }
             <h2><i className="fa-solid fa-sliders"></i> Input & Controls</h2>
           </div>
 
-          <div className="form-group mb-4">
-            <label htmlFor="test-image-select">Select Test Dataset Image:</label>
-            <select
-              id="test-image-select"
-              className="select-input"
-              value={selectedImage}
-              onChange={(e) => setSelectedImage(e.target.value)}
+          {/* Input Mode Selector Tabs */}
+          <div className="input-mode-tabs mb-3" style={{ display: 'flex', gap: '6px', background: 'rgba(15, 23, 42, 0.8)', padding: '4px', borderRadius: '8px', border: '1px solid #334155' }}>
+            <button
+              onClick={() => setInputMode('preset')}
+              style={{
+                flex: 1,
+                padding: '7px 6px',
+                borderRadius: '6px',
+                fontSize: '0.78rem',
+                fontWeight: 700,
+                border: 'none',
+                cursor: 'pointer',
+                background: inputMode === 'preset' ? 'linear-gradient(135deg, #0284c7, #2563eb)' : 'transparent',
+                color: inputMode === 'preset' ? '#ffffff' : '#94a3b8',
+                transition: 'all 0.2s ease',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '5px'
+              }}
             >
-              {testImages.map(img => (
-                <option key={img} value={img}>{img}</option>
-              ))}
-            </select>
+              <i className="fa-solid fa-images"></i> Preset
+            </button>
+
+            <button
+              onClick={() => setInputMode('url')}
+              style={{
+                flex: 1,
+                padding: '7px 6px',
+                borderRadius: '6px',
+                fontSize: '0.78rem',
+                fontWeight: 700,
+                border: 'none',
+                cursor: 'pointer',
+                background: inputMode === 'url' ? 'linear-gradient(135deg, #0284c7, #2563eb)' : 'transparent',
+                color: inputMode === 'url' ? '#ffffff' : '#94a3b8',
+                transition: 'all 0.2s ease',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '5px'
+              }}
+            >
+              <i className="fa-solid fa-link"></i> Web URL
+            </button>
+
+            <button
+              onClick={() => setInputMode('upload')}
+              style={{
+                flex: 1,
+                padding: '7px 6px',
+                borderRadius: '6px',
+                fontSize: '0.78rem',
+                fontWeight: 700,
+                border: 'none',
+                cursor: 'pointer',
+                background: inputMode === 'upload' ? 'linear-gradient(135deg, #0284c7, #2563eb)' : 'transparent',
+                color: inputMode === 'upload' ? '#ffffff' : '#94a3b8',
+                transition: 'all 0.2s ease',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '5px'
+              }}
+            >
+              <i className="fa-solid fa-upload"></i> Upload
+            </button>
           </div>
+
+          {/* Mode 1: Preset Dataset Image Select */}
+          {inputMode === 'preset' && (
+            <div className="form-group mb-4">
+              <label htmlFor="test-image-select">Select Test Dataset Image:</label>
+              <select
+                id="test-image-select"
+                className="select-input"
+                value={selectedImage}
+                onChange={(e) => setSelectedImage(e.target.value)}
+              >
+                {testImages.map(img => (
+                  <option key={img} value={img}>{img}</option>
+                ))}
+              </select>
+            </div>
+          )}
+
+          {/* Mode 2: Web Image URL Input */}
+          {inputMode === 'url' && (
+            <div className="form-group mb-4">
+              <label htmlFor="image-url-input">Paste Google / Web Image URL:</label>
+              <input
+                id="image-url-input"
+                type="text"
+                className="text-input"
+                placeholder="https://example.com/vehicle-image.jpg"
+                value={imageUrl}
+                onChange={(e) => setImageUrl(e.target.value)}
+                style={{
+                  width: '100%',
+                  padding: '9px 12px',
+                  background: 'rgba(15, 23, 42, 0.9)',
+                  border: '1px solid #0284c7',
+                  borderRadius: '6px',
+                  color: '#f8fafc',
+                  fontSize: '0.85rem'
+                }}
+              />
+              <span style={{ fontSize: '0.72rem', color: '#94a3b8', marginTop: '6px', display: 'block', lineHeight: 1.3 }}>
+                <i className="fa-solid fa-circle-info" style={{ color: '#38bdf8' }}></i> Paste any direct web link to a vehicle or license plate image.
+              </span>
+            </div>
+          )}
+
+          {/* Mode 3: Local File Upload */}
+          {inputMode === 'upload' && (
+            <div className="form-group mb-4">
+              <label htmlFor="file-upload-input">Upload Local Vehicle Photo:</label>
+              <input
+                id="file-upload-input"
+                type="file"
+                accept="image/*"
+                onChange={(e) => setUploadedFile(e.target.files[0] || null)}
+                style={{
+                  width: '100%',
+                  padding: '8px 10px',
+                  background: 'rgba(15, 23, 42, 0.9)',
+                  border: '1px dashed #0284c7',
+                  borderRadius: '6px',
+                  color: '#cbd5e1',
+                  fontSize: '0.82rem',
+                  cursor: 'pointer'
+                }}
+              />
+              {uploadedFile && (
+                <div style={{ fontSize: '0.76rem', color: '#4ade80', marginTop: '6px', fontWeight: 600 }}>
+                  <i className="fa-solid fa-circle-check"></i> {uploadedFile.name} ({(uploadedFile.size / 1024).toFixed(1)} KB)
+                </div>
+              )}
+            </div>
+          )}
 
           <div className="form-group my-4">
             <button
@@ -250,7 +420,7 @@ export default function ANPRHub({ cityCameras, onANPRSuccess, onViewTrajectory }
               {loading ? (
                 <span><i className="fa-solid fa-spinner fa-spin"></i> Processing ANPR...</span>
               ) : (
-                <span><i className="fa-solid fa-play"></i> Run ANPR on Selected Image</span>
+                <span><i className="fa-solid fa-play"></i> Run ANPR {inputMode === 'url' ? 'on URL' : inputMode === 'upload' ? 'on Uploaded File' : 'on Dataset'}</span>
               )}
             </button>
           </div>
