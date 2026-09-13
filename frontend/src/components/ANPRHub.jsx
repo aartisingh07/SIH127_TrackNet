@@ -83,6 +83,18 @@ export default function ANPRHub({ cityCameras, onANPRSuccess, onViewTrajectory }
     try {
       let resp, data;
 
+      const parseResponse = async (response) => {
+        const text = await response.text();
+        try {
+          return JSON.parse(text);
+        } catch (err) {
+          if (!response.ok) {
+            throw new Error(`Server returned HTTP ${response.status}. ${text.length > 150 ? text.substring(0, 150) + '...' : text}`);
+          }
+          throw new Error('Server returned invalid JSON response');
+        }
+      };
+
       if (inputMode === 'preset') {
         if (!selectedImage) {
           alert('Please select a dataset image');
@@ -94,7 +106,7 @@ export default function ANPRHub({ cityCameras, onANPRSuccess, onViewTrajectory }
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ camera_id: selectedCamera })
         });
-        data = await resp.json();
+        data = await parseResponse(resp);
       } else if (inputMode === 'url') {
         if (!imageUrl || !imageUrl.trim()) {
           alert('Please enter a valid Image URL');
@@ -106,7 +118,7 @@ export default function ANPRHub({ cityCameras, onANPRSuccess, onViewTrajectory }
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ image_url: imageUrl.trim(), camera_id: selectedCamera })
         });
-        data = await resp.json();
+        data = await parseResponse(resp);
       } else if (inputMode === 'upload') {
         if (!uploadedFile) {
           alert('Please select an image file to upload');
@@ -121,7 +133,7 @@ export default function ANPRHub({ cityCameras, onANPRSuccess, onViewTrajectory }
           method: 'POST',
           body: formData
         });
-        data = await resp.json();
+        data = await parseResponse(resp);
       }
 
       setLatency(Math.round(performance.now() - start));

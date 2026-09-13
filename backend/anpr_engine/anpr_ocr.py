@@ -509,6 +509,13 @@ class ANPROCREngine:
         for tok_txt, tok_conf in single_tokens:
             add_candidate(tok_txt, tok_conf, 'single_token')
 
+        # Fast-exit: If a valid Indian license plate syntax candidate was found in Pass 1, return immediately
+        valid_pass1 = [c for c in candidates if c.get('flag')]
+        if valid_pass1:
+            best_cand = max(valid_pass1, key=lambda c: c['conf'])
+            print(f"[ANPR Fast Exit] Valid Indian plate syntax '{best_cand['text']}' (conf: {best_cand['conf']:.2f}) found in Pass 1. Returning immediately.")
+            return best_cand['text'], best_cand['conf'], best_cand['flag']
+
         # Pass 2: Real line detection -> split 2-line pass ONLY IF genuine 2-line structure confirmed
         split_crops = split_two_line_plate_crop(working_crop)
         if split_crops is None and crop_mean < 80.0:
