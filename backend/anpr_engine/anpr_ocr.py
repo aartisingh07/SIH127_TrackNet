@@ -597,7 +597,7 @@ class ANPROCREngine:
             
         h, w = img.shape[:2]
         try:
-            preds = self.vehicle_detector.predict(img, conf=0.15, verbose=False)
+            preds = self.vehicle_detector.predict(img, conf=0.15, verbose=False, imgsz=640)
             for pred in preds:
                 for box in pred.boxes:
                     cls_id = int(box.cls[0].cpu().numpy())
@@ -643,7 +643,7 @@ class ANPROCREngine:
         plate_dets = []
         if self.plate_detector is not None:
             try:
-                preds = self.plate_detector.predict(img, conf=0.10, verbose=False)
+                preds = self.plate_detector.predict(img, conf=0.08, verbose=False, imgsz=640)
                 for pred in preds:
                     sorted_boxes = sorted(pred.boxes, key=lambda b: float(b.conf[0]), reverse=True)
                     for box in sorted_boxes:
@@ -657,31 +657,22 @@ class ANPROCREngine:
                 print(f"Plate detect error: {e}")
         t_plate_det = (time.time() - t0) * 1000.0
 
-        # Multi-Scale Grid Tile Search ONLY IF direct detection missed plates
-        if not plate_dets and (w > 1200 or h > 1200) and self.plate_detector is not None:
-            tile_w = int(w * 0.6)
-            tile_h = int(h * 0.6)
-            tiles = [
-                (0, 0, tile_w, tile_h),
-                (w - tile_w, 0, w, tile_h),
-                (0, h - tile_h, tile_w, h),
-                (w - tile_w, h - tile_h, w, h),
-                (int(w * 0.2), int(h * 0.2), int(w * 0.8), int(h * 0.8))
-            ]
-            for tx1, ty1, tx2, ty2 in tiles:
-                tile_crop = img[ty1:ty2, tx1:tx2]
-                if tile_crop.size > 0:
-                    try:
-                        t_preds = self.plate_detector.predict(tile_crop, conf=0.06, verbose=False)
-                        for tpred in t_preds:
-                            for tbox in tpred.boxes:
-                                cpx1, cpy1, cpx2, cpy2 = map(int, tbox.xyxy[0].cpu().numpy())
-                                cp_conf = float(tbox.conf[0].cpu().numpy())
-                                abs_box = [tx1 + cpx1, ty1 + cpy1, tx1 + cpx2, ty1 + cpy2]
-                                if (cpx2 - cpx1) > 12 and (cpy2 - cpy1) > 6:
-                                    plate_dets.append((abs_box, cp_conf))
-                    except Exception:
-                        pass
+        # Fast Center Tile Search ONLY IF direct detection missed plates
+        if not plate_dets and (w > 1000 or h > 1000) and self.plate_detector is not None:
+            tx1, ty1, tx2, ty2 = int(w * 0.15), int(h * 0.15), int(w * 0.85), int(h * 0.85)
+            tile_crop = img[ty1:ty2, tx1:tx2]
+            if tile_crop.size > 0:
+                try:
+                    t_preds = self.plate_detector.predict(tile_crop, conf=0.06, verbose=False, imgsz=640)
+                    for tpred in t_preds:
+                        for tbox in tpred.boxes:
+                            cpx1, cpy1, cpx2, cpy2 = map(int, tbox.xyxy[0].cpu().numpy())
+                            cp_conf = float(tbox.conf[0].cpu().numpy())
+                            abs_box = [tx1 + cpx1, ty1 + cpy1, tx1 + cpx2, ty1 + cpy2]
+                            if (cpx2 - cpx1) > 12 and (cpy2 - cpy1) > 6:
+                                plate_dets.append((abs_box, cp_conf))
+                except Exception:
+                    pass
 
         # Step 3: Vehicle Zoom ROI Search ONLY IF direct detection missed plates
         if not plate_dets and vehicles:
