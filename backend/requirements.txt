@@ -1,0 +1,13 @@
+flask
+flask-cors
+ultralytics
+paddlepaddle
+paddleocr
+opencv-python-headless
+sqlalchemy
+reportlab
+requests
+pillow
+numpy
+gunicorn
+onnxruntime
