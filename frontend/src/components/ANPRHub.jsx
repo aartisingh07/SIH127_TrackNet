@@ -1,5 +1,19 @@
 import React, { useState, useEffect } from 'react';
 
+const getVehicleIcon = (type) => {
+  const t = (type || '').toLowerCase();
+  if (t.includes('motorcycle') || t.includes('bike') || t.includes('scooter') || t.includes('two_wheeler') || t.includes('2-wheeler')) {
+    return 'fa-solid fa-motorcycle';
+  }
+  if (t.includes('truck')) {
+    return 'fa-solid fa-truck';
+  }
+  if (t.includes('bus')) {
+    return 'fa-solid fa-bus';
+  }
+  return 'fa-solid fa-car';
+};
+
 export default function ANPRHub({ cityCameras, onANPRSuccess, onViewTrajectory }) {
   const [testImages, setTestImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState('');
@@ -20,6 +34,9 @@ export default function ANPRHub({ cityCameras, onANPRSuccess, onViewTrajectory }
   const [modalPanOffset, setModalPanOffset] = useState({ x: 0, y: 0 });
   const [modalIsDragging, setModalIsDragging] = useState(false);
   const [modalDragStart, setModalDragStart] = useState({ x: 0, y: 0 });
+
+  // Pop-Up Wide Results Modal State
+  const [isResultsModalOpen, setIsResultsModalOpen] = useState(false);
 
   useEffect(() => {
     fetch('/api/test_dataset')
@@ -42,7 +59,10 @@ export default function ANPRHub({ cityCameras, onANPRSuccess, onViewTrajectory }
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape') setIsModalOpen(false);
+      if (e.key === 'Escape') {
+        setIsModalOpen(false);
+        setIsResultsModalOpen(false);
+      }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
@@ -67,6 +87,7 @@ export default function ANPRHub({ cityCameras, onANPRSuccess, onViewTrajectory }
         setResultData(data);
         if (data.detections && data.detections.length > 0) {
           onANPRSuccess(data.detections[0].plate_text);
+          setIsResultsModalOpen(true);
         }
       } else {
         alert('ANPR Error: ' + data.error);
@@ -234,7 +255,7 @@ export default function ANPRHub({ cityCameras, onANPRSuccess, onViewTrajectory }
             </button>
           </div>
 
-          {/* Recognized Output & 4-Step Engine Status Moved to Left Sidebar */}
+          {/* Recognized Output & 4-Step Engine Status */}
           <div className="results-cards-area mt-4" style={{ borderTop: '1px solid #334155', paddingTop: '16px' }}>
             <h3 style={{ fontSize: '0.9rem', color: '#38bdf8', marginBottom: '12px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}>
               <i className="fa-solid fa-square-check"></i> Recognized Output & Engine Status
@@ -245,109 +266,40 @@ export default function ANPRHub({ cityCameras, onANPRSuccess, onViewTrajectory }
                   <i className="fa-solid fa-spinner fa-spin"></i> Running ANPR inference pipeline...
                 </div>
               ) : resultData && resultData.detections && resultData.detections.length > 0 ? (
-                resultData.detections.map((det, idx) => (
-                  <div key={idx} className="result-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', background: 'rgba(15, 23, 42, 0.9)', border: '1px solid #1e293b', borderRadius: '8px', padding: '12px' }}>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                      <div className="plate-badge-container" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                        {det.crop_b64 && (
-                          <img
-                            src={`data:image/jpeg;base64,${det.crop_b64}`}
-                            className="plate-crop-img"
-                            alt="Plate Crop"
-                            style={{ height: '36px', borderRadius: '4px', border: '1px solid #334155' }}
-                          />
-                        )}
-                        <div className="plate-string" style={{ background: '#f59e0b', color: '#000', padding: '4px 10px', borderRadius: '4px', fontWeight: 800, fontSize: '1rem', fontFamily: 'monospace' }}>
-                          {det.plate_text}
-                        </div>
-                      </div>
-
-                      {/* 2-Stage High-Clarity Zoom Inspection Lens Card */}
-                      <div style={{ background: 'rgba(30, 41, 59, 0.7)', border: '1px solid #3b82f6', borderRadius: '6px', padding: '8px', marginTop: '4px' }}>
-                        <div style={{ fontSize: '0.78rem', color: '#60a5fa', fontWeight: 700, marginBottom: '6px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                          <span><i className="fa-solid fa-magnifying-glass-plus"></i> 2-Stage Zoom-In Preview</span>
-                          <span style={{ background: '#1d4ed8', color: '#fff', fontSize: '0.7rem', padding: '2px 6px', borderRadius: '4px' }}>3.5x Super-Res</span>
-                        </div>
-                        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-                          {det.zoomed_vehicle_b64 && (
-                            <div style={{ flex: 1, textAlign: 'center' }}>
-                              <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginBottom: '2px' }}>Stage 1: Vehicle Zoom</div>
-                              <img
-                                src={`data:image/jpeg;base64,${det.zoomed_vehicle_b64}`}
-                                alt="Vehicle Zoom"
-                                style={{ width: '100%', maxHeight: '65px', objectFit: 'contain', borderRadius: '4px', border: '1px solid #475569' }}
-                              />
-                            </div>
-                          )}
-                          {det.zoomed_plate_b64 && (
-                            <div style={{ flex: 1, textAlign: 'center' }}>
-                              <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginBottom: '2px' }}>Stage 2: Plate Super-Res</div>
-                              <img
-                                src={`data:image/jpeg;base64,${det.zoomed_plate_b64}`}
-                                alt="Plate Super Res"
-                                style={{ width: '100%', maxHeight: '65px', objectFit: 'contain', borderRadius: '4px', border: '1px solid #f59e0b' }}
-                              />
-                            </div>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Step 4 Trajectory Navigation Button */}
-                      <button
-                        className="btn btn-secondary full-width"
-                        onClick={() => onViewTrajectory && onViewTrajectory(det.plate_text, resultData?.target_city || 'Mumbai')}
-                        title="Click to view route history on interactive multi-camera map"
-                        style={{ padding: '8px 12px', background: '#0284c7', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 600, fontSize: '0.82rem' }}
-                      >
-                        <i className="fa-solid fa-route"></i> Step 4: View Route Trajectory ({resultData?.target_city || 'Mumbai'})
-                      </button>
-                    </div>
-
-                    <div className="card-metrics" style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.82rem', color: '#cbd5e1' }}>
-                      <div><b>Step 1 (Vehicle):</b> {det.vehicle_type?.toUpperCase() || 'VEHICLE'} ({(det.vehicle_confidence * 100).toFixed(1)}%)</div>
-                      <div><b>Step 2 (Plate Box):</b> [{det.bbox?.join(', ')}]</div>
-                      <div>
-                        <b>Step 3 (Exact Conf):</b> <b style={{ color: '#38bdf8' }}>{(det.confidence * 100).toFixed(1)}%</b>
-                        {det.confidence_flag ? (
-                          <span style={{ background: 'rgba(74, 222, 128, 0.2)', color: '#4ade80', padding: '2px 6px', borderRadius: '4px', fontSize: '0.72rem', marginLeft: '6px' }}>
-                            <i className="fa-solid fa-circle-check"></i> Pattern Validated
-                          </span>
-                        ) : (
-                          <span style={{ background: 'rgba(249, 115, 22, 0.2)', color: '#f97316', padding: '2px 6px', borderRadius: '4px', fontSize: '0.72rem', marginLeft: '6px' }}>
-                            <i className="fa-solid fa-triangle-exclamation"></i> Format Warning (Capped)
-                          </span>
-                        )}
-                      </div>
-                      <div><b>DB Status:</b> <span style={{ color: '#4ade80' }}><i className="fa-solid fa-database"></i> Saved to SQLite</span></div>
-                    </div>
-
-                    {det.state_inferred && (
-                      <div className="alert-banner" style={{ background: 'rgba(2, 132, 199, 0.2)', borderColor: '#0284c7', color: '#e0f2fe', fontSize: '0.8rem', padding: '8px', borderRadius: '6px' }}>
-                        <i className="fa-solid fa-location-dot"></i> <b>Geospatial State Prediction:</b> Inferred initials <b>"{det.inferred_state_code}"</b> from camera node
-                      </div>
-                    )}
-
-                    {det.alert && (
-                      <div className="alert-banner" style={{ fontSize: '0.8rem', padding: '8px', borderRadius: '6px' }}>
-                        <i className="fa-solid fa-triangle-exclamation"></i> ALERT: {det.alert.reason} ({det.alert.risk_level})
-                      </div>
-                    )}
+                <div>
+                  <button
+                    onClick={() => setIsResultsModalOpen(true)}
+                    style={{
+                      width: '100%',
+                      padding: '10px 14px',
+                      marginBottom: '12px',
+                      background: 'linear-gradient(135deg, #0284c7, #2563eb)',
+                      color: '#ffffff',
+                      border: 'none',
+                      borderRadius: '8px',
+                      cursor: 'pointer',
+                      fontWeight: 700,
+                      fontSize: '0.85rem',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '8px',
+                      boxShadow: '0 4px 14px rgba(2, 132, 199, 0.4)'
+                    }}
+                  >
+                    <i className="fa-solid fa-window-restore"></i> Open Full Results Modal ({resultData.detections.length})
+                  </button>
+                  <div style={{ fontSize: '0.82rem', color: '#94a3b8', textAlign: 'center', background: 'rgba(15, 23, 42, 0.6)', padding: '10px', borderRadius: '6px', border: '1px solid #334155' }}>
+                    <i className="fa-solid fa-circle-check" style={{ color: '#4ade80', marginRight: '6px' }}></i>
+                    {resultData.detections.length} vehicle(s) detected. View full details in the pop-up modal.
                   </div>
-                ))
+                </div>
               ) : (
                 <div className="no-data-msg" style={{ fontSize: '0.85rem', color: '#64748b', fontStyle: 'italic', textAlign: 'center', padding: '12px 0' }}>
                   Run ANPR on an image to view recognized output & trajectory
                 </div>
               )}
             </div>
-          </div>
-
-          <div className="info-box mt-4">
-            <h4><i className="fa-solid fa-circle-info"></i> 4-Step Pipeline Architecture</h4>
-            <p><b>Step 1:</b> Vehicle Detection (30-Epoch Fine-Tuned Model)</p>
-            <p><b>Step 2:</b> License Plate Localization (Vehicle ROI Scoped)</p>
-            <p><b>Step 3:</b> OCR + Indian Regex Syntax Grammar Engine</p>
-            <p><b>Step 4:</b> Database Storage & Multi-Camera Trajectory</p>
           </div>
         </div>
 
@@ -539,6 +491,234 @@ export default function ANPRHub({ cityCameras, onANPRSuccess, onViewTrajectory }
                   transition: modalIsDragging ? 'none' : 'transform 0.1s ease-out'
                 }}
               />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Pop-Up Wide Results Modal with Background Blur */}
+      {isResultsModalOpen && resultData && resultData.detections && resultData.detections.length > 0 && (
+        <div
+          className="anpr-results-modal-backdrop"
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(11, 15, 25, 0.85)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
+            zIndex: 9999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '20px',
+            overflowY: 'auto'
+          }}
+          onClick={(e) => {
+            if (e.target.classList.contains('anpr-results-modal-backdrop')) {
+              setIsResultsModalOpen(false);
+            }
+          }}
+        >
+          <div
+            className="anpr-results-modal-card"
+            style={{
+              width: '100%',
+              maxWidth: '1050px',
+              maxHeight: '90vh',
+              overflowY: 'auto',
+              background: '#0f172a',
+              border: '1px solid #0284c7',
+              boxShadow: '0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(2, 132, 199, 0.3)',
+              borderRadius: '16px',
+              padding: '24px',
+              margin: 'auto',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '20px',
+              color: '#f8fafc'
+            }}
+          >
+            {/* Modal Header */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(255, 255, 255, 0.1)', paddingBottom: '16px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'rgba(2, 132, 199, 0.2)', border: '1px solid #0284c7', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#38bdf8', fontSize: '1.3rem' }}>
+                  <i className="fa-solid fa-list-check"></i>
+                </div>
+                <div>
+                  <h2 style={{ fontSize: '1.3rem', fontWeight: 700, margin: 0, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    ANPR Recognition & Inspection Output
+                    <span style={{ background: '#0284c7', color: '#fff', fontSize: '0.78rem', padding: '3px 10px', borderRadius: '20px', fontWeight: 600 }}>
+                      {resultData.detections.length} {resultData.detections.length === 1 ? 'Vehicle Detected' : 'Vehicles Detected'}
+                    </span>
+                  </h2>
+                  <span style={{ fontSize: '0.82rem', color: '#94a3b8' }}>
+                    Image: <b>{resultData.filename || selectedImage}</b> • Location: <b>{resultData.target_city || 'Mumbai'} Camera Grid</b>
+                  </span>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                <span className="time-badge" style={{ padding: '6px 12px', background: 'rgba(2, 132, 199, 0.15)', border: '1px solid #0284c7', borderRadius: '6px', color: '#38bdf8', fontSize: '0.85rem', fontWeight: 600 }}>
+                  <i className="fa-solid fa-stopwatch"></i> Latency: {latency !== null ? `${latency} ms` : '-- ms'}
+                </span>
+                <button
+                  onClick={() => setIsResultsModalOpen(false)}
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.1)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                    color: '#f8fafc',
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    fontSize: '1.1rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    transition: 'all 0.2s ease'
+                  }}
+                  title="Close Modal (Esc)"
+                >
+                  <i className="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+            </div>
+
+            {/* Modal Body: Detections Grid */}
+            <div style={{ display: 'grid', gridTemplateColumns: resultData.detections.length > 1 ? 'repeat(auto-fit, minmax(460px, 1fr))' : '1fr', gap: '20px' }}>
+              {resultData.detections.map((det, index) => (
+                <div
+                  key={index}
+                  style={{
+                    background: 'rgba(30, 41, 59, 0.7)',
+                    border: '1px solid rgba(56, 189, 248, 0.3)',
+                    borderRadius: '12px',
+                    padding: '20px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '16px',
+                    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.3)'
+                  }}
+                >
+                  {/* Plate Badge & Type Header */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <span style={{ fontSize: '1.6rem', fontWeight: 800, fontFamily: 'var(--font-mono)', background: 'linear-gradient(135deg, #0284c7, #38bdf8)', color: '#ffffff', padding: '6px 16px', borderRadius: '8px', letterSpacing: '1px', border: '1px solid #38bdf8', boxShadow: '0 4px 14px rgba(2, 132, 199, 0.4)' }}>
+                        {det.plate_text}
+                      </span>
+                      <span style={{ background: 'rgba(15, 23, 42, 0.8)', border: '1px solid #334155', color: '#cbd5e1', padding: '4px 10px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                        <i className={getVehicleIcon(det.vehicle_type)}></i> {det.vehicle_type?.toUpperCase() || 'VEHICLE'}
+                      </span>
+                    </div>
+
+                    <div style={{ textAlign: 'right' }}>
+                      <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#38bdf8' }}>
+                        {(det.confidence * 100).toFixed(1)}%
+                      </div>
+                      <div style={{ fontSize: '0.72rem', color: '#94a3b8' }}>Overall Confidence</div>
+                    </div>
+                  </div>
+
+                  {/* 3 Image Crop Previews Grid */}
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', background: 'rgba(15, 23, 42, 0.6)', padding: '12px', borderRadius: '10px', border: '1px solid #334155' }}>
+                    {/* 1. Vehicle Zoom Crop */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', alignItems: 'center' }}>
+                      <span style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 600 }}>Vehicle ROI</span>
+                      <div style={{ width: '100%', height: '80px', background: '#020617', borderRadius: '6px', border: '1px solid #334155', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                        {det.zoomed_vehicle_b64 ? (
+                          <img src={`data:image/jpeg;base64,${det.zoomed_vehicle_b64}`} alt="Vehicle Crop" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                        ) : (
+                          <span style={{ fontSize: '0.7rem', color: '#64748b' }}>N/A</span>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* 2. License Plate Crop */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', alignItems: 'center' }}>
+                      <span style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 600 }}>Original Plate Crop</span>
+                      <div style={{ width: '100%', height: '80px', background: '#020617', borderRadius: '6px', border: '1px solid #334155', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                        {det.crop_b64 ? (
+                          <img src={`data:image/jpeg;base64,${det.crop_b64}`} alt="Plate Crop" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                        ) : (
+                          <span style={{ fontSize: '0.7rem', color: '#64748b' }}>N/A</span>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* 3. 5x Super-Res Lens */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', alignItems: 'center' }}>
+                      <span style={{ fontSize: '0.72rem', color: '#38bdf8', fontWeight: 700 }}>5x Super-Res Lens</span>
+                      <div style={{ width: '100%', height: '80px', background: '#020617', borderRadius: '6px', border: '1px solid #0284c7', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                        {det.zoomed_plate_b64 ? (
+                          <img src={`data:image/jpeg;base64,${det.zoomed_plate_b64}`} alt="Super Res Plate" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                        ) : (
+                          <span style={{ fontSize: '0.7rem', color: '#64748b' }}>N/A</span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 4-Step Pipeline Metrics */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.82rem', color: '#cbd5e1', background: 'rgba(15, 23, 42, 0.4)', padding: '12px', borderRadius: '8px' }}>
+                    <div><b>Step 1 (Vehicle):</b> <i className={getVehicleIcon(det.vehicle_type)} style={{ marginRight: '4px', color: '#38bdf8' }}></i> {det.vehicle_type?.toUpperCase() || 'VEHICLE'} ({(det.vehicle_confidence * 100).toFixed(1)}%)</div>
+                    <div><b>Step 2 (Plate Box):</b> [{det.bbox?.join(', ')}] • DetConf: <b>{(det.det_confidence * 100).toFixed(1)}%</b></div>
+                    <div>
+                      <b>Step 3 (OCR & Grammar):</b> OCR Conf: <b style={{ color: '#38bdf8' }}>{(det.ocr_confidence * 100).toFixed(1)}%</b>
+                      {det.confidence_flag ? (
+                        <span style={{ background: 'rgba(74, 222, 128, 0.2)', color: '#4ade80', padding: '2px 8px', borderRadius: '4px', fontSize: '0.75rem', marginLeft: '8px', fontWeight: 600 }}>
+                          <i className="fa-solid fa-circle-check"></i> Pattern Validated
+                        </span>
+                      ) : (
+                        <span style={{ background: 'rgba(249, 115, 22, 0.2)', color: '#f97316', padding: '2px 8px', borderRadius: '4px', fontSize: '0.75rem', marginLeft: '8px', fontWeight: 600 }}>
+                          <i className="fa-solid fa-triangle-exclamation"></i> Format Warning (Capped)
+                        </span>
+                      )}
+                    </div>
+                    <div><b>Step 4 (Database Storage):</b> <span style={{ color: '#4ade80', fontWeight: 600 }}><i className="fa-solid fa-database"></i> Saved to SQLite Database</span></div>
+                  </div>
+
+                  {det.alert && (
+                    <div className="alert-banner" style={{ background: 'rgba(239, 68, 68, 0.2)', borderColor: '#ef4444', color: '#fca5a5', fontSize: '0.82rem', padding: '10px', borderRadius: '8px' }}>
+                      <i className="fa-solid fa-triangle-exclamation"></i> <b>SECURITY ALERT:</b> {det.alert.reason} ({det.alert.risk_level})
+                    </div>
+                  )}
+
+                  {/* Action Buttons */}
+                  <div style={{ display: 'flex', gap: '10px', marginTop: '4px' }}>
+                    <button
+                      onClick={() => {
+                        setIsResultsModalOpen(false);
+                        if (onViewTrajectory) onViewTrajectory(det.plate_text, resultData?.target_city || 'Mumbai');
+                      }}
+                      style={{ flex: 1, padding: '10px 14px', background: '#0284c7', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600, fontSize: '0.85rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+                    >
+                      <i className="fa-solid fa-route"></i> Step 4: View Route Trajectory
+                    </button>
+                    <button
+                      onClick={() => window.open(`/api/reports/pdf?plate=${encodeURIComponent(det.plate_text)}`)}
+                      style={{ padding: '10px 14px', background: 'rgba(255, 255, 255, 0.1)', color: '#f8fafc', border: '1px solid rgba(255, 255, 255, 0.2)', borderRadius: '8px', cursor: 'pointer', fontWeight: 600, fontSize: '0.85rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+                    >
+                      <i className="fa-solid fa-file-pdf"></i> PDF
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Modal Footer */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(255, 255, 255, 0.1)', paddingTop: '16px' }}>
+              <span style={{ fontSize: '0.8rem', color: '#64748b' }}>
+                TrackNet AI ANPR Engine • Multi-Vehicle Spatial Recognition
+              </span>
+              <button
+                onClick={() => setIsResultsModalOpen(false)}
+                style={{ padding: '10px 24px', background: '#334155', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600, fontSize: '0.88rem' }}
+              >
+                Close Results Window
+              </button>
             </div>
           </div>
         </div>
